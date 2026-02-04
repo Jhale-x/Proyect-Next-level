@@ -138,10 +138,23 @@
                 <span>Calificaciones</span>
             </a>
 
+            <a href="{{ url('asistencia') }}" class="{{ request()->is('asistencia') ? 'active' : '' }}">
+                <i class="bi bi-check2-square"></i>
+                <span>Asistencia</span>
+            </a>
+
+
+            <a href="{{ url('asistenciaP') }}" class="{{ request()->is('asistenciaP') ? 'active' : '' }}">
+                <i class="bi bi-list-check"></i>
+
+                <span>Asistencia Profesores</span>
+            </a>
+
             <a href="{{ url('herramientas') }}" class="{{ request()->is('herramientas') ? 'active' : '' }}">
                 <i class="bi bi-tools"></i>
                 <span>Herramientas</span>
             </a>
+
         </nav>
 
         <a href="{{ url('logout') }}" class="logout d-flex align-items-center gap-2 px-3 py-2">
