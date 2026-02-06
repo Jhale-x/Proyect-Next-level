@@ -12,7 +12,9 @@ use App\Http\Controllers\ListadoController;
 use App\Http\Controllers\HerramientasController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EtiController; // <--- Importado aquí
-
+use App\Http\Controllers\asistenciaController;
+use App\Http\Controllers\asispController;
+use App\Http\Controllers\MensajessController;
 /*
 |--------------------------------------------------------------------------
 | Página principal
@@ -35,7 +37,10 @@ Route::get('/calendario', [CalendarioController::class, 'index'])->name('calenda
 Route::get('/mensajes', [MensajesController::class, 'index'])->name('mensajes');
 Route::get('/calificaciones', [CalificacionesController::class, 'index'])->name('calificaciones');
 Route::get('/herramientas', [HerramientasController::class, 'index'])->name('herramientas');
-
+Route::get('/asistencia', [asistenciaController::class, 'index'])->name('asistencia');
+Route::get('/asistenciaP', [asispController::class, 'index'])->name('asistenciaP');
+Route::get('/soporte', [App\Http\Controllers\soporteController::class, 'index'])->name('soporte');
+Route::get('/mensajes/nuevo/{curso}', [MensajessController::class, 'create'])->name('mensajes.nuevo');
 /*
 |--------------------------------------------------------------------------
 | Usuarios (submenu)

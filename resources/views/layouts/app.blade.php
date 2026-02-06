@@ -209,6 +209,17 @@
                     <span>Calificaciones</span>
                 </a>
 
+                <a href="{{ url('asistencia') }}" class="{{ request()->is('asistencia') ? 'active' : '' }}">
+                    <i class="bi bi-check2-square"></i>
+                    <span>Asistencia</span>
+                </a>
+
+                <a href="{{ url('asistenciaP') }}" class="{{ request()->is('asistenciaP') ? 'active' : '' }}">
+                    <i class="bi bi-list-check"></i>
+
+                    <span>Asistencia Profesores</span>
+                </a>
+
                 <a href="{{ route('herramientas') }}" class="{{ request()->routeIs('herramientas') ? 'active' : '' }}">
                     <i class="bi bi-tools"></i>
                     <span>Herramientas</span>

@@ -4,54 +4,35 @@
 
 @section('content')
 
-<div class="container-fluid">
-    <h2 class="mb-4">
-        <i class="bi bi-tools"></i> Herramientas académicas
-    </h2>
-
-    <div class="row">
-
-        <div class="col-md-3 mb-4">
-            <div class="card text-center shadow-sm">
-                <div class="card-body">
-                    <i class="bi bi-file-earmark-text fs-1"></i>
-                    <h5 class="mt-3">Materiales</h5>
-                    <p class="text-muted">Guías y documentos</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 mb-4">
-            <div class="card text-center shadow-sm">
-                <div class="card-body">
-                    <i class="bi bi-upload fs-1"></i>
-                    <h5 class="mt-3">Entregas</h5>
-                    <p class="text-muted">Subir tareas</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 mb-4">
-            <div class="card text-center shadow-sm">
-                <div class="card-body">
-                    <i class="bi bi-chat-dots fs-1"></i>
-                    <h5 class="mt-3">Soporte</h5>
-                    <p class="text-muted">Contacto con docentes</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 mb-4">
-            <div class="card text-center shadow-sm">
-                <div class="card-body">
-                    <i class="bi bi-gear fs-1"></i>
-                    <h5 class="mt-3">Configuración</h5>
-                    <p class="text-muted">Ajustes de cuenta</p>
-                </div>
-            </div>
-        </div>
-
-    </div>
+<div class="mb-4">
+    <h1 class="fw-normal">Herramientas</h1>
+    <hr>
 </div>
 
+<div class="row g-4">
+
+<!-- Soporte -->
+        <div class="col-md-4">
+            <a href="{{ route('soporte') }}" class="text-decoration-none text-dark">
+                <div class="card h-100 text-center shadow-sm border">
+                    <div class="card-body d-flex flex-column justify-content-center">
+                        <i class="bi bi-rocket-takeoff fs-1 mb-3"></i>
+                        <h6 class="fw-semibold">Soporte</h6>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+    <!-- Documentacion -->
+    <div class="col-md-4">
+        <div class="card h-100 text-center shadow-sm border">
+            <div class="card-body d-flex flex-column justify-content-center">
+                <i class="bi bi-journal-text fs-1 mb-3"></i>
+                <h6 class="fw-semibold">Documentación</h6>
+            </div>
+        </div>
+    </div>
+
+</div>
 @endsection
