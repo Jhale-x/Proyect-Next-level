@@ -15,6 +15,16 @@
             overflow-x: hidden;
         }
 
+        /* --- ANIMACIÓN DEL LOGO --- */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .logo-img, .logo-mobile-spin {
+            animation: spin 10s linear infinite; /* Movimiento suave y constante */
+        }
+
         /* SIDEBAR BASE */
         .sidebar {
             width: 260px;
@@ -145,7 +155,7 @@
 
     <div class="mobile-header">
         <div class="d-flex align-items-center gap-2">
-            <img src="{{ asset('img/next-level-logo.png') }}" alt="Logo" style="width: 30px;">
+            <img src="{{ asset('img/next-level-logo.png') }}" alt="Logo" style="width: 30px;" class="logo-mobile-spin">
             <span class="fw-bold">Next Level</span>
         </div>
         <button class="btn btn-outline-light border-0" onclick="toggleSidebar()">
@@ -207,6 +217,16 @@
                 <a href="{{ route('calificaciones') }}" class="{{ request()->routeIs('calificaciones') ? 'active' : '' }}">
                     <i class="bi bi-award"></i>
                     <span>Calificaciones</span>
+                </a>
+
+                <a href="{{ url('asistencia') }}" class="{{ request()->is('asistencia') ? 'active' : '' }}">
+                    <i class="bi bi-check2-square"></i>
+                    <span>Asistencia</span>
+                </a>
+
+                <a href="{{ url('asistenciaP') }}" class="{{ request()->is('asistenciaP') ? 'active' : '' }}">
+                    <i class="bi bi-list-check"></i>
+                    <span>Asistencia Profesores</span>
                 </a>
 
                 <a href="{{ route('herramientas') }}" class="{{ request()->routeIs('herramientas') ? 'active' : '' }}">

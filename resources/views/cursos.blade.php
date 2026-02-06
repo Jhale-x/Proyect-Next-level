@@ -8,7 +8,7 @@
     // SIMULACIÓN DE ROLES: 
     // true = Vista Docente (Registro de notas)
     // false = Vista Alumno (Visualización de dashboard)
-    $esDocente = true; 
+    $esDocente = false; 
 @endphp
 
 <style>
@@ -54,13 +54,6 @@
 <div class="container-fluid py-4">
 
     <div id="vista-listado">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="fw-bold text-dark">Mis Cursos 2026</h2>
-            <button class="btn btn-outline-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#modalRegistro">
-                <i class="bi bi-person-plus-fill me-2"></i>Registrar Usuario
-            </button>
-        </div>
-        
         <div class="row g-3">
             @php
                 $cursos = [
@@ -100,7 +93,7 @@
                     <h4 class="text-muted mb-4 fw-light">Gestión de calificaciones para este curso</h4>
                     <button class="btn-excel-premium fw-bold" onclick="mostrarRegistroExcel()">
                         <i class="bi bi-file-earmark-spreadsheet-fill"></i>
-                        Abrir Registro Auxiliar (EXCEL)
+                        Abrir Registro Auxiliar
                     </button>
                     <p class="mt-4 text-muted small"><i class="bi bi-info-circle me-1"></i> El sistema promedia automáticamente de 0-20 a escala de letras.</p>
                 </div>

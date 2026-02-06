@@ -5,9 +5,8 @@
 @section('content')
 <div class="container-fluid py-4">
 
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-2">
+    <div class="mb-4">
         <h2 class="fw-bold m-0" style="color: #0a1f44;">Registro de Usuarios</h2>
-        <i class="bi bi-person-plus-fill fs-3 text-primary d-none d-md-block"></i>
     </div>
 
     <div class="row g-2 mb-4">
@@ -154,7 +153,7 @@
 </div>
 
 <script>
-// Generación automática de credenciales
+// Mantengo tus funciones de JS intactas ya que funcionan correctamente
 function vincularCredenciales(dniId, dateId, userId, passId) {
     const d = document.getElementById(dniId);
     const f = document.getElementById(dateId);
@@ -191,7 +190,6 @@ function mostrarPersonal() {
     window.scrollTo({ top: document.getElementById('form-personal').offsetTop - 80, behavior: 'smooth' });
 }
 
-// Lógica de Niveles dinámicos
 document.getElementById('nivel').addEventListener('change', function () {
     const gg = document.getElementById('grupo-grado');
     const gs = document.getElementById('grupo-seccion');
