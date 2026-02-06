@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @extends('layouts.app')
+=======
+@extends('layouts.landing')
+>>>>>>> 6449e0ffd2cda145b29f11a55a06e18829329855
 
 @section('title', 'Asistencia')
 
@@ -10,6 +14,10 @@
     background-color: #fd7e14;
     color: #fff;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6449e0ffd2cda145b29f11a55a06e18829329855
     </style>
 
     <!-- Header -->
@@ -109,7 +117,11 @@
                     <td>
                         <span class="badge bg-orange">Justificado - Tardanza</span>
                     </td>
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 6449e0ffd2cda145b29f11a55a06e18829329855
 
                 </tbody>
             </table>
@@ -117,4 +129,8 @@
     </div>
 </div>
 </div>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> 6449e0ffd2cda145b29f11a55a06e18829329855

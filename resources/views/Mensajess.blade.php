@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @extends('layouts.app')
+=======
+@extends('layouts.landing')
+>>>>>>> 6449e0ffd2cda145b29f11a55a06e18829329855
 
 @section('title', 'Nuevo mensaje')
 
@@ -159,7 +163,11 @@
 
     /* Botón enviar */
     .btn-send {
+<<<<<<< HEAD
         background: #0a1f44;
+=======
+        background: #007bff;
+>>>>>>> 6449e0ffd2cda145b29f11a55a06e18829329855
         color: #fff;
         border: none;
         padding: 12px 30px;
@@ -170,7 +178,11 @@
     }
 
     .btn-send:hover {
+<<<<<<< HEAD
         background: #0b347b;
+=======
+        background: #0056b3;
+>>>>>>> 6449e0ffd2cda145b29f11a55a06e18829329855
     }
 </style>
 

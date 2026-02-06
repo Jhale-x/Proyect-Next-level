@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @extends('layouts.app')
+=======
+@extends('layouts.landing')
+>>>>>>> 6449e0ffd2cda145b29f11a55a06e18829329855
 
 @section('title', 'Asistencia Profesores')
 
@@ -12,6 +16,10 @@
     background-color: #fd7e14;
     color: #fff;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6449e0ffd2cda145b29f11a55a06e18829329855
     </style>
 
     <!-- Header -->
@@ -31,10 +39,17 @@
             class="border rounded-lg px-4 py-2 w-full md:w-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
             <input type="date" value="2026-02-04" class="border rounded-lg px-4 py-2 w-full md:w-auto">
+<<<<<<< HEAD
 
         </div>
     </div>
 
+=======
+            
+        </div>
+    </div>
+    
+>>>>>>> 6449e0ffd2cda145b29f11a55a06e18829329855
     <!-- Tabla -->
     <div class="container-fluid mt-4">
     <div class="card shadow-sm">
@@ -101,7 +116,11 @@
                     <td>
                         <span class="badge bg-orange">Justificado - Tardanza</span>
                     </td>
+<<<<<<< HEAD
 
+=======
+                    
+>>>>>>> 6449e0ffd2cda145b29f11a55a06e18829329855
 
                 </tbody>
             </table>
@@ -109,4 +128,8 @@
     </div>
 </div>
 </div>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> 6449e0ffd2cda145b29f11a55a06e18829329855
