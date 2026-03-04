@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestros Valores | Next Level</title>
+    <title>Next Level | Nuestros Valores</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -21,7 +21,7 @@
             <div class="marquee-track" id="marqueeTrack">
                 <div class="marquee-item">
                     ¡Matrícula 2026! &nbsp;&nbsp;&nbsp;&nbsp;
-                    ☀️🏊‍♂️ Inicio de Clases: 2 Marzo &nbsp;&nbsp;&nbsp;&nbsp;
+                    ☀️🏊‍♂️ Inicio de Clases: 4 Marzo &nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
             </div>
         </div>

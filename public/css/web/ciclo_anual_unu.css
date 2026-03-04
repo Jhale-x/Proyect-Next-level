@@ -70,10 +70,17 @@
     padding: 60px 20px;
 }
 
-.color-cian { color: #00aeef; font-weight: 800; font-size: 2.5rem; margin-bottom: 20px; }
-.texto-centrado { text-align: center; }
+.color-cian {
+    color: #00aeef;
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
 
-/* 1. Detalle */
+.texto-centrado {
+    text-align: center;
+}
+
 .grid-presentacion {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
@@ -81,10 +88,28 @@
     align-items: center;
 }
 
-.metodologia-destaque { font-weight: 900; margin: 25px 0; color: #333; }
-.lista-detalles { list-style: none; padding: 0; }
-.lista-detalles li { margin-bottom: 18px; display: flex; gap: 15px; align-items: flex-start; }
-.lista-detalles i { color: #00aeef; font-size: 1.2rem; margin-top: 4px; }
+.metodologia-destaque {
+    font-weight: 900;
+    margin: 25px 0;
+    color: #333;
+}
+
+.lista-detalles {
+    list-style: none;
+    padding: 0; }
+
+.lista-detalles li {
+    margin-bottom: 18px;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.lista-detalles i {
+    color: #00aeef;
+    font-size: 1.2rem;
+    margin-top: 4px;
+}
 
 .boton-inclinado-horario {
     display: inline-block;
@@ -97,14 +122,26 @@
     margin-top: 20px;
 }
 
-/* 2. Beneficios */
 .seccion-beneficios-unu {
     background: linear-gradient(135deg, #e6007e 0%, #662d91 50%, #00aeef 100%);
     color: white;
 }
 
-.titulo-blanco { color: white; font-size: 3rem; text-align: center; font-weight: 800; margin: 0; }
-.subtitulo-blanco { color: white; text-align: center; font-style: italic; margin-bottom: 50px; opacity: 0.9; }
+.titulo-blanco {
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+    font-weight: 800;
+    margin: 0;
+}
+
+.subtitulo-blanco {
+    color: white;
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 50px;
+    opacity: 0.9;
+}
 
 .grid-beneficios {
     display: grid;
@@ -122,15 +159,20 @@
     margin-bottom: 8px;
 }
 
-.item-b { margin-bottom: 30px; }
+.item-b {
+    margin-bottom: 30px;
+}
 
-/* 3. Inversión (Tabla Centrada y más grande) */
 .tabla-presencial-unica {
     max-width: 800px;
     margin: 40px auto 0;
 }
 
-.tabla-custom { border: 2px solid #00aeef; border-radius: 5px; overflow: hidden; }
+.tabla-custom {
+    border: 2px solid #00aeef;
+    border-radius: 5px;
+    overflow: hidden;
+}
 
 .fila-cabecera {
     display: grid;
@@ -148,13 +190,38 @@
     border-bottom: 1px solid #eee;
 }
 
-.celda { padding: 20px 10px; text-align: center; display: flex; flex-direction: column; justify-content: center; }
+.celda {
+    padding: 20px 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-.verde-ahorro { background: #2dfd82; font-weight: 900; }
-.verde-ahorro small { background: #e6007e; color: white; padding: 2px 8px; font-size: 0.7rem; border-radius: 3px; margin-top: 5px; }
+.verde-ahorro {
+    background: #2dfd82;
+    font-weight: 900;
+}
 
-.pie-inversion { text-align: center; margin-top: 40px; }
-.vacantes { color: #888; margin-bottom: 20px; font-weight: bold; }
+.verde-ahorro small {
+    background: #e6007e;
+    color: white;
+    padding: 2px 8px;
+    font-size: 0.7rem;
+    border-radius: 3px;
+    margin-top: 5px;
+}
+
+.pie-inversion {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.vacantes {
+    color: #888;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
 
 .btn-matricula-final {
     background: #00aeef;

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ciclos | Next Level</title>
+    <title>Next Level | Ciclos</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -22,7 +22,7 @@
             <div class="marquee-track" id="marqueeTrack">
                 <div class="marquee-item">
                     ¡Matrícula 2026! &nbsp;&nbsp;&nbsp;&nbsp;
-                    ☀️🏊‍♂️ Inicio de Clases: 2 Marzo &nbsp;&nbsp;&nbsp;&nbsp;
+                    ☀️🏊‍♂️ Inicio de Clases: 4 Marzo &nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
             </div>
         </div>
@@ -135,7 +135,6 @@
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
                         <div class="acordeon-content">
-                            <a href="{{ route('ciclo-anual-unu') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">Anual UNU</span>
@@ -165,7 +164,6 @@
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
                         <div class="acordeon-content">
-                            <a href="{{ route('ciclo-anual-unia') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">Anual UNIA</span>

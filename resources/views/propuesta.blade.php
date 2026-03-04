@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Propuesta Educativa - Next Level</title>
+    <title> Next Level | Propuesta Educativa</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
@@ -17,7 +17,7 @@
             <div class="marquee-track" id="marqueeTrack">
                 <div class="marquee-item">
                     ¡Matrícula 2026! &nbsp;&nbsp;&nbsp;&nbsp;
-                    ☀️🏊‍♂️ Inicio de Clases: 2 Marzo &nbsp;&nbsp;&nbsp;&nbsp;
+                    ☀️🏊‍♂️ Inicio de Clases: 4 Marzo &nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
             </div>
         </div>
