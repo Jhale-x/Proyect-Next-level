@@ -65,3 +65,7 @@ Route::get('/ciclo-anual-unu', function (){
 Route::get('/ciclo-anual-unia', function (){
     return view('ciclo_anual_unia');
 })->name('ciclo-anual-unia');
+
+Route::get('/mantenimiento', function () {
+    return view('mantenimiento');
+})->name('mantenimiento');

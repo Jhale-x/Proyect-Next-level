@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/propuesta.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
 </head>
 
 <body>
@@ -40,21 +41,21 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">&#9662;</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Qué ofrecemos</a></li>
-                        <li><a href="#">Quiénes Somos</a></li>
+                        <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
+                        <li><a href="{{ route('mantenimiento') }}">Quiénes Somos</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-trigger">NIVELES <span class="arrow-icon">&#9662;</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Colegio</a></li>
+                        <li><a href="{{ route('mantenimiento') }}">Colegio</a></li>
                         <li><a href="{{ route('academia') }}">Academia</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                <li><a href="#">MATRICULAS</a></li>
-                <li><a href="#">CONCURSOS</a></li>
-                <li><a href="{{ route('portal') }}">INTRANET</a></li>
+                <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
+                <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
+                <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
             </ul>
         </div>
     </nav>
@@ -77,24 +78,24 @@
                         <span>NIVELES</span> <i class="fa-solid fa-chevron-right"></i>
                     </li>
                     <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                    <li><a href="#">MATRICULAS</a></li>
-                    <li><a href="#">CONCURSOS</a></li>
-                    <li><a href="{{ route('portal') }}">INTRANET</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
                 </ul>
             </div>
 
             <div class="menu-panel" id="submenu-nosotros">
                 <button class="back-btn" type="button"><i class="fa-solid fa-chevron-left"></i> REGRESAR</button>
                 <ul class="mobile-nav-list">
-                    <li><a href="#">Qué ofrecemos</a></li>
-                    <li><a href="#">Quiénes Somos</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">Quiénes Somos</a></li>
                 </ul>
             </div>
 
             <div class="menu-panel" id="submenu-niveles">
                 <button class="back-btn" type="button"><i class="fa-solid fa-chevron-left"></i> REGRESAR</button>
                 <ul class="mobile-nav-list">
-                    <li><a href="#">Colegio</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">Colegio</a></li>
                     <li><a href="{{ route('academia') }}">Academia</a></li>
                 </ul>
             </div>
@@ -104,7 +105,7 @@
     <section class="hero-full-width">
         <div class="hero-slide active">
             <div class="hero-main-content">
-                <img src="{{ asset('images/imagen10.jpg') }}" alt="Next Level Educación" class="main-image">
+                <img src="{{ asset('images/ubicacion.jpeg') }}" alt="Next Level Educación" class="main-image">
                 <div class="diagonal-white">
                     <h1>LLEVAMOS TU POTENCIAL AL SIGUIENTE NIVEL.</h1>
                     <p>Desarrollando mentes curiosas y futuros brillantes desde la etapa temprana.</p>
@@ -118,7 +119,7 @@
 
         <div class="hero-slide">
             <div class="hero-main-content">
-                <img src="{{ asset('images/imagen10.jpg') }}" alt="Innovación" class="main-image">
+                <img src="{{ asset('images/inicio_chica.jpeg') }}" alt="Innovación" class="main-image">
                 <div class="diagonal-white">
                     <h1>DONDE EL APRENDIZAJE NO TIENE LÍMITES.</h1>
                     <p>Aprendizaje basado en retos con impacto en el mundo real.</p>
@@ -132,7 +133,7 @@
 
         <div class="hero-slide">
             <div class="hero-main-content">
-                <img src="{{ asset('images/imagen10.jpg') }}" alt="Valores" class="main-image">
+                <img src="{{ asset('images/Logo25.jpeg') }}" alt="Valores" class="main-image">
                 <div class="diagonal-white">
                     <h1>FORMACIÓN EN VALORES Y ÉTICA.</h1>
                     <p>Creamos ciudadanos responsables, empáticos y comprometidos con su sociedad.</p>
@@ -150,7 +151,7 @@
             <div class="welcome-grid reorder-mobile">
                 <div class="welcome-image-side">
                     <div class="image-frame">
-                        <img src="{{ asset('images/imagen10.jpg') }}" alt="Educación Next Level">
+                        <img src="{{ asset('images/los_dos_chicos.jpeg') }}" alt="Educación Next Level">
                     </div>
                     <div class="experience-badge">
                         <span class="number">2026</span>
@@ -204,7 +205,7 @@
                 <div class="pathway-visuals">
                     <div class="cards-wrapper">
                         <div class="path-card path-card-top">
-                            <img src="{{ asset('images/imagen10.jpg') }}" alt="Colegio">
+                            <img src="{{ asset('images/logo80.jpeg') }}" alt="Colegio">
                             <div class="path-card-overlay">
                                 <h3>COLEGIO</h3>
                                 <p>FORMATO NIÑOS UNIVERSITARIOS</p>
@@ -212,7 +213,7 @@
                         </div>
 
                         <div class="path-card path-card-bottom">
-                            <img src="{{ asset('images/imagen10.jpg') }}" alt="Academia">
+                            <img src="{{ asset('images/Logo25.jpeg') }}" alt="Academia">
                             <div class="path-card-overlay">
                                 <h3>ACADEMIA</h3>
                                 <p>RUMBO A LA UNIVERSIDAD</p>
@@ -408,7 +409,7 @@
                 <img src="{{ asset('images/logo_footer.png') }}" alt="Next Level Logo" class="footer-logo-img">
                 <div class="footer-contact">
                     <p><i class="fa-solid fa-phone"></i> +51 923 317 626</p>
-                    <p><i class="fa-solid fa-location-dot"></i> Carretera Federico Basadre Km. 6 (Al costado de la UNU)</p>
+                    <p><i class="fa-solid fa-location-dot"></i> Carretera Federico Basadre Km. 6.5 (Al costado de la UNU)</p>
                     <p><i class="fa-solid fa-envelope"></i> contacto@nextlevel.edu.pe</p>
                 </div>
             </div>
@@ -424,14 +425,14 @@
                 <div class="footer-column">
                     <a href="{{ route('academia') }}">ACADEMIA</a>
                     <a href="{{ route('pagos') }}">PAGOS EN LÍNEA</a>
-                    <a href="#">MATRíCULA 2026</a>
-                    <a href="#">MATRÍCULA ONLINE</a>
-                    <a href="#">LIBRO RECLAMACIONES</a>
+                    <a href="{{ route('mantenimiento') }}">MATRíCULA 2026</a>
+                    <a href="{{ route('mantenimiento') }}">MATRÍCULA ONLINE</a>
+                    <a href="{{ route('mantenimiento') }}">LIBRO RECLAMACIONES</a>
                 </div>
                 <div class="footer-column social-align">
-                    <a href="#">POLÍTICA COOKIES</a>
-                    <a href="#">POLÍTICA PRIVACIDAD</a>
-                    <a href="#">TERMINOS Y CONDICIONES</a>
+                    <a href="{{ route('mantenimiento') }}">POLÍTICA COOKIES</a>
+                    <a href="{{ route('mantenimiento') }}">POLÍTICA PRIVACIDAD</a>
+                    <a href="{{ route('mantenimiento') }}">TERMINOS Y CONDICIONES</a>
 
                     <div class="footer-social-icons">
                         <a href="https://www.tiktok.com/@next_level_novus" target="_blank" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>

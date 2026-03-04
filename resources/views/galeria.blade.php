@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/propuesta.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/galeria.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
 </head>
 
 <body>
@@ -41,21 +42,21 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">▾</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Qué ofrecemos</a></li>
-                        <li><a href="#">Quiénes Somos</a></li>
+                        <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
+                        <li><a href="{{ route('mantenimiento') }}">Quiénes Somos</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-trigger">NIVELES <span class="arrow-icon">▾</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Colegio</a></li>
+                        <li><a href="{{ route('mantenimiento') }}">Colegio</a></li>
                         <li><a href="{{ route('academia') }}">Academia</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                <li><a href="#">MATRICULAS</a></li>
-                <li><a href="#">CONCURSOS</a></li>
-                <li><a href="{{ route('portal') }}">INTRANET</a></li>
+                <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
+                <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
+                <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
             </ul>
         </div>
     </nav>
@@ -78,24 +79,24 @@
                         <span>NIVELES</span> <i class="fa-solid fa-chevron-right"></i>
                     </li>
                     <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                    <li><a href="#">MATRICULAS</a></li>
-                    <li><a href="#">CONCURSOS</a></li>
-                    <li><a href="{{ route('portal') }}">INTRANET</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
                 </ul>
             </div>
 
             <div class="menu-panel" id="submenu-nosotros">
                 <button class="back-btn" type="button"><i class="fa-solid fa-chevron-left"></i> REGRESAR</button>
                 <ul class="mobile-nav-list">
-                    <li><a href="#">Qué ofrecemos</a></li>
-                    <li><a href="#">Quiénes Somos</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">Quiénes Somos</a></li>
                 </ul>
             </div>
 
             <div class="menu-panel" id="submenu-niveles">
                 <button class="back-btn" type="button"><i class="fa-solid fa-chevron-left"></i> REGRESAR</button>
                 <ul class="mobile-nav-list">
-                    <li><a href="#">Colegio</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">Colegio</a></li>
                     <li><a href="{{ route('academia') }}">Academia</a></li>
                 </ul>
             </div>
@@ -142,30 +143,6 @@
                 <div class="grid-item"><img src="{{ asset('images/g18.jpeg') }}" alt="Galería 18" loading="lazy"></div>
                 <div class="grid-item"><img src="{{ asset('images/g19.jpeg') }}" alt="Galería 19" loading="lazy"></div>
                 <div class="grid-item"><img src="{{ asset('images/g20.jpeg') }}" alt="Galería 20" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 21" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 22" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 23" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 24" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 25" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 26" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 27" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 28" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 29" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 30" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 31" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 32" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 33" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 34" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 35" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 36" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 37" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 38" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 39" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 40" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 41" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 42" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 43" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/imagen10.jpg') }}" alt="Galería 44" loading="lazy"></div>
             </div>
         </div>
     </section>
@@ -177,7 +154,7 @@
                 <img src="{{ asset('images/logo_footer.png') }}" alt="Next Level Logo" class="footer-logo-img">
                 <div class="footer-contact">
                     <p><i class="fa-solid fa-phone"></i> +51 923 317 626</p>
-                    <p><i class="fa-solid fa-location-dot"></i> Carretera Federico Basadre Km. 6 (Al costado de la UNU)</p>
+                    <p><i class="fa-solid fa-location-dot"></i> Carretera Federico Basadre Km. 6.5 (Al costado de la UNU)</p>
                     <p><i class="fa-solid fa-envelope"></i> contacto@nextlevel.edu.pe</p>
                 </div>
             </div>
@@ -193,14 +170,14 @@
                 <div class="footer-column">
                     <a href="{{ route('academia') }}">ACADEMIA</a>
                     <a href="{{ route('pagos') }}">PAGOS EN LÍNEA</a>
-                    <a href="#">MATRíCULA 2026</a>
-                    <a href="#">MATRÍCULA ONLINE</a>
-                    <a href="#">LIBRO RECLAMACIONES</a>
+                    <a href="{{ route('mantenimiento') }}">MATRíCULA 2026</a>
+                    <a href="{{ route('mantenimiento') }}">MATRÍCULA ONLINE</a>
+                    <a href="{{ route('mantenimiento') }}">LIBRO RECLAMACIONES</a>
                 </div>
                 <div class="footer-column social-align">
-                    <a href="#">POLÍTICA COOKIES</a>
-                    <a href="#">POLÍTICA PRIVACIDAD</a>
-                    <a href="#">TERMINOS Y CONDICIONES</a>
+                    <a href="{{ route('mantenimiento') }}">POLÍTICA COOKIES</a>
+                    <a href="{{ route('mantenimiento') }}">POLÍTICA PRIVACIDAD</a>
+                    <a href="{{ route('mantenimiento') }}">TERMINOS Y CONDICIONES</a>
 
                     <div class="footer-social-icons">
                         <a href="https://www.tiktok.com/@next_level_novus" target="_blank" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
