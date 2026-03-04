@@ -134,7 +134,7 @@
 
                     <div class="academia-text">
                         <span class="academy-label">MÉTODO NEXT LEVEL</span>
-                        <h2 class="title-blue">QUIÉNES SOMOS</h2>
+                        <h2 class="title-blue">NUESTRA MISIÓN</h2>
                         <p>
                         Somos una academia de prestigio y trayectoria intachable, gracias al
                         trabajo esmerado y responsable de nuestro equipo docente y administrativo.
@@ -203,12 +203,6 @@
         </section>
 
         <section class="ciclos-section-carrusel">
-            <div class="curve-divider top">
-                <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="#ffffff"></path>
-                </svg>
-            </div>
-
             <div class="container content-wrapper">
                 <div class="section-header-centered">
                     <h2 class="title-white">PROGRAMAS DE PREPARACIÓN 2026</h2>
@@ -304,12 +298,6 @@
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
-
-            <div class="curve-divider bottom">
-                <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="#ffffff"></path>
-                </svg>
-            </div>
         </section>
 
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -345,75 +333,6 @@
                 </div>
             </div>
         </section>
-
-    <section class="docentes-carousel-section">
-        <div class="info-container">
-            <div class="info-header">
-                <h2 class="section-title-dark">NUESTRA PLANA DE DOCENTE</h2>
-                <p class="info-intro">Liderazgo y trayectoria al servicio de la formación de nuestros alumnos.</p>
-                <div class="title-underline"></div>
-            </div>
-
-            <div class="docentes-carrusel-wrapper">
-                <button class="doc-nav-btn prev" id="docPrevBtn"><i class="fa-solid fa-chevron-left"></i></button>
-
-                <div class="docentes-overflow">
-                    <div class="docentes-track" id="docentesTrack">
-                        <div class="docente-card-modern">
-                            <div class="docente-img-box"><img src="{{ asset('images/imagen10.jpg') }}" alt="Docente Academia"></div>
-                            <div class="docente-content">
-                                <h3>Nombre del Docente</h3>
-                                <span class="doc-tag">Especialidad</span>
-                                <p>Docente con amplia trayectoria en formación académica y valores para el éxito de nuestros alumnos.</p>
-                            </div>
-                        </div>
-                        <div class="docente-card-modern">
-                            <div class="docente-img-box"><img src="{{ asset('images/imagen10.jpg') }}" alt="Docente Academia"></div>
-                            <div class="docente-content">
-                                <h3>Nombre del Docente</h3>
-                                <span class="doc-tag">Especialidad</span>
-                                <p>Docente con amplia trayectoria en formación académica y valores para el éxito de nuestros alumnos.</p>
-                            </div>
-                        </div>
-                        <div class="docente-card-modern">
-                            <div class="docente-img-box"><img src="{{ asset('images/imagen10.jpg') }}" alt="Docente Academia"></div>
-                            <div class="docente-content">
-                                <h3>Nombre del Docente</h3>
-                                <span class="doc-tag">Especialidad</span>
-                                <p>Docente con amplia trayectoria en formación académica y valores para el éxito de nuestros alumnos.</p>
-                            </div>
-                        </div>
-                        <div class="docente-card-modern">
-                            <div class="docente-img-box"><img src="{{ asset('images/imagen10.jpg') }}" alt="Docente Academia"></div>
-                            <div class="docente-content">
-                                <h3>Nombre del Docente</h3>
-                                <span class="doc-tag">Especialidad</span>
-                                <p>Docente con amplia trayectoria en formación académica y valores para el éxito de nuestros alumnos.</p>
-                            </div>
-                        </div>
-                        <div class="docente-card-modern">
-                            <div class="docente-img-box"><img src="{{ asset('images/imagen10.jpg') }}" alt="Docente Academia"></div>
-                            <div class="docente-content">
-                                <h3>Nombre del Docente</h3>
-                                <span class="doc-tag">Especialidad</span>
-                                <p>Docente con amplia trayectoria en formación académica y valores para el éxito de nuestros alumnos.</p>
-                            </div>
-                        </div>
-                        <div class="docente-card-modern">
-                            <div class="docente-img-box"><img src="{{ asset('images/imagen10.jpg') }}" alt="Docente Academia"></div>
-                            <div class="docente-content">
-                                <h3>Nombre del Docente</h3>
-                                <span class="doc-tag">Especialidad</span>
-                                <p>Docente con amplia trayectoria en formación académica y valores para el éxito de nuestros alumnos.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="doc-nav-btn next" id="docNextBtn"><i class="fa-solid fa-chevron-right"></i></button>
-            </div>
-        </div>
-    </section>
     </main>
 
     <footer class="footer">

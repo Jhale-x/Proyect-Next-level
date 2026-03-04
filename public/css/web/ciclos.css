@@ -171,7 +171,7 @@
 }
 
 .acordeon-content {
-    max-height: 500px;
+    max-height: 400px;
     overflow: hidden;
     transition: max-height 0.4s ease-out;
     background: var(--blanco);
@@ -235,7 +235,7 @@
 
 .ciclo-link {
     text-decoration: none;
-    display: block; /* Para que ocupe todo el ancho del item */
+    display: block;
     color: inherit;
 }
 

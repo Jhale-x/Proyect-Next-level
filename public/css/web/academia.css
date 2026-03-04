@@ -302,76 +302,6 @@
     font-weight: 600;
 }
 
-.docentes-carousel-section {
-    padding: 80px 0;
-    margin-top: -70px;
-}
-
-.section-title-dark{
-    color: var(--azul-oscuro);
-    font-size: 2.9rem;
-}
-
-.docentes-carrusel-wrapper {
-    position: relative;
-    max-width: 1270px;
-    margin: 40px auto 0;
-    padding: 0 60px;
-    display: flex;
-    align-items: center;
-}
-
-.docentes-overflow {
-    width: 100%;
-    overflow: hidden;
-}
-
-.docentes-track {
-    display: flex;
-    gap: 25px;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.docente-card-modern {
-    flex: 0 0 calc(25% - 18.75px);
-    background: var(--blanco);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    border-bottom: 4px solid transparent;
-    min-height: 520px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-
-.docente-card-modern:hover {
-    transform: translateY(-10px);
-    border-bottom: 4px solid var(--rojo-principal);
-}
-
-.docente-img-box {
-    height: 350px;
-    overflow: hidden;
-}
-
-.docente-img-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.docente-content {
-    padding: 25px;
-    text-align: center;
-}
-
-.docente-content h3 {
-    color: var(--azul-oscuro);
-    font-size: 20px;
-    font-weight: 800;
-}
-
 .simulacros-section {
     padding: 100px 0;
     margin-top: -80px;
@@ -503,7 +433,7 @@
 .ciclos-section-carrusel {
     position: relative;
     background-color: var(--azul-oscuro);
-    padding: 120px 0;
+    padding: 80px 0;
     overflow: hidden;
 }
 
@@ -511,28 +441,6 @@
     color: var(--blanco) !important;
     text-align: center;
     font-size: 2.5rem;
-}
-
-.curve-divider {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    line-height: 0;
-    z-index: 2;
-}
-
-.curve-divider.top {
-    top: 0;
-}
-
-.curve-divider.bottom {
-    bottom: 0;
-    transform: rotate(180deg);
-}
-
-.curve-divider svg {
-    height: 80px;
-    width: 100%;
 }
 
 .ciclos-swiper {
@@ -866,28 +774,6 @@
         width: 100%;
     }
 
-    .docentes-carousel-section {
-        padding: 50px 0;
-        margin-top: 0;
-    }
-
-    .section-title-dark {
-        font-size: 2.4rem !important;
-        text-align: center;
-        padding: 0 20px;
-    }
-
-    .info-intro {
-        font-size: 15px;
-        padding: 0 25px;
-        text-align: center;
-    }
-
-    .docentes-carrusel-wrapper {
-        padding: 0 15px;
-        margin-top: 30px;
-    }
-
     .doc-nav-btn {
         width: 35px;
         height: 35px;
@@ -905,31 +791,8 @@
         right: 5px;
     }
 
-    .docente-card-modern {
-        flex: 0 0 100%;
-        min-height: auto;
-        margin-bottom: 10px;
-    }
-
-    .docente-img-box {
-        height: 300px;
-    }
-
-    .docente-content {
-        padding: 20px;
-    }
-
-    .docente-content h3 {
-        font-size: 18px;
-    }
-
-    .docente-content p {
-        font-size: 14px;
-        line-height: 1.5;
-    }
-
     .ciclos-section-carrusel {
-        padding: 80px 0;
+        padding: 60px 0;
     }
 
     .section-header-centered h2 {

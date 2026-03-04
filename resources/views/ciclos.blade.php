@@ -155,6 +155,7 @@
                                     <span class="badge-nuevo">NUEVO</span>
                                 </div>
                             </div>
+                            <p class="empty-msg">Próximamente más ciclos.</p>
                         </div>
                     </div>
 
@@ -184,6 +185,7 @@
                                     <span class="badge-nuevo">NUEVO</span>
                                 </div>
                             </div>
+                            <p class="empty-msg">Próximamente más ciclos.</p>
                         </div>
                     </div>
 
@@ -193,6 +195,27 @@
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
                         <div class="acordeon-content">
+                            <div class="ciclo-item">
+                                <div class="ciclo-info">
+                                    <span class="ciclo-name">UNMSM (San Marcos)</span>
+                                    <span class="badge-nuevo">NUEVO</span>
+                                </div>
+                            </div>
+
+                            <div class="ciclo-item">
+                                <div class="ciclo-info">
+                                    <span class="ciclo-name">UNI (Ingeniería)</span>
+                                    <span class="badge-nuevo">NUEVO</span>
+                                </div>
+                            </div>
+
+                            <div class="ciclo-item">
+                                <div class="ciclo-info">
+                                    <span class="ciclo-name">PUCP (Católica)</span>
+                                    <span class="badge-nuevo">NUEVO</span>
+                                </div>
+                            </div>
+
                             <p class="empty-msg">Próximamente más universidades.</p>
                         </div>
                     </div>
