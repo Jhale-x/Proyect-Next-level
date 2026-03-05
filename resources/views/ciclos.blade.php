@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Next Level | Ciclos</title>
+    <title>Ciclos | Next Level</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -117,7 +117,7 @@
                     </p>
                 </div> -->
             </div>
-            <img src="{{ asset('images/logo82.jpeg') }}" alt="Fondo" class="hero-bg-img">
+            <img src="{{ asset('images/imagen10.jpg') }}" alt="Fondo" class="hero-bg-img">
         </section>
 
         <section class="ciclos-section">

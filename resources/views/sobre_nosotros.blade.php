@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Next Level | Sobre Nosotros</title>
+    <title>Sobre Nosotros | Next Level</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -172,7 +172,7 @@
                     <div class="img-badge">METODOLOGÍA 360°</div>
                 </div>
                 <div class="metodologia-content-box">
-                    <span class="upper-title">Nuestra Forma de Enseñar</span>
+                    <span class="upper-title">NUESTRA FORMA DE ENSEÑAR</span>
                     <h2>NUESTRA METODOLOGÍA</h2>
                     <div class="section-line"></div>
 

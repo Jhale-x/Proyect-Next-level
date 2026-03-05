@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Next Level | Centro Educativo</title>
+    <title>Next Level | Colegio y Academia</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
@@ -105,7 +105,7 @@
     <section class="hero-full-width">
         <div class="hero-slide active">
             <div class="hero-main-content">
-                <img src="{{ asset('images/ubicacion.jpeg') }}" alt="Next Level Educación" class="main-image">
+                <img src="{{ asset('images/imagen10.jpg') }}" alt="Next Level Educación" class="main-image">
                 <div class="diagonal-white">
                     <h1>LLEVAMOS TU POTENCIAL AL SIGUIENTE NIVEL.</h1>
                     <p>Desarrollando mentes curiosas y futuros brillantes desde la etapa temprana.</p>
@@ -119,7 +119,7 @@
 
         <div class="hero-slide">
             <div class="hero-main-content">
-                <img src="{{ asset('images/inicio_chica.jpeg') }}" alt="Innovación" class="main-image">
+                <img src="{{ asset('images/imagen10.jpg') }}" alt="Innovación" class="main-image">
                 <div class="diagonal-white">
                     <h1>DONDE EL APRENDIZAJE NO TIENE LÍMITES.</h1>
                     <p>Aprendizaje basado en retos con impacto en el mundo real.</p>
@@ -133,7 +133,7 @@
 
         <div class="hero-slide">
             <div class="hero-main-content">
-                <img src="{{ asset('images/Logo25.jpeg') }}" alt="Valores" class="main-image">
+                <img src="{{ asset('images/imagen10.jpg') }}" alt="Valores" class="main-image">
                 <div class="diagonal-white">
                     <h1>FORMACIÓN EN VALORES Y ÉTICA.</h1>
                     <p>Creamos ciudadanos responsables, empáticos y comprometidos con su sociedad.</p>
@@ -151,7 +151,7 @@
             <div class="welcome-grid reorder-mobile">
                 <div class="welcome-image-side">
                     <div class="image-frame">
-                        <img src="{{ asset('images/los_dos_chicos.jpeg') }}" alt="Educación Next Level">
+                        <img src="{{ asset('images/imagen10.jpg') }}" alt="Educación Next Level">
                     </div>
                     <div class="experience-badge">
                         <span class="number">2026</span>
@@ -183,6 +183,7 @@
 
                 <div class="pathway-content">
                     <h2 class="pathway-title">ELIGE TU CAMINO AL ÉXITO</h2>
+                    <div class="welcome-line"></div>
                     <p class="pathway-description">
                         ¿Buscas una educación escolar innovadora o potenciar tus conocimientos para la universidad? Contamos con la metodología exacta para lo que necesitas hoy.
                     </p>
@@ -205,7 +206,7 @@
                 <div class="pathway-visuals">
                     <div class="cards-wrapper">
                         <div class="path-card path-card-top">
-                            <img src="{{ asset('images/logo80.jpeg') }}" alt="Colegio">
+                            <img src="{{ asset('images/imagen10.jpg') }}" alt="Colegio">
                             <div class="path-card-overlay">
                                 <h3>COLEGIO</h3>
                                 <p>FORMATO NIÑOS UNIVERSITARIOS</p>
@@ -213,7 +214,7 @@
                         </div>
 
                         <div class="path-card path-card-bottom">
-                            <img src="{{ asset('images/Logo25.jpeg') }}" alt="Academia">
+                            <img src="{{ asset('images/imagen10.jpg') }}" alt="Academia">
                             <div class="path-card-overlay">
                                 <h3>ACADEMIA</h3>
                                 <p>RUMBO A LA UNIVERSIDAD</p>
