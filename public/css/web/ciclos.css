@@ -244,6 +244,109 @@
     color: inherit;
 }
 
+.universidades-section-final {
+    padding: 0px 0 50px 0;
+    background-color: var(--blanco);
+    margin-top: -380px;
+}
+
+.univ-container-fixed {
+    width: 100%;
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.univ-grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.univ-card {
+    border: 1px solid #e0e0e0;
+    padding: 60px 15px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+    background: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.univ-logo-box {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.univ-logo-box img {
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all 0.4s ease;
+    object-fit: contain;
+}
+
+.logo-unu {
+    width: 184px;
+}
+
+.logo-unia {
+    width: 63px;
+}
+
+.logo-sanmarcos {
+    width: 176px;
+}
+
+.logo-uni {
+    width: 76px;
+}
+
+.logo-catolica {
+    width: 103px;
+}
+
+.univ-pre-text {
+    font-size: 13px;
+    color: #999;
+    text-transform: none;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.univ-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #777;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.univ-card:hover {
+    border-color: var(--rojo-principal);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.univ-card:hover .univ-logo-box img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+.univ-card:hover .univ-pre-text{
+    color: var(--azul-oscuro);
+}
+.univ-card:hover .univ-title {
+    color: var(--rojo-principal);
+}
+
 @media (max-width: 992px) {
     /*
     .hero-sobre{
@@ -298,6 +401,53 @@
         box-sizing: border-box;
         padding: 16px 20px;
     }
+
+    .universidades-section-final {
+        padding: 40px 0;
+    }
+
+    .univ-grid-wrapper {
+        /* Fuerza una sola columna */
+        grid-template-columns: 1fr;
+        gap: 20px;
+        /* Centramos la columna en la pantalla */
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .univ-card {
+        padding: 40px 20px;
+        min-height: auto; /* Dejamos que la altura se ajuste al contenido */
+    }
+
+    .univ-logo-box {
+        height: 80px; /* Un poco más de altura para que respiren */
+    }
+
+    /* --- AJUSTE DE LOGOS EN VERTICAL --- */
+    /* Mantenemos tus proporciones pero adaptadas al ancho del móvil */
+
+    .logo-unu {
+        width: 163px;
+    }
+
+    .logo-unia {
+        width: 55px;
+    }
+
+    .logo-sanmarcos {
+        width: 160px;
+    }
+
+    .logo-uni {
+        width: 65px;
+    }
+
+    .logo-catolica {
+        width: 88px;
+    }
+
+    .univ-title {
+        font-size: 1.2rem; /* Un poco más grande para mejor lectura */
+    }
 }
-
-

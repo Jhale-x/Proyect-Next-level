@@ -233,6 +233,54 @@
             </div>
         </section>
 
+        <section class="universidades-section-final">
+            <div class="univ-container-fixed">
+                <div class="univ-grid-wrapper">
+
+                    <div class="univ-card">
+                        <div class="univ-logo-box">
+                            <img src="{{ asset('images/unu.png') }}" alt="UNU" class="logo-unu">
+                        </div>
+                        <span class="univ-pre-text">Preparación</span>
+                        <h3 class="univ-title">UNU</h3>
+                    </div>
+
+                    <div class="univ-card">
+                        <div class="univ-logo-box">
+                            <img src="{{ asset('images/unia.png') }}" alt="UNIA" class="logo-unia">
+                        </div>
+                        <span class="univ-pre-text">Preparación</span>
+                        <h3 class="univ-title">UNIA</h3>
+                    </div>
+
+                    <div class="univ-card">
+                        <div class="univ-logo-box">
+                            <img src="{{ asset('images/san-marcos.png') }}" alt="San Marcos" class="logo-sanmarcos">
+                        </div>
+                        <span class="univ-pre-text">Preparación</span>
+                        <h3 class="univ-title">San Marcos</h3>
+                    </div>
+
+                    <div class="univ-card">
+                        <div class="univ-logo-box">
+                            <img src="{{ asset('images/uni.png') }}" alt="UNI" class="logo-uni">
+                        </div>
+                        <span class="univ-pre-text">Preparación</span>
+                        <h3 class="univ-title">UNI</h3>
+                    </div>
+
+                    <div class="univ-card">
+                        <div class="univ-logo-box">
+                            <img src="{{ asset('images/catolica.png') }}" alt="Católica" class="logo-catolica">
+                        </div>
+                        <span class="univ-pre-text">Preparación</span>
+                        <h3 class="univ-title">Católica</h3>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
