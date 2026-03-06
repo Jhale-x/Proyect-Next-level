@@ -103,31 +103,6 @@
     justify-content:center;
     transition:.4s ease;
 }
-
-.overlay-box{
-    background:rgba(255, 255, 255, 0.781);
-    color:var(--azul-oscuro);
-    padding:25px 35px;
-    border-radius:14px;
-    font-size:22px;
-    font-weight:bold;
-    text-align:center;
-    max-width:80%;
-    opacity:0;
-    transform:translateY(30px);
-    transition:.4s ease;
-    box-shadow:0 15px 40px rgba(0,0,0,.25);
-}
-
-.contact-hero-img:hover .img-overlay{
-    background:rgba(0,0,0,.45);
-}
-
-.contact-hero-img:hover .overlay-box{
-    opacity:1;
-    transform:translateY(0);
-}
-
 .contact-hero-info{
     background:var(--blanco);
     padding:30px;
@@ -328,23 +303,9 @@
         background: rgba(0,0,0,.0);
     }
 
-    .overlay-box {
-        opacity: 0;
-        transform: translateY(30px);
-        font-size: 18px;
-        padding: 18px;
-        transition: .4s ease;
-    }
-
     .contact-hero-img:active .img-overlay,
     .contact-hero-img:hover .img-overlay {
         background: rgba(0,0,0,.45);
-    }
-
-    .contact-hero-img:active .overlay-box,
-    .contact-hero-img:hover .overlay-box {
-        opacity: 1;
-        transform: translateY(0);
     }
 
     .form-contacto {

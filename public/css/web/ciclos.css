@@ -132,11 +132,11 @@
 }
 
 .header-unu, .header-unia {
-    background: linear-gradient(90deg, var(--azul-oscuro) 0%, #2ecc71 100%) !important;
+    background: linear-gradient(90deg, var(--azul-oscuro) 0%, var(--rojo-principal) 100%) !important;
 }
 
 .header-otros, .header-servicios {
-    background: linear-gradient(90deg, var(--azul-oscuro) 0%, #2ecc71 100%) !important;
+    background: linear-gradient(90deg, var(--azul-oscuro) 0%, var(--rojo-principal) 100%) !important;
 }
 
 .acordeon-header::before {
@@ -245,7 +245,7 @@
 }
 
 .universidades-section-final {
-    padding: 0px 0 50px 0;
+    padding: 0px 0 90px 0;
     background-color: var(--blanco);
     margin-top: -380px;
 }
@@ -266,7 +266,7 @@
 
 .univ-card {
     border: 1px solid #e0e0e0;
-    padding: 60px 15px;
+    padding: 40px 15px;
     text-align: center;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     cursor: pointer;
@@ -403,29 +403,25 @@
     }
 
     .universidades-section-final {
-        padding: 40px 0;
+        padding: 90px 0;
+        margin-top: -460px;
     }
 
     .univ-grid-wrapper {
-        /* Fuerza una sola columna */
         grid-template-columns: 1fr;
         gap: 20px;
-        /* Centramos la columna en la pantalla */
         max-width: 320px;
         margin: 0 auto;
     }
 
     .univ-card {
         padding: 40px 20px;
-        min-height: auto; /* Dejamos que la altura se ajuste al contenido */
+        min-height: auto;
     }
 
     .univ-logo-box {
-        height: 80px; /* Un poco más de altura para que respiren */
+        height: 80px;
     }
-
-    /* --- AJUSTE DE LOGOS EN VERTICAL --- */
-    /* Mantenemos tus proporciones pero adaptadas al ancho del móvil */
 
     .logo-unu {
         width: 163px;
@@ -448,6 +444,6 @@
     }
 
     .univ-title {
-        font-size: 1.2rem; /* Un poco más grande para mejor lectura */
+        font-size: 1.2rem;
     }
 }

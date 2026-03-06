@@ -122,12 +122,8 @@
     <section class="contact-hero">
         <div class="contact-hero-container">
             <div class="contact-hero-img">
-                <img src="{{ asset('images/imagen10.jpg') }}" alt="Next Level Educación">
-                <div class="img-overlay">
-                    <div class="overlay-box">
-                        LIDERAMOS EL CAMINO HACIA TU ÉXITO ACADÉMICO
-                    </div>
-                </div>
+                <img src="{{ asset('images/animado-ct.jpeg') }}" alt="Next Level Educación">
+                <div class="img-overlay"></div>
             </div>
 
             <div class="contact-hero-info">
