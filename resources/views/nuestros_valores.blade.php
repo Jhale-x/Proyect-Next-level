@@ -41,23 +41,23 @@
             <ul class="nav-menu">
                 <li><a href="{{ route('web.inicio') }}">INICIO</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">&#9662;</span></a>
+                    <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">▾</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Qué ofrecemos</a></li>
-                        <li><a href="#">Quiénes Somos</a></li>
+                        <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
+                        <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-trigger">NIVELES <span class="arrow-icon">&#9662;</span></a>
+                    <a href="#" class="dropdown-trigger">NIVELES <span class="arrow-icon">▾</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Colegio</a></li>
+                        <li><a href="{{ route('mantenimiento') }}">Colegio</a></li>
                         <li><a href="{{ route('academia') }}">Academia</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                <li><a href="#">MATRICULAS</a></li>
-                <li><a href="#">CONCURSOS</a></li>
-                <li><a href="{{ route('portal') }}">INTRANET</a></li>
+                <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
+                <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
+                <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
             </ul>
         </div>
     </nav>
@@ -80,17 +80,17 @@
                         <span>NIVELES</span> <i class="fa-solid fa-chevron-right"></i>
                     </li>
                     <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                    <li><a href="#">MATRICULAS</a></li>
-                    <li><a href="#">CONCURSOS</a></li>
-                    <li><a href="{{ route('portal') }}">INTRANET</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
                 </ul>
             </div>
 
             <div class="menu-panel" id="submenu-nosotros">
                 <button class="back-btn" type="button"><i class="fa-solid fa-chevron-left"></i> REGRESAR</button>
                 <ul class="mobile-nav-list">
-                    <li><a href="#">Qué ofrecemos</a></li>
-                    <li><a href="#">Quiénes Somos</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
+                    <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
                 </ul>
             </div>
 

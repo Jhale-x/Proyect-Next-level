@@ -43,7 +43,7 @@
                     <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">▾</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
-                        <li><a href="{{ route('mantenimiento') }}">Quiénes Somos</a></li>
+                        <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -89,7 +89,7 @@
                 <button class="back-btn" type="button"><i class="fa-solid fa-chevron-left"></i> REGRESAR</button>
                 <ul class="mobile-nav-list">
                     <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
-                    <li><a href="{{ route('mantenimiento') }}">Quiénes Somos</a></li>
+                    <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
                 </ul>
             </div>
 
