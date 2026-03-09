@@ -121,17 +121,21 @@
 
     <section class="contact-hero">
         <div class="contact-hero-container">
-            <div class="contact-hero-img">
-                <img src="{{ asset('images/animado-ct.jpeg') }}" alt="Next Level Educación">
-                <div class="img-overlay"></div>
+            <div class="contact-hero-branding">
+                <div class="top-red-line"></div>
+                <img src="{{ asset('images/cohete.png') }}" alt="Cohete" class="rocket-brand">
+                <div class="branding-content">
+                    <h2 class="branding-year">2026</h2>
+                    <p class="branding-text">¡La mejor opción para el futuro de tus hijos!</p>
+                </div>
             </div>
 
             <div class="contact-hero-info">
                 <div class="info-contacto">
                     <h3 class="titulo-contacto">INFORMACIÓN DE CONTACTO</h3>
-                    Dirección: Carretera Federico Basadre Km. 6 (Al costado de la UNU) <br>
-                    Teléfono: +51 923 317 626 <br>
-                    Correo: contacto@nextlevel.edu.pe
+                    <p>Dirección: Carretera Federico Basadre Km. 6 (Al costado de la UNU)</p>
+                    <p>Teléfono: +51 923 317 626</p>
+                    <p>Correo: contacto@nextlevel.edu.pe</p>
                 </div>
 
                 <h3 class="titulo-formulario">SOLICITA MÁS INFORMACIÓN</h3>
@@ -142,6 +146,7 @@
                     <input type="text" id="apellido_paterno" placeholder="Apellido Paterno" required>
                     <input type="text" id="apellido_materno" placeholder="Apellido Materno" required>
                     <input type="number" id="edad" placeholder="Edad" required>
+
                     <div class="custom-dropdown" id="dropdownSexo">
                         <div class="dropdown-selected">
                             <span id="selectedText">Sexo</span>
@@ -150,10 +155,10 @@
                         <ul class="dropdown-list">
                             <li data-value="M">Masculino</li>
                             <li data-value="F">Femenino</li>
-                            <li data-value="O">Prefiero no decirlo</li>
                         </ul>
                         <input type="hidden" name="sexo" id="inputSexo" required>
                     </div>
+
                     <input type="email" id="email" placeholder="Email">
                     <input type="text" id="celular" placeholder="Celular" required>
                     <textarea rows="4" id="mensaje" placeholder="Mensaje" required></textarea>
