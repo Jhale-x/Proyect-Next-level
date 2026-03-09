@@ -1,0 +1,362 @@
+@extends('layouts.landing')
+
+@section('title', 'Actividad')
+
+@section('content')
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        background: #f8f9fa;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    .activity-wrapper {
+        width: 100%;
+        max-width: 100%;
+        padding: 30px 40px;
+    }
+    /* Header */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .header h1 {
+        font-size: 26px;
+        font-weight: 400;
+        color: #2c3e50;
+    }
+    .settings-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #6c757d;
+        transition: all 0.3s ease;
+    }
+    .settings-icon:hover {
+        background: #e9ecef;
+    }
+    /* Filtros */
+    .filters {
+        margin-bottom: 30px;
+    }
+    .filter-select {
+        padding: 8px 35px 8px 15px;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+        background: #fff;
+        font-size: 14px;
+        color: #495057;
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236c757d' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+    }
+    /* Timeline container */
+    .timeline-container {
+        position: relative;
+        max-width: 1200px;
+    }
+    /* Timeline */
+    .timeline {
+        position: relative;
+        padding-left: 200px;
+    }
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 140px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #e0e0e0;
+    }
+    /* Activity Item - contiene fecha + card */
+    .activity-item {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+    /* Fecha a la izquierda */
+    .activity-date {
+        position: absolute;
+        left: -200px;
+        width: 120px;
+        text-align: right;
+        font-size: 13px;
+        color: #888;
+        font-style: italic;
+        padding-top: 15px;
+        line-height: 1.4;
+    }
+    /* Activity Card */
+    .activity-card {
+        position: relative;
+        background: #fff;
+        border-radius: 8px;
+        padding: 20px 25px;
+        width: 100%;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        border-left: 3px solid #9b59b6;
+        transition: all 0.2s ease;
+    }
+    .activity-card:hover {
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    /* Icono en la línea de tiempo */
+    .activity-card::before {
+        content: '📝';
+        position: absolute;
+        left: -73px;
+        top: 12px;
+        width: 36px;
+        height: 36px;
+        background: #fff;
+        border: 2px solid #e0e0e0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        z-index: 2;
+    }
+    /* Punto conector */
+    .activity-card::after {
+        content: '';
+        position: absolute;
+        left: -66px;
+        top: 20px;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        border: 2px solid #bbb;
+        border-radius: 50%;
+        z-index: 1;
+    }
+    .activity-header {
+        font-size: 13px;
+        font-weight: 700;
+        color: #2c3e50;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        margin-bottom: 8px;
+    }
+    .activity-title {
+        font-size: 15px;
+        color: #555;
+        margin-bottom: 6px;
+        line-height: 1.4;
+    }
+    .activity-comment {
+        font-size: 14px;
+        color: #777;
+        font-style: italic;
+        margin-bottom: 15px;
+    }
+    .btn-grade {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 20px;
+        background: #e8e8e8;
+        color: #555;
+        border: none;
+        border-radius: 4px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+    }
+    .btn-grade:hover {
+        background: #ddd;
+        color: #333;
+    }
+    /* Variaciones de color */
+    .activity-card.pink {
+        border-left-color: #e91e63;
+    }
+    .activity-card.purple {
+        border-left-color: #9c27b0;
+    }
+    .activity-card.blue {
+        border-left-color: #2196f3;
+    }
+    .activity-card.green {
+        border-left-color: #4caf50;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+        .activity-wrapper {
+            padding: 20px;
+        }
+        .timeline {
+            padding-left: 0;
+        }
+        .timeline::before {
+            left: 20px;
+        }
+        .activity-item {
+            flex-direction: column;
+        }
+        .activity-date {
+            position: static;
+            width: auto;
+            text-align: left;
+            margin-bottom: 10px;
+            padding-left: 50px;
+        }
+        .activity-card::before {
+            left: -35px;
+        }
+        .activity-card::after {
+            left: -28px;
+        }
+    }
+</style>
+
+<div class="activity-wrapper">
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Flujo de actividades</h1>
+        <div class="settings-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filters">
+        <select class="filter-select">
+            <option>Mostrar todo</option>
+            <option>Calificaciones</option>
+            <option>Anuncios</option>
+            <option>Tareas</option>
+        </select>
+    </div>
+
+    <!-- Timeline -->
+    <div class="timeline-container">
+        <div class="timeline">
+
+            <!-- 20 horas -->
+            <div class="activity-item">
+                <div class="activity-date">20 horas</div>
+                <div class="activity-card pink">
+                    <div class="activity-header">INTERMEDIATE 2</div>
+                    <div class="activity-title">Calificación publicada: Writing task</div>
+                    <div class="activity-comment">GOOD JOB MANUEL ANTONIO</div>
+                    <a href="#" class="btn-grade">Ver mi calificación</a>
+                </div>
+            </div>
+
+            <!-- 29 de ene -->
+            <div class="activity-item">
+                <div class="activity-date">29 de ene. de 2026</div>
+                <div class="activity-card purple">
+                    <div class="activity-header">INTERMEDIATE 2</div>
+                    <div class="activity-title">Calificación publicada: Final Project</div>
+                    <div class="activity-comment">GOOD JOB MANUEL ANTONIO</div>
+                    <a href="#" class="btn-grade">Ver mi calificación</a>
+                </div>
+            </div>
+
+            <!-- 22 de ene -->
+            <div class="activity-item">
+                <div class="activity-date">22 de ene. de 2026</div>
+                <div class="activity-card blue">
+                    <div class="activity-header">INTERMEDIATE 2</div>
+                    <div class="activity-title">Calificación publicada: Activity: Speaking 3</div>
+                    <a href="#" class="btn-grade">Ver mi calificación</a>
+                </div>
+            </div>
+
+            <div class="activity-item">
+                <div class="activity-date"></div> <!-- Mismo día, sin repetir fecha -->
+                <div class="activity-card purple">
+                    <div class="activity-header">INTERMEDIATE 2</div>
+                    <div class="activity-title">Calificación publicada: Project Advance</div>
+                    <div class="activity-comment">Good job Manuel Antonio Continue working like this</div>
+                    <a href="#" class="btn-grade">Ver mi calificación</a>
+                </div>
+            </div>
+
+            <div class="activity-item">
+                <div class="activity-date"></div>
+                <div class="activity-card green">
+                    <div class="activity-header">INTERMEDIATE 2</div>
+                    <div class="activity-title">Calificación publicada: Activity: Speaking 2</div>
+                    <a href="#" class="btn-grade">Ver mi calificación</a>
+                </div>
+            </div>
+
+            <!-- 21 de ene -->
+            <div class="activity-item">
+                <div class="activity-date">21 de ene. de 2026</div>
+                <div class="activity-card purple">
+                    <div class="activity-header">INTERMEDIATE 2</div>
+                    <div class="activity-title">Calificación publicada: Platform - Unit 3</div>
+                    <a href="#" class="btn-grade">Ver mi calificación</a>
+                </div>
+            </div>
+
+            <div class="activity-item">
+                <div class="activity-date"></div>
+                <div class="activity-card blue">
+                    <div class="activity-header">INTERMEDIATE 2</div>
+                    <div class="activity-title">Calificación publicada: Platform - Unit 4</div>
+                    <a href="#" class="btn-grade">Ver mi calificación</a>
+                </div>
+            </div>
+
+            <!-- 20 de ene -->
+            <div class="activity-item">
+                <div class="activity-date">20 de ene. de 2026</div>
+                <div class="activity-card">
+                    <div class="activity-header">INTERMEDIATE 2</div>
+                    <div class="activity-title">Calificación publicada: Activity: Speaking 1</div>
+                    <a href="#" class="btn-grade">Ver mi calificación</a>
+                </div>
+            </div>
+
+            <!-- 15 de ene -->
+            <div class="activity-item">
+                <div class="activity-date">15 de ene. de 2026</div>
+                <div class="activity-card pink">
+                    <div class="activity-header">INTERMEDIATE 2</div>
+                    <div class="activity-title">Calificación publicada: Attendance</div>
+                    <a href="#" class="btn-grade">Ver mi calificación</a>
+                </div>
+            </div>
+
+            <!-- 14 de ene -->
+            <div class="activity-item">
+                <div class="activity-date">14 de ene. de 2026</div>
+                <div class="activity-card green">
+                    <div class="activity-header">INTERMEDIATE 2</div>
+                    <div class="activity-title">Nuevo curso disponible: INTERMEDIATE 2</div>
+                    <a href="#" class="btn-grade">Ver curso</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@endsection

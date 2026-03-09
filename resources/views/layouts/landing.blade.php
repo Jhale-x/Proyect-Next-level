@@ -1,147 +1,153 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', 'Next Level')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Iconos -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/course.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/messages.css') }}">
 
-    @stack('styles')
 
-    <style>
-        body {
-            background-color: #f4f6f9;
-            margin: 0;
-        }
-
-        .sidebar {
-            width: 260px;
-            min-height: 100vh;
-            background-color: #460000;
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .sidebar .logo {
-            font-size: 1.4rem;
-            font-weight: bold;
-            padding: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
-            text-align: center;
-        }
-
-        .sidebar .menu {
-            flex: 1;
-        }
-
-        .sidebar a {
-            color: rgba(255, 255, 255, 0.75); /*Color de la letra */
-            text-decoration: none;
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-left: 4px solid transparent;
-            transition: all 0.2s ease;
-        }
-
-        .sidebar a:hover {
-            background-color: rgba(255,255,255,0.08);
-            color: #fff;
-        }
-
-        .sidebar a.active {
-            background-color: rgba(255,255,255,0.12);
-            color: #fff;
-            border-left: 4px solid #3538dc;
-        }
-
-        .logout {
-            border-top: 1px solid rgba(255,255,255,0.15);
-            color: #fff;
-        }
-
-        .logout:hover {
-            background-color: #0b2864;
-            color: #fff;
-        }
-
-        .main-content {
-            padding: 20px;
-            width: 100%;
-            background-color: #b9b9b9;
-        }
-    </style>
 </head>
+
 <body>
 
-<div class="d-flex">
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo">Next Level</div>
-
-        <div class="menu">
-            <a href="{{ url('/') }}" class="{{ request()->is('/') ? 'active' : '' }}">
-                <i class="bi bi-house-door"></i>
-                <span>Página de la institución</span>
-            </a>
-
-            <a href="{{ url('/activity') }}" class="{{ request()->is('actividad') ? 'active' : '' }}">
-                <i class="bi bi-activity"></i>
-                <span>Actividad</span>
-            </a>
-
-            <a href="{{ url('/course') }}" class="{{ request()->is('cursos') ? 'active' : '' }}">
-                <i class="bi bi-book"></i>
-                <span>Cursos</span>
-            </a>
-
-            <a href="{{ url('/organizations') }}" class="{{ request()->is('organizaciones') ? 'active' : '' }}">
-                <i class="bi bi-diagram-3"></i>
-                <span>Organizaciones</span>
-            </a>
-
-            <a href="{{ url('/calendar') }}" class="{{ request()->is('calendario') ? 'active' : '' }}">
-                <i class="bi bi-calendar-event"></i>
-                <span>Calendario</span>
-            </a>
-
-            <a href="{{ url('/messages') }}" class="{{ request()->is('mensajes') ? 'active' : '' }}">
-                <i class="bi bi-envelope"></i>
-                <span>Mensajes</span>
-            </a>
-
-            <a href="{{ url('/qualifications') }}" class="{{ request()->is('calificaciones') ? 'active' : '' }}">
-                <i class="bi bi-award"></i>
-                <span>Calificaciones</span>
-            </a>
-
-            <a href="{{ url('/tools') }}" class="{{ request()->is('herramientas') ? 'active' : '' }}">
-                <i class="bi bi-tools"></i>
-                <span>Herramientas</span>
-            </a>
+    <div class="mobile-header">
+        <div class="d-flex align-items-center gap-2">
+            <img src="{{ asset('images/next-level-logo.png') }}" alt="Logo" style="width: 30px;">
+            <span class="fw-bold">Next Level</span>
         </div>
-
-        <a href="{{ url('/logout') }}" class="logout">
-            <i class="bi bi-box-arrow-right"></i>
-            <span>Cerrar sesión</span>
-        </a>
+        <button class="btn btn-outline-light border-0" onclick="toggleSidebar()">
+            <i class="bi bi-list fs-2"></i>
+        </button>
     </div>
 
-    <!-- Main content -->
-    <div class="main-content">
-        @yield('content')
-    </div>
-</div>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-@stack('scripts')
-    <!-- Bootstrap JS Bundle with Popper -->
+    <div class="d-flex">
+        <aside class="sidebar" id="sidebar">
+            <div class="logo">
+                <img src="{{ asset('images/next-level-logo.png') }}" alt="Next Level" class="logo-img">
+                <span>Next Level</span>
+            </div>
+
+            @php
+                $role = auth()->check() ? strtolower(auth()->user()->rol) : '';
+            @endphp
+
+            <nav class="menu">
+                {{-- common items for all authenticated users --}}
+                <a href="{{ route('admin.pagina_institucional') }}"
+                    class="{{ request()->routeIs('admin.pagina_institucional') ? 'active' : '' }}">
+                    <i class="bi bi-house-door"></i>
+                    <span>Pagina Institucional</span>
+                </a>
+
+                <a href="{{ route('admin.activity') }}"
+                    class="{{ request()->routeIs('admin.activity') ? 'active' : '' }}">
+                    <i class="bi bi-activity"></i>
+                    <span>Actividad</span>
+                </a>
+
+                <div class="sidebar-item">
+                    <a href="{{ route('admin.courses') }}"
+                        class="{{ request()->routeIs('admin.courses') ? 'active' : '' }}">
+                        <i class="bi bi-book"></i>
+                        <span>Cursos</span>
+                    </a>
+                    <div class="submenu"
+                        style="{{ request()->routeIs('admin.courses') || request()->routeIs('admin.eti') ? 'display: flex;' : '' }}">
+                        <a href="{{ route('admin.courses') }}"
+                            class="{{ request()->routeIs('admin.courses') ? 'text-white fw-bold' : '' }}">
+                            <i class="bi bi-collection me-2"></i> Todos los Cursos
+                        </a>
+                        <a href="{{ route('admin.eti') }}"
+                            class="{{ request()->routeIs('admin.eti') ? 'text-white fw-bold' : '' }}">
+                            <i class="bi bi-cpu me-2"></i> ETI
+                        </a>
+                    </div>
+                </div>
+
+                <a href="{{ route('admin.organizations') }}"
+                    class="{{ request()->routeIs('admin.organizations') ? 'active' : '' }}">
+                    <i class="bi bi-diagram-3"></i>
+                    <span>Organizaciones</span>
+                </a>
+
+                <a href="{{ route('admin.calendar') }}"
+                    class="{{ request()->routeIs('admin.calendar') ? 'active' : '' }}">
+                    <i class="bi bi-calendar-event"></i>
+                    <span>Calendario</span>
+                </a>
+
+                <a href="{{ route('admin.messages') }}"
+                    class="{{ request()->routeIs('admin.messages') ? 'active' : '' }}">
+                    <i class="bi bi-envelope"></i>
+                    <span>Mensajes</span>
+                </a>
+
+                <a href="{{ route('admin.qualifications') }}"
+                    class="{{ request()->routeIs('admin.qualifications') ? 'active' : '' }}">
+                    <i class="bi bi-award"></i>
+                    <span>Calificaciones</span>
+                </a>
+
+                {{-- tools available to admin/docente/auxiliar --}}
+                @if (in_array($role, ['administrador', 'docente', 'auxiliar']))
+                    <a href="{{ route('admin.tools') }}"
+                        class="{{ request()->routeIs('admin.tools') ? 'active' : '' }}">
+                        <i class="bi bi-tools"></i>
+                        <span>Herramientas</span>
+                    </a>
+                @endif
+
+                {{-- admin only sections --}}
+                @if ($role === 'administrador')
+                    <a href="{{ route('admin.users') }}"
+                        class="{{ request()->routeIs('admin.users') ? 'active' : '' }}">
+                        <i class="bi bi-people"></i>
+                        <span>Usuarios / Matrícula</span>
+                    </a>
+                    {{-- the users page contains both the registration forms and (future) listing --}}
+                @endif
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
+                    @csrf
+                    <button type="submit" class="logout btn btn-link p-0 m-0"
+                        style="display:flex; align-items:center;">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Cerrar sesión</span>
+                    </button>
+                </form>
+            </nav>
+
+
+
+        </aside>
+
+        <main class="main-content" id="mainContent">
+            @yield('content')
+        </main>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/course.js') }}"></script>
+    <script src="{{ asset('js/messages.js') }}"></script>
+
+
 </body>
+
 </html>
