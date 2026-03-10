@@ -7,7 +7,6 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-
 class UsersController extends Controller
 {
     public function index()
@@ -15,6 +14,7 @@ class UsersController extends Controller
         $users = User::with('salones')->get();
         $cursos = Course::all();
 
+        // Llamamos al controlador de alumnos para obtener los datos de los selects
         $alumnosController = new AlumnosController();
         $datosAlumno = $alumnosController->datosFormulario();
 
@@ -23,8 +23,6 @@ class UsersController extends Controller
             $datosAlumno
         ));
     }
-
-
 
     public function store(Request $request)
     {

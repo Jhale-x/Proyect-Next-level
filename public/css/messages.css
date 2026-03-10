@@ -1,0 +1,96 @@
+/* Contenedor relativo para limitar el panel */
+.main-chat-viewport {
+    position: relative;
+    width: 100%;
+    min-height: 85vh;
+    background: #fff;
+    overflow: hidden; /* Mantiene el panel dentro */
+    border: 1px solid #e0e0e0;
+}
+
+/* Listado de cursos con franjas de colores */
+.course-list-wrapper {
+    padding: 20px;
+    height: 100%;
+}
+
+.course-item {
+    border: 1px solid #dee2e6;
+    border-left: 5px solid;
+    margin-bottom: 15px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+}
+
+.course-info .id-label {
+    font-size: 0.75rem;
+    color: #888;
+    display: block;
+}
+
+.course-info .materia-name {
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+}
+
+/* PANEL DESLIZANTE (Igual a la imagen d951fa) */
+#panelNuevoMensaje {
+    position: absolute;
+    top: 0;
+    right: -100%; /* Oculto a la derecha */
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    z-index: 100;
+    transition: right 0.4s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+#panelNuevoMensaje.active {
+    right: 0; /* Entra en escena */
+}
+
+.panel-header {
+    padding: 15px 25px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+}
+
+.btn-close-custom {
+    background: #002aff; /* Botón X azul */
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.panel-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.mailbox-img {
+    width: 160px;
+    margin-bottom: 20px;
+}
+
+.panel-footer {
+    padding: 20px 5%;
+    background: #fcfcfc;
+    border-top: 1px solid #eee;
+}

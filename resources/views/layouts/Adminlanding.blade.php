@@ -100,15 +100,23 @@
                     <i class="bi bi-people"></i>
                     <span>Usuarios</span>
                 </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
-                    @csrf
-                    <button type="submit" class="logout btn btn-link p-0 m-0"
-                        style="display:flex; align-items:center;">
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span>Cerrar sesión</span>
-                    </button>
-                </form>
+                <div class="sidebar-item">
+                    <a
+                        class="sidebar-link {{ request()->routeIs('usuario') || request()->routeIs('listado') ? 'active' : '' }}">
+                        <i class="bi bi-people"></i>
+                        <span>Matrícula</span>
+                        <i class="bi bi-chevron-right ms-auto"></i>
+                    </a>
+                    <div class="submenu"
+                        style="{{ request()->routeIs('usuario') || request()->routeIs('listado') ? 'display: flex;' : '' }}">
+                        <a href="{{ route('usuario') }}"><i class="bi bi-person-plus me-2"></i> Registro</a>
+                        <a href="{{ route('listado') }}"><i class="bi bi-list-ul me-2"></i> Listado</a>
+                    </div>
+                </div>
+                <a href="{{ route('logout') }}" class="logout">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <span>Cerrar sesión</span>
+                </a>
             </nav>
 
 

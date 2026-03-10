@@ -296,7 +296,7 @@
                 });
             }
 
-            // make course required only for docente role
+            // make course required only for docente/auxiliar roles
             const rolSelect = document.getElementById('cargo');
             const cursoSelect = document.getElementById('id_curso');
 

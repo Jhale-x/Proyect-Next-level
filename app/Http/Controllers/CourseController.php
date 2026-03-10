@@ -103,7 +103,6 @@ class CourseController extends Controller
 
     public function detalleSalon($idSalon)
     {
-
         $alumnos = Alumno::where('id_salon', $idSalon)->get();
 
         $curso = Course::first();

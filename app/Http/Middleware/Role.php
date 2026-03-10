@@ -13,14 +13,18 @@ class Role
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  string $role
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
+        // 1. Verificar si el usuario está autenticado
         if (!Auth::check()) {
             return redirect()->route('portal');
         }
 
-        if (Auth::user()->rol !== $role) {
+        // 2. Comparación INSENSIBLE a mayúsculas/minúsculas
+        // Esto evita que 'Docente' y 'docente' se consideren diferentes
+        if (strtolower(Auth::user()->rol) !== strtolower($role)) {
             abort(403, 'No tienes permiso para acceder a este recurso.');
         }
 

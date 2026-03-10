@@ -94,6 +94,7 @@
         <!-- ================= VISTA DETALLE SALON ================= -->
         <div id="vista-detalle" class="d-none">
 
+<<<<<<< HEAD
             <!-- Excel actions (export / import) -->
             <div id="excel-actions" class="mb-3 text-end">
                 <form id="export-form" action="" method="GET" class="d-inline">
@@ -110,6 +111,8 @@
                 </form>
             </div>
 
+=======
+>>>>>>> ae68699347ba81eca1878900ca9c7ac02b103494
             <div class="card shadow-sm border-0 rounded-3">
                 <div class="card-body p-0">
 
@@ -117,10 +120,27 @@
                         <table class="table table-hover align-middle mb-0">
 
                             <thead class="table-light">
+<<<<<<< HEAD
                                 <tr id="cabecera-actividades"></tr>
                             </thead>
 
                             <tbody id="tabla-alumnos"></tbody>
+=======
+                                <tr id="cabecera-actividades">
+                                    <th class="fw-bold">Alumno</th>
+                                    <!-- actividades dinámicas -->
+                                    <th class="text-center fw-bold">PROM</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="tabla-alumnos">
+                                <tr>
+                                    <td colspan="99" class="text-center text-muted py-4">
+                                        Selecciona un salón
+                                    </td>
+                                </tr>
+                            </tbody>
+>>>>>>> ae68699347ba81eca1878900ca9c7ac02b103494
 
                         </table>
                     </div>
@@ -152,8 +172,13 @@
                     <div class="modal-body">
                         <div id="contenedor-niveles">
                             <div class="input-group mb-2">
+<<<<<<< HEAD
                                 <input type="text" name="niveles[]" class="form-control"
                                     placeholder="Nombre del nivel" required>
+=======
+                                <input type="text" name="niveles[]" class="form-control" placeholder="Nombre del nivel"
+                                    required>
+>>>>>>> ae68699347ba81eca1878900ca9c7ac02b103494
                                 <button type="button" class="btn btn-danger eliminar">X</button>
                             </div>
                         </div>
@@ -249,7 +274,12 @@
 
         <label class="form-label">Nivel</label>
         <select class="form-control mb-2 select-nivel" name="grados[][id_nivel]">
+<<<<<<< HEAD
             @foreach ($niveles ?? [] as $nivel)
+=======
+            @foreach ($niveles as $nivel)
+                <option value="{{ $nivel->id_nivel }}">
+>>>>>>> ae68699347ba81eca1878900ca9c7ac02b103494
                     {{ $nivel->nivel }}
                 </option>
             @endforeach
@@ -367,7 +397,11 @@
 
                         <label>Actividad existente</label>
                         <select name="id_actividad" class="form-select">
+<<<<<<< HEAD
                             @foreach ($actividades ?? [] as $actividad)
+=======
+                            @foreach ($actividades as $actividad)
+>>>>>>> ae68699347ba81eca1878900ca9c7ac02b103494
                                 <option value="{{ $actividad->id_actividad }}">
                                     {{ $actividad->actividad }}
                                 </option>
@@ -405,7 +439,11 @@
 
                         <h6>Primaria</h6>
                         <div class="row g-2 mb-3">
+<<<<<<< HEAD
                             @foreach ($salonesPrimaria ?? [] as $salon)
+=======
+                            @foreach ($salonesPrimaria as $salon)
+>>>>>>> ae68699347ba81eca1878900ca9c7ac02b103494
                                 <div class="col-md-3">
                                     <label class="card p-2 salon-card">
                                         <input type="checkbox" name="salones[]" value="{{ $salon->id_salon }}">
@@ -417,7 +455,11 @@
 
                         <h6>Secundaria</h6>
                         <div class="row g-2">
+<<<<<<< HEAD
                             @foreach ($salonesSecundaria ?? [] as $salon)
+=======
+                            @foreach ($salonesSecundaria as $salon)
+>>>>>>> ae68699347ba81eca1878900ca9c7ac02b103494
                                 <div class="col-md-3">
                                     <label class="card p-2 salon-card">
                                         <input type="checkbox" name="salones[]" value="{{ $salon->id_salon }}">

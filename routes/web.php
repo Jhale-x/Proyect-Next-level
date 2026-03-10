@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\PruebasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsersController;
@@ -161,20 +160,19 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(functi
         Route::delete('/{id}', [ActivityController::class, 'destroy'])->name('admin.activities.destroy');
     });
 
-    // Otros módulos para Admin
+    Route::prefix('messages')->group(function () {
+        Route::get('/', [MessageController::class, 'index'])->name('admin.messages');
+        Route::get('/get-chat/{id_curso}', [MessageController::class, 'getMessagesByCurso'])->name('admin.messages.getChat');
+        Route::post('/store-ajax', [MessageController::class, 'storeAjax'])->name('admin.messages.ajax');
+    });
+
     Route::get('/calendar', [CalendarController::class, 'index'])->name('admin.calendar');
-    Route::get('/messages', [MessageController::class, 'index'])->name('admin.messages');
     Route::get('/organizations', [OrganizationController::class, 'index'])->name('admin.organizations');
     Route::get('/tools', [ToolController::class, 'index'])->name('admin.tools');
 });
 
-
-/// ======================================================
-/// DOCENTE
-/// ======================================================
-
 Route::prefix('docente')->middleware(['auth', 'role:docente'])->group(function () {
-
+    Route::get('/pagina-institucional', [Pagina_InstitucionalController::class, 'docenteIndex'])->name('docente.pagina_institucional');
     Route::get('/dashboard', fn() => view('Docentes.dashboard'))->name('docente.dashboard');
     Route::get('/qualifications', [QualificationController::class, 'index'])->name('docente.qualifications');
     Route::get('/activity', [ActivityController::class, 'index'])->name('docente.activity');

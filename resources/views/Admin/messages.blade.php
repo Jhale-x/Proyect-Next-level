@@ -3,71 +3,61 @@
 @section('title', 'Mensajes')
 
 @section('content')
-<div class="container-fluid px-2">
+<div class="container-fluid mt-3">
+    <div class="main-chat-viewport shadow-sm rounded">
+        
+        <div class="course-list-wrapper">
+            <h3 class="mb-4" style="font-family: serif;">Mensajes</h3>
+            
+            @php $colores = ['#ff6b00', '#e91e63', '#4caf50', '#9c27b0', '#03a9f4']; @endphp
 
-    <h4 class="mb-3">✉️ Mensajes por Curso</h4>
-
-    <div class="row g-3">
-
-        <!-- Curso 1 -->
-        <div class="col-12">
-            <div class="card shadow-sm">
-                <div class="card-header border-top border-4 border-primary d-flex justify-content-between align-items-center">
-                    <div>
-                        <small class="text-muted">202602-INGL-155-TEC-NRC_76</small>
-                        <h6 class="mb-0">BASIC 4</h6>
+            @foreach($cursos as $index => $curso)
+                <div class="course-item" style="border-left-color: {{ $colores[$index % count($colores)] }};">
+                    <div class="course-info">
+                        <span class="id-label">ID: 202610-{{ $curso->materia }}-{{ $curso->id_curso }}</span>
+                        <span class="materia-name">{{ $curso->materia }}</span>
                     </div>
-                    <button class="btn btn-sm btn-outline-primary">
-                        <i class="bi bi-send"></i> Enviar mensaje
+                    <button class="btn btn-link text-muted text-decoration-none small" 
+                            onclick="abrirNuevoMensaje('{{ $curso->materia }}', {{ $curso->id_curso }})">
+                        <i class="bi bi-envelope"></i> Nuevo mensaje
                     </button>
                 </div>
-
-                <div class="card-body py-2">
-                    <p class="text-muted small mb-1">Mensajes recientes</p>
-                    <p class="mb-1">📩 Profesor: Recuerden entregar la tarea.</p>
-                    <p class="mb-0 text-muted small">Hace 2 horas</p>
-                </div>
-            </div>
+            @endforeach
         </div>
 
-        <!-- Curso 2 -->
-        <div class="col-12">
-            <div class="card shadow-sm">
-                <div class="card-header border-top border-4 border-success d-flex justify-content-between align-items-center">
-                    <div>
-                        <small class="text-muted">PREVENCION-202510-38</small>
-                        <h6 class="mb-0">Inducción a la Seguridad</h6>
-                    </div>
-                    <button class="btn btn-sm btn-outline-success">
-                        <i class="bi bi-send"></i> Enviar mensaje
-                    </button>
-                </div>
-
-                <div class="card-body py-2">
-                    <p class="text-muted small mb-1">Mensajes recientes</p>
-                    <p class="mb-1">📩 Sistema: Bienvenidos al curso.</p>
-                    <p class="mb-0 text-muted small">Ayer</p>
+        <div id="panelNuevoMensaje">
+            <div class="panel-header">
+                <button class="btn-close-custom" onclick="cerrarPanel()">X</button>
+                <div>
+                    <small class="text-muted text-uppercase d-block" id="displayMateria" style="font-size: 0.65rem;"></small>
+                    <h4 class="mb-0">Nuevo mensaje</h4>
                 </div>
             </div>
-        </div>
 
-        <!-- Curso 3 -->
-        <div class="col-12">
-            <div class="card shadow-sm">
-                <div class="card-header border-top border-4 border-warning d-flex justify-content-between align-items-center">
-                    <div>
-                        <small class="text-muted">IND_ALUMNOS-202520-38</small>
-                        <h6 class="mb-0">Inducción para estudiantes</h6>
+            <div class="panel-body text-center">
+                <div class="w-100 text-start mb-4" style="max-width: 700px;">
+                    <label class="small fw-bold">Hasta:</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                        <input type="text" class="form-control" placeholder="Escriba un miembro o grupo del curso">
                     </div>
-                    <button class="btn btn-sm btn-outline-warning">
-                        <i class="bi bi-send"></i> Enviar mensaje
-                    </button>
                 </div>
+                
+                <img src="https://cdn-icons-png.flaticon.com/512/2665/2665038.png" class="mailbox-img">
+                <h5 class="fw-bold">Comenzar un nuevo mensaje</h5>
+                <p class="text-muted small">Seleccione un destinatario para comenzar.</p>
+            </div>
 
-                <div class="card-body py-2">
-                    <p class="text-muted small mb-1">Mensajes recientes</p>
-                    <p class="mb-1">📩 Coordinación: Horarios publicados.</p>
-                    <p class="mb-0 text-muted small">Hace 3 días</p>
+            <div class="panel-footer">
+                <input type="hidden" id="current_id_curso">
+                <div class="border p-2 bg-white rounded">
+                    <textarea id="mensaje_contenido" class="form-control border-0" rows="3" placeholder="Escribe un mensaje"></textarea>
+                </div>
+                <div class="text-end mt-3">
+                    <button class="btn btn-primary px-4" 
+                            onclick="enviarAccion('{{ route('admin.messages.ajax') }}', '{{ csrf_token() }}')">
+                        <i class="bi bi-send"></i> Enviar
+                    </button>
                 </div>
             </div>
         </div>
@@ -75,3 +65,7 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/messages.js') }}"></script>
+@endpush

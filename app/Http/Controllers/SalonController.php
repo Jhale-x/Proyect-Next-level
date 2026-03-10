@@ -29,31 +29,30 @@ class SalonController extends Controller
             'facultad'  => 'required',
         ]);
 
-        DB::transaction(function () use ($request) {
+        // Crear cada uno
+        $nivel = Nivel::create([
+            'nivel' => $request->nivel
+        ]);
 
-            $nivel = Nivel::create([
-                'nivel' => $request->nivel
-            ]);
+        $grado = Grado::create([
+            'grado' => $request->grado
+        ]);
 
-            $grado = Grado::create([
-                'grado' => $request->grado
-            ]);
+        $seccion = Seccion::create([
+            'seccion' => $request->seccion
+        ]);
 
-            $seccion = Seccion::create([
-                'seccion' => $request->seccion
-            ]);
+        $facultad = Facultad::create([
+            'facultad' => $request->facultad
+        ]);
 
-            $facultad = Facultad::create([
-                'facultad' => $request->facultad
-            ]);
-
-            Salon::create([
-                'id_nivel' => $nivel->id_nivel,
-                'id_grado' => $grado->id_grado,
-                'id_seccion' => $seccion->id_seccion,
-                'id_facultad' => $facultad->id_facultad,
-            ]);
-        });
+        // Crear salón automáticamente
+        Salon::create([
+            'id_nivel'     => $nivel->id_nivel,
+            'id_grado'     => $grado->id_grado,
+            'id_seccion'   => $seccion->id_seccion,
+            'id_facultad'  => $facultad->id_facultad,
+        ]);
 
         return back()->with('success', 'Salón creado correctamente 🔥');
     }
