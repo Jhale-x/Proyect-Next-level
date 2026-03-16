@@ -105,7 +105,16 @@ class CourseController extends Controller
     {
         $alumnos = Alumno::where('id_salon', $idSalon)->get();
 
-        $curso = Course::first();
+        $cursoId = request()->query('id_curso');
+        $curso = $cursoId ? Course::find($cursoId) : Course::first();
+
+        if (!$curso) {
+            return response()->json([
+                'alumnos' => [],
+                'actividades' => [],
+                'notas' => [],
+            ]);
+        }
 
         $actividades = CursoActividad::with('actividad')
             ->where('id_curso', $curso->id_curso)
@@ -125,6 +134,50 @@ class CourseController extends Controller
             'alumnos' => $alumnos,
             'actividades' => $actividades,
             'notas' => $notas
+        ]);
+    }
+
+    public function guardarNotasSalon(Request $request, $idSalon)
+    {
+        $validated = $request->validate([
+            'notas' => 'required|array|min:1',
+            'notas.*.id_alumno' => 'required|exists:alumnos,id_alumno',
+            'notas.*.id_curso_actividad' => 'required|exists:curso_actividades,id_curso_actividad',
+            'notas.*.nota' => 'nullable|numeric|min:0|max:20',
+        ]);
+
+        DB::transaction(function () use ($validated, $idSalon) {
+            foreach ($validated['notas'] as $item) {
+                $alumnoPerteneceSalon = Alumno::where('id_alumno', $item['id_alumno'])
+                    ->where('id_salon', $idSalon)
+                    ->exists();
+
+                if (!$alumnoPerteneceSalon) {
+                    continue;
+                }
+
+                if ($item['nota'] === null || $item['nota'] === '') {
+                    Nota::where('id_alumno', $item['id_alumno'])
+                        ->where('id_curso_actividad', $item['id_curso_actividad'])
+                        ->delete();
+                    continue;
+                }
+
+                Nota::updateOrCreate(
+                    [
+                        'id_alumno' => $item['id_alumno'],
+                        'id_curso_actividad' => $item['id_curso_actividad'],
+                    ],
+                    [
+                        'nota' => $item['nota'],
+                    ]
+                );
+            }
+        });
+
+        return response()->json([
+            'ok' => true,
+            'message' => 'Notas guardadas correctamente.',
         ]);
     }
 }

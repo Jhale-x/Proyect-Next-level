@@ -15,9 +15,18 @@ class LoginController extends Controller
     // VISTAS
     // ==========================================
 
-    public function showColegio() { return view('auth.login_colegio'); }
-    public function showAcademia() { return view('auth.login_academia'); }
-    public function showUser() { return view('auth.login_user'); }
+    public function showColegio()
+    {
+        return view('auth.login_colegio');
+    }
+    public function showAcademia()
+    {
+        return view('auth.login_academia');
+    }
+    public function showUser()
+    {
+        return view('auth.login_user');
+    }
 
     // ==========================================
     // LOGIN ALUMNOS (COLEGIO / ACADEMIA)
@@ -71,7 +80,7 @@ class LoginController extends Controller
         $request->validate([
             'usuario' => 'required',
             'password' => 'required'
-        ]); 
+        ]);
 
         $user = User::where('usuario', $request->usuario)->first();
 
@@ -100,7 +109,7 @@ class LoginController extends Controller
         } elseif ($rol === 'docente') {
             return redirect()->route('docente.pagina_institucional');
         } elseif ($rol === 'auxiliar') {
-            return redirect('/Auxiliar/pagina_institucional');
+            return redirect()->route('auxiliar.dashboard');
         }
 
         return back()->with('error', 'Rol desconocido');

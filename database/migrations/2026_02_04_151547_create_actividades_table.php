@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id('id_actividad');
             $table->string('actividad');
             $table->text('descripcion')->nullable();
+            $table->integer('porcentaje');
+            $table->date('fecha_entrega');
             $table->timestamps();
         });
     }

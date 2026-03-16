@@ -19,6 +19,17 @@
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
+        @if (session('warning'))
+            <div class="alert alert-warning">{{ session('warning') }}</div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">{{ session('error') }}</div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                {{ $errors->first() }}
+            </div>
+        @endif
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -94,7 +105,6 @@
         <!-- ================= VISTA DETALLE SALON ================= -->
         <div id="vista-detalle" class="d-none">
 
-<<<<<<< HEAD
             <!-- Excel actions (export / import) -->
             <div id="excel-actions" class="mb-3 text-end">
                 <form id="export-form" action="" method="GET" class="d-inline">
@@ -105,14 +115,13 @@
                 <form id="import-form" action="" method="POST" enctype="multipart/form-data"
                     class="d-inline-block ms-2">
                     @csrf
+                    <input type="hidden" name="id_curso" id="import_curso_id">
                     <input type="file" name="excel" accept=".xlsx,.xls" required
                         class="form-control form-control-sm d-inline-block w-auto">
                     <button class="btn btn-outline-primary btn-sm">📤 Subir Excel</button>
                 </form>
             </div>
 
-=======
->>>>>>> ae68699347ba81eca1878900ca9c7ac02b103494
             <div class="card shadow-sm border-0 rounded-3">
                 <div class="card-body p-0">
 
@@ -120,27 +129,10 @@
                         <table class="table table-hover align-middle mb-0">
 
                             <thead class="table-light">
-<<<<<<< HEAD
                                 <tr id="cabecera-actividades"></tr>
                             </thead>
 
                             <tbody id="tabla-alumnos"></tbody>
-=======
-                                <tr id="cabecera-actividades">
-                                    <th class="fw-bold">Alumno</th>
-                                    <!-- actividades dinámicas -->
-                                    <th class="text-center fw-bold">PROM</th>
-                                </tr>
-                            </thead>
-
-                            <tbody id="tabla-alumnos">
-                                <tr>
-                                    <td colspan="99" class="text-center text-muted py-4">
-                                        Selecciona un salón
-                                    </td>
-                                </tr>
-                            </tbody>
->>>>>>> ae68699347ba81eca1878900ca9c7ac02b103494
 
                         </table>
                     </div>
@@ -150,7 +142,7 @@
 
             <div class="mt-3 text-end">
                 <button class="btn btn-secondary" onclick="cerrarRegistroExcel()">Cerrar</button>
-                <button class="btn btn-success">Guardar</button>
+                <button class="btn btn-success" id="btn-guardar-notas">Guardar</button>
             </div>
 
         </div>
@@ -172,13 +164,8 @@
                     <div class="modal-body">
                         <div id="contenedor-niveles">
                             <div class="input-group mb-2">
-<<<<<<< HEAD
                                 <input type="text" name="niveles[]" class="form-control"
                                     placeholder="Nombre del nivel" required>
-=======
-                                <input type="text" name="niveles[]" class="form-control" placeholder="Nombre del nivel"
-                                    required>
->>>>>>> ae68699347ba81eca1878900ca9c7ac02b103494
                                 <button type="button" class="btn btn-danger eliminar">X</button>
                             </div>
                         </div>
@@ -274,12 +261,9 @@
 
         <label class="form-label">Nivel</label>
         <select class="form-control mb-2 select-nivel" name="grados[][id_nivel]">
-<<<<<<< HEAD
+            <option value="">Seleccione un nivel</option>
             @foreach ($niveles ?? [] as $nivel)
-=======
-            @foreach ($niveles as $nivel)
                 <option value="{{ $nivel->id_nivel }}">
->>>>>>> ae68699347ba81eca1878900ca9c7ac02b103494
                     {{ $nivel->nivel }}
                 </option>
             @endforeach
@@ -368,6 +352,17 @@
                             <textarea name="descripcion" class="form-control"></textarea>
                         </div>
 
+                        <div class="mb-3">
+                            <label>Porcentaje</label>
+                            <input type="number" name="porcentaje" class="form-control" min="1" max="100"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Fecha de entrega</label>
+                            <input type="date" name="fecha_entrega" class="form-control" required>
+                        </div>
+
                     </div>
 
                     <div class="modal-footer">
@@ -397,11 +392,7 @@
 
                         <label>Actividad existente</label>
                         <select name="id_actividad" class="form-select">
-<<<<<<< HEAD
                             @foreach ($actividades ?? [] as $actividad)
-=======
-                            @foreach ($actividades as $actividad)
->>>>>>> ae68699347ba81eca1878900ca9c7ac02b103494
                                 <option value="{{ $actividad->id_actividad }}">
                                     {{ $actividad->actividad }}
                                 </option>
@@ -439,11 +430,7 @@
 
                         <h6>Primaria</h6>
                         <div class="row g-2 mb-3">
-<<<<<<< HEAD
                             @foreach ($salonesPrimaria ?? [] as $salon)
-=======
-                            @foreach ($salonesPrimaria as $salon)
->>>>>>> ae68699347ba81eca1878900ca9c7ac02b103494
                                 <div class="col-md-3">
                                     <label class="card p-2 salon-card">
                                         <input type="checkbox" name="salones[]" value="{{ $salon->id_salon }}">
@@ -455,11 +442,7 @@
 
                         <h6>Secundaria</h6>
                         <div class="row g-2">
-<<<<<<< HEAD
                             @foreach ($salonesSecundaria ?? [] as $salon)
-=======
-                            @foreach ($salonesSecundaria as $salon)
->>>>>>> ae68699347ba81eca1878900ca9c7ac02b103494
                                 <div class="col-md-3">
                                     <label class="card p-2 salon-card">
                                         <input type="checkbox" name="salones[]" value="{{ $salon->id_salon }}">

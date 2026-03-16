@@ -11,6 +11,8 @@ class Activity extends Model
 
     protected $fillable = [
         'actividad',
-        'descripcion'
+        'descripcion',
+        'porcentaje',
+        'fecha_entrega',
     ];
 }

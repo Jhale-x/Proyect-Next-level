@@ -119,31 +119,31 @@
 
         <!-- ===== ALUMNO ===== -->
         <!--
-                        <div class="card shadow-sm border-0">
-                            <div class="card-body">
+                            <div class="card shadow-sm border-0">
+                                <div class="card-body">
 
-                                <h4 class="fw-bold mb-3">Mi Reporte de Calificaciones</h4>
+                                    <h4 class="fw-bold mb-3">Mi Reporte de Calificaciones</h4>
 
-                                <div class="row g-3">
-                                    <div class="col-md-4">
-                                        <div class="p-3 border rounded text-center">
-                                            <h6>Promedio General</h6>
-                                            <h1 class="display-4 text-primary">A</h1>
+                                    <div class="row g-3">
+                                        <div class="col-md-4">
+                                            <div class="p-3 border rounded text-center">
+                                                <h6>Promedio General</h6>
+                                                <h1 class="display-4 text-primary">A</h1>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <h6>Actividades</h6>
+                                            <ul class="list-group">
+                                                <li class="list-group-item">Tarea: 16</li>
+                                                <li class="list-group-item">Exposición: 18</li>
+                                                <li class="list-group-item">Examen: 15</li>
+                                            </ul>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-8">
-                                        <h6>Actividades</h6>
-                                        <ul class="list-group">
-                                            <li class="list-group-item">Tarea: 16</li>
-                                            <li class="list-group-item">Exposición: 18</li>
-                                            <li class="list-group-item">Examen: 15</li>
-                                        </ul>
-                                    </div>
                                 </div>
-
-                            </div>
-                        </div>-->
+                            </div>-->
 
     </div>
 
@@ -175,6 +175,17 @@
                         <div class="mb-3">
                             <label>Descripción</label>
                             <textarea name="descripcion" class="form-control"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Porcentaje</label>
+                            <input type="number" name="porcentaje" class="form-control" min="1" max="100"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Fecha de entrega</label>
+                            <input type="date" name="fecha_entrega" class="form-control" required>
                         </div>
 
                     </div>

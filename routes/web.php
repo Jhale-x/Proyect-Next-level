@@ -125,6 +125,8 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(functi
         Route::post('/crear-completo', [SalonController::class, 'crearCompleto'])->name('admin.salon.crearCompleto');
         Route::get('/por-nivel', [SalonController::class, 'porNivel']);
         Route::get('/{id}/detalle', [CourseController::class, 'detalleSalon']);
+        Route::post('/{id}/guardar-notas', [CourseController::class, 'guardarNotasSalon'])
+            ->name('admin.salones.guardarNotas');
         // export/import Excel for a salón
         //Route::get('/{id}/export', [SalonController::class, 'export'])->name('admin.salones.export');
         Route::get('/{id}/export/{idCurso}', [SalonController::class, 'export'])
