@@ -15,10 +15,32 @@ use Illuminate\Http\Request;
 
 class AlumnosController extends Controller
 {
+    public function index()
+    {
+        $alumnos = Alumno::all();
+        return view('Admin.users', compact('alumnos')); 
+    }
+
+    // Este es el método que llama el UsersController
+    public function datosFormulario()
+    {
+        return [
+            'niveles'    => Nivel::all(),
+            'grados'     => Grado::all(),
+            'secciones'  => Seccion::all(),
+            'facultades' => Facultad::all(),
+        ];
+    }
+
+    // Si necesitas entrar a una vista propia de registro de alumnos
+    public function create()
+    {
+        $datos = $this->datosFormulario();
+        return view('Admin.users', $datos); // O la vista que uses para alumnos
+    }
+
     public function store(Request $request)
     {
-        // 1. VALIDACIÓN
-        // Validamos 'contraseña' porque así viene del name del input en tu HTML
         $request->validate([
             'nombre'           => 'required|string|max:100',
             'apellido'         => 'required|string|max:100',
@@ -68,17 +90,6 @@ class AlumnosController extends Controller
             'tipo'             => $request->tipo ?? 'colegio',
         ]);
 
-        return redirect()->route('admin.users')
-            ->with('success', 'Alumno registrado correctamente con encriptación');
-    }
-
-    public function datosFormulario()
-    {
-        return [
-            'niveles'    => Nivel::all(),
-            'grados'     => Grado::all(),
-            'secciones'  => Seccion::all(),
-            'facultades' => Facultad::all(),
-        ];
+        return redirect()->route('listado')->with('success', 'Alumno registrado correctamente');
     }
 }

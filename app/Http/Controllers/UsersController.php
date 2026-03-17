@@ -7,6 +7,7 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+// IMPORTANTE: Aquí debe decir UsersController, NO AlumnosController
 class UsersController extends Controller
 {
     public function index()
@@ -14,7 +15,7 @@ class UsersController extends Controller
         $users = User::with('salones')->get();
         $cursos = Course::all();
 
-        // Llamamos al controlador de alumnos para obtener los datos de los selects
+        // Ahora esto ya no dará error porque el método existe
         $alumnosController = new AlumnosController();
         $datosAlumno = $alumnosController->datosFormulario();
 
@@ -38,14 +39,15 @@ class UsersController extends Controller
         ]);
 
         User::create([
-            'id_curso'   => $request->id_curso,
-            'nombre'     => $request->nombre,
-            'apellido'   => $request->apellido,
-            'dni'        => $request->dni,
+            'id_curso'         => $request->id_curso,
+            'nombre'           => $request->nombre,
+            'apellido'         => $request->apellido,
+            'dni'              => $request->dni,
             'fecha_nacimiento' => $request->fecha_nacimiento,
-            'usuario'    => $request->usuario,
-            'contrasena' => Hash::make($request->contrasena),
-            'rol'        => $request->rol,
+            'usuario'          => $request->usuario,
+            // Guardamos con Hash para mantener la seguridad que pediste
+            'contrasena'       => Hash::make($request->contrasena),
+            'rol'              => $request->rol,
         ]);
 
         return redirect()->route('admin.users')->with('success', 'Personal creado correctamente');

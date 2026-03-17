@@ -5,34 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Message;
-use App\Models\Course; // Tu modelo que apunta a la tabla 'cursos'
+use App\Models\Course;
 
 class MessageController extends Controller
 {
-    /**
-     * Muestra la lista de materias disponibles desde la BD
-     */
     public function index()
     {
-        // Traemos todas las filas de tu tabla 'cursos'
         $cursos = Course::all();
 
-        // Verificamos el guard/rol para devolver la vista correcta
         if (Auth::guard('alumno')->check()) {
             return view('Alumno.messages', compact('cursos'));
         }
 
         $user = Auth::user();
-        if ($user && $user->rol === 'administrador') {
-            return view('Admin.messages', compact('cursos'));
+        if ($user) {
+            if ($user->rol === 'administrador') return view('Admin.messages', compact('cursos'));
+            if ($user->rol === 'auxiliar') return view('auxiliar.messages', compact('cursos'));
         }
 
         return view('Docentes.messages', compact('cursos'));
     }
 
-    /**
-     * Obtiene el historial de chats para una materia específica
-     */
     public function getMessagesByCurso($id_curso)
     {
         $miId = Auth::guard('alumno')->check() ? Auth::guard('alumno')->id() : Auth::id();
@@ -52,9 +45,6 @@ class MessageController extends Controller
         return response()->json($messages);
     }
 
-    /**
-     * Guarda el mensaje enviado desde el chat modal
-     */
     public function storeAjax(Request $request)
     {
         $miId = Auth::guard('alumno')->check() ? Auth::guard('alumno')->id() : Auth::id();
