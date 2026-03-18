@@ -11,28 +11,6 @@
         : Carbon::now();
 
     $inicioSemana = $fecha->copy()->startOfWeek(Carbon::MONDAY);
-
-    // ====== "BASE DE DATOS" SIMULADA ======
-    $actividades = [
-        [
-            'curso' => 'BASIC 4',
-            'titulo' => 'Speaking 3',
-            'fecha' => $fecha->toDateString(),
-            'hora'  => 9,
-        ],
-        [
-            'curso' => 'Programación I',
-            'titulo' => 'Entrega POO',
-            'fecha' => $fecha->toDateString(),
-            'hora'  => 14,
-        ],
-        [
-            'curso' => 'Matemática Aplicada',
-            'titulo' => 'Práctica 2',
-            'fecha' => $fecha->toDateString(),
-            'hora'  => 20,
-        ],
-    ];
 @endphp
 
 <div class="container-fluid px-2">
@@ -71,23 +49,33 @@
         @endfor
     </div>
 
-    <!-- Agenda por horas con eventos -->
+    <!-- Agenda por horas -->
     <div class="mt-3">
         @for($i = 0; $i < 24; $i++)
             <div class="d-flex border-bottom py-2 align-items-start">
+                
+                <!-- Hora -->
                 <div style="width:60px" class="text-muted text-end pe-2">
                     {{ str_pad($i, 2, '0', STR_PAD_LEFT) }}:00
                 </div>
 
+                <!-- Eventos -->
                 <div class="flex-fill">
+
                     @foreach($actividades as $act)
-                        @if($act['fecha'] === $fecha->toDateString() && $act['hora'] === $i)
+                        @php
+                            // ⚠️ TEMPORAL (no tienes hora en BD)
+                            $hora = 9;
+                        @endphp
+
+                        @if($act->fecha == $fecha->toDateString() && $hora == $i)
                             <div class="alert alert-primary py-1 px-2 mb-1">
-                                <strong>{{ $act['curso'] }}</strong><br>
-                                <small>📌 {{ $act['titulo'] }}</small>
+                                <strong>{{ $act->curso }}</strong><br>
+                                <small>📌 {{ $act->titulo }}</small>
                             </div>
                         @endif
                     @endforeach
+
                 </div>
             </div>
         @endfor

@@ -33,7 +33,7 @@ class MessageController extends Controller
         $messages = Message::where('id_curso', $id_curso)
             ->orderBy('created_at', 'asc')
             ->get()
-            ->map(function($m) use ($miId) {
+            ->map(function ($m) use ($miId) {
                 return [
                     'id'        => $m->id,
                     'contenido' => $m->contenido,
@@ -47,12 +47,14 @@ class MessageController extends Controller
 
     public function storeAjax(Request $request)
     {
+        $data = $request->json()->all(); // 👈 IMPORTANTE
+
         $miId = Auth::guard('alumno')->check() ? Auth::guard('alumno')->id() : Auth::id();
 
         $mensaje = Message::create([
             'id_emisor' => $miId,
-            'id_curso'  => $request->id_curso,
-            'contenido' => $request->contenido,
+            'id_curso'  => $data['id_curso'],
+            'contenido' => $data['contenido'],
         ]);
 
         return response()->json([
