@@ -384,7 +384,6 @@
     <script src="{{ asset('js/marquee_principal.js') }}"></script>
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
-    <script src="{{ asset('js/carrusel-docentes.js') }}"></script>
     <script src="{{ asset('js/academia-ciclos.js') }}"></script>
 </body>
 </html>

@@ -41,7 +41,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">&#9662;</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
+                        <li><a href="{{ route('que_ofrecemos') }}">Qué ofrecemos</a></li>
                         <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
                     </ul>
                 </li>
@@ -453,7 +453,7 @@
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/hero-slider.js') }}"></script>
     <script src="{{ asset('js/carrusel-pilares.js') }}"></script>
-    <script src="{{ asset('js/carrusel-docentes.js') }}"></script>
+    <script src="{{ asset('js/carrusel-alumnos.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
 </body>
 
