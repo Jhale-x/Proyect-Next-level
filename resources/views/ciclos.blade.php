@@ -23,7 +23,7 @@
             <div class="marquee-track" id="marqueeTrack">
                 <div class="marquee-item">
                     ¡Matrícula 2026! &nbsp;&nbsp;&nbsp;&nbsp;
-                    ☀️🏊‍♂️ Inicio de Clases: 4 Marzo &nbsp;&nbsp;&nbsp;&nbsp;
+                    🚀📚 Ciclos Anual / Semestral / Verano &nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">▾</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
+                        <li><a href="{{ route('que_ofrecemos') }}">Qué ofrecemos</a></li>
                         <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
                     </ul>
                 </li>
@@ -90,7 +90,7 @@
             <div class="menu-panel" id="submenu-nosotros">
                 <button class="back-btn" type="button"><i class="fa-solid fa-chevron-left"></i> REGRESAR</button>
                 <ul class="mobile-nav-list">
-                    <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
+                    <li><a href="{{ route('que_ofrecemos') }}">Qué ofrecemos</a></li>
                     <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
                 </ul>
             </div>
@@ -136,6 +136,7 @@
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
                         <div class="acordeon-content">
+                            <a href="{{ url('ciclo-anual-unu') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">Anual UNU</span>

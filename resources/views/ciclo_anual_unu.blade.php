@@ -41,7 +41,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">&#9662;</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
+                        <li><a href="{{ route('que_ofrecemos') }}">Qué ofrecemos</a></li>
                         <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
                     </ul>
                 </li>
@@ -87,7 +87,7 @@
             <div class="menu-panel" id="submenu-nosotros">
                 <button class="back-btn" type="button"><i class="fa-solid fa-chevron-left"></i> REGRESAR</button>
                 <ul class="mobile-nav-list">
-                    <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
+                    <li><a href="{{ route('que_ofrecemos') }}">Qué ofrecemos</a></li>
                     <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
                 </ul>
             </div>
@@ -105,137 +105,8 @@
     <main>
 
     <section class="hero-sobre">
-        <div class="hero-overlay">
-       <!-- <div class="hero-content">
-                <span class="section-tag">MATRÍCULA 2026</span>
-                <h1>CICLO ANUAL</h1>
-                <div class="hero-line"></div>
-                <p>La preparación más completa para asegurar tu ingreso. Desde lo básico hasta el nivel avanzado con el método Next Level.</p>
-            </div> -->
-        </div>
+        <div class="hero-overlay"></div>
         <img src="{{ asset('images/imagen10.jpg') }}" alt="Fondo" class="hero-bg-img">
-    </section>
-
-    <section class="seccion-detalle-unu">
-        <div class="contenedor-unu">
-            <div class="grid-presentacion">
-                <div class="col-texto">
-                    <h2 class="color-cian">ANUAL UNU</h2>
-                    <p class="txt-descripcion">Ciclo diseñado para quienes <strong>inician su preparación preuniversitaria</strong> y están dispuestos a asumir una preparación exigente. Refuerza tus bases teóricas y prácticas con una preparación 100% alineada al prospecto de admisión de la <strong>Universidad Nacional de Ucayali.</strong></p>
-
-                    <p class="metodologia-destaque">METODOLOGÍA: 50% PRÁCTICO + 50% TEORÍA</p>
-
-                    <ul class="lista-detalles">
-                        <li><i class="fa-solid fa-calendar-day"></i> <strong>Inicio:</strong> 16 de marzo</li>
-                        <li><i class="fa-solid fa-flag-checkered"></i> <strong>Fin:</strong> 15 de diciembre</li>
-                        <li><i class="fa-solid fa-location-dot"></i> <strong>Modalidad:</strong> Presencial / Virtual</li>
-                        <li><i class="fa-solid fa-hourglass-start"></i> <strong>Duración:</strong> 40 semanas</li>
-                        <li>
-                            <i class="fa-solid fa-clock"></i>
-                            <div class="bloque-horarios">
-                                <strong>Horarios:</strong> Lunes a sábado<br>
-                                <span>Mañana → 8:00 a. m. a 1:00 p. m.</span>
-                                <span>Tarde → 3:00 p. m. a 8:00 p. m.</span>
-                                <span>Noche → 5:00 p. m. a 10:00 p. m.</span>
-                            </div>
-                        </li>
-                    </ul>
-                    <a href="#" class="boton-inclinado-horario">HORARIO DE CLASE</a>
-                </div>
-                <div class="col-imagen">
-                    <img src="{{ asset('images/estudiante_unu.png') }}" alt="Estudiante Anual UNU">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="seccion-beneficios-unu">
-        <div class="contenedor-unu">
-            <h2 class="titulo-blanco">BENEFICIOS</h2>
-            <p class="subtitulo-blanco">¡Prepárate al máximo!</p>
-
-            <div class="grid-beneficios">
-                <div class="beneficios-foto">
-                    <img src="{{ asset('images/beneficios_estudiante.png') }}" alt="Beneficios Next Level">
-                </div>
-                <div class="beneficios-items">
-                    <div class="item-b">
-                        <span class="etiqueta-b">Evaluaciones semanales tipo admisión</span>
-                        <p>Exámenes de 2 horas con estructura real de la UNU para medir tu progreso semanal.</p>
-                    </div>
-                    <div class="item-b">
-                        <span class="etiqueta-b">Simulacros mensuales</span>
-                        <p>Simulacros de 3 horas para adaptarte al ritmo y presión del examen real.</p>
-                    </div>
-                    <div class="item-b">
-                        <span class="etiqueta-b">Acompañamiento Psicopedagógico</span>
-                        <p>Orientación vocacional, manejo de estrés y técnicas de estudio personalizado.</p>
-                    </div>
-                    <div class="item-b">
-                        <span class="etiqueta-b">Aula Virtual 24/7</span>
-                        <p>Acceso a clases grabadas, materiales en PDF y plataforma de ejercicios.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="seccion-inversion-unu">
-        <div class="contenedor-unu">
-            <h2 class="color-cian texto-centrado">INVERSIÓN</h2>
-            <div class="flex-tablas">
-                <div class="tarjeta-precio">
-                    <h3 class="color-magenta">PRESENCIAL</h3>
-                    <div class="tabla-custom">
-                        <div class="fila-cabecera">
-                            <div>TURNO</div>
-                            <div>PAGO COMPLETO</div>
-                            <div>EN CUOTAS</div>
-                        </div>
-                        <div class="fila-dato">
-                            <div class="celda">Mañana</div>
-                            <div class="celda verde-ahorro">S/ 3,749 <small>Ahorra S/ 326</small></div>
-                            <div class="celda">S/ 429</div>
-                        </div>
-                        <div class="fila-dato">
-                            <div class="celda">Tarde</div>
-                            <div class="celda verde-ahorro">S/ 3,224 <small>Ahorra S/ 281</small></div>
-                            <div class="celda">S/ 369</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tarjeta-precio">
-                    <h3 class="color-cian">VIRTUAL</h3>
-                    <div class="tabla-custom">
-                        <div class="fila-cabecera">
-                            <div>TURNO</div>
-                            <div>PAGO COMPLETO</div>
-                            <div>EN CUOTAS</div>
-                        </div>
-                        <div class="fila-dato">
-                            <div class="celda">Mañana</div>
-                            <div class="celda verde-ahorro">S/ 2,175 <small>Ahorra S/ 190</small></div>
-                            <div class="celda">S/ 249</div>
-                        </div>
-                        <div class="fila-dato">
-                            <div class="celda">Tarde</div>
-                            <div class="celda verde-ahorro">S/ 1,913 <small>Ahorra S/ 167</small></div>
-                            <div class="celda">S/ 219</div>
-                        </div>
-                        <div class="fila-dato">
-                            <div class="celda">Noche</div>
-                            <div class="celda verde-ahorro">S/ 1,738 <small>Ahorra S/ 152</small></div>
-                            <div class="celda">S/ 199</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pie-inversion">
-                <a href="#" class="btn-matricula-final">MATRÍCULA EN LÍNEA</a>
-                <p><a href="#">Solicita más información</a></p>
-            </div>
-        </div>
     </section>
 
     </main>

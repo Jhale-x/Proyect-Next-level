@@ -40,7 +40,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">&#9662;</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
+                        <li><a href="{{ route('que_ofrecemos') }}">Qué ofrecemos</a></li>
                         <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
                     </ul>
                 </li>
@@ -86,7 +86,7 @@
             <div class="menu-panel" id="submenu-nosotros">
                 <button class="back-btn" type="button"><i class="fa-solid fa-chevron-left"></i> REGRESAR</button>
                 <ul class="mobile-nav-list">
-                    <li><a href="{{ route('mantenimiento') }}">Qué ofrecemos</a></li>
+                    <li><a href="{{ route('que_ofrecemos') }}">Qué ofrecemos</a></li>
                     <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
                 </ul>
             </div>
