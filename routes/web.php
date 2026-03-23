@@ -38,6 +38,11 @@ Route::get('/sobre-nosotros', function () {
     return view('sobre_nosotros');
 })->name('sobre.nosotros');
 
+Route::get('/que-ofrecemos', function () {
+    return view('que_ofrecemos');
+})->name('que_ofrecemos');
+
+
 Route::get('/academia', function () {
     return view('academia');
 })->name('academia');
@@ -66,10 +71,22 @@ Route::get('/ciclo-anual-unia', function (){
     return view('ciclo_anual_unia');
 })->name('ciclo-anual-unia');
 
+Route::get('/ciclo-semestral-unu', function (){
+    return view('ciclo_semestral_unu');
+})->name('ciclo-semestral-unu');
+
+Route::get('/ciclo-semestral-unia', function (){
+    return view('ciclo_semestral_unia');
+})->name('ciclo-semestral-unia');
+
+Route::get('/ciclo-verano-unu', function (){
+    return view('ciclo_verano_unu');
+})->name('ciclo-verano-unu');
+
+Route::get('/ciclo-verano-unia', function (){
+    return view('ciclo_verano_unia');
+})->name('ciclo-verano-unia');
+
 Route::get('/mantenimiento', function () {
     return view('mantenimiento');
 })->name('mantenimiento');
-
-Route::get('/que-ofrecemos', function () {
-    return view('que_ofrecemos');
-})->name('que_ofrecemos');

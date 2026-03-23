@@ -106,12 +106,15 @@
 .ciclos-wrapper {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 15px;
     align-items: flex-start;
+    width: 100%;
+    /* Esto obliga a que los 4 elementos se queden en una línea */
+    flex-wrap: nowrap !important;
 }
 
 .ciclo-acordeon {
-    flex: 1 1 calc(25% - 10px);
+    flex: 1 1 calc(25% - -10px);
     display: flex;
     flex-direction: column;
 }

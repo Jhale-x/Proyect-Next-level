@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/propuesta.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/web/ciclo_anual_unia.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/ciclo_verano_unia.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
 </head>
 
@@ -109,14 +109,14 @@
         <img src="{{ asset('images/imagen10.jpg') }}" alt="Fondo" class="hero-bg-img">
     </section>
 
-    <section class="section-ciclo-anual-unia">
+    <section class="section-ciclo-verano-unia">
         <div class="container-minimal">
-            <h2 class="title-display">¡CICLO ANUAL!</h2>
+            <h2 class="title-display">¡CICLO VERANO!</h2>
 
             <div class="pricing-card-modern">
                 <div class="card-info">
                     <span class="badge-status">DISPONIBLE 2026</span>
-                    <h3 class="cycle-name">Ciclo Anual <span>UNIA</span></h3>
+                    <h3 class="cycle-name">Ciclo Verano <span>UNIA</span></h3>
 
                     <div class="date-minimal">
                         <div class="date-row">
@@ -162,7 +162,7 @@
             <div class="pricing-card-modern-two">
                 <div class="card-info">
                     <span class="badge-status">DISPONIBLE 2026</span>
-                    <h3 class="cycle-name">Ciclo Anual <span>UNIA</span></h3>
+                    <h3 class="cycle-name">Ciclo Verano <span>UNIA</span></h3>
 
                     <div class="date-minimal">
                         <div class="date-row">

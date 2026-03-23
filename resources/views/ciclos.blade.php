@@ -144,18 +144,22 @@
                                 </div>
                             </div>
                             </a>
+                            <a href="{{ url('ciclo-semestral-unu') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">Semestral UNU</span>
                                     <span class="badge-nuevo">NUEVO</span>
                                 </div>
                             </div>
+                            </a>
+                            <a href="{{ url('ciclo-verano-unu') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">Verano Pre UNU</span>
                                     <span class="badge-nuevo">NUEVO</span>
                                 </div>
                             </div>
+                            </a>
                             <p class="empty-msg">Próximamente más ciclos.</p>
                         </div>
                     </div>
@@ -166,6 +170,7 @@
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
                         <div class="acordeon-content">
+                            <a href="{{ url('ciclo-anual-unia') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">Anual UNIA</span>
@@ -173,18 +178,22 @@
                                 </div>
                             </div>
                             </a>
+                            <a href="{{ url('ciclo-semestral-unia') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">Semestral UNIA</span>
                                     <span class="badge-nuevo">NUEVO</span>
                                 </div>
                             </div>
+                            </a>
+                            <a href="{{ url('ciclo-verano-unia') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">Verano Pre UNIA</span>
                                     <span class="badge-nuevo">NUEVO</span>
                                 </div>
                             </div>
+                            </a>
                             <p class="empty-msg">Próximamente más ciclos.</p>
                         </div>
                     </div>

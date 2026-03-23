@@ -109,6 +109,98 @@
         <img src="{{ asset('images/imagen10.jpg') }}" alt="Fondo" class="hero-bg-img">
     </section>
 
+    <section class="section-ciclo-anual-unu">
+        <div class="container-minimal">
+            <h2 class="title-display">¡CICLO ANUAL!</h2>
+
+            <div class="pricing-card-modern">
+                <div class="card-info">
+                    <span class="badge-status">DISPONIBLE 2026</span>
+                    <h3 class="cycle-name">Ciclo Anual <span>UNU</span></h3>
+
+                    <div class="date-minimal">
+                        <div class="date-row">
+                            <i class="fa-regular fa-calendar"></i>
+                            <span>23 Mar - 05 Dic</span>
+                        </div>
+                        <p class="duration-text">37 semanas de preparación intensiva</p>
+                    </div>
+
+                    <div class="location-tag">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Sedes: Santa Beatriz / Los Olivos</span>
+                    </div>
+                </div>
+
+                <div class="card-action">
+                    <div class="price-container">
+                        <div class="price-item">
+                            <span class="price-label label-blue">Pago Mensual</span>
+                            <span class="amount">S/ 450</span>
+                        </div>
+                        <div class="divider-vertical"></div>
+                        <div class="price-item highlight">
+                            <span class="price-label label-red">Pago Contado</span>
+                            <span class="amount">S/ 3,605</span>
+                            <span class="save-badge">Ahorra S/ 190</span>
+                        </div>
+                    </div>
+
+                    <div class="actions-group">
+                        <a href="#" class="btn-primary-next">Matricularme ahora</a>
+                        <a href="#" class="btn-outline-next">Ver Brochure <i class="fa-solid fa-download"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="banner-container">
+            <a href="{{ route('mantenimiento') }}" class="banner-link-wrapper">
+                <img src="{{ asset('images/imagen10.jpg') }}" alt="Matrícula" class="banner-img">
+            </a>
+            </div>
+
+            <div class="pricing-card-modern-two">
+                <div class="card-info">
+                    <span class="badge-status">DISPONIBLE 2026</span>
+                    <h3 class="cycle-name">Ciclo Anual <span>UNU</span></h3>
+
+                    <div class="date-minimal">
+                        <div class="date-row">
+                            <i class="fa-regular fa-calendar"></i>
+                            <span>23 Mar - 05 Dic</span>
+                        </div>
+                        <p class="duration-text">37 semanas de preparación intensiva</p>
+                    </div>
+
+                    <div class="location-tag">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Sedes: Santa Beatriz / Los Olivos</span>
+                    </div>
+                </div>
+
+                <div class="card-action">
+                    <div class="price-container">
+                        <div class="price-item">
+                            <span class="price-label label-blue">Pago Mensual</span>
+                            <span class="amount">S/ 450</span>
+                        </div>
+                        <div class="divider-vertical"></div>
+                        <div class="price-item highlight">
+                            <span class="price-label label-red">Pago Contado</span>
+                            <span class="amount">S/ 3,605</span>
+                            <span class="save-badge">Ahorra S/ 190</span>
+                        </div>
+                    </div>
+
+                    <div class="actions-group">
+                        <a href="#" class="btn-primary-next">Matricularme ahora</a>
+                        <a href="#" class="btn-outline-next">Ver Brochure <i class="fa-solid fa-download"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     </main>
 
     <footer class="footer">
