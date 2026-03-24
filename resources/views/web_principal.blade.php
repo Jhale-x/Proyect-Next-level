@@ -4,13 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Next Level | Colegio y Academia</title>
 
+    <!-- SEO BASICO -->
+    <title>Next Level | Colegio y Academia</title>
+    <meta name="description" content="Next Level es un colegio y academia en Pucallpa enfocado en la excelencia académica, innovación educativa y formación integral de estudiantes.">
+    <meta name="keywords" content="Next Level, colegio en Pucallpa, academia preuniversitaria, educación Pucallpa, colegio privado">
+    <meta name="author" content="Next Level">
+
+    <!-- GOOGLE -->
+    <meta name="robots" content="index, follow">
+
+    <!-- OPEN GRAPH (cuando comparten link) -->
+    <meta property="og:title" content="Next Level | Colegio y Academia">
+    <meta property="og:description" content="Educación innovadora y formación integral para estudiantes en Next Level.">
+    <meta property="og:image" content="https://nextlevelschool.edu.pe/images/next-level-logo.png">
+    <meta property="og:url" content="https://nextlevelschool.edu.pe">
+    <meta property="og:type" content="website">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
+
+    <!-- ESTILOS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/propuesta.css') }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
+
+    <!-- ✅ STRUCTURED DATA (LO QUE GOOGLE NECESITA) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Next Level",
+        "url": "https://nextlevelschool.edu.pe",
+        "logo": "https://nextlevelschool.edu.pe/images/next-level-logo.png",
+        "sameAs": [
+            "https://www.facebook.com/profile.php?id=61581492196914",
+            "https://www.instagram.com/next_level_novus/",
+            "https://www.tiktok.com/@next_level_novus"
+        ],
+        "mainEntityOfPage": [
+            {
+                "@type": "WebPage",
+                "name": "Inicio",
+                "url": "https://nextlevelschool.edu.pe/"
+            },
+            {
+                "@type": "WebPage",
+                "name": "Sobre Nosotros",
+                "url": "https://nextlevelschool.edu.pe/sobre-nosotros"
+            },
+            {
+                "@type": "WebPage",
+                "name": "Academia",
+                "url": "https://nextlevelschool.edu.pe/academia"
+            },
+            {
+                "@type": "WebPage",
+                "name": "Ubicación",
+                "url": "https://nextlevelschool.edu.pe/ubicacion"
+            },
+            {
+                "@type": "WebPage",
+                "name": "Contáctanos",
+                "url": "https://nextlevelschool.edu.pe/contactenos"
+            }
+        ]
+    }
+    </script>
+
 </head>
 
 <body>
