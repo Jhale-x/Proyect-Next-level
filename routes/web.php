@@ -90,3 +90,7 @@ Route::get('/ciclo-verano-unia', function (){
 Route::get('/mantenimiento', function () {
     return view('mantenimiento');
 })->name('mantenimiento');
+use App\Http\Controllers\LibroReclamacionesController;
+
+Route::get('/libro-reclamaciones', [LibroReclamacionesController::class, 'index'])->name('libro.reclamaciones');
+Route::post('/submit-reclamacion', [LibroReclamacionesController::class, 'submit'])->name('libro.reclamaciones.submit');

@@ -1,0 +1,1 @@
+# Laravel Setup Progress&#10;&#10;✅ 1. Cleaned corrupted vendor/ directory&#10;⏳ 2. composer install in progress (Laravel/framework downloading)&#10;⏳ 3. php artisan key:generate&#10;⏳ 4. php artisan migrate&#10;⏳ 5. npm install &amp;&amp; npm run build&#10;⏳ 6. php artisan config:clear &amp;&amp; php artisan cache:clear&#10;⏳ 7. php artisan serve

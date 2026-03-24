@@ -428,7 +428,7 @@
                     <a href="{{ route('pagos') }}">PAGOS EN LÍNEA</a>
                     <a href="{{ route('mantenimiento') }}">MATRíCULA 2026</a>
                     <a href="{{ route('mantenimiento') }}">MATRÍCULA ONLINE</a>
-                    <a href="{{ route('mantenimiento') }}">LIBRO RECLAMACIONES</a>
+                    <a href="{{ route('libro.reclamaciones') }}">LIBRO RECLAMACIONES</a>
                 </div>
                 <div class="footer-column social-align">
                     <a href="{{ route('mantenimiento') }}">POLÍTICA COOKIES</a>
