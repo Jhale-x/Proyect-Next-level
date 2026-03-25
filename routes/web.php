@@ -87,6 +87,18 @@ Route::get('/ciclo-verano-unia', function (){
     return view('ciclo_verano_unia');
 })->name('ciclo-verano-unia');
 
+Route::get('/ciclos-pucp', function (){
+    return view('ciclos_pucp');
+})->name('ciclos-pucp');
+
+Route::get('/ciclos-uni', function (){
+    return view('ciclos_uni');
+})->name('ciclos-uni');
+
+Route::get('/ciclos-unmsm', function (){
+    return view('ciclos_unmsm');
+})->name('ciclos-unmsm');
+
 Route::get('/mantenimiento', function () {
     return view('mantenimiento');
 })->name('mantenimiento');

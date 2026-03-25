@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Galería | Next Level</title>
-
+    <title>Ciclos UNI | Next Level</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/web/galeria.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/propuesta.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/ciclos_uni.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
 </head>
 
@@ -39,14 +39,14 @@
             <ul class="nav-menu">
                 <li><a href="{{ route('web.inicio') }}">INICIO</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">▾</span></a>
+                    <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">&#9662;</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('que_ofrecemos') }}">Qué ofrecemos</a></li>
                         <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-trigger">NIVELES <span class="arrow-icon">▾</span></a>
+                    <a href="#" class="dropdown-trigger">NIVELES <span class="arrow-icon">&#9662;</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('mantenimiento') }}">Colegio</a></li>
                         <li><a href="{{ route('academia') }}">Academia</a></li>
@@ -103,48 +103,12 @@
     </div>
 
     <main>
+
     <section class="hero-sobre">
-        <div class="hero-overlay">
-            <div class="hero-content">
-                <span class="section-tag">VER FOTOS</span>
-                <h1>NUESTRA GALERÍA</h1>
-                <div class="hero-line"></div>
-                <p>Momentos que se vivieron en Next Level</p>
-            </div>
-        </div>
-            <img src="{{ asset('images/imagen10.jpg') }}" alt="Fondo" class="hero-bg-img">
+        <div class="hero-overlay"></div>
+        <img src="{{ asset('images/imagen10.jpg') }}" alt="Fondo" class="hero-bg-img">
     </section>
 
-    <section class="galeria-pinterest">
-        <div class="galeria-container">
-            <div class="galeria-titulo">
-                <h2>NUESTROS MOMENTOS</h2>
-                <div class="section-line"></div>
-            </div>
-            <div class="galeria-grid" id="galeriaGrid">
-                <div class="grid-item"><img src="{{ asset('images/g1.jpeg') }}" alt="Galería 1" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g2.jpeg') }}" alt="Galería 2" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g3.jpeg') }}" alt="Galería 3" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g4.jpeg') }}" alt="Galería 4" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g5.jpeg') }}" alt="Galería 5" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g6.jpeg') }}" alt="Galería 6" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g7.jpeg') }}" alt="Galería 7" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g8.jpeg') }}" alt="Galería 8" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g9.jpeg') }}" alt="Galería 9" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g10.jpeg') }}" alt="Galería 10" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g11.jpeg') }}" alt="Galería 11" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g12.jpeg') }}" alt="Galería 12" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g13.jpeg') }}" alt="Galería 13" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g14.jpeg') }}" alt="Galería 14" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g15.jpeg') }}" alt="Galería 15" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g16.jpeg') }}" alt="Galería 16" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g17.jpeg') }}" alt="Galería 17" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g18.jpeg') }}" alt="Galería 18" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g19.jpeg') }}" alt="Galería 19" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g20.jpeg') }}" alt="Galería 20" loading="lazy"></div>
-            </div>
-        </div>
-    </section>
     </main>
 
     <footer class="footer">
@@ -195,8 +159,7 @@
     <script src="{{ asset('js/marquee_principal.js') }}"></script>
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
-    <script src="{{ asset('js/galeria.js') }}"></script>
-    <script src="{{ asset('js/mapa_ruta.js') }}"></script>
+
 </body>
 
 </html>

@@ -1,0 +1,83 @@
+.hero-sobre {
+    position: relative;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(15, 39, 73, 0.9) 0%, rgba(27, 58, 107, 0.7) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.hero-bg-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.section-ciclo-pucp {
+    padding: 100px 20px;
+    background: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-minimal {
+    max-width: 950px;
+    width: 100%;
+    text-align: center;
+}
+
+/* --- TABS (ESTILO VIDEO) --- */
+.tabs-container-next {
+    display: inline-flex;
+    background-color: #f1f1f1;
+    padding: 6px;
+    border-radius: 50px;
+    margin-bottom: 50px;
+}
+
+.tab-btn-next {
+    border: none;
+    outline: none;
+    padding: 12px 45px;
+    cursor: pointer;
+    background: transparent;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #7f8c8d;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.tab-btn-next.active {
+    background-color: var(--blanco);
+    color: var(--azul-oscuro);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* --- CONTROL DE PANELES --- */
+.ciclo-panel {
+    display: none; /* Ocultos por defecto */
+    text-align: left;
+}
+
+.ciclo-panel.active {
+    display: block; /* Solo se muestra el activo */
+    animation: fadeInSlide 0.5s ease;
+}
+
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}

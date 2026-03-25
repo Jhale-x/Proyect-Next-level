@@ -10,7 +10,6 @@
 
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/web/propuesta.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/ciclos.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
 
@@ -204,26 +203,30 @@
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
                         <div class="acordeon-content">
+                            <a href="{{ url('ciclos-unmsm') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">UNMSM (San Marcos)</span>
                                     <span class="badge-nuevo">NUEVO</span>
                                 </div>
                             </div>
-
+                            </a>
+                            <a href="{{ url('ciclos-uni') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">UNI (Ingeniería)</span>
                                     <span class="badge-nuevo">NUEVO</span>
                                 </div>
                             </div>
-
+                            </a>
+                            <a href="{{ url('ciclos-pucp') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">PUCP (Católica)</span>
                                     <span class="badge-nuevo">NUEVO</span>
                                 </div>
                             </div>
+                            </a>
 
                             <p class="empty-msg">Próximamente más universidades.</p>
                         </div>

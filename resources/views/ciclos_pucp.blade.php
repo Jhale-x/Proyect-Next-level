@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ciclo Verano UNU | Next Level</title>
+    <title>Ciclos PUCP | Next Level</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/web/ciclo_verano_unu.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/propuesta.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/ciclos_pucp.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/ciclo_anual_unu.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
 </head>
 
@@ -108,95 +110,139 @@
         <img src="{{ asset('images/imagen10.jpg') }}" alt="Fondo" class="hero-bg-img">
     </section>
 
-    <section class="section-ciclo-verano-unu">
+    <section class="section-ciclo-pucp">
         <div class="container-minimal">
-            <h2 class="title-display">¡CICLO VERANO!</h2>
+            <h2 class="title-display">¡NUESTROS CICLOS PUCP!</h2>
 
-            <div class="pricing-card-modern">
-                <div class="card-info">
-                    <span class="badge-status">DISPONIBLE 2026</span>
-                    <h3 class="cycle-name">Ciclo Verano <span>UNU</span></h3>
+            <div class="tabs-container-next">
+                <button class="tab-btn-next active" onclick="switchCiclo(event, 'anual')">ANUAL</button>
+                <button class="tab-btn-next" onclick="switchCiclo(event, 'semestral')">SEMESTRAL</button>
+                <button class="tab-btn-next" onclick="switchCiclo(event, 'verano')">VERANO</button>
 
-                    <div class="date-minimal">
-                        <div class="date-row">
-                            <i class="fa-regular fa-calendar"></i>
-                            <span>23 Mar - 05 Dic</span>
-                        </div>
-                        <p class="duration-text">37 semanas de preparación intensiva</p>
-                    </div>
-
-                    <div class="location-tag">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Sedes: Santa Beatriz / Los Olivos</span>
-                    </div>
-                </div>
-
-                <div class="card-action">
-                    <div class="price-container">
-                        <div class="price-item">
-                            <span class="price-label label-blue">Pago Mensual</span>
-                            <span class="amount">S/ 450</span>
-                        </div>
-                        <div class="divider-vertical"></div>
-                        <div class="price-item highlight">
-                            <span class="price-label label-red">Pago Contado</span>
-                            <span class="amount">S/ 3,605</span>
-                            <span class="save-badge">Ahorra S/ 190</span>
-                        </div>
-                    </div>
-
-                    <div class="actions-group">
-                        <a href="#" class="btn-primary-next">Matricularme ahora</a>
-                        <a href="#" class="btn-outline-next">Ver Brochure <i class="fa-solid fa-download"></i></a>
-                    </div>
-                </div>
             </div>
 
-            <div class="banner-container">
-            <a href="{{ route('mantenimiento') }}" class="banner-link-wrapper">
-                <img src="{{ asset('images/imagen10.jpg') }}" alt="Matrícula" class="banner-img">
-            </a>
-            </div>
+            <div class="tab-content-container">
 
-            <div class="pricing-card-modern-two">
-                <div class="card-info">
-                    <span class="badge-status">DISPONIBLE 2026</span>
-                    <h3 class="cycle-name">Ciclo Verano <span>UNU</span></h3>
-
-                    <div class="date-minimal">
-                        <div class="date-row">
-                            <i class="fa-regular fa-calendar"></i>
-                            <span>23 Mar - 05 Dic</span>
+                <div id="anual" class="ciclo-panel active">
+                    <div class="pricing-card-modern">
+                        <div class="card-info">
+                            <span class="badge-status">DISPONIBLE 2026</span>
+                            <h3 class="cycle-name">Ciclo Anual <span>PUCP</span></h3>
+                            <div class="date-minimal">
+                                <div class="date-row">
+                                    <i class="fa-regular fa-calendar"></i>
+                                    <span>23 Mar - 05 Dic</span>
+                                </div>
+                                <p class="duration-text">37 semanas de preparación intensiva</p>
+                            </div>
+                            <div class="location-tag">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>Sedes: Santa Beatriz / Los Olivos</span>
+                            </div>
                         </div>
-                        <p class="duration-text">37 semanas de preparación intensiva</p>
-                    </div>
-
-                    <div class="location-tag">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Sedes: Santa Beatriz / Los Olivos</span>
+                        <div class="card-action">
+                            <div class="price-container">
+                                <div class="price-item">
+                                    <span class="price-label label-blue">Pago Mensual</span>
+                                    <span class="amount">S/ 450</span>
+                                </div>
+                                <div class="divider-vertical"></div>
+                                <div class="price-item highlight">
+                                    <span class="price-label label-red">Pago Contado</span>
+                                    <span class="amount">S/ 3,605</span>
+                                    <span class="save-badge">Ahorra S/ 190</span>
+                                </div>
+                            </div>
+                            <div class="actions-group">
+                                <a href="#" class="btn-primary-next">Matricularme ahora</a>
+                                <a href="#" class="btn-outline-next">Ver Brochure <i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="card-action">
-                    <div class="price-container">
-                        <div class="price-item">
-                            <span class="price-label label-blue">Pago Mensual</span>
-                            <span class="amount">S/ 450</span>
+                <div id="semestral" class="ciclo-panel">
+                    <div class="pricing-card-modern">
+                        <div class="card-info">
+                            <span class="badge-status">DISPONIBLE 2026</span>
+                            <h3 class="cycle-name">Ciclo Semestral <span>PUCP</span></h3>
+                            <div class="date-minimal">
+                                <div class="date-row">
+                                    <i class="fa-regular fa-calendar"></i>
+                                    <span>23 Mar - 05 Dic</span>
+                                </div>
+                                <p class="duration-text">37 semanas de preparación intensiva</p>
+                            </div>
+                            <div class="location-tag">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>Sedes: Santa Beatriz / Los Olivos</span>
+                            </div>
                         </div>
-                        <div class="divider-vertical"></div>
-                        <div class="price-item highlight">
-                            <span class="price-label label-red">Pago Contado</span>
-                            <span class="amount">S/ 3,605</span>
-                            <span class="save-badge">Ahorra S/ 190</span>
+                        <div class="card-action">
+                            <div class="price-container">
+                                <div class="price-item">
+                                    <span class="price-label label-blue">Pago Mensual</span>
+                                    <span class="amount">S/ 450</span>
+                                </div>
+                                <div class="divider-vertical"></div>
+                                <div class="price-item highlight">
+                                    <span class="price-label label-red">Pago Contado</span>
+                                    <span class="amount">S/ 3,605</span>
+                                    <span class="save-badge">Ahorra S/ 190</span>
+                                </div>
+                            </div>
+                            <div class="actions-group">
+                                <a href="#" class="btn-primary-next">Matricularme ahora</a>
+                                <a href="#" class="btn-outline-next">Ver Brochure <i class="fa-solid fa-download"></i></a>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="actions-group">
-                        <a href="#" class="btn-primary-next">Matricularme ahora</a>
-                        <a href="#" class="btn-outline-next">Ver Brochure <i class="fa-solid fa-download"></i></a>
                     </div>
                 </div>
+
+                <div id="verano" class="ciclo-panel">
+                    <div class="pricing-card-modern">
+                        <div class="card-info">
+                            <span class="badge-status">DISPONIBLE 2026</span>
+                            <h3 class="cycle-name">Ciclo Verano <span>PUCP</span></h3>
+                            <div class="date-minimal">
+                                <div class="date-row">
+                                    <i class="fa-regular fa-calendar"></i>
+                                    <span>23 Mar - 05 Dic</span>
+                                </div>
+                                <p class="duration-text">37 semanas de preparación intensiva</p>
+                            </div>
+                            <div class="location-tag">
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>Sedes: Santa Beatriz / Los Olivos</span>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <div class="price-container">
+                                <div class="price-item">
+                                    <span class="price-label label-blue">Pago Mensual</span>
+                                    <span class="amount">S/ 450</span>
+                                </div>
+                                <div class="divider-vertical"></div>
+                                <div class="price-item highlight">
+                                    <span class="price-label label-red">Pago Contado</span>
+                                    <span class="amount">S/ 3,605</span>
+                                    <span class="save-badge">Ahorra S/ 190</span>
+                                </div>
+                            </div>
+                            <div class="actions-group">
+                                <a href="#" class="btn-primary-next">Matricularme ahora</a>
+                                <a href="#" class="btn-outline-next">Ver Brochure <i class="fa-solid fa-download"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <div class="banner-container">
+                <a href="{{ route('mantenimiento') }}" class="banner-link-wrapper">
+                    <img src="{{ asset('images/imagen10.jpg') }}" alt="Matrícula" class="banner-img">
+                </a>
             </div>
+
         </div>
     </section>
 
@@ -250,6 +296,7 @@
     <script src="{{ asset('js/marquee_principal.js') }}"></script>
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
+    <script src="{{ asset('js/ciclos-tabs.js') }}"></script>
 
 </body>
 
