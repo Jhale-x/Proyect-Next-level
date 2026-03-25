@@ -1,0 +1,452 @@
+.hero-sobre {
+    position: relative;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(15, 39, 73, 0.9) 0%, rgba(27, 58, 107, 0.7) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.hero-bg-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/*
+.hero-content {
+    text-align: center;
+    color: var(--blanco);
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.section-tag {
+    display: inline-block;
+    background: var(--rojo-principal);
+    color: var(--blanco);
+    padding: 5px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.hero-content h1 {
+    font-size: 3.8rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+}
+
+.hero-line{
+    width: 90px;
+    height: 5px;
+    background: var(--rojo-principal);
+    margin: 10px auto;
+}
+
+.hero-content p {
+    font-size: 17px;
+    opacity: 0.9;
+}
+*/
+.ciclos-container {
+    width: 100%;
+    margin: 500px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin-top: 90px;
+}
+
+.ciclos-header {
+    margin-bottom: 35px;
+    text-align: left;
+    max-width: 700px;
+}
+
+.ciclos-header .sub-header {
+    display: block;
+    color: var(--rojo-principal);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.ciclos-header h2 {
+    color: var(--azul-oscuro);
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.ciclos-header p {
+    color: #576574;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.ciclos-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: flex-start;
+    width: 100%;
+    /* Esto obliga a que los 4 elementos se queden en una línea */
+    flex-wrap: nowrap !important;
+}
+
+.ciclo-acordeon {
+    flex: 1 1 calc(25% - -10px);
+    display: flex;
+    flex-direction: column;
+}
+
+.acordeon-header {
+    padding: 15px 20px;
+    color: var(--blanco);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.header-unu, .header-unia {
+    background: linear-gradient(90deg, var(--azul-oscuro) 0%, var(--rojo-principal) 100%) !important;
+}
+
+.header-otros, .header-servicios {
+    background: linear-gradient(90deg, var(--azul-oscuro) 0%, var(--rojo-principal) 100%) !important;
+}
+
+.acordeon-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: skewX(-20deg);
+}
+
+.acordeon-header:hover::before {
+    left: 150%;
+    transition: left 0.7s ease-in-out;
+}
+
+.acordeon-header i {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+    transform: rotate(180deg);
+}
+
+.ciclo-acordeon.collapsed .acordeon-header i {
+    transform: rotate(0deg);
+}
+
+.acordeon-content {
+    max-height: 400px;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    background: var(--blanco);
+    border-radius: 0 0 8px 8px;
+    margin-top: -5px;
+    padding: 15px 0;
+    border: 1px solid var(--blanco);
+    border-top: none;
+}
+
+.ciclo-acordeon.collapsed .acordeon-content {
+    max-height: 0;
+    padding: 0;
+    border: none;
+}
+
+.ciclo-item {
+    padding: 18px 25px;
+    border-bottom: 1px solid var(--blanco);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ciclo-item:last-child {
+    border-bottom: none;
+}
+
+.ciclo-item:hover {
+    background-color: #0f274911;
+    padding-left: 30px;
+}
+
+.ciclo-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ciclo-name {
+    color: var(--azul-oscuro);
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+.badge-nuevo {
+    background: var(--rojo-principal);
+    color: var(--blanco);
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.empty-msg {
+    padding: 20px 25px;
+    color: var(--azul-oscuro);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.ciclo-link {
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+.ciclo-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.universidades-section-final {
+    padding: 60px 0 90px 0;
+    background-color: var(--blanco);
+    margin-top: 0;
+}
+
+.univ-container-fixed {
+    width: 100%;
+    max-width: 1520px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.univ-grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.univ-card {
+    border: 1px solid #e0e0e0;
+    padding: 40px 15px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+    background: var(--blanco);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.univ-logo-box {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.univ-logo-box img {
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all 0.4s ease;
+    object-fit: contain;
+}
+
+.logo-unu {
+    width: 184px;
+}
+
+.logo-unia {
+    width: 63px;
+}
+
+.logo-sanmarcos {
+    width: 176px;
+}
+
+.logo-uni {
+    width: 76px;
+}
+
+.logo-catolica {
+    width: 103px;
+}
+
+.univ-pre-text {
+    font-size: 13px;
+    color: #999;
+    text-transform: none;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.univ-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #777;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.univ-card:hover {
+    border-color: var(--rojo-principal);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.univ-card:hover .univ-logo-box img {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+.univ-card:hover .univ-pre-text{
+    color: var(--azul-oscuro);
+}
+.univ-card:hover .univ-title {
+    color: var(--rojo-principal);
+}
+
+@media (max-width: 992px) {
+    /*
+    .hero-sobre{
+        height: 400px;
+    }
+    .hero-content h1 {
+        font-size: 34px !important;
+        letter-spacing: -0.5px;
+        margin-bottom: 15px;
+        font-weight: 800;
+    }
+
+    .hero-content p{
+        font-size: 15px;
+        line-height: 1.4;
+        max-width: 100%;
+        opacity: 0.9;
+    }
+
+    .section-tag {
+        font-size: 10px;
+        padding: 8px 11px;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+    */
+
+    .ciclos-container {
+        width: 100%;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+    .ciclos-wrapper {
+        flex-direction: column;
+        gap: 45px;
+        width: 100%;
+        display: flex;
+    }
+
+    .ciclo-acordeon {
+        width: 100% !important;
+        flex: 1 1 100%;
+        display: block;
+    }
+
+    .acordeon-header {
+        width: 100% !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 16px 20px;
+    }
+
+    .universidades-section-final {
+        padding: 90px 0;
+        margin-top: -460px;
+    }
+
+    .univ-grid-wrapper {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .univ-card {
+        padding: 40px 20px;
+        min-height: auto;
+    }
+
+    .univ-logo-box {
+        height: 80px;
+    }
+
+    .logo-unu {
+        width: 163px;
+    }
+
+    .logo-unia {
+        width: 55px;
+    }
+
+    .logo-sanmarcos {
+        width: 160px;
+    }
+
+    .logo-uni {
+        width: 65px;
+    }
+
+    .logo-catolica {
+        width: 88px;
+    }
+
+    .univ-title {
+        font-size: 1.2rem;
+    }
+}

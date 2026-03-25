@@ -1,0 +1,133 @@
+.propuesta-hero {
+    background: linear-gradient(135deg, var(--azul-oscuro) 0%, #0d1a33 100%);
+    padding: 160px 20px 80px;
+    text-align: center;
+    color: var(--blanco);
+}
+
+.launch-badge {
+    background: var(--rojo-principal);
+    padding: 6px 18px;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.propuesta-hero h1 {
+    font-size: 3.2rem;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.propuesta-line{
+    width: 90px;
+    height: 5px;
+    background: var(--rojo-principal);
+    margin: 10px auto;
+    margin-top: 25px;
+}
+
+.propuesta-hero p {
+    max-width: 850px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+}
+
+.propuesta-main {
+    max-width: 1200px;
+    margin: -50px auto 100px;
+    padding: 0 20px;
+}
+
+.modern-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background: var(--blanco);
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid var(--blanco);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.icon-wrapper {
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: var(--blanco);
+}
+
+.icon-wrapper i {
+    display: block;
+    line-height: 1;
+}
+
+.color-1 {
+    background-color: var(--rojo-principal);
+}
+
+.color-2 {
+    background-color: var(--rojo-principal);
+}
+
+.color-3 {
+    background-color: var(--rojo-principal);
+}
+
+.color-4 {
+    background-color: var(--rojo-principal);
+}
+
+.color-5 {
+    background-color: var(--rojo-principal);
+}
+
+.color-6 {
+    background-color: var(--rojo-principal);
+}
+
+.feature-card h3 {
+    color: var(--azul-oscuro);
+    margin-bottom: 15px;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.feature-card p {
+    color: #576574;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+@media (max-width: 992px) {
+
+    .propuesta-line {
+        width: 70px;
+        height: 5px;
+        margin: 0 auto 25px auto;
+    }
+
+    .propuesta-hero h1 {
+        font-size: 39px;
+    }
+}

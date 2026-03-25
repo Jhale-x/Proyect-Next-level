@@ -1,0 +1,220 @@
+.hero-sobre {
+    position: relative;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(15, 39, 73, 0.9) 0%, rgba(27, 58, 107, 0.7) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.hero-bg-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-content {
+    text-align: center;
+    color: var(--blanco);
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.section-tag {
+    display: inline-block;
+    background: var(--rojo-principal);
+    color: var(--blanco);
+    padding: 5px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.hero-content h1 {
+    font-size: 3.8rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+}
+
+.hero-line{
+    width: 90px;
+    height: 5px;
+    background: var(--rojo-principal);
+    margin: 10px auto;
+}
+
+.hero-content p {
+    font-size: 17px;
+    opacity: 0.9;
+}
+
+.pagos-section {
+    padding: 90px 0;
+    background-color: var(--blanco);
+}
+
+.pagos-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.pagos-intro {
+    text-align: center;
+    margin-bottom: 80px;
+    margin-top: -20px;
+}
+
+.pagos-intro h2 {
+    font-size: 2.6rem;
+    color: var(--azul-oscuro);
+    font-weight: 800;
+}
+
+.pagos-intro p {
+    color: #576574;
+    font-size: 1.1rem;
+    max-width: 550px;
+    margin: 25px auto 0;
+}
+
+.bancos-grid-minimal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 150px;
+}
+
+.banco-col {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banco-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 180px;
+    text-decoration: none;
+}
+
+.vertical-divider {
+    width: 1px;
+    height: 180px;
+    background-color: #57657452;
+}
+
+.logo-filter {
+    max-height: 55px;
+    width: auto;
+    filter: grayscale(0%);
+    opacity: 1;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.logo-yape {
+    max-height: 180px !important;
+}
+
+.logo-muted {
+    filter: grayscale(1%) !important;
+    opacity: 0.2 !important;
+}
+
+.logo-active {
+    filter: grayscale(0%) !important;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+@media (max-width: 992px) {
+    .hero-sobre{
+        height: 400px;
+    }
+    .hero-content h1 {
+        font-size: 34px !important;
+        letter-spacing: -0.5px;
+        margin-bottom: 15px;
+        font-weight: 800;
+    }
+
+    .hero-content p{
+        font-size: 15px;
+        line-height: 1.4;
+        max-width: 100%;
+        opacity: 0.9;
+    }
+
+    .section-tag {
+        font-size: 10px;
+        padding: 8px 11px;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .pagos-section {
+        padding: 60px 0;
+    }
+
+    .pagos-intro h2 {
+        font-size: 34px;
+    }
+
+    .pagos-intro p {
+        font-size: 1.1rem;
+        padding: 0 15px;
+    }
+
+    .bancos-grid-minimal {
+        flex-direction: column;
+        margin-top: 50px;
+        gap: 30px;
+    }
+
+    .vertical-divider {
+        display: none;
+    }
+
+    .banco-col {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .banco-link {
+        height: auto;
+        min-height: 100px;
+        padding: 20px;
+    }
+
+    .logo-filter {
+        max-height: 45px;
+    }
+
+    .logo-yape {
+        max-height: 130px !important;
+    }
+
+    .logo-yape {
+    max-height: 160px !important;
+    }
+}
