@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/propuesta.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/ciclos_pucp.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/web/ciclo_anual_unu.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
 </head>
 
