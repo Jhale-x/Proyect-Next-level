@@ -46,12 +46,12 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-trigger">NIVELES <span class="arrow-icon">&#9662;</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Colegio</a></li>
+                        <li><a href="{{ route('mantenimiento') }}">Colegio</a></li>
                         <li><a href="{{ route('academia') }}">Academia</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
+                <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
             </ul>
@@ -75,8 +75,8 @@
                     <li class="has-submenu" data-target="submenu-niveles">
                         <span>NIVELES</span> <i class="fa-solid fa-chevron-right"></i>
                     </li>
-                    <li><a href="">UBICACIÓN</a></li>
-                    <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
+                    <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
+                    <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
                 </ul>
@@ -167,7 +167,7 @@
                     <a href="{{ route('academia') }}">ACADEMIA</a>
                     <a href="{{ route('pagos') }}">PAGOS EN LÍNEA</a>
                     <a href="{{ route('mantenimiento') }}">MATRíCULA 2026</a>
-                    <a href="{{ route('mantenimiento') }}">MATRÍCULA ONLINE</a>
+                    <a href="{{ route('pagos') }}">MATRÍCULA ONLINE</a>
                     <a href="{{ route('mantenimiento') }}">LIBRO RECLAMACIONES</a>
                 </div>
                 <div class="footer-column social-align">

@@ -59,6 +59,10 @@ Route::get('/pagos', function (){
     return view('pagos');
 })->name('pagos');
 
+Route::get('matricula', function (){
+    return view('matricula');
+})->name('matricula');
+
 Route::get('/ciclos', function (){
     return view('ciclos');
 })->name('ciclos');

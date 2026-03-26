@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Contáctanos | Next Level</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros | Next Level</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/web/contactenos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/matricula.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
 
 </head>
+
 <body>
 
     <div class="top-bar">
@@ -37,14 +41,14 @@
             <ul class="nav-menu">
                 <li><a href="{{ route('web.inicio') }}">INICIO</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">&#9662;</span></a>
+                    <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">▾</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('que_ofrecemos') }}">Qué ofrecemos</a></li>
-                        <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
+                        <li><a href="{{ route('sobre.nosotros') }}" class="active">Sobre nosotros</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-trigger">NIVELES <span class="arrow-icon">&#9662;</span></a>
+                    <a href="#" class="dropdown-trigger">NIVELES <span class="arrow-icon">▾</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('mantenimiento') }}">Colegio</a></li>
                         <li><a href="{{ route('academia') }}">Academia</a></li>
@@ -101,70 +105,7 @@
     </div>
 
     <main>
-    <section class="hero-sobre">
-        <div class="hero-overlay">
-            <div class="hero-content">
-                <span class="section-tag">ESTAMOS PARA AYUDARTE</span>
-                    <h1>CONÉCTATE CON NOSOTROS</h1>
-                    <div class="hero-line"></div>
-                    <p>
-                        Nuestro equipo está listo para brindarte toda la información
-                        que necesites sobre procesos de matrícula, ciclos académicos
-                        y visitas guiadas. Tu futuro no puede esperar.
-                    </p>
-                </div>
-            </div>
-        <img src="{{ asset('images/imagen10.jpg') }}" alt="Fondo" class="hero-bg-img">
-    </section>
 
-    <section class="contact-hero">
-        <div class="contact-hero-container">
-            <div class="contact-hero-branding">
-                <div class="top-red-line"></div>
-                <img src="{{ asset('images/cohete.png') }}" alt="Cohete" class="rocket-brand">
-                <div class="branding-content">
-                    <h2 class="branding-year">2026</h2>
-                    <p class="branding-text">¡La mejor opción para el futuro de tus hijos!</p>
-                </div>
-            </div>
-
-            <div class="contact-hero-info">
-                <div class="info-contacto">
-                    <h3 class="titulo-contacto">INFORMACIÓN DE CONTACTO</h3>
-                    <p>Dirección: Carretera Federico Basadre Km. 6 (Al costado de la UNU)</p>
-                    <p>Teléfono: +51 923 317 626</p>
-                    <p>Correo: contacto@nextlevel.edu.pe</p>
-                </div>
-
-                <h3 class="titulo-formulario">SOLICITA MÁS INFORMACIÓN</h3>
-
-                <form class="form-contacto" id="formWhatsapp">
-                    <input type="text" id="dni" placeholder="DNI" required>
-                    <input type="text" id="nombre" placeholder="Nombre" required>
-                    <input type="text" id="apellido_paterno" placeholder="Apellido Paterno" required>
-                    <input type="text" id="apellido_materno" placeholder="Apellido Materno" required>
-                    <input type="number" id="edad" placeholder="Edad" required>
-
-                    <div class="custom-dropdown" id="dropdownSexo">
-                        <div class="dropdown-selected">
-                            <span id="selectedText">Sexo</span>
-                            <i class="fa-solid fa-chevron-down"></i>
-                        </div>
-                        <ul class="dropdown-list">
-                            <li data-value="M">Masculino</li>
-                            <li data-value="F">Femenino</li>
-                        </ul>
-                        <input type="hidden" name="sexo" id="inputSexo" required>
-                    </div>
-
-                    <input type="email" id="email" placeholder="Email">
-                    <input type="text" id="celular" placeholder="Celular" required>
-                    <textarea rows="4" id="mensaje" placeholder="Mensaje" required></textarea>
-                    <button type="submit" id="enviar">Enviar mensaje</button>
-                </form>
-            </div>
-        </div>
-    </section>
     </main>
 
     <footer class="footer">
@@ -212,13 +153,8 @@
         </div>
     </footer>
 
-
     <script src="{{ asset('js/marquee_principal.js') }}"></script>
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
-    <script src="{{ asset('js/hero-slider.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
-    <script src="{{ asset('js/contac-whatsapp.js') }}"></script>
-    <script src="{{ asset('js/select-contacto.js') }}"></script>
 </body>
-
 </html>

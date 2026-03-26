@@ -52,7 +52,7 @@
                     </ul>
                 </li>
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
+                <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
             </ul>
@@ -77,7 +77,7 @@
                         <span>NIVELES</span> <i class="fa-solid fa-chevron-right"></i>
                     </li>
                     <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                    <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
+                    <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
                 </ul>
@@ -225,7 +225,7 @@
                     <a href="{{ route('academia') }}">ACADEMIA</a>
                     <a href="{{ route('pagos') }}">PAGOS EN LÍNEA</a>
                     <a href="{{ route('mantenimiento') }}">MATRíCULA 2026</a>
-                    <a href="{{ route('mantenimiento') }}">MATRÍCULA ONLINE</a>
+                    <a href="{{ route('pagos') }}">MATRÍCULA ONLINE</a>
                     <a href="{{ route('mantenimiento') }}">LIBRO RECLAMACIONES</a>
                 </div>
                 <div class="footer-column social-align">
