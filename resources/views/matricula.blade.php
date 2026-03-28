@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Nosotros | Next Level</title>
+    <title>Matriculas | Next Level</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -55,7 +55,7 @@
                     </ul>
                 </li>
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                <li><a href="{{ route('matricula') }}" class="active">MATRICULAS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
             </ul>
@@ -105,6 +105,88 @@
     </div>
 
     <main>
+
+    <section class="main-banner" style="background-image: url('{{ asset('images/imagen10.jpg') }}');">
+    <div class="banner-overlay">
+        <div class="banner-container">
+            <div class="banner-content">
+                </div>
+
+            <div class="enrollment-card">
+                <h3>¡Matricúlate <br> 100% ONLINE AQUÍ!</h3>
+
+                <form action="#" method="POST" class="enrollment-form">
+                    @csrf
+                    <div class="form-group">
+                        <div class="select-wrapper">
+                            <select name="tipo_doc" id="tipo_doc" required>
+                                <option value="" disabled selected hidden>Tipo de documento</option>
+                                <option value="dni">DNI</option>
+                                <option value="ce">Carnet de Extranjería</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down custom-arrow"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" name="documento" id="documento" placeholder="Número de documento del alumno" required>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-with-icon">
+                            <input type="text" name="codigo" id="codigo" placeholder="Código de verificación" maxlength="1" required>
+
+                            <div class="help-container">
+                                <i class="fa-solid fa-circle-question" id="helpIcon"></i>
+                                <div class="help-tooltip" id="helpTooltip">
+                                    <p>El código de verificación es el número que aparece después del guion en la parte superior derecha de tu DNI.</p>
+                                    <img src="{{ asset('images/dni.png') }}" alt="Ejemplo DNI">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-verify">VERIFICAR</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section class="hero-enrollment">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">¡TU FUTURO EMPIEZA HOY!</h1>
+                <p class="hero-description">
+                    En <strong>Next Level</strong> preparamos estudiantes con metodología moderna,
+                    docentes especializados y simulacros permanentes.
+                </p>
+                <p class="hero-subtitle">
+                    No esperes al último momento. Cada día de preparación cuenta para alcanzar tu ingreso a la universidad.
+                </p>
+
+                <ul class="benefits-list">
+                    <li><i class="fa-solid fa-circle-check"></i> Simulacros tipo examen de admisión</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Seguimiento personalizado</li>
+                    <li><i class="fa-solid fa-circle-check"></i> Material actualizado</li>
+                </ul>
+
+                <a href="#" class="btn-enroll">MATRICULARME AHORA</a>
+            </div>
+
+            <div class="hero-video">
+                <div class="video-wrapper">
+                    <iframe
+                        src="https://www.youtube.com/embed/oKoNDgJk6SQ"
+                        title="Video Next Level"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
 
     </main>
 
@@ -156,5 +238,6 @@
     <script src="{{ asset('js/marquee_principal.js') }}"></script>
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
+    <script src="{{ asset('js/matricula-check.js') }}"></script>
 </body>
 </html>

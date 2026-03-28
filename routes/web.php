@@ -63,6 +63,10 @@ Route::get('matricula', function (){
     return view('matricula');
 })->name('matricula');
 
+Route::get('matricula-formulario', function (){
+    return view('matricula_formulario');
+})->name('matricula-formulario');
+
 Route::get('/ciclos', function (){
     return view('ciclos');
 })->name('ciclos');

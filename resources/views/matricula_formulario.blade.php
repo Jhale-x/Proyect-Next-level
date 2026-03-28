@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matricula Formulario | Next Level</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ asset('css/web/matricula_formulario.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
+
+</head>
+
+<body>
+
+    <main>
+
+    <section class="hero-banner">
+        <div class="banner-inner">
+            <div class="banner-title">
+                <h1>MATRÍCULA <br> ONLINE</h1>
+            </div>
+            <div class="banner-contact">
+                <a href="{{ route('web.inicio') }}" class="btn-banner">
+                <span>INICIO</span>
+            </a>
+                <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20información.%20Me%20interesa:%0A%0A1.%20Matrícula%20Colegio%20%0A2.%20Ciclos%20Academia%20%0A3.%20Agendar%20Visita%20Guiada%0A4.%20Costos%20y%20Pensiones%0A%0APor%20favor,%20bríndeme%20detalles." target="_blank" class="whatsapp-link-wrapper">
+                <div class="whatsapp-badge">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>923 317 626</span>
+                </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="registration-container">
+        <header class="registration-header-inner"></header>
+
+    <nav class="steps-progress">
+        <div class="step-box active" id="step-1-indicator">
+            <div class="step-number">1</div>
+            <div class="step-info">
+                <span class="step-label">Paso 1</span>
+                <span class="step-name">BIENVENIDA</span>
+            </div>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-box" id="step-2-indicator">
+            <div class="step-number">2</div>
+            <div class="step-info">
+                <span class="step-label">Paso 2</span>
+                <span class="step-name">DATOS ALUMNO</span>
+            </div>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-box" id="step-3-indicator">
+            <div class="step-number">3</div>
+            <div class="step-info">
+                <span class="step-label">Paso 3</span>
+                <span class="step-name">FINALIZAR</span>
+            </div>
+        </div>
+    </nav>
+
+    <form id="enrollmentForm" class="premium-form fade-in">
+
+    <section class="premium-card" id="welcome-card">
+        <div class="card-side-accent"></div>
+        <div class="card-body-content">
+            <h3 class="card-section-title">
+                <span class="icon-circle"><i class="fa-solid fa-user-graduate"></i></span>
+                SELECCIÓN DE MODALIDAD
+            </h3>
+
+            <div class="input-field-group">
+                <div class="custom-select-wrapper">
+                    <select id="modalidadSelector" name="modalidad" required>
+                        <option value="" disabled selected hidden>Selecciona una modalidad</option>
+                        <option value="colegio">Colegio (Primaria / Secundaria)</option>
+                        <option value="academia">Academia (Preparación Universitaria)</option>
+                    </select>
+                    <i class="fa-solid fa-chevron-down select-arrow"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="premium-card hidden-section" id="section-academia">
+        <div class="card-side-accent"></div>
+        <div class="card-body-content">
+            <h3 class="card-section-title">
+                <span class="icon-circle"><i class="fa-solid fa-building-columns"></i></span>
+                ACADEMIA
+            </h3>
+            <div class="form-responsive-grid">
+                <div class="input-field-group">
+                    <select name="universidad">
+                        <option value="" disabled selected hidden>Universidad Objectivo</option>
+                        <option value="unu">Preparación UNU</option>
+                        <option value="unia">Preparación UNIA</option>
+                        <option value="san_marcos">Preparación San Marcos</option>
+                        <option value="uni">Preparación UNI</option>
+                        <option value="catolica">Preparación Católica</option>
+                    </select>
+                </div>
+                <div class="input-field-group">
+                    <select name="turno_academia">
+                        <option value="" disabled selected hidden>Turno de Estudio</option>
+                        <option value="manana">Mañana (7:30 AM - 1:00 PM)</option>
+                        <option value="tarde">Tarde (3:00 PM - 8:30 PM)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="premium-card hidden-section" id="section-colegio">
+        <div class="card-side-accent"></div>
+        <div class="card-body-content">
+            <h3 class="card-section-title">
+                <span class="icon-circle"><i class="fa-solid fa-school"></i></span>
+                COLEGIO
+            </h3>
+            <div class="form-responsive-grid">
+                <div class="input-field-group">
+                    <select name="nivel_escolar">
+                        <option value="" disabled selected hidden>Nivel Educativo</option>
+                        <option value="primaria">Primaria</option>
+                        <option value="secundaria">Secundaria</option>
+                    </select>
+                </div>
+                <div class="input-field-group">
+                    <select name="grado_escolar">
+                        <option value="" disabled selected hidden>Grado Correspondiente</option>
+                        <option value="1">1ero</option>
+                        <option value="2">2do</option>
+                        <option value="3">3ero</option>
+                        <option value="4">4to</option>
+                        <option value="5">5to</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <div class="form-footer-actions hidden-section" id="footer-actions">
+            <button type="button" class="btn-premium-next">
+                Continuar Proceso <i class="fa-solid fa-arrow-right-long"></i>
+            </button>
+        </div>
+    </form>
+    </section>
+
+    </main>
+
+    <script src="{{ asset('js/matricula_formulario.js') }}"></script>
+
+</body>
+</html>
