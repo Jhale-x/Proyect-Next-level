@@ -1,0 +1,71 @@
+/* resources/css/diseñoCursos.css */
+
+:root {
+    --color-institucional: #0a1f44;
+    --color-rojo-next: #dc3545;
+    --sombra-suave: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Tarjetas de Cursos */
+.card-curso {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    border-left: 5px solid var(--color-institucional) !important;
+    border-radius: 12px !important;
+}
+
+.card-curso:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(10, 31, 68, 0.15) !important;
+    background-color: #ffffff;
+}
+
+.icon-shape {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+/* Vista de Detalle */
+#vista-curso .card {
+    border-radius: 20px;
+    border: none;
+}
+
+.nav-pills .nav-link {
+    color: #6c757d;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav-pills .nav-link.active {
+    background-color: var(--color-institucional) !important;
+    color: white !important;
+}
+
+/* Animaciones */
+.fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilos para inputs de notas (Profesor) */
+.input-nota {
+    width: 60px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 4px;
+    transition: border-color 0.2s;
+}
+
+.input-nota:focus {
+    border-color: var(--color-institucional);
+    outline: none;
+}

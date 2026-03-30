@@ -11,7 +11,7 @@ class ActivityController extends Controller
 {
     public function index()
     {
-
+        // Eliminada la columna fecha_entrega del select y del orderBy
         $activities = DB::table('curso_actividades as ca')
             ->join('actividades as a', 'a.id_actividad', '=', 'ca.id_actividad')
             ->join('cursos as c', 'c.id_curso', '=', 'ca.id_curso')
@@ -19,12 +19,10 @@ class ActivityController extends Controller
                 'a.id_actividad',
                 'a.actividad',
                 'a.descripcion',
-                'a.fecha_entrega',
                 'c.materia'
             )
-            ->orderBy('a.fecha_entrega', 'desc')
+            ->orderBy('a.id_actividad', 'desc') // Ordenamos por ID para ver las más recientes
             ->get();
-
 
         if (Auth::guard('alumno')->check()) {
             return view('Alumno.activity', compact('activities'));
@@ -38,13 +36,14 @@ class ActivityController extends Controller
 
         return view('Docentes.activity', compact('activities'));
     }
+
     public function store(Request $request)
     {
+        // Eliminada la validación de fecha_entrega
         $request->validate([
             'actividad' => 'required|string|max:255',
             'id_curso'  => 'required|exists:cursos,id_curso',
             'porcentaje' => 'required|integer|min:1|max:100',
-            'fecha_entrega' => 'required|date',
         ]);
 
         $activityName = trim((string) $request->actividad);
@@ -58,16 +57,15 @@ class ActivityController extends Controller
         if ($alreadyExistsInCourse) {
             return back()
                 ->withInput()
-                ->withErrors(['actividad' => 'Esta actividad ya esta registrada en este curso.']);
+                ->withErrors(['actividad' => 'Esta actividad ya está registrada en este curso.']);
         }
 
         DB::transaction(function () use ($request, $activityName) {
-
+            // Eliminada fecha_entrega del Create
             $actividad = Activity::create([
-                'actividad'  => $activityName,
+                'actividad'   => $activityName,
                 'descripcion' => $request->descripcion,
-                'porcentaje' => $request->porcentaje,
-                'fecha_entrega' => $request->fecha_entrega,
+                'porcentaje'  => $request->porcentaje,
             ]);
 
             DB::table('curso_actividades')->insert([
@@ -80,6 +78,7 @@ class ActivityController extends Controller
 
         return back()->with('success', 'Actividad registrada correctamente 🔥');
     }
+
     public function asignar(Request $request)
     {
         $request->validate([

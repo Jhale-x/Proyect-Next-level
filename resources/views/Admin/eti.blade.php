@@ -106,31 +106,6 @@
     </div>
 </div>
 
-<style>
-    /* Estilos personalizados para los botones de modalidad */
-    #btnColegio.active-btn {
-        background-color: #0d6efd;
-        color: white;
-    }
-    #btnAcademia.active-btn {
-        background-color: #dc3545;
-        color: white;
-    }
-    /* Mejora visual de los inputs en la tabla */
-    .input-semana:focus {
-        background-color: #fff !important;
-        box-shadow: none;
-        border: 1px solid #0d6efd !important;
-        border-radius: 4px;
-    }
-    /* Tabla Estilo Registro */
-    .table th {
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-</style>
-
 <script>
 function seleccionarModalidad(tipo) {
     const btnCol = document.getElementById('btnColegio');

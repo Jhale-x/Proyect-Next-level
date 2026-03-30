@@ -44,4 +44,8 @@ class User extends Authenticatable
             'id_salon'
         );
     }
+    public function cursoRelacion()
+    {
+        return $this->belongsTo(Course::class, 'id_curso');
+    }
 }
