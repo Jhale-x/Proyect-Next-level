@@ -106,52 +106,50 @@
 
     <main>
 
-    <section class="main-banner" style="background-image: url('{{ asset('images/imagen10.jpg') }}');">
-    <div class="banner-overlay">
-        <div class="banner-container">
-            <div class="banner-content">
-                </div>
+    <section class="main-banner">
+        <div class="banner-overlay">
+            <div class="banner-container">
+                <div class="banner-content"></div>
 
-            <div class="enrollment-card">
-                <h3>¡Matricúlate <br> 100% ONLINE AQUÍ!</h3>
+                <div class="enrollment-card">
+                    <h3>¡Matricúlate <br> 100% ONLINE AQUÍ!</h3>
 
-                <form action="#" method="POST" class="enrollment-form">
-                    @csrf
-                    <div class="form-group">
-                        <div class="select-wrapper">
-                            <select name="tipo_doc" id="tipo_doc" required>
-                                <option value="" disabled selected hidden>Tipo de documento</option>
-                                <option value="dni">DNI</option>
-                                <option value="ce">Carnet de Extranjería</option>
-                            </select>
-                            <i class="fa-solid fa-chevron-down custom-arrow"></i>
+                    <form action="#" method="POST" class="enrollment-form">
+                        @csrf
+                        <div class="form-group">
+                            <div class="select-wrapper">
+                                <select name="tipo_doc" id="tipo_doc" required>
+                                    <option value="" disabled selected hidden>Tipo de documento</option>
+                                    <option value="dni">DNI</option>
+                                    <option value="ce">Carnet de Extranjería</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down custom-arrow"></i>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <input type="text" name="documento" id="documento" placeholder="Número de documento del alumno" required>
-                    </div>
+                        <div class="form-group">
+                            <input type="text" name="documento" id="documento" placeholder="Número de documento del alumno" required>
+                        </div>
 
-                    <div class="form-group">
-                        <div class="input-with-icon">
-                            <input type="text" name="codigo" id="codigo" placeholder="Código de verificación" maxlength="1" required>
+                        <div class="form-group">
+                            <div class="input-with-icon">
+                                <input type="text" name="codigo" id="codigo" placeholder="Código de verificación" maxlength="1" required>
 
-                            <div class="help-container">
-                                <i class="fa-solid fa-circle-question" id="helpIcon"></i>
-                                <div class="help-tooltip" id="helpTooltip">
-                                    <p>El código de verificación es el número que aparece después del guion en la parte superior derecha de tu DNI.</p>
-                                    <img src="{{ asset('images/dni.png') }}" alt="Ejemplo DNI">
+                                <div class="help-container">
+                                    <i class="fa-solid fa-circle-question" id="helpIcon"></i>
+                                    <div class="help-tooltip" id="helpTooltip">
+                                        <img src="{{ asset('images/dni.png') }}" alt="Ejemplo DNI">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <button type="submit" class="btn-verify">VERIFICAR</button>
-                </form>
+                        <button type="submit" class="btn-verify">VERIFICAR</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section class="hero-enrollment">
         <div class="hero-container">
@@ -180,8 +178,7 @@
                         src="https://www.youtube.com/embed/oKoNDgJk6SQ"
                         title="Video Next Level"
                         frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen>
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
                     </iframe>
                 </div>
             </div>
