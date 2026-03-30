@@ -1,16 +1,10 @@
-.main-banner {
+.banner {
     height: 600px;
     background-image: url('../../images/imagen10.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
     color: var(--blanco);
-}
-
-.banner-overlay {
-    background: rgba(0, 0, 0, 0.3);
-    height: 100%;
-    width: 100%;
 }
 
 .banner-container {
@@ -296,23 +290,39 @@ input:-webkit-autofill:active {
 
 @media (max-width: 992px) {
 
-    .main-banner {
-        height: auto;
-        padding: 50px 0;
+    .banner {
+        height: 350px;
+        background-image: url('../../images/imagen10.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
     }
 
+
     .banner-container {
+        background-color: var(--blanco);
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        display: flex;
         justify-content: center;
-        padding: 0 20px;
+        width: 100%;
+        padding: 0 20px 50px 20px;
+        margin-top: 315px;
     }
 
     .enrollment-card {
-        max-width: 450px;
+        margin-top: 120px;
+        position: relative;
+        z-index: 10;
+        max-width: 360px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
 
     .hero-container {
         flex-direction: column;
         text-align: center;
+        margin-top: 350px;
         gap: 30px;
     }
 

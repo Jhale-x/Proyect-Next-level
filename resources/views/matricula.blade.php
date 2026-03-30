@@ -106,10 +106,8 @@
 
     <main>
 
-    <section class="main-banner">
-        <div class="banner-overlay">
+    <section class="banner">
             <div class="banner-container">
-                <div class="banner-content"></div>
 
                 <div class="enrollment-card">
                     <h3>¡Matricúlate <br> 100% ONLINE AQUÍ!</h3>
@@ -148,7 +146,6 @@
                     </form>
                 </div>
             </div>
-        </div>
     </section>
 
     <section class="hero-enrollment">

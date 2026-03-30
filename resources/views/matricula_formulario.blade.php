@@ -98,7 +98,7 @@
             </h3>
             <div class="form-responsive-grid">
                 <div class="input-field-group">
-                    <select name="universidad">
+                    <select name="universidad" id="universidadSelector">
                         <option value="" disabled selected hidden>Universidad Objectivo</option>
                         <option value="unu">Preparación UNU</option>
                         <option value="unia">Preparación UNIA</option>
@@ -108,10 +108,8 @@
                     </select>
                 </div>
                 <div class="input-field-group">
-                    <select name="turno_academia">
+                    <select name="turno_academia" id="turnoAcademiaSelector">
                         <option value="" disabled selected hidden>Turno de Estudio</option>
-                        <option value="manana">Mañana (7:30 AM - 1:00 PM)</option>
-                        <option value="tarde">Tarde (3:00 PM - 8:30 PM)</option>
                     </select>
                 </div>
             </div>
@@ -127,20 +125,15 @@
             </h3>
             <div class="form-responsive-grid">
                 <div class="input-field-group">
-                    <select name="nivel_escolar">
+                    <select name="nivel_escolar" id="nivel_escolar">
                         <option value="" disabled selected hidden>Nivel Educativo</option>
                         <option value="primaria">Primaria</option>
                         <option value="secundaria">Secundaria</option>
                     </select>
                 </div>
                 <div class="input-field-group">
-                    <select name="grado_escolar">
+                    <select name="grado_escolar" id="grado_escolar">
                         <option value="" disabled selected hidden>Grado Correspondiente</option>
-                        <option value="1">1ero</option>
-                        <option value="2">2do</option>
-                        <option value="3">3ero</option>
-                        <option value="4">4to</option>
-                        <option value="5">5to</option>
                     </select>
                 </div>
             </div>
