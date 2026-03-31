@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Experiencia | Next Level</title>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/experiencia.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
 </head>
+
 <body>
 
     <div class="top-bar">

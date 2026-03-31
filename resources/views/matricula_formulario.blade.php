@@ -5,13 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matricula Formulario | Next Level</title>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <link rel="stylesheet" href="{{ asset('css/web/matricula_formulario.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
-
 </head>
 
 <body>
@@ -113,7 +110,43 @@
                     </select>
                 </div>
             </div>
-        </div>
+
+            <div id="ciclos-container" class="hidden-section">
+                <div class="ciclos-wrapper fade-in">
+                    <label class="ciclo-card">
+                        <input type="radio" name="ciclo_op" class="ciclo-radio" value="1">
+                        <div class="ciclo-text-box">
+                            <span>PRIMERA OPCIÓN I</span>
+                            <span>16/03/2026 - 18/07/2026</span>
+                        </div>
+                    </label>
+                    <label class="ciclo-card">
+                        <input type="radio" name="ciclo_op" class="ciclo-radio" value="2">
+                        <div class="ciclo-text-box">
+                            <span>SEGUNDA OPCIÓN II</span>
+                            <span>21/07/2026 - 15/12/2026</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div id="cronograma-container" class="hidden-section">
+                <div class="cronograma-box fade-in">
+                    <div class="cronograma-header">CRONOGRAMA</div>
+                    <table class="cronograma-table">
+                        <thead>
+                            <tr><th>Cuota</th><th>Vencimiento</th><th>Importe</th><th>Descuento</th><th>Total</th></tr>
+                        </thead>
+                        <tbody id="cronograma-body">
+                            </tbody>
+                    </table>
+                    <div class="pago-opciones">
+                        <label class="radio-pago"><input type="radio" name="p" value="c" checked> Quiero pagar en cuotas</label>
+                        <label class="radio-pago"><input type="radio" name="p" value="co"> Quiero pagar al contado</label>
+                    </div>
+                </div>
+            </div>
+            </div>
     </section>
 
     <section class="premium-card hidden-section" id="section-colegio">
