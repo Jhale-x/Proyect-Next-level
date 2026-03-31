@@ -523,6 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     nivelSelect.addEventListener('change', function() {
         gradoSelect.innerHTML = '<option value="" disabled selected hidden>Grado Correspondiente</option>';
+        gradoSelect.disabled = false;
         const maxGrado = (this.value === 'primaria') ? 6 : 5;
         for (let i = 1; i <= maxGrado; i++) {
             const label = `${i}${ (i===1||i===3) ? "ero" : (i===2) ? "do" : "to" }`;
@@ -537,8 +538,11 @@ document.addEventListener('DOMContentLoaded', () => {
         cronogramaCont.classList.add('hidden-section');
 
         if (horarios[seleccion]) {
+            turnoSelect.disabled = false;
             turnoSelect.add(new Option(`Mañana (${horarios[seleccion].mañana})`, "mañana"));
             turnoSelect.add(new Option(`Tarde (${horarios[seleccion].tarde})`, "tarde"));
+        } else {
+        turnoSelect.disabled = true;
         }
     });
 

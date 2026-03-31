@@ -105,7 +105,7 @@
                     </select>
                 </div>
                 <div class="input-field-group">
-                    <select name="turno_academia" id="turnoAcademiaSelector">
+                    <select name="turno_academia" id="turnoAcademiaSelector" disabled>
                         <option value="" disabled selected hidden>Turno de Estudio</option>
                     </select>
                 </div>
@@ -148,7 +148,7 @@
                     </select>
                 </div>
                 <div class="input-field-group">
-                    <select name="grado_escolar" id="grado_escolar">
+                    <select name="grado_escolar" id="grado_escolar" disabled>
                         <option value="" disabled selected hidden>Grado Correspondiente</option>
                     </select>
                 </div>

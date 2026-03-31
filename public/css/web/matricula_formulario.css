@@ -270,6 +270,19 @@ select:focus {
     box-shadow: 0 0 0 4px rgba(13, 34, 66, 0.05);
 }
 
+select:focus,
+select:focus-visible {
+    outline: none !important;
+    border-color: var(--azul-oscuro);
+    box-shadow: 0 0 0 4px rgba(13, 34, 66, 0.05);
+}
+
+select:disabled {
+    cursor: not-allowed;
+    background-color: #f1f5f9;
+    opacity: 0.7;
+}
+
 .select-arrow {
     position: absolute;
     right: 20px;
@@ -347,7 +360,6 @@ select:focus {
     text-transform: uppercase;
 }
 
-/* Cronograma (Imagen 3) */
 .cronograma-box {
     margin-top: 35px;
     border: 1px solid #e2e8f0;
@@ -384,7 +396,6 @@ select:focus {
     border-bottom: 1px solid #f1f1f1;
 }
 
-/* Bordes verticales separadores */
 .cronograma-table td:nth-child(n+2),
 .cronograma-table th:nth-child(n+2) {
     border-left: 1px solid #eee;
