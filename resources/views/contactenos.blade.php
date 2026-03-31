@@ -101,21 +101,6 @@
     </div>
 
     <main>
-    <section class="hero-sobre">
-        <div class="hero-overlay">
-            <div class="hero-content">
-                <span class="section-tag">ESTAMOS PARA AYUDARTE</span>
-                    <h1>CONÉCTATE CON NOSOTROS</h1>
-                    <div class="hero-line"></div>
-                    <p>
-                        Nuestro equipo está listo para brindarte toda la información
-                        que necesites sobre procesos de matrícula, ciclos académicos
-                        y visitas guiadas. Tu futuro no puede esperar.
-                    </p>
-                </div>
-            </div>
-        <img src="{{ asset('images/imagen10.jpg') }}" alt="Fondo" class="hero-bg-img">
-    </section>
 
     <section class="contact-hero">
         <div class="contact-hero-container">

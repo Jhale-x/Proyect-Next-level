@@ -202,7 +202,7 @@ select {
 }
 
 select:hover {
-    border-color: var(--azul-next);
+    border-color: var(--azul-oscuro);
 }
 
 .premium-card:hover {

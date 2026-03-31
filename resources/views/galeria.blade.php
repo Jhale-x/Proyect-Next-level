@@ -102,17 +102,6 @@
     </div>
 
     <main>
-    <section class="hero-sobre">
-        <div class="hero-overlay">
-            <div class="hero-content">
-                <span class="section-tag">VER FOTOS</span>
-                <h1>NUESTRA GALERÍA</h1>
-                <div class="hero-line"></div>
-                <p>Momentos que se vivieron en Next Level</p>
-            </div>
-        </div>
-            <img src="{{ asset('images/imagen10.jpg') }}" alt="Fondo" class="hero-bg-img">
-    </section>
 
     <section class="galeria-pinterest">
         <div class="galeria-container">

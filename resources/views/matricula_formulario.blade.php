@@ -111,24 +111,7 @@
                 </div>
             </div>
 
-            <div id="ciclos-container" class="hidden-section">
-                <div class="ciclos-wrapper fade-in">
-                    <label class="ciclo-card">
-                        <input type="radio" name="ciclo_op" class="ciclo-radio" value="1">
-                        <div class="ciclo-text-box">
-                            <span>PRIMERA OPCIÓN I</span>
-                            <span>16/03/2026 - 18/07/2026</span>
-                        </div>
-                    </label>
-                    <label class="ciclo-card">
-                        <input type="radio" name="ciclo_op" class="ciclo-radio" value="2">
-                        <div class="ciclo-text-box">
-                            <span>SEGUNDA OPCIÓN II</span>
-                            <span>21/07/2026 - 15/12/2026</span>
-                        </div>
-                    </label>
-                </div>
-            </div>
+            <div id="ciclos-container" class="hidden-section"></div>
 
             <div id="cronograma-container" class="hidden-section">
                 <div class="cronograma-box fade-in">
