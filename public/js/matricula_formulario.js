@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. DESPLIEGUE DE SECCIONES (Colegio / Academia)
     const selectorModalidad = document.getElementById('modalidadSelector');
     const secAcademia = document.getElementById('section-academia');
     const secColegio = document.getElementById('section-colegio');
@@ -14,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (this.value === 'colegio') secColegio.classList.remove('hidden-section');
     });
 
-    // 2. LÓGICA DE GRADOS (COLEGIO)
     const nivelSelect = document.getElementById('nivel_escolar');
     const gradoSelect = document.getElementById('grado_escolar');
 
@@ -30,11 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. LÓGICA DE HORARIOS (ACADEMIA)
     const uniSelect = document.getElementById('universidadSelector');
     const turnoSelect = document.getElementById('turnoAcademiaSelector');
 
-    // Base de datos de horarios
     const horarios = {
         unu: { mañana: "7:30 AM - 1:00 PM", tarde: "3:00 PM - 8:00 PM" },
         unia: { mañana: "8:00 AM - 1:30 PM", tarde: "3:30 PM - 8:30 PM" },
@@ -48,13 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
         turnoSelect.innerHTML = '<option value="" disabled selected hidden>Turno de Estudio</option>';
 
         if (horarios[seleccion]) {
-            // Opción Mañana
             const optMañana = document.createElement('option');
             optMañana.value = "mañana";
             optMañana.textContent = `Mañana (${horarios[seleccion].mañana})`;
             turnoSelect.appendChild(optMañana);
 
-            // Opción Tarde
             const optTarde = document.createElement('option');
             optTarde.value = "tarde";
             optTarde.textContent = `Tarde (${horarios[seleccion].tarde})`;

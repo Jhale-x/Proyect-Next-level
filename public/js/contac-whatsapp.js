@@ -1,39 +1,45 @@
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function() {
 
     const form = document.getElementById("formWhatsapp");
 
-    form.addEventListener("submit", function(e){
-        e.preventDefault();
+    if (form) {
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
 
-        let dni = document.getElementById("dni").value;
-        let nombre = document.getElementById("nombre").value;
-        let apellido_paterno = document.getElementById("apellido_paterno").value;
-        let apellido_materno = document.getElementById("apellido_materno").value;
-        let edad = document.getElementById("edad").value;
-        let sexo = document.getElementById("sexo").value;
-        let email = document.getElementById("email").value;
-        let celular = document.getElementById("celular").value;
-        let mensaje = document.getElementById("mensaje").value;
+            const dni = document.getElementById("dni").value;
+            const nombre = document.getElementById("nombre").value;
+            const apellido_paterno = document.getElementById("apellido_paterno").value;
+            const apellido_materno = document.getElementById("apellido_materno").value;
+            const edad = document.getElementById("edad").value;
 
-        let texto =
-`Hola Next Level, deseo más información:
+            const sexo = document.getElementById("inputSexo").value || "No especificado";
 
-° Nombre: ${nombre}
-° Apellidos: ${apellido_paterno} ${apellido_materno}
-° DNI: ${dni}
-° Edad: ${edad}
-° Sexo: ${sexo}
-° Celular: ${celular}
-° Email: ${email}
+            const email = document.getElementById("email").value || "No proporcionado";
+            const celular = document.getElementById("celular").value;
+            const mensaje = document.getElementById("mensaje").value;
 
-° Consulta:
+            const numeroWhatsApp = "51923317625";
+
+            const textoMensaje =
+`*NUEVA SOLICITUD DE INFORMACIÓN - NEXT LEVEL 2026*
+
+*DATOS DEL INTERESADO:*
+• *Nombre:* ${nombre}
+• *Apellidos:* ${apellido_paterno} ${apellido_materno}
+• *DNI:* ${dni}
+• *Edad:* ${edad} años
+• *Sexo:* ${sexo}
+
+*DATOS DE CONTACTO:*
+• *Celular:* ${celular}
+• *Email:* ${email}
+
+*CONSULTA ADICIONAL:*
 ${mensaje}`;
 
-        let numero = "51923317625";
+            const urlFinal = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(textoMensaje)}`;
 
-        let url = "https://wa.me/" + numero + "?text=" + encodeURIComponent(texto);
-
-        window.open(url, "_blank");
-    });
-
+            window.open(urlFinal, "_blank");
+        });
+    }
 });

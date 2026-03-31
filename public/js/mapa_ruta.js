@@ -117,7 +117,7 @@ function dibujarRuta(origen, destino) {
                 type: 'line',
                 source: routeLayerId,
                 paint: {
-                    'line-color': '#e30613',
+                    'line-color': '#db0808',
                     'line-width': 6
                 }
             });
