@@ -20,11 +20,30 @@ use App\Http\Controllers\FacultadController;
 use App\Http\Controllers\Web_Principal;
 use App\Http\Controllers\Pagina_InstitucionalController;
 use App\Http\Controllers\AlumnosController;
+use App\Http\Controllers\MatriculaController;
 
 // --- RUTAS PÚBLICAS ---
 Route::get('/', [Web_Principal::class, 'index'])->name('web_principal');
 Route::get('/propuesta-educativa', [Web_Principal::class, 'propuestaEducativa'])->name('propuesta_educativa');
 Route::get('/pagina_institucional', [Pagina_InstitucionalController::class, 'index'])->name('pagina_institucional');
+
+// Esta ruta servirá para ambos nombres que estás usando en las vistas
+Route::get('/', [Web_Principal::class, 'index'])
+    ->name('web_principal');
+
+// Creamos un "alias" o segunda ruta idéntica para 'web.inicio' 
+// Así no tienes que editar todos tus archivos .blade.php
+Route::get('/inicio', [Web_Principal::class, 'index'])
+    ->name('web.inicio');
+
+// 1. Pantalla de validación de DNI
+Route::get('/matricula', [MatriculaController::class, 'index'])->name('matricula');
+
+// 2. Procesa la validación del DNI/CV
+Route::post('/matricula/verificar', [MatriculaController::class, 'store'])->name('admin.matriculas.store');
+
+// 3. El formulario de 3 pasos (donde eliges Modalidad/Academia/Colegio)
+Route::get('/matricula-formulario', [MatriculaController::class, 'mostrarFormulario'])->name('matricula.formulario');
 
 // --- AUTENTICACIÓN ---
 Route::prefix('auth')->group(function () {
@@ -42,6 +61,12 @@ Route::prefix('auth')->group(function () {
 Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(function () {
     
     Route::get('/dashboard', fn() => view('Admin.dashboard'))->name('admin.dashboard');
+
+    // --- MATRÍCULAS ---
+    Route::prefix('matriculas')->group(function () {
+        Route::get('/', [MatriculaController::class, 'index'])->name('admin.matriculas.index');
+    });
+
 
     // Gestión Institucional
     Route::get('/pagina-institucional', [Pagina_InstitucionalController::class, 'adminIndex'])->name('admin.pagina_institucional');
