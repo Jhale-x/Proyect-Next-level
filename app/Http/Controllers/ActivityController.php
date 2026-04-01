@@ -52,8 +52,10 @@ class ActivityController extends Controller
 
         return view('Docentes.activity', compact('activities', 'actividades', 'activitiesBySalon'));
     }
+
     public function store(Request $request)
     {
+        // Eliminada la validación de fecha_entrega
         $request->validate([
             'actividad' => 'required|string|max:255',
             'id_curso'  => 'required|exists:cursos,id_curso',
@@ -73,13 +75,13 @@ class ActivityController extends Controller
         if ($alreadyExistsInCourse) {
             return back()
                 ->withInput()
-                ->withErrors(['actividad' => 'Esta actividad ya esta registrada en este curso.']);
+                ->withErrors(['actividad' => 'Esta actividad ya está registrada en este curso.']);
         }
 
         DB::transaction(function () use ($request, $activityName) {
-
+            // Eliminada fecha_entrega del Create
             $actividad = Activity::create([
-                'actividad'  => $activityName,
+                'actividad'   => $activityName,
                 'descripcion' => $request->descripcion,
                 'porcentaje' => $request->porcentaje,
             ]);
@@ -97,6 +99,7 @@ class ActivityController extends Controller
 
         return back()->with('success', 'Actividad registrada correctamente 🔥');
     }
+
     public function asignar(Request $request)
     {
         $request->validate([

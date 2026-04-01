@@ -57,4 +57,8 @@ class User extends Authenticatable
             ? $value
             : Hash::make($value);
     }
+    public function cursoRelacion()
+    {
+        return $this->belongsTo(Course::class, 'id_curso');
+    }
 }

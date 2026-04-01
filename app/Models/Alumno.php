@@ -21,7 +21,7 @@ class Alumno extends Authenticatable
         'dni',
         'fecha_nacimiento',
         'usuario',
-        'contrasena' // Sin Ñ, tal como está en tu phpMyAdmin
+        'contrasena'
     ];
 
     protected $hidden = [
@@ -39,9 +39,17 @@ class Alumno extends Authenticatable
         return 'id_alumno';
     }
 
+    // --- RELACIONES ---
+
+    // ESTA ES LA QUE CAUSABA EL ERROR
+    public function salon()
+    {
+        return $this->belongsTo(Salon::class, 'id_salon', 'id_salon');
+    }
+
     public function apoderado()
     {
-        return $this->belongsTo(Apoderado::class, 'id_apoderado');
+        return $this->belongsTo(Apoderado::class, 'id_apoderado', 'id_apoderado');
     }
 
     public function setContrasenaAttribute($value): void

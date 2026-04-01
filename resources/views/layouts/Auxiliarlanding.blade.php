@@ -35,11 +35,6 @@
             </div>
 
             <nav class="menu">
-                <a href="{{ route('pagina_institucional') }}"
-                    class="{{ request()->routeIs('pagina_institucional') ? 'active' : '' }}">
-                    <i class="bi bi-house-door"></i>
-                    <span>Pagina Institucional</span>
-                </a>
 
                 <a href="{{ route('auxiliar.dashboard') }}"
                     class="{{ request()->routeIs('auxiliar.dashboard') ? 'active' : '' }}">
@@ -53,14 +48,13 @@
                     <span>Soporte</span>
                 </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
-                    <button type="submit" class="logout btn btn-link p-0 m-0"
-                        style="display:flex; align-items:center;">
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span>Cerrar sesión</span>
-                    </button>
                 </form>
+
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
             </nav>
         </aside>
 

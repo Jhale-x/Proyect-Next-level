@@ -27,11 +27,17 @@ class MessageController extends Controller
         return view('Docentes.messages', compact('cursos'));
     }
 
-    public function getMessagesByCurso($id_curso)
+    public function getMessagesByCurso($id_curso = null) // Añadimos = null
     {
         $esAlumno = Auth::guard('alumno')->check();
         $miId = $esAlumno ? Auth::guard('alumno')->id() : Auth::id();
         $miTipo = $esAlumno ? 'alumno' : 'user';
+        // Si no hay ID de curso, devolvemos un array vacío para que el JS no falle
+        if (!$id_curso) {
+            return response()->json([]);
+        }
+
+        $miId = Auth::guard('alumno')->check() ? Auth::guard('alumno')->id() : Auth::id();
 
         $messages = Message::where('id_curso', $id_curso)
             ->orderBy('created_at', 'asc')

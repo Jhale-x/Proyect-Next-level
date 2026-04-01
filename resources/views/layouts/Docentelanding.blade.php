@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/course.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
-
+    @stack('styles')
 
 </head>
 
@@ -59,11 +59,20 @@
                     class="{{ request()->routeIs('docente.tools') ? 'active' : '' }}">
                     <i class="bi bi-tools"></i> <span>Herramientas</span>
                 </a>
+<<<<<<< HEAD
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf
                 </form>
                 <a href="#" class="logout"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="bi bi-box-arrow-right"></i> <span>Cerrar sesión</span>
+=======
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+>>>>>>> a7d439919800e4a16f88df4d76cfdfdb85daf643
                 </a>
             </nav>
         </aside>

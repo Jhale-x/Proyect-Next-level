@@ -13,11 +13,9 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
-    public function index()
+    // 🟦 DASHBOARD + REGISTRO
+    public function dashboard()
     {
-        $users = User::with('salones')->get();
-        $cursos = Course::all();
-
         $totalUsuarios = User::count();
         $admins = User::where('rol', 'administrador')->count();
         $docentes = User::where('rol', 'docente')->count();
@@ -25,13 +23,13 @@ class UsersController extends Controller
 
         $usuariosRecientes = User::latest()->take(5)->get();
 
+        $cursos = Course::all();
         $niveles = Nivel::all();
         $grados = Grado::all();
         $secciones = Seccion::all();
         $facultades = Facultad::all();
 
         return view('Admin.users', compact(
-            'users',
             'cursos',
             'totalUsuarios',
             'admins',
@@ -45,6 +43,32 @@ class UsersController extends Controller
         ));
     }
 
+    // 🟨 LISTADO CON FILTROS
+    public function index(Request $request)
+    {
+        $query = User::with('cursoRelacion');
+
+        // 🔍 búsqueda
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('nombre', 'LIKE', "%$search%")
+                  ->orWhere('apellido', 'LIKE', "%$search%")
+                  ->orWhere('dni', 'LIKE', "%$search%");
+            });
+        }
+
+        // 🎭 rol
+        if ($request->filled('rol')) {
+            $query->where('rol', $request->rol);
+        }
+
+        $users = $query->get();
+
+        return view('Admin.ListadoPersonal', compact('users'));
+    }
+
+    // 🟩 GUARDAR
     public function store(Request $request)
     {
         $request->validate([
@@ -67,11 +91,11 @@ class UsersController extends Controller
             'dni'              => $request->dni,
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'usuario'          => $request->usuario,
-            // Guardamos con Hash para mantener la seguridad que pediste
             'contrasena'       => Hash::make($request->contrasena),
             'rol'              => $request->rol,
         ]);
 
-        return redirect()->route('admin.users')->with('success', 'Personal creado correctamente');
+        return redirect()->route('admin.users.dashboard')
+            ->with('success', 'Personal creado correctamente');
     }
 }

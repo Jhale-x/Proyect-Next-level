@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/course.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/alumno/activityAlumno.css') }}">
 
 
 </head>
@@ -83,14 +84,13 @@
                     <span>ETI</span>
                 </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
-                    <button type="submit" class="logout btn btn-link p-0 m-0"
-                        style="display:flex; align-items:center;">
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span>Cerrar sesión</span>
-                    </button>
                 </form>
+
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
             </nav>
 
 

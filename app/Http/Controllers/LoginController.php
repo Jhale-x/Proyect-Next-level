@@ -145,13 +145,16 @@ class LoginController extends Controller
     // ==========================================
 
     public function logout(Request $request)
-    {
-        Auth::logout();
-        Auth::guard('alumno')->logout();
+{
+    // 1. Cerramos sesión en todos los guards
+    Auth::guard('web')->logout();
+    Auth::guard('alumno')->logout();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+    // 2. Limpiamos la sesión y el token CSRF
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
 
-        return redirect()->route('login.colegio');
-    }
+    // 3. REDIRECCIÓN AL PORTAL (La vista de los hexágonos)
+    return redirect()->route('login.user'); 
+}
 }

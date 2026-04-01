@@ -1,0 +1,19 @@
+/* Color principal del borde */
+.activity-card {
+    border-left: 3px solid #27ae60;
+}
+
+/* Icono y conectores */
+.activity-card::before {
+    content: '📖'; /* Icono de libro */
+    border: 2px solid #27ae60;
+}
+
+.activity-card::after {
+    border: 2px solid #2ecc71;
+}
+
+/* Encabezado */
+.activity-header {
+    color: #27ae60;
+}
