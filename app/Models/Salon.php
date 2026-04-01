@@ -13,13 +13,28 @@ class Salon extends Model
 {
     protected $table = 'salones';
     protected $primaryKey = 'id_salon';
-    
+
     protected $fillable = [
         'id_nivel',
         'id_grado',
         'id_seccion',
         'id_facultad'
     ];
+
+    protected static function booted(): void
+    {
+        static::saving(function (Salon $salon) {
+            if (!$salon->id_grado) {
+                return;
+            }
+
+            $grado = Grado::find($salon->id_grado);
+
+            if ($grado) {
+                $salon->id_nivel = $grado->id_nivel;
+            }
+        });
+    }
 
     public function nivel()
     {
@@ -48,7 +63,7 @@ class Salon extends Model
             'docente_salon',
             'id_salon',
             'id_usuario'
-        );
+        )->withPivot('id_curso')->withTimestamps();
     }
     public function getNombreCompletoAttribute()
     {

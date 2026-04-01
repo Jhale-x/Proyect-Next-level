@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('curso_actividades', function (Blueprint $table) {
             $table->id('id_curso_actividad');
 
-            $table->foreignId('id_curso')->constrained('cursos','id_curso');
-            $table->foreignId('id_actividad')->constrained('actividades','id_actividad');
+            $table->foreignId('id_curso')->constrained('cursos', 'id_curso');
+            $table->foreignId('id_actividad')->constrained('actividades', 'id_actividad');
+            $table->date('fecha_entrega');
+            $table->time('hora_entrega')->nullable();
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -42,6 +43,18 @@ class User extends Authenticatable
             'docente_salon',
             'id_usuario',
             'id_salon'
-        );
+        )->withPivot('id_curso')->withTimestamps();
+    }
+
+    public function setContrasenaAttribute($value): void
+    {
+        if ($value === null || $value === '') {
+            $this->attributes['contrasena'] = $value;
+            return;
+        }
+
+        $this->attributes['contrasena'] = password_get_info($value)['algo']
+            ? $value
+            : Hash::make($value);
     }
 }

@@ -19,15 +19,25 @@ function abrirMateria(nombre, id_curso) {
     const tituloMateria = document.getElementById('titulo-materia');
     const actividadCursoId = document.getElementById('actividad_curso_id');
     const asignarCursoId = document.getElementById('asignar_curso_id');
+    const docenteCursoId = document.getElementById('docente_curso_id');
 
     if (tituloMateria) tituloMateria.innerText = nombre;
     if (actividadCursoId) actividadCursoId.value = id_curso;
     if (asignarCursoId) asignarCursoId.value = id_curso;
+    if (docenteCursoId) docenteCursoId.value = id_curso;
 
     fetch(`/admin/courses/${id_curso}/docentes`)
         .then((r) => r.json())
         .then((data) => {
             let html = '';
+
+            if (!Array.isArray(data) || data.length === 0) {
+                html = `
+                    <div class="col-12">
+                        <div class="alert alert-warning mb-0">No hay docentes asignados a este curso.</div>
+                    </div>
+                `;
+            }
 
             data.forEach((d) => {
                 html += `
@@ -56,7 +66,9 @@ function abrirDocente(nombre, id_docente) {
     if (tituloDocente) tituloDocente.innerText = nombre;
     if (docenteIdInput) docenteIdInput.value = id_docente;
 
-    fetch(`/admin/courses/docente/${id_docente}/salones`)
+    const queryCurso = cursoActual ? `?id_curso=${cursoActual}` : '';
+
+    fetch(`/admin/courses/docente/${id_docente}/salones${queryCurso}`)
         .then((r) => r.json())
         .then((data) => {
             let html = '';
@@ -113,12 +125,22 @@ function abrirDetalle(idSalon) {
             let head = '<th class="fw-bold">Alumno</th>';
 
             actividadesActuales.forEach((act) => {
-                const porcentaje = act.actividad.porcentaje ?? 0;
+                const porcentaje = act.porcentaje ?? act.actividad.porcentaje ?? 0;
+                const fechaStr   = act.fecha_entrega ? ` · ${act.fecha_entrega}` : '';
+                const horaStr    = act.hora_entrega  ? ` ${act.hora_entrega.slice(0,5)}` : '';
                 head += `
                     <th class="text-center">
                         ${act.actividad.actividad}
                         <br>
-                        <small class="text-muted">${porcentaje}%</small>
+                        <small class="text-muted">${porcentaje}%${fechaStr}${horaStr}</small>
+                        <br>
+                        <button class="btn btn-outline-secondary btn-sm mt-1 btn-editar-fecha"
+                            data-id="${act.id_curso_actividad}"
+                            data-nombre="${act.actividad.actividad}"
+                            data-fecha="${act.fecha_entrega ?? ''}"
+                            data-hora="${act.hora_entrega ? act.hora_entrega.slice(0,5) : ''}">
+                            ✏️
+                        </button>
                     </th>
                 `;
             });
@@ -293,6 +315,66 @@ document.addEventListener('DOMContentLoaded', function () {
             recalcularPromedios();
         }
     });
+
+    // Abrir modal de editar fecha/hora al hacer click en botón de cabecera
+    document.addEventListener('click', function (e) {
+        const btn = e.target.closest('.btn-editar-fecha');
+        if (!btn) return;
+
+        const id     = btn.dataset.id;
+        const nombre = btn.dataset.nombre;
+        const fecha  = btn.dataset.fecha;
+        const hora   = btn.dataset.hora;
+
+        document.getElementById('edit_id_curso_actividad').value = id;
+        document.getElementById('edit_nombre_actividad').value   = nombre;
+        document.getElementById('edit_fecha_entrega').value      = fecha;
+        document.getElementById('edit_hora_entrega').value       = hora;
+
+        const modal = new bootstrap.Modal(document.getElementById('modalEditarFecha'));
+        modal.show();
+    });
+
+    // Guardar cambios de fecha/hora
+    const btnGuardarFecha = document.getElementById('btn-guardar-fecha');
+    if (btnGuardarFecha) {
+        btnGuardarFecha.addEventListener('click', function () {
+            const id    = document.getElementById('edit_id_curso_actividad').value;
+            const fecha = document.getElementById('edit_fecha_entrega').value;
+            const hora  = document.getElementById('edit_hora_entrega').value;
+
+            if (!fecha) {
+                alert('La fecha de entrega es obligatoria.');
+                return;
+            }
+
+            const tokenInput = document.querySelector('input[name="_token"]');
+            const token = tokenInput ? tokenInput.value : '';
+            const baseUrl = typeof activityBaseUrl !== 'undefined' ? activityBaseUrl : '/admin/activities';
+
+            fetch(`${baseUrl}/${id}/fecha`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': token,
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({ fecha_entrega: fecha, hora_entrega: hora || null }),
+            })
+                .then(async (r) => {
+                    const json = await r.json().catch(() => ({}));
+                    if (!r.ok) throw new Error(json.message || 'Error al guardar.');
+                    return json;
+                })
+                .then((resp) => {
+                    bootstrap.Modal.getInstance(document.getElementById('modalEditarFecha')).hide();
+                    alert(resp.message || 'Fecha actualizada.');
+                    // Recargar el detalle del salón para mostrar los nuevos datos
+                    if (salonActual) abrirDetalle(salonActual);
+                })
+                .catch((err) => alert(err.message || 'Error al guardar.'));
+        });
+    }
 
     const contenedorNiveles = document.getElementById('contenedor-niveles');
     const btnAgregarNivel = document.getElementById('agregarNivel');

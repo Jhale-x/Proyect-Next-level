@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Message;
 use App\Models\Course;
+use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
@@ -28,17 +29,23 @@ class MessageController extends Controller
 
     public function getMessagesByCurso($id_curso)
     {
-        $miId = Auth::guard('alumno')->check() ? Auth::guard('alumno')->id() : Auth::id();
+        $esAlumno = Auth::guard('alumno')->check();
+        $miId = $esAlumno ? Auth::guard('alumno')->id() : Auth::id();
+        $miTipo = $esAlumno ? 'alumno' : 'user';
 
         $messages = Message::where('id_curso', $id_curso)
             ->orderBy('created_at', 'asc')
             ->get()
-            ->map(function ($m) use ($miId) {
+            ->map(function ($m) use ($miId, $miTipo) {
+                $emisorActual = $m->emisor_tipo === 'alumno'
+                    ? $m->id_emisor_alumno
+                    : $m->id_emisor_usuario;
+
                 return [
                     'id'        => $m->id,
                     'contenido' => $m->contenido,
                     'fecha'     => $m->created_at->format('H:i'),
-                    'es_mio'    => ($m->id_emisor == $miId)
+                    'es_mio'    => ($m->emisor_tipo === $miTipo && (int) $emisorActual === (int) $miId)
                 ];
             });
 
@@ -47,14 +54,39 @@ class MessageController extends Controller
 
     public function storeAjax(Request $request)
     {
-        $data = $request->json()->all(); // 👈 IMPORTANTE
+        $data = $request->isJson() ? $request->json()->all() : $request->all();
 
-        $miId = Auth::guard('alumno')->check() ? Auth::guard('alumno')->id() : Auth::id();
+        $validated = validator($data, [
+            'id_curso' => ['required', 'integer', 'exists:cursos,id_curso'],
+            'contenido' => ['required', 'string', 'max:2000'],
+        ])->validate();
+
+        $esAlumno = Auth::guard('alumno')->check();
+        $miId = $esAlumno ? Auth::guard('alumno')->id() : Auth::id();
+
+        if (!$miId) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Usuario no autenticado'
+            ], 401);
+        }
+
+        $cursoSalonIds = DB::table('curso_salon')
+            ->where('id_curso', $validated['id_curso'])
+            ->pluck('id_curso_salon');
+
+        $idCursoSalon = $cursoSalonIds->count() === 1
+            ? $cursoSalonIds->first()
+            : null;
 
         $mensaje = Message::create([
             'id_emisor' => $miId,
-            'id_curso'  => $data['id_curso'],
-            'contenido' => $data['contenido'],
+            'emisor_tipo' => $esAlumno ? 'alumno' : 'user',
+            'id_emisor_usuario' => $esAlumno ? null : $miId,
+            'id_emisor_alumno' => $esAlumno ? $miId : null,
+            'id_curso'  => $validated['id_curso'],
+            'id_curso_salon' => $idCursoSalon,
+            'contenido' => $validated['contenido'],
         ]);
 
         return response()->json([

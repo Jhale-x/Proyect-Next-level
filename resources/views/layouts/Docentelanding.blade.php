@@ -21,12 +21,12 @@
             <img src="{{ asset('images/next-level-logo.png') }}" alt="Logo" style="width: 30px;">
             <span class="fw-bold">Next Level</span>
         </div>
-        <button class="btn btn-outline-light border-0" onclick="toggleSidebar()">
+        <button class="btn btn-outline-light border-0" type="button" data-sidebar-toggle>
             <i class="bi bi-list fs-2"></i>
         </button>
     </div>
 
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar-overlay" id="sidebarOverlay" data-sidebar-toggle></div>
 
     <div class="d-flex">
         <aside class="sidebar" id="sidebar">
@@ -35,26 +35,34 @@
                 <span>Next Level</span>
             </div>
             <nav class="menu">
-                <a href="{{ route('docente.pagina_institucional') }}" class="{{ request()->routeIs('docente.pagina_institucional') ? 'active' : '' }}">
+                <a href="{{ route('docente.pagina_institucional') }}"
+                    class="{{ request()->routeIs('docente.pagina_institucional') ? 'active' : '' }}">
                     <i class="bi bi-house-door"></i> <span>Página Institucional</span>
                 </a>
-                <a href="{{ route('docente.activity') }}" class="{{ request()->routeIs('docente.activity') ? 'active' : '' }}">
+                <a href="{{ route('docente.activity') }}"
+                    class="{{ request()->routeIs('docente.activity') ? 'active' : '' }}">
                     <i class="bi bi-activity"></i> <span>Actividad</span>
                 </a>
-                <a href="{{ route('docente.calendar') }}" class="{{ request()->routeIs('docente.calendar') ? 'active' : '' }}">
+                <a href="{{ route('docente.calendar') }}"
+                    class="{{ request()->routeIs('docente.calendar') ? 'active' : '' }}">
                     <i class="bi bi-calendar-event"></i> <span>Calendario</span>
                 </a>
-                <a href="{{ route('docente.messages') }}" class="{{ request()->routeIs('docente.messages') ? 'active' : '' }}">
+                <a href="{{ route('docente.messages') }}"
+                    class="{{ request()->routeIs('docente.messages') ? 'active' : '' }}">
                     <i class="bi bi-envelope"></i> <span>Mensajes</span>
                 </a>
-                <a href="{{ route('docente.qualifications') }}" class="{{ request()->routeIs('docente.qualifications') ? 'active' : '' }}">
+                <a href="{{ route('docente.qualifications') }}"
+                    class="{{ request()->routeIs('docente.qualifications') ? 'active' : '' }}">
                     <i class="bi bi-award"></i> <span>Calificaciones</span>
                 </a>
-                <a href="{{ route('docente.tools') }}" class="{{ request()->routeIs('docente.tools') ? 'active' : '' }}">
+                <a href="{{ route('docente.tools') }}"
+                    class="{{ request()->routeIs('docente.tools') ? 'active' : '' }}">
                     <i class="bi bi-tools"></i> <span>Herramientas</span>
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf</form>
-                <a href="#" class="logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf
+                </form>
+                <a href="#" class="logout"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="bi bi-box-arrow-right"></i> <span>Cerrar sesión</span>
                 </a>
             </nav>
@@ -63,10 +71,7 @@
             @yield('content')
         </main>
     </div>
-    <script>
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('active');
-        }
-    </script>
+    @vite(['resources/js/app.js'])
 </body>
+
 </html>

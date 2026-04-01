@@ -20,7 +20,7 @@ class Anuncio extends Model
     ];
 
     protected $casts = [
-        'fecha_publicacion' => 'date',
+        'fecha_publicacion' => 'datetime',
     ];
 
     /**

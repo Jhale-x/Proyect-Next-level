@@ -1,4 +1,4 @@
-@extends('layouts.Adminlanding')
+@extends('layouts.Auxiliarlanding')
 
 @section('title', 'Mensajes')
 
@@ -57,7 +57,7 @@
                     </div>
                     <div class="text-end mt-3">
                         <button class="btn btn-primary px-4"
-                            onclick="enviarAccion('{{ route('admin.messages.store') }}', '{{ csrf_token() }}')">
+                            onclick="enviarAccion('{{ route('auxiliar.messages.store') }}', '{{ csrf_token() }}')">
                             <i class="bi bi-send"></i> Enviar
                         </button>
                     </div>

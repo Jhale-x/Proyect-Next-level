@@ -65,7 +65,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Actividades</h5>
                         <p class="card-text">Crea y asigna actividades educativas.</p>
-                        <a href="{{ route('admin.activities.store') }}" class="btn btn-primary">Ir</a>
+                        <a href="{{ route('admin.activity') }}" class="btn btn-primary">Ir</a>
                     </div>
                 </div>
             </div>

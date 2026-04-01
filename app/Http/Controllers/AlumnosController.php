@@ -8,6 +8,7 @@ use App\Models\Nivel;
 use App\Models\Grado;
 use App\Models\Seccion;
 use App\Models\Facultad;
+use App\Models\Course;
 use App\Models\Salon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +19,11 @@ class AlumnosController extends Controller
     public function index()
     {
         $alumnos = Alumno::all();
-        return view('Admin.users', compact('alumnos')); 
+        $datos = $this->datosFormulario();
+        $datos['cursos'] = Course::all();
+        $datos['alumnos'] = $alumnos;
+
+        return view('Admin.users', $datos);
     }
 
     // Este es el método que llama el UsersController
@@ -36,6 +41,8 @@ class AlumnosController extends Controller
     public function create()
     {
         $datos = $this->datosFormulario();
+        $datos['cursos'] = Course::all();
+
         return view('Admin.users', $datos); // O la vista que uses para alumnos
     }
 
@@ -47,7 +54,7 @@ class AlumnosController extends Controller
             'dni'              => 'required|unique:alumnos,dni',
             'fecha_nacimiento' => 'required|date',
             'usuario'          => 'required|unique:alumnos,usuario',
-            'contraseña'       => 'required|min:6', 
+            'contraseña'       => 'required|min:6',
             'id_nivel'         => 'required',
         ]);
 
@@ -86,7 +93,7 @@ class AlumnosController extends Controller
             'dni'              => $request->dni,
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'usuario'          => $request->usuario,
-            'contrasena'       => Hash::make($request->input('contraseña')), 
+            'contrasena'       => Hash::make($request->input('contraseña')),
             'tipo'             => $request->tipo ?? 'colegio',
         ]);
 

@@ -6,17 +6,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class Message extends Model
 {
-    // Ajustamos los nombres de los campos según tu base de datos
+
     protected $fillable = [
-        'id_emisor',     // id_usuario del que envía
-        'id_receptor',   // id_usuario del que recibe (opcional si es por curso)
-        'id_curso', 
+        'id_emisor',
+        'id_receptor',
+        'emisor_tipo',
+        'id_emisor_usuario',
+        'id_emisor_alumno',
+        'receptor_tipo',
+        'id_receptor_usuario',
+        'id_receptor_alumno',
+        'id_curso',
+        'id_curso_salon',
         'contenido'
     ];
 
-    // Relación con tu tabla users
-    public function emisor()
+    public function emisorUsuario()
     {
-        return $this->belongsTo(User::class, 'id_emisor', 'id_usuario');
+        return $this->belongsTo(User::class, 'id_emisor_usuario', 'id_usuario');
+    }
+
+    public function emisorAlumno()
+    {
+        return $this->belongsTo(Alumno::class, 'id_emisor_alumno', 'id_alumno');
     }
 }

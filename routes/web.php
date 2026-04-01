@@ -94,11 +94,15 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(functi
 
     Route::get('/eti', [EtisController::class, 'index'])->name('admin.eti');
     Route::get('/qualifications', [QualificationController::class, 'index'])->name('admin.qualifications');
+    Route::get('/qualifications/cursos', [QualificationController::class, 'cursos'])->name('admin.qualifications.cursos');
+    Route::get('/qualifications/cursos/{idCurso}/salones', [QualificationController::class, 'salones'])->name('admin.qualifications.salones');
+    Route::get('/qualifications/cursos/{idCurso}/salones/{idSalon}/notas', [QualificationController::class, 'notas'])->name('admin.qualifications.notas');
     Route::get('/activity', [ActivityController::class, 'index'])->name('admin.activity');
 
     Route::prefix('activities')->group(function () {
         Route::post('/store', [ActivityController::class, 'store'])->name('admin.activities.store');
         Route::post('/asignar', [ActivityController::class, 'asignar'])->name('admin.activities.asignar');
+        Route::put('/{id}/fecha', [ActivityController::class, 'updateFecha'])->name('admin.activities.updateFecha');
     });
 
     Route::prefix('messages')->group(function () {
@@ -119,15 +123,20 @@ Route::prefix('docente')->middleware(['auth', 'role:docente'])->group(function (
     Route::get('/pagina-institucional', [Pagina_InstitucionalController::class, 'docenteIndex'])->name('docente.pagina_institucional');
     Route::get('/courses', [CourseController::class, 'index'])->name('docente.courses');
     Route::get('/qualifications', [QualificationController::class, 'index'])->name('docente.qualifications');
+    Route::get('/qualifications/cursos', [QualificationController::class, 'cursos'])->name('docente.qualifications.cursos');
+    Route::get('/qualifications/cursos/{idCurso}/salones', [QualificationController::class, 'salones'])->name('docente.qualifications.salones');
+    Route::get('/qualifications/cursos/{idCurso}/salones/{idSalon}/notas', [QualificationController::class, 'notas'])->name('docente.qualifications.notas');
     Route::get('/activity', [ActivityController::class, 'index'])->name('docente.activity');
     Route::get('/calendar', [CalendarController::class, 'index'])->name('docente.calendar');
     Route::get('/messages', [MessageController::class, 'index'])->name('docente.messages');
     Route::get('/organizations', [OrganizationController::class, 'index'])->name('docente.organizations');
     Route::get('/tools', [ToolController::class, 'index'])->name('docente.tools');
+    Route::get('/support', [SuportController::class, 'index'])->name('docente.support');
 
     Route::prefix('activities')->group(function () {
         Route::post('/store', [ActivityController::class, 'store'])->name('docente.activities.store');
         Route::post('/asignar', [ActivityController::class, 'asignar'])->name('docente.activities.asignar');
+        Route::put('/{id}/fecha', [ActivityController::class, 'updateFecha'])->name('docente.activities.updateFecha');
     });
 });
 
@@ -138,6 +147,9 @@ Route::prefix('auxiliar')->middleware(['auth', 'role:auxiliar'])->group(function
     Route::get('/calendar', [CalendarController::class, 'index'])->name('auxiliar.calendar');
     Route::get('/activity', [ActivityController::class, 'index'])->name('auxiliar.activity');
     Route::get('/messages', [MessageController::class, 'index'])->name('auxiliar.messages');
+    Route::get('/messages/get-chat/{id_curso}', [MessageController::class, 'getMessagesByCurso'])->name('auxiliar.messages.getChat');
+    Route::get('/messages/ajax/{id_curso}', [MessageController::class, 'getMessagesByCurso'])->name('auxiliar.messages.ajax');
+    Route::post('/messages/store-ajax', [MessageController::class, 'storeAjax'])->name('auxiliar.messages.store');
     Route::get('/tools', [ToolController::class, 'index'])->name('auxiliar.tools');
 });
 
@@ -145,6 +157,9 @@ Route::prefix('alumno')->middleware(['auth:alumno'])->group(function () {
     Route::get('/dashboard', fn() => view('Alumno.dashboard'))->name('alumno.dashboard');
     Route::get('/pagina-institucional', [Pagina_InstitucionalController::class, 'alumnoIndex'])->name('alumno.pagina_institucional');
     Route::get('/qualifications', [QualificationController::class, 'index'])->name('alumno.qualifications');
+    Route::get('/qualifications/cursos', [QualificationController::class, 'cursos'])->name('alumno.qualifications.cursos');
+    Route::get('/qualifications/cursos/{idCurso}/salones', [QualificationController::class, 'salones'])->name('alumno.qualifications.salones');
+    Route::get('/qualifications/cursos/{idCurso}/salones/{idSalon}/notas', [QualificationController::class, 'notas'])->name('alumno.qualifications.notas');
     Route::get('/calendar', [CalendarController::class, 'index'])->name('alumno.calendar');
     Route::get('/messages', [MessageController::class, 'index'])->name('alumno.messages');
     Route::get('/activity', [ActivityController::class, 'index'])->name('alumno.activity');

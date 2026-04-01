@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intranet Colegio - Acceso Unificado</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/login_colegio.css') }}">
 </head>
@@ -30,9 +30,11 @@
                 <form class="space-y-8 text-left" method="POST" action="{{ route('login.familia') }}">
                     @csrf
                     <div class="space-y-4">
-                        <label class="block text-slate-800 text-base font-extrabold uppercase ml-2 tracking-widest">Nro.
+                        <label for="documento_familia"
+                            class="block text-slate-800 text-base font-extrabold uppercase ml-2 tracking-widest">Nro.
                             de documento</label>
-                        <input type="text" name="documento" placeholder="Ej: 70001234" required
+                        <input id="documento_familia" type="text" name="documento" placeholder="Ej: 70001234"
+                            required
                             class="w-full bg-slate-50 border-2 border-slate-200 rounded-[2rem] py-7 px-10 outline-none focus:border-custom-blue transition-all text-2xl shadow-sm">
                     </div>
                     <button type="submit"
@@ -114,16 +116,18 @@
                         </div>
                     @endif
                     <div class="space-y-4">
-                        <label class="block text-slate-800 text-base font-extrabold uppercase ml-2 tracking-widest">ID
+                        <label for="usuario_alumno"
+                            class="block text-slate-800 text-base font-extrabold uppercase ml-2 tracking-widest">ID
                             DEL USUARIO</label>
-                        <input type="text" name="usuario" placeholder="Ej: 0020261234" required
+                        <input id="usuario_alumno" type="text" name="usuario" placeholder="Ej: 0020261234" required
                             class="w-full bg-slate-50 border-2 border-slate-200 rounded-[2rem] py-7 px-10 outline-none focus:border-custom-blue transition-all text-2xl shadow-sm">
                     </div>
                     <div class="space-y-4">
-                        <label
+                        <label for="passwordInput"
                             class="block text-slate-800 text-base font-extrabold uppercase ml-2 tracking-widest">Contraseña</label>
                         <div class="relative flex items-center">
-                            <input id="passwordInput" type="password" name="password" placeholder="••••••••" required
+                            <input id="passwordInput" type="password" name="password" placeholder="••••••••"
+                                required
                                 class="w-full bg-slate-50 border-2 border-slate-200 rounded-[2rem] py-7 px-10 pr-24 outline-none focus:border-custom-blue transition-all text-2xl shadow-sm">
                             <button id="togglePassword" type="button"
                                 class="absolute right-8 text-slate-400 hover:text-custom-blue">

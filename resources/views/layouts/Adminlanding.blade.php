@@ -12,24 +12,82 @@
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
     <link rel="stylesheet" href="{{ asset('css/messages.css') }}">
     <link rel="stylesheet" href="{{ asset('css/activity.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/adminPaginaInstitucional.css')}}">
     @stack('styles')
+
+    <style>
+        body {
+            background-color: #f5f6fa;
+        }
+
+        .admin-topbar {
+            background: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 6px 20px rgba(16, 24, 40, 0.07);
+            margin: 1rem 1rem 0;
+            padding: 0.75rem 1rem;
+        }
+
+        .admin-topbar .search-box {
+            max-width: 380px;
+        }
+
+        .admin-topbar .search-box .form-control {
+            border-radius: 10px;
+            border-color: #e7eaf0;
+            padding-left: 2.2rem;
+        }
+
+        .admin-topbar .search-icon {
+            position: absolute;
+            top: 50%;
+            left: 0.8rem;
+            transform: translateY(-50%);
+            color: #8c94a1;
+        }
+
+        .admin-topbar .icon-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #e7eaf0;
+            border-radius: 10px;
+            background: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #334155;
+            transition: all .2s ease;
+        }
+
+        .admin-topbar .icon-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+            color: #0d6efd;
+        }
+
+        .admin-user-trigger {
+            border: 1px solid #e7eaf0;
+            border-radius: 10px;
+            padding: 0.35rem 0.6rem;
+            background: #fff;
+        }
+    </style>
 
 
 </head>
 
 <body>
-
     <div class="mobile-header">
         <div class="d-flex align-items-center gap-2">
             <img src="{{ asset('images/next-level-logo.png') }}" alt="Logo" style="width: 30px;">
             <span class="fw-bold">Next Level</span>
         </div>
-        <button class="btn btn-outline-light border-0" onclick="toggleSidebar()">
+        <button class="btn btn-outline-light border-0" type="button" data-sidebar-toggle>
             <i class="bi bi-list fs-2"></i>
         </button>
     </div>
 
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar-overlay" id="sidebarOverlay" data-sidebar-toggle></div>
 
     <div class="d-flex">
         <aside class="sidebar" id="sidebar">
@@ -119,19 +177,53 @@
         </aside>
 
         <main class="main-content" id="mainContent">
+
+            <!-- HEADER -->
+            <div class="admin-topbar d-flex flex-wrap align-items-center justify-content-between gap-3">
+                <div class="position-relative search-box w-100 w-md-auto">
+                    <i class="bi bi-search search-icon"></i>
+                    <input type="text" class="form-control" placeholder="Buscar usuario, curso o anuncio...">
+                </div>
+
+                <div class="d-flex align-items-center gap-2 ms-auto">
+                    <button class="icon-btn" type="button" aria-label="Notificaciones">
+                        <i class="bi bi-bell"></i>
+                    </button>
+
+                    <div class="dropdown">
+                        <button class="btn admin-user-trigger dropdown-toggle d-flex align-items-center gap-2"
+                            type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://ui-avatars.com/api/?name={{ Auth::user()->nombre }}+{{ Auth::user()->apellido }}&background=0D6EFD&color=fff"
+                                class="rounded-circle" width="34" height="34" alt="Avatar">
+                            <div class="text-start d-none d-sm-block">
+                                <div class="fw-semibold" style="line-height:1;">{{ Auth::user()->nombre }}
+                                    {{ Auth::user()->apellido }}</div>
+                                <small class="text-muted text-capitalize">{{ Auth::user()->rol }}</small>
+                            </div>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><span
+                                    class="dropdown-item-text text-muted text-capitalize">{{ Auth::user()->rol }}</span>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <button type="submit" form="logout-form" class="dropdown-item">
+                                    <i class="bi bi-box-arrow-right me-2"></i>Cerrar sesión
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
             @yield('content')
+
         </main>
     </div>
 
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @vite(['resources/js/app.js'])
     <script src="{{ asset('js/course.js') }}"></script>
     @stack('scripts')
 

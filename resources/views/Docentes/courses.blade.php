@@ -119,31 +119,31 @@
 
         <!-- ===== ALUMNO ===== -->
         <!--
-                            <div class="card shadow-sm border-0">
-                                <div class="card-body">
+                                    <div class="card shadow-sm border-0">
+                                        <div class="card-body">
 
-                                    <h4 class="fw-bold mb-3">Mi Reporte de Calificaciones</h4>
+                                            <h4 class="fw-bold mb-3">Mi Reporte de Calificaciones</h4>
 
-                                    <div class="row g-3">
-                                        <div class="col-md-4">
-                                            <div class="p-3 border rounded text-center">
-                                                <h6>Promedio General</h6>
-                                                <h1 class="display-4 text-primary">A</h1>
+                                            <div class="row g-3">
+                                                <div class="col-md-4">
+                                                    <div class="p-3 border rounded text-center">
+                                                        <h6>Promedio General</h6>
+                                                        <h1 class="display-4 text-primary">A</h1>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-8">
+                                                    <h6>Actividades</h6>
+                                                    <ul class="list-group">
+                                                        <li class="list-group-item">Tarea: 16</li>
+                                                        <li class="list-group-item">Exposición: 18</li>
+                                                        <li class="list-group-item">Examen: 15</li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-md-8">
-                                            <h6>Actividades</h6>
-                                            <ul class="list-group">
-                                                <li class="list-group-item">Tarea: 16</li>
-                                                <li class="list-group-item">Exposición: 18</li>
-                                                <li class="list-group-item">Examen: 15</li>
-                                            </ul>
                                         </div>
-                                    </div>
-
-                                </div>
-                            </div>-->
+                                    </div>-->
 
     </div>
 
@@ -154,7 +154,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <form action="{{ route('admin.activities.store') }}" method="POST">
+                <form action="{{ route('docente.activities.store') }}" method="POST">
                     @csrf
 
                     <div class="modal-header">
@@ -168,24 +168,25 @@
                         <input type="hidden" name="id_curso" id="actividad_curso_id">
 
                         <div class="mb-3">
-                            <label>Nombre</label>
-                            <input type="text" name="actividad" class="form-control" required>
+                            <label for="actividad_nombre_doc">Nombre</label>
+                            <input id="actividad_nombre_doc" type="text" name="actividad" class="form-control" required>
                         </div>
 
                         <div class="mb-3">
-                            <label>Descripción</label>
-                            <textarea name="descripcion" class="form-control"></textarea>
+                            <label for="actividad_desc_doc">Descripción</label>
+                            <textarea id="actividad_desc_doc" name="descripcion" class="form-control"></textarea>
                         </div>
 
                         <div class="mb-3">
-                            <label>Porcentaje</label>
-                            <input type="number" name="porcentaje" class="form-control" min="1" max="100"
+                            <label for="actividad_pct_doc">Porcentaje</label>
+                            <input id="actividad_pct_doc" type="number" name="porcentaje" class="form-control"
+                                min="1" max="100" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="actividad_fecha_doc">Fecha de entrega</label>
+                            <input id="actividad_fecha_doc" type="date" name="fecha_entrega" class="form-control"
                                 required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label>Fecha de entrega</label>
-                            <input type="date" name="fecha_entrega" class="form-control" required>
                         </div>
 
                     </div>
@@ -215,8 +216,8 @@
 
                         <input type="hidden" name="id_curso" id="asignar_curso_id">
 
-                        <label>Actividad existente</label>
-                        <select name="id_actividad" class="form-select">
+                        <label for="actividad_existente_doc">Actividad existente</label>
+                        <select id="actividad_existente_doc" name="id_actividad" class="form-select">
                             @foreach ($actividades as $actividad)
                                 <option value="{{ $actividad->id_actividad }}">
                                     {{ $actividad->actividad }}

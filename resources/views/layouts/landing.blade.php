@@ -22,12 +22,12 @@
             <img src="{{ asset('images/next-level-logo.png') }}" alt="Logo" style="width: 30px;">
             <span class="fw-bold">Next Level</span>
         </div>
-        <button class="btn btn-outline-light border-0" onclick="toggleSidebar()">
+        <button class="btn btn-outline-light border-0" type="button" data-sidebar-toggle>
             <i class="bi bi-list fs-2"></i>
         </button>
     </div>
 
-    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+    <div class="sidebar-overlay" id="sidebarOverlay" data-sidebar-toggle></div>
 
     <div class="d-flex">
         <aside class="sidebar" id="sidebar">
@@ -135,15 +135,7 @@
         </main>
     </div>
 
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @vite(['resources/js/app.js'])
     <script src="{{ asset('js/course.js') }}"></script>
     <script src="{{ asset('js/messages.js') }}"></script>
 

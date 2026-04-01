@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 class Alumno extends Authenticatable
 {
@@ -41,5 +42,17 @@ class Alumno extends Authenticatable
     public function apoderado()
     {
         return $this->belongsTo(Apoderado::class, 'id_apoderado');
+    }
+
+    public function setContrasenaAttribute($value): void
+    {
+        if ($value === null || $value === '') {
+            $this->attributes['contrasena'] = $value;
+            return;
+        }
+
+        $this->attributes['contrasena'] = password_get_info($value)['algo']
+            ? $value
+            : Hash::make($value);
     }
 }

@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Nivel;
+use App\Models\Grado;
+use App\Models\Seccion;
+use App\Models\Facultad;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-// IMPORTANTE: Aquí debe decir UsersController, NO AlumnosController
 class UsersController extends Controller
 {
     public function index()
@@ -15,13 +18,30 @@ class UsersController extends Controller
         $users = User::with('salones')->get();
         $cursos = Course::all();
 
-        // Ahora esto ya no dará error porque el método existe
-        $alumnosController = new AlumnosController();
-        $datosAlumno = $alumnosController->datosFormulario();
+        $totalUsuarios = User::count();
+        $admins = User::where('rol', 'administrador')->count();
+        $docentes = User::where('rol', 'docente')->count();
+        $auxiliares = User::where('rol', 'auxiliar')->count();
 
-        return view('Admin.users', array_merge(
-            compact('users', 'cursos'),
-            $datosAlumno
+        $usuariosRecientes = User::latest()->take(5)->get();
+
+        $niveles = Nivel::all();
+        $grados = Grado::all();
+        $secciones = Seccion::all();
+        $facultades = Facultad::all();
+
+        return view('Admin.users', compact(
+            'users',
+            'cursos',
+            'totalUsuarios',
+            'admins',
+            'docentes',
+            'auxiliares',
+            'usuariosRecientes',
+            'niveles',
+            'grados',
+            'secciones',
+            'facultades'
         ));
     }
 
@@ -34,12 +54,14 @@ class UsersController extends Controller
             'fecha_nacimiento'  => 'required|date',
             'usuario'           => 'required|unique:users,usuario',
             'contrasena'        => 'required|min:6',
-            'rol'               => 'required',
-            'id_curso'          => 'required_if:rol,docente|nullable|exists:cursos,id_curso'
+            'rol'               => 'required|in:administrador,docente,auxiliar',
+            'id_curso'          => 'nullable|exists:cursos,id_curso|required_if:rol,docente'
         ]);
 
+        $idCurso = $request->rol === 'docente' ? $request->id_curso : null;
+
         User::create([
-            'id_curso'         => $request->id_curso,
+            'id_curso'         => $idCurso,
             'nombre'           => $request->nombre,
             'apellido'         => $request->apellido,
             'dni'              => $request->dni,
