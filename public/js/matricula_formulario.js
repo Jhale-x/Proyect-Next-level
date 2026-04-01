@@ -497,6 +497,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const cronogramaBody = document.getElementById('cronograma-body');
     const nivelSelect = document.getElementById('nivel_escolar');
     const gradoSelect = document.getElementById('grado_escolar');
+    const btnContinuar = document.querySelector('.btn-premium-next');
+    const welcomeCard = document.getElementById('welcome-card');
+    const step2Colegio = document.getElementById('step-2-colegio');
+    const step2Academia = document.getElementById('step-2-academia');
 
     const horarios = {
         unu: { mañana: "7:30 AM - 1:00 PM", tarde: "3:00 PM - 8:00 PM" },
@@ -505,6 +509,24 @@ document.addEventListener('DOMContentLoaded', () => {
         uni: { mañana: "9:00 AM - 2:30 PM", tarde: "4:30 PM - 9:30 PM" },
         catolica: { mañana: "9:30 AM - 3:00 PM", tarde: "5:00 PM - 10:00 PM" }
     };
+
+    function validarPaso1() {
+        const modalidad = selectorModalidad.value;
+        let esValido = false;
+
+        if (modalidad === 'colegio') {
+            esValido = nivelSelect.value !== "" && gradoSelect.value !== "";
+        } else if (modalidad === 'academia') {
+            const cicloRadio = document.querySelector('input[name="ciclo_op"]:checked');
+            const pagoRadio = document.querySelector('input[name="p"]:checked');
+
+            esValido = uniSelect.value !== "" && turnoSelect.value !== "" && cicloRadio !== null && pagoRadio !== null;
+        }
+
+        if (btnContinuar) {
+            btnContinuar.disabled = !esValido;
+        }
+    }
 
     selectorModalidad.addEventListener('change', function() {
         secAcademia.classList.add('hidden-section');
@@ -515,10 +537,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (this.value === 'academia') {
             secAcademia.classList.remove('hidden-section');
+            footerActions.classList.remove('hidden-section');
         } else if (this.value === 'colegio') {
             secColegio.classList.remove('hidden-section');
             footerActions.classList.remove('hidden-section');
         }
+        validarPaso1();
     });
 
     nivelSelect.addEventListener('change', function() {
@@ -529,7 +553,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const label = `${i}${ (i===1||i===3) ? "ero" : (i===2) ? "do" : "to" }`;
             gradoSelect.add(new Option(label, i));
         }
+        validarPaso1();
     });
+
+    gradoSelect.addEventListener('change', validarPaso1);
 
     uniSelect.addEventListener('change', function() {
         const seleccion = this.value;
@@ -542,8 +569,9 @@ document.addEventListener('DOMContentLoaded', () => {
             turnoSelect.add(new Option(`Mañana (${horarios[seleccion].mañana})`, "mañana"));
             turnoSelect.add(new Option(`Tarde (${horarios[seleccion].tarde})`, "tarde"));
         } else {
-        turnoSelect.disabled = true;
+            turnoSelect.disabled = true;
         }
+        validarPaso1();
     });
 
     function renderizarCiclos() {
@@ -577,7 +605,7 @@ document.addEventListener('DOMContentLoaded', () => {
     turnoSelect.addEventListener('change', function() {
         renderizarCiclos();
         cronogramaCont.classList.add('hidden-section');
-        footerActions.classList.add('hidden-section');
+        validarPaso1();
     });
 
     function generarCronograma() {
@@ -614,19 +642,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 </tr>`;
         });
 
-        cronogramaBody.innerHTML += `
-            <tr class="total-row-bold">
-                <td colspan="2" style="text-align:right">Totales</td>
-                <td colspan="2"></td>
-                <td>${totalGeneral.toLocaleString('en-US', {minimumFractionDigits: 2})}</td>
-            </tr>`;
-
-        footerActions.classList.remove('hidden-section');
+       validarPaso1();
     }
+
+    btnContinuar.addEventListener('click', () => {
+        if (btnContinuar.disabled) return;
+
+        const modalidad = selectorModalidad.value;
+
+        welcomeCard.classList.add('hidden-section');
+        secAcademia.classList.add('hidden-section');
+        secColegio.classList.add('hidden-section');
+        ciclosCont.classList.add('hidden-section');
+        cronogramaCont.classList.add('hidden-section');
+        footerActions.classList.add('hidden-section');
+
+        document.getElementById('step-1-indicator').classList.remove('active');
+        document.getElementById('step-2-indicator').classList.add('active');
+
+        if (modalidad === 'colegio') {
+            step2Colegio.classList.remove('hidden-section');
+        } else {
+            step2Academia.classList.remove('hidden-section');
+        }
+    });
 
     document.addEventListener('change', (e) => {
         if (e.target.name === 'ciclo_op') {
             generarCronograma();
+            validarPaso1();
+        }
+
+        if (e.target.name === 'p') {
+            validarPaso1();
+        }
+
+        if (e.target.name === 'es_mayor') {
+            const seccionApoderadoAca = document.getElementById('seccion-apoderado-academia');
+            if (seccionApoderadoAca) {
+                seccionApoderadoAca.style.display = (e.target.value === 'si') ? 'none' : 'block';
+            }
         }
     });
 });
