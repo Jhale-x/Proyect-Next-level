@@ -501,6 +501,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const welcomeCard = document.getElementById('welcome-card');
     const step2Colegio = document.getElementById('step-2-colegio');
     const step2Academia = document.getElementById('step-2-academia');
+    const templateCiclo = document.getElementById('template-ciclo');
+
 
     const horarios = {
         unu: { mañana: "7:30 AM - 1:00 PM", tarde: "3:00 PM - 8:00 PM" },
@@ -529,6 +531,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     selectorModalidad.addEventListener('change', function() {
+        limpiarSecciones();
+
         secAcademia.classList.add('hidden-section');
         secColegio.classList.add('hidden-section');
         footerActions.classList.add('hidden-section');
@@ -579,26 +583,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const turnoId = turnoSelect.value;
         const ciclos = DB_CICLOS[uniId] && DB_CICLOS[uniId][turnoId] ? DB_CICLOS[uniId][turnoId] : [];
 
+        ciclosCont.innerHTML = "";
+
         if (ciclos.length === 0) {
-            ciclosCont.innerHTML = "";
             ciclosCont.classList.add('hidden-section');
             return;
         }
 
-        let html = '<div class="ciclos-wrapper fade-in">';
         ciclos.forEach(ciclo => {
-            html += `
-                <label class="ciclo-card">
-                    <input type="radio" name="ciclo_op" class="ciclo-radio" value="${ciclo.id}">
-                    <div class="ciclo-text-box">
-                        <span>${ciclo.nombre}</span>
-                        <span>${ciclo.fechas}</span>
-                    </div>
-                </label>`;
-        });
-        html += '</div>';
+            const instancia = templateCiclo.content.cloneNode(true);
 
-        ciclosCont.innerHTML = html;
+            const radio = instancia.querySelector('.ciclo-radio');
+            radio.value = ciclo.id;
+
+            instancia.querySelector('.nombre-ciclo').textContent = ciclo.nombre;
+            instancia.querySelector('.fechas-ciclo').textContent = ciclo.fechas;
+
+            ciclosCont.appendChild(instancia);
+        });
+
         ciclosCont.classList.remove('hidden-section');
     }
 
@@ -614,35 +617,119 @@ document.addEventListener('DOMContentLoaded', () => {
         const radioChecked = document.querySelector('input[name="ciclo_op"]:checked');
 
         if (!radioChecked) return;
+
         const cicloId = radioChecked.value;
 
-        document.querySelectorAll('input[name="p"]').forEach(radio => radio.checked = false);
-
-        const datos = DB_CRONOGRAMAS[uniId] && DB_CRONOGRAMAS[uniId][turnoId]
+    // Buscamos los datos en tu objeto DB_CRONOGRAMAS usando la jerarquía: Universidad -> Turno -> ID Ciclo
+        const datosBase = DB_CRONOGRAMAS[uniId] && DB_CRONOGRAMAS[uniId][turnoId]
                     ? DB_CRONOGRAMAS[uniId][turnoId][cicloId] : null;
 
-        if (!datos) {
-            cronogramaBody.innerHTML = `<tr><td colspan="5" style="padding:20px">Datos no disponibles</td></tr>`;
+        if (!datosBase) {
+            cronogramaBody.innerHTML = "";
             return;
         }
 
-        cronogramaCont.classList.remove('hidden-section');
+    // Guardamos los datos en un atributo 'data' del elemento para que la función de cálculo
+    // pueda acceder a ellos sin tener que buscar en la base de datos cada vez que cambies el tipo de pago.
+        cronogramaBody.dataset.baseData = JSON.stringify(datosBase);
+
+    // Llamamos a la función que dibuja la tabla y suma los totales
+        actualizarTotales();
+
+    // Mostramos el contenedor y validamos el paso
+    cronogramaCont.classList.remove('hidden-section');
+        validarPaso1();
+    }
+
+    function limpiarSecciones() {
+    // Resetear Academia
+        uniSelect.value = "";
+        turnoSelect.innerHTML = '<option value="" disabled selected hidden>Turno de Estudio</option>';
+        turnoSelect.disabled = true;
+        ciclosCont.innerHTML = "";
+        ciclosCont.classList.add('hidden-section');
+        cronogramaCont.classList.add('hidden-section');
         cronogramaBody.innerHTML = "";
-        let totalGeneral = 0;
+        delete cronogramaBody.dataset.baseData; // Borramos datos guardados
 
-        datos.forEach(item => {
-            totalGeneral += item.i;
-            cronogramaBody.innerHTML += `
-                <tr>
-                    <td>${item.c}</td>
-                    <td>${item.f}</td>
-                    <td>${item.i.toFixed(2)}</td>
-                    <td>0.00</td>
-                    <td>${item.i.toFixed(2)}</td>
-                </tr>`;
-        });
+    // Resetear Colegio
+        nivelSelect.value = "";
+        gradoSelect.innerHTML = '<option value="" disabled selected hidden>Grado Correspondiente</option>';
+        gradoSelect.disabled = true;
 
-       validarPaso1();
+    // Resetear Datos Personales (Step 2)
+    // Buscamos todos los inputs dentro de los contenedores del paso 2 y los limpiamos
+        const inputsPaso2 = [...step2Colegio.querySelectorAll('input'), ...step2Academia.querySelectorAll('input'),
+                             ...step2Colegio.querySelectorAll('select'), ...step2Academia.querySelectorAll('select')];
+
+    inputsPaso2.forEach(el => {
+        if (el.type === 'radio') {
+            // Si es el radio de "es_mayor", lo devolvemos a "no"
+            if (el.name === 'es_mayor' && el.value === 'no') el.checked = true;
+            else el.checked = false;
+        } else {
+            el.value = "";
+        }
+    });
+
+    // Asegurar que la sección de apoderado en academia sea visible de nuevo (por el reset de "es_mayor")
+        const seccionApoderadoAca = document.getElementById('seccion-apoderado-academia');
+        if (seccionApoderadoAca) seccionApoderadoAca.classList.remove('hidden-section');
+        }
+
+        function actualizarTotales() {
+        const radioPago = document.querySelector('input[name="p"]:checked');
+        if (!radioPago || !cronogramaBody.dataset.baseData) return;
+
+        const datosBase = JSON.parse(cronogramaBody.dataset.baseData);
+        const modoPago = radioPago.value;
+        const totalGeneralTxt = document.getElementById('cronograma-total-general');
+        const templateFila = document.getElementById('template-fila-cronograma');
+
+        cronogramaBody.innerHTML = "";
+        let sumaTotalFinal = 0;
+
+        if (modoPago === 'c') {
+        // MODO CUOTAS
+            datosBase.forEach(item => {
+                const fila = templateFila.content.cloneNode(true);
+
+                fila.querySelector('.col-cuota').textContent = item.c;
+                fila.querySelector('.col-vencimiento').textContent = item.f;
+                fila.querySelector('.col-importe').textContent = item.i.toFixed(2);
+                fila.querySelector('.col-descuento').textContent = "0.00";
+                fila.querySelector('.col-total').textContent = item.i.toFixed(2);
+
+                cronogramaBody.appendChild(fila);
+                sumaTotalFinal += item.i;
+            });
+        } else {
+        // MODO CONTADO
+        const subtotal = datosBase.reduce((acc, cur) => acc + cur.i, 0);
+        const porcentajeDesc = 0.05; // 5%
+        const montoDesc = subtotal * porcentajeDesc;
+        const neto = subtotal - montoDesc;
+
+        const fila = templateFila.content.cloneNode(true);
+
+        fila.querySelector('.col-cuota').textContent = "PAGO ÚNICO AL CONTADO";
+        fila.querySelector('.col-vencimiento').textContent = datosBase[0].f;
+        fila.querySelector('.col-importe').textContent = subtotal.toFixed(2);
+
+        // Aplicamos la clase CSS en lugar de style directo
+        const celdaDesc = fila.querySelector('.col-descuento');
+        celdaDesc.textContent = `-${montoDesc.toFixed(2)}`;
+        celdaDesc.classList.add('monto-negativo');
+
+        fila.querySelector('.col-total').textContent = neto.toFixed(2);
+
+        cronogramaBody.appendChild(fila);
+        sumaTotalFinal = neto;
+    }
+
+    if (totalGeneralTxt) {
+        totalGeneralTxt.textContent = sumaTotalFinal.toFixed(2);
+    }
     }
 
     btnContinuar.addEventListener('click', () => {
@@ -650,12 +737,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const modalidad = selectorModalidad.value;
 
-        welcomeCard.classList.add('hidden-section');
-        secAcademia.classList.add('hidden-section');
-        secColegio.classList.add('hidden-section');
-        ciclosCont.classList.add('hidden-section');
-        cronogramaCont.classList.add('hidden-section');
-        footerActions.classList.add('hidden-section');
+        [welcomeCard, secAcademia, secColegio, ciclosCont, cronogramaCont, footerActions].forEach(el => {
+            el.classList.add('hidden-section');
+        });
 
         document.getElementById('step-1-indicator').classList.remove('active');
         document.getElementById('step-2-indicator').classList.add('active');
@@ -674,13 +758,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (e.target.name === 'p') {
+            actualizarTotales();
             validarPaso1();
         }
 
         if (e.target.name === 'es_mayor') {
             const seccionApoderadoAca = document.getElementById('seccion-apoderado-academia');
             if (seccionApoderadoAca) {
-                seccionApoderadoAca.style.display = (e.target.value === 'si') ? 'none' : 'block';
+                if (e.target.value === 'si') {
+                    seccionApoderadoAca.classList.add('hidden-section');
+                } else {
+                    seccionApoderadoAca.classList.remove('hidden-section');
+                }
             }
         }
     });

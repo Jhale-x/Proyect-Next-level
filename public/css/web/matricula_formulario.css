@@ -293,7 +293,7 @@ select:disabled {
 }
 
 .hidden-section {
-    display: none;
+    display: none !important;
 }
 
 .btn-premium-next {
@@ -319,19 +319,19 @@ select:disabled {
 .ciclos-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    margin-top: 25px;
+    margin-top: 35px !important;
 }
 
 .ciclo-card {
     background-color: var(--rojo-principal);
     color: var(--blanco);
-    padding: 18px 25px;
+    padding: 20px 25px;
     border-radius: 8px;
     display: flex;
     align-items: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-bottom: 10px !important;
 }
 
 .ciclo-card:hover { filter: brightness(1.1); }
@@ -356,6 +356,7 @@ select:disabled {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    align-items: center;
     font-weight: 800;
     text-transform: uppercase;
 }
@@ -401,7 +402,23 @@ select:disabled {
     border-left: 1px solid #eee;
 }
 
-.total-row-bold { font-weight: 800; }
+.total-row-bold { font-weight: 800; color: var(--azul-oscuro); }
+
+.total-row-bold td {
+    padding: 15px 20px;
+    border-top: 2px solid #f1f5f9;
+}
+
+.text-right {
+    text-align: right;
+    padding-right: 30px !important;
+}
+
+/* Estilo específico para el número del total */
+#cronograma-total-general {
+    color: var(--azul-oscuro);
+    text-align: center;
+}
 
 .pago-opciones {
     padding: 20px;

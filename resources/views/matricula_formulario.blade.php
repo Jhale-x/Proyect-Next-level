@@ -111,7 +111,7 @@
                 </div>
             </div>
 
-            <div id="ciclos-container" class="hidden-section"></div>
+            <div id="ciclos-container" class="ciclos-wrapper hidden-section"></div>
 
             <div id="cronograma-container" class="hidden-section">
                 <div class="cronograma-box fade-in">
@@ -120,8 +120,13 @@
                         <thead>
                             <tr><th>Cuota</th><th>Vencimiento</th><th>Importe</th><th>Descuento</th><th>Total</th></tr>
                         </thead>
-                        <tbody id="cronograma-body">
-                            </tbody>
+                        <tbody id="cronograma-body"></tbody>
+                        <tfoot>
+                            <tr class="total-row-bold">
+                                <td colspan="4" class="text-right">Totales</td>
+                                <td id="cronograma-total-general">0.00</td>
+                            </tr>
+                        </tfoot>
                     </table>
                     <div class="pago-opciones">
                         <label class="radio-pago"><input type="radio" name="p" value="c" checked> Quiero pagar en cuotas</label>
@@ -157,90 +162,90 @@
     </section>
 
     <section class="premium-card hidden-section" id="step-2-colegio">
-    <div class="card-side-accent"></div>
-    <div class="card-body-content">
-        <h3 class="card-section-title">
-            <span class="icon-circle"><i class="fa-solid fa-school"></i></span>
-            DATOS DEL ESCOLAR
-        </h3>
-        <div class="form-responsive-grid">
-            <input type="text" name="col_nombres" placeholder="Nombres" required>
-            <input type="text" name="col_ape_paterno" placeholder="Apellido Paterno" required>
-            <input type="text" name="col_ape_materno" placeholder="Apellido Materno" required>
-            <input type="date" name="col_fecha_nac" required>
-            <input type="text" name="col_dni" placeholder="DNI" maxlength="8" required>
-            <select name="col_genero" required>
-                <option value="" disabled selected hidden>Género</option>
-                <option value="M">Masculino</option>
-                <option value="F">Femenino</option>
-            </select>
-            <input type="email" name="col_email" placeholder="Correo Electrónico" required>
-        </div>
-
-        <hr class="separator-line">
-
-        <h3 class="card-section-title">
-            <span class="icon-circle"><i class="fa-solid fa-user-shield"></i></span>
-            DATOS DEL APODERADO
-        </h3>
-        <div class="form-responsive-grid">
-            <input type="text" name="apo_nombres" placeholder="Nombres" required>
-            <input type="text" name="apo_ape_paterno" placeholder="Apellido Paterno" required>
-            <input type="text" name="apo_ape_materno" placeholder="Apellido Materno" required>
-            <input type="text" name="apo_dni" placeholder="DNI" maxlength="8" required>
-            <input type="email" name="apo_email" placeholder="Correo Electrónico" required>
-            <input type="tel" name="apo_celular" placeholder="Número de Celular" required>
-        </div>
-    </div>
-</section>
-
-<section class="premium-card hidden-section" id="step-2-academia">
-    <div class="card-side-accent"></div>
-    <div class="card-body-content">
-        <h3 class="card-section-title">
-            <span class="icon-circle"><i class="fa-solid fa-user-graduate"></i></span>
-            DATOS DEL POSTULANTE
-        </h3>
-        <div class="form-responsive-grid">
-            <input type="text" name="aca_nombres" placeholder="Nombres" required>
-            <input type="text" name="aca_ape_paterno" placeholder="Apellido Paterno" required>
-            <input type="text" name="aca_ape_materno" placeholder="Apellido Materno" required>
-            <input type="text" name="aca_dni" placeholder="DNI" maxlength="8" required>
-            <input type="email" name="aca_email" placeholder="Correo Electrónico" required>
-            <select name="aca_genero" required>
-                <option value="" disabled selected hidden>Género</option>
-                <option value="M">Masculino</option>
-                <option value="F">Femenino</option>
-            </select>
-            <input type="date" name="aca_fecha_nac" required>
-            <input type="tel" name="aca_celular" placeholder="Número de Celular" required>
-        </div>
-
-        <div id="cont-mayor-edad" class="mayor-edad-container">
-            <span class="switch-label">¿Soy mayor de edad (sin apoderado)?</span>
-            <div class="switch-options">
-                <label class="radio-option"><input type="radio" name="es_mayor" value="si"> Sí</label>
-                <label class="radio-option"><input type="radio" name="es_mayor" value="no" checked> No</label>
+        <div class="card-side-accent"></div>
+        <div class="card-body-content">
+            <h3 class="card-section-title">
+                <span class="icon-circle"><i class="fa-solid fa-school"></i></span>
+                DATOS DEL ESCOLAR
+            </h3>
+            <div class="form-responsive-grid">
+                <input type="text" name="col_nombres" placeholder="Nombres" required>
+                <input type="text" name="col_ape_paterno" placeholder="Apellido Paterno" required>
+                <input type="text" name="col_ape_materno" placeholder="Apellido Materno" required>
+                <input type="date" name="col_fecha_nac" required>
+                <input type="text" name="col_dni" placeholder="DNI" maxlength="8" required>
+                <select name="col_genero" required>
+                    <option value="" disabled selected hidden>Género</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+                <input type="email" name="col_email" placeholder="Correo Electrónico" required>
             </div>
-        </div>
 
-        <div id="seccion-apoderado-academia">
             <hr class="separator-line">
+
             <h3 class="card-section-title">
                 <span class="icon-circle"><i class="fa-solid fa-user-shield"></i></span>
                 DATOS DEL APODERADO
             </h3>
             <div class="form-responsive-grid">
-                <input type="text" name="aca_apo_nombres" placeholder="Nombres">
-                <input type="text" name="aca_apo_ape_paterno" placeholder="Apellido Paterno">
-                <input type="text" name="aca_apo_ape_materno" placeholder="Apellido Materno">
-                <input type="text" name="aca_apo_dni" placeholder="DNI" maxlength="8">
-                <input type="email" name="aca_apo_email" placeholder="Correo Electrónico">
-                <input type="tel" name="aca_apo_celular" placeholder="Número de Celular">
+                <input type="text" name="apo_nombres" placeholder="Nombres" required>
+                <input type="text" name="apo_ape_paterno" placeholder="Apellido Paterno" required>
+                <input type="text" name="apo_ape_materno" placeholder="Apellido Materno" required>
+                <input type="text" name="apo_dni" placeholder="DNI" maxlength="8" required>
+                <input type="email" name="apo_email" placeholder="Correo Electrónico" required>
+                <input type="tel" name="apo_celular" placeholder="Número de Celular" required>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <section class="premium-card hidden-section" id="step-2-academia">
+        <div class="card-side-accent"></div>
+        <div class="card-body-content">
+            <h3 class="card-section-title">
+                <span class="icon-circle"><i class="fa-solid fa-user-graduate"></i></span>
+                DATOS DEL POSTULANTE
+            </h3>
+            <div class="form-responsive-grid">
+                <input type="text" name="aca_nombres" placeholder="Nombres" required>
+                <input type="text" name="aca_ape_paterno" placeholder="Apellido Paterno" required>
+                <input type="text" name="aca_ape_materno" placeholder="Apellido Materno" required>
+                <input type="text" name="aca_dni" placeholder="DNI" maxlength="8" required>
+                <input type="email" name="aca_email" placeholder="Correo Electrónico" required>
+                <select name="aca_genero" required>
+                    <option value="" disabled selected hidden>Género</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+                <input type="date" name="aca_fecha_nac" required>
+                <input type="tel" name="aca_celular" placeholder="Número de Celular" required>
+            </div>
+
+            <div id="cont-mayor-edad" class="mayor-edad-container">
+                <span class="switch-label">¿Soy mayor de edad (sin apoderado)?</span>
+                <div class="switch-options">
+                    <label class="radio-option"><input type="radio" name="es_mayor" value="si"> Sí</label>
+                    <label class="radio-option"><input type="radio" name="es_mayor" value="no" checked> No</label>
+                </div>
+            </div>
+
+            <div id="seccion-apoderado-academia">
+                <hr class="separator-line">
+                <h3 class="card-section-title">
+                    <span class="icon-circle"><i class="fa-solid fa-user-shield"></i></span>
+                    DATOS DEL APODERADO
+                </h3>
+                <div class="form-responsive-grid">
+                    <input type="text" name="aca_apo_nombres" placeholder="Nombres">
+                    <input type="text" name="aca_apo_ape_paterno" placeholder="Apellido Paterno">
+                    <input type="text" name="aca_apo_ape_materno" placeholder="Apellido Materno">
+                    <input type="text" name="aca_apo_dni" placeholder="DNI" maxlength="8">
+                    <input type="email" name="aca_apo_email" placeholder="Correo Electrónico">
+                    <input type="tel" name="aca_apo_celular" placeholder="Número de Celular">
+                </div>
+            </div>
+        </div>
+    </section>
 
         <div class="form-footer-actions hidden-section" id="footer-actions">
             <button type="button" class="btn-premium-next">
@@ -250,7 +255,24 @@
     </form>
     </section>
 
+    <template id="template-ciclo">
+        <label class="ciclo-card"> <input type="radio" name="ciclo_op" class="ciclo-radio">
+            <div class="ciclo-text-box">
+                <span class="nombre-ciclo"></span>
+                <span class="fechas-ciclo"></span>
+            </div>
+        </label>
+    </template>
 
+    <template id="template-fila-cronograma">
+        <tr>
+            <td class="col-cuota"></td>
+            <td class="col-vencimiento"></td>
+            <td class="col-importe"></td>
+            <td class="col-descuento">0.00</td>
+            <td class="col-total"></td>
+        </tr>
+    </template>
 
     </main>
 
