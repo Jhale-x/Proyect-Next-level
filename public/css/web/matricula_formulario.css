@@ -120,7 +120,9 @@ body {
     flex: 0 1 auto;
 }
 
-.step-box.active { opacity: 1; }
+.step-box.active {
+    opacity: 1;
+}
 
 .step-number {
     width: 40px;
@@ -334,7 +336,9 @@ select:disabled {
     margin-bottom: 10px !important;
 }
 
-.ciclo-card:hover { filter: brightness(1.1); }
+.ciclo-card:hover {
+    filter: brightness(1.1);
+}
 
 .ciclo-radio {
     appearance: none;
@@ -402,7 +406,10 @@ select:disabled {
     border-left: 1px solid #eee;
 }
 
-.total-row-bold { font-weight: 800; color: var(--azul-oscuro); }
+.total-row-bold {
+    font-weight: 800;
+    color: var(--azul-oscuro);
+}
 
 .total-row-bold td {
     padding: 15px 20px;
@@ -414,7 +421,6 @@ select:disabled {
     padding-right: 30px !important;
 }
 
-/* Estilo específico para el número del total */
 #cronograma-total-general {
     color: var(--azul-oscuro);
     text-align: center;

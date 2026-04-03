@@ -118,7 +118,12 @@
                     <div class="cronograma-header">CRONOGRAMA</div>
                     <table class="cronograma-table">
                         <thead>
-                            <tr><th>Cuota</th><th>Vencimiento</th><th>Importe</th><th>Descuento</th><th>Total</th></tr>
+                            <tr><th>Cuota</th>
+                                <th>Vencimiento</th>
+                                <th>Importe</th>
+                                <th>Descuento</th>
+                                <th>Total</th>
+                            </tr>
                         </thead>
                         <tbody id="cronograma-body"></tbody>
                         <tfoot>
@@ -134,7 +139,7 @@
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
     </section>
 
     <section class="premium-card hidden-section" id="section-colegio">
@@ -155,6 +160,17 @@
                 <div class="input-field-group">
                     <select name="grado_escolar" id="grado_escolar" disabled>
                         <option value="" disabled selected hidden>Grado Correspondiente</option>
+                    </select>
+                </div>
+                <div class="input-field-group">
+                    <select name="seccion_escolar" id="seccion_escolar" disabled>
+                        <option value="" disabled selected hidden>Sección</option>
+                    </select>
+                </div>
+
+                <div class="input-field-group">
+                    <select name="turno_escolar" id="turno_escolar" disabled>
+                        <option value="" disabled selected hidden>Turno de Estudio</option>
                     </select>
                 </div>
             </div>
@@ -256,7 +272,8 @@
     </section>
 
     <template id="template-ciclo">
-        <label class="ciclo-card"> <input type="radio" name="ciclo_op" class="ciclo-radio">
+        <label class="ciclo-card">
+            <input type="radio" name="ciclo_op" class="ciclo-radio">
             <div class="ciclo-text-box">
                 <span class="nombre-ciclo"></span>
                 <span class="fechas-ciclo"></span>

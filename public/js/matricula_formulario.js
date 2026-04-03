@@ -1,5 +1,100 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    const DB_COLEGIO = {
+        primaria: {
+            "1": {
+                secciones: {
+                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
+                }
+            },
+            "2": {
+                secciones: {
+                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
+                }
+            },
+            "3": {
+                secciones: {
+                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
+                }
+            },
+            "4": {
+                secciones: {
+                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
+                }
+            },
+            "5": {
+                secciones: {
+                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
+                }
+            },
+            "6": {
+                secciones: {
+                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
+                }
+            },
+        },
+        secundaria: {
+            "1": {
+                secciones: {
+                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
+                }
+            },
+            "2": {
+                secciones: {
+                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
+                }
+            },
+            "3": {
+                secciones: {
+                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
+                }
+            },
+            "4":    {
+                secciones: {
+                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
+                }
+            },
+            "5": {
+                secciones: {
+                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
+                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
+                }
+            },
+        }
+    };
+
     const DB_CICLOS = {
         unu: {
             mañana: [
@@ -497,6 +592,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cronogramaBody = document.getElementById('cronograma-body');
     const nivelSelect = document.getElementById('nivel_escolar');
     const gradoSelect = document.getElementById('grado_escolar');
+    const seccionSelect = document.getElementById('seccion_escolar');
+    const turnoEscolarSelect = document.getElementById('turno_escolar');
     const btnContinuar = document.querySelector('.btn-premium-next');
     const welcomeCard = document.getElementById('welcome-card');
     const step2Colegio = document.getElementById('step-2-colegio');
@@ -517,7 +614,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let esValido = false;
 
         if (modalidad === 'colegio') {
-            esValido = nivelSelect.value !== "" && gradoSelect.value !== "";
+            esValido = nivelSelect.value !== "" &&
+                   gradoSelect.value !== "" &&
+                   seccionSelect.value !== "" &&
+                   turnoEscolarSelect.value !== "";
         } else if (modalidad === 'academia') {
             const cicloRadio = document.querySelector('input[name="ciclo_op"]:checked');
             const pagoRadio = document.querySelector('input[name="p"]:checked');
@@ -552,6 +652,12 @@ document.addEventListener('DOMContentLoaded', () => {
     nivelSelect.addEventListener('change', function() {
         gradoSelect.innerHTML = '<option value="" disabled selected hidden>Grado Correspondiente</option>';
         gradoSelect.disabled = false;
+
+        seccionSelect.selectedIndex = 0;
+        seccionSelect.disabled = true;
+        turnoEscolarSelect.selectedIndex = 0;
+        turnoEscolarSelect.disabled = true;
+
         const maxGrado = (this.value === 'primaria') ? 6 : 5;
         for (let i = 1; i <= maxGrado; i++) {
             const label = `${i}${ (i===1||i===3) ? "ero" : (i===2) ? "do" : "to" }`;
@@ -560,7 +666,44 @@ document.addEventListener('DOMContentLoaded', () => {
         validarPaso1();
     });
 
-    gradoSelect.addEventListener('change', validarPaso1);
+    gradoSelect.addEventListener('change', function() {
+    const nivel = nivelSelect.value;
+    const grado = this.value;
+
+    seccionSelect.innerHTML = '<option value="" disabled selected hidden>Sección</option>';
+
+    const seccionesDisponibles = DB_COLEGIO[nivel][grado].secciones;
+
+    Object.keys(seccionesDisponibles).forEach(letra => {
+        seccionSelect.add(new Option(`Sección ${letra}`, letra));
+    });
+
+    seccionSelect.disabled = false;
+    turnoEscolarSelect.disabled = true;
+    validarPaso1();
+    });
+
+    seccionSelect.addEventListener('change', function() {
+    const nivel = nivelSelect.value;
+    const grado = gradoSelect.value;
+    const letraSeccion = this.value;
+
+    turnoEscolarSelect.innerHTML = '<option value="" disabled selected hidden>Turno de Estudio</option>';
+
+    const horarios = DB_COLEGIO[nivel][grado].secciones[letraSeccion];
+
+    if (horarios.mañana) {
+        turnoEscolarSelect.add(new Option(`Mañana (${horarios.mañana})`, "mañana"));
+    }
+    if (horarios.tarde) {
+        turnoEscolarSelect.add(new Option(`Tarde (${horarios.tarde})`, "tarde"));
+    }
+
+    turnoEscolarSelect.disabled = false;
+    validarPaso1();
+    });
+
+    turnoEscolarSelect.addEventListener('change', validarPaso1);
 
     uniSelect.addEventListener('change', function() {
         const seleccion = this.value;
@@ -620,7 +763,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const cicloId = radioChecked.value;
 
-    // Buscamos los datos en tu objeto DB_CRONOGRAMAS usando la jerarquía: Universidad -> Turno -> ID Ciclo
         const datosBase = DB_CRONOGRAMAS[uniId] && DB_CRONOGRAMAS[uniId][turnoId]
                     ? DB_CRONOGRAMAS[uniId][turnoId][cicloId] : null;
 
@@ -629,20 +771,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-    // Guardamos los datos en un atributo 'data' del elemento para que la función de cálculo
-    // pueda acceder a ellos sin tener que buscar en la base de datos cada vez que cambies el tipo de pago.
         cronogramaBody.dataset.baseData = JSON.stringify(datosBase);
 
-    // Llamamos a la función que dibuja la tabla y suma los totales
         actualizarTotales();
 
-    // Mostramos el contenedor y validamos el paso
     cronogramaCont.classList.remove('hidden-section');
         validarPaso1();
     }
 
     function limpiarSecciones() {
-    // Resetear Academia
         uniSelect.value = "";
         turnoSelect.innerHTML = '<option value="" disabled selected hidden>Turno de Estudio</option>';
         turnoSelect.disabled = true;
@@ -650,21 +787,23 @@ document.addEventListener('DOMContentLoaded', () => {
         ciclosCont.classList.add('hidden-section');
         cronogramaCont.classList.add('hidden-section');
         cronogramaBody.innerHTML = "";
-        delete cronogramaBody.dataset.baseData; // Borramos datos guardados
+        delete cronogramaBody.dataset.baseData;
 
-    // Resetear Colegio
         nivelSelect.value = "";
         gradoSelect.innerHTML = '<option value="" disabled selected hidden>Grado Correspondiente</option>';
         gradoSelect.disabled = true;
 
-    // Resetear Datos Personales (Step 2)
-    // Buscamos todos los inputs dentro de los contenedores del paso 2 y los limpiamos
+        seccionSelect.innerHTML = '<option value="" disabled selected hidden>Sección</option>';
+        seccionSelect.disabled = true;
+
+        turnoEscolarSelect.innerHTML = '<option value="" disabled selected hidden>Turno de Estudio</option>';
+        turnoEscolarSelect.disabled = true;
+
         const inputsPaso2 = [...step2Colegio.querySelectorAll('input'), ...step2Academia.querySelectorAll('input'),
                              ...step2Colegio.querySelectorAll('select'), ...step2Academia.querySelectorAll('select')];
 
     inputsPaso2.forEach(el => {
         if (el.type === 'radio') {
-            // Si es el radio de "es_mayor", lo devolvemos a "no"
             if (el.name === 'es_mayor' && el.value === 'no') el.checked = true;
             else el.checked = false;
         } else {
@@ -672,7 +811,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Asegurar que la sección de apoderado en academia sea visible de nuevo (por el reset de "es_mayor")
         const seccionApoderadoAca = document.getElementById('seccion-apoderado-academia');
         if (seccionApoderadoAca) seccionApoderadoAca.classList.remove('hidden-section');
         }
@@ -704,7 +842,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 sumaTotalFinal += item.i;
             });
         } else {
-        // MODO CONTADO
         const subtotal = datosBase.reduce((acc, cur) => acc + cur.i, 0);
         const porcentajeDesc = 0.05; // 5%
         const montoDesc = subtotal * porcentajeDesc;
@@ -716,7 +853,6 @@ document.addEventListener('DOMContentLoaded', () => {
         fila.querySelector('.col-vencimiento').textContent = datosBase[0].f;
         fila.querySelector('.col-importe').textContent = subtotal.toFixed(2);
 
-        // Aplicamos la clase CSS en lugar de style directo
         const celdaDesc = fila.querySelector('.col-descuento');
         celdaDesc.textContent = `-${montoDesc.toFixed(2)}`;
         celdaDesc.classList.add('monto-negativo');
