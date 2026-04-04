@@ -97,131 +97,201 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const DB_CICLOS = {
         unu: {
-            mañana: [
-                { id: "1", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "2", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" },
-                { id: "3", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "4", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "5", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "6", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-            ],
-            tarde: [
-                { id: "1", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "2", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" },
-                { id: "3", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "4", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "5", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "6", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-            ]
+            verano: {
+                mañana: [
+                    { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                ],
+                tarde: [
+                    { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                ]
+            },
+            semestral: {
+                mañana: [
+                    { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ],
+                tarde: [
+                    { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ]
+            },
+            anual: {
+                mañana: [
+                    { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ],
+                tarde: [
+                    { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ]
+            },
         },
         unia: {
-            mañana: [
-                { id: "1", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "2", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" },
-                { id: "3", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "4", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "5", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "6", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-            ],
-            tarde: [
-                { id: "1", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "2", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" },
-                { id: "3", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "4", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "5", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "6", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-            ]
+            verano: {
+                mañana: [
+                    { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                ],
+                tarde: [
+                    { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                ]
+            },
+            semestral: {
+                mañana: [
+                    { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ],
+                tarde: [
+                    { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ]
+            },
+            anual: {
+                mañana: [
+                    { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ],
+                tarde: [
+                    { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ]
+            },
         },
         san_marcos: {
-            mañana: [
-                { id: "1", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "2", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" },
-                { id: "3", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "4", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "5", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "6", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-            ],
-            tarde: [
-                { id: "1", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "2", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" },
-                { id: "3", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "4", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "5", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "6", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-            ]
+            verano: {
+                mañana: [
+                    { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                ],
+                tarde: [
+                    { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                ]
+            },
+            semestral: {
+                mañana: [
+                    { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ],
+                tarde: [
+                    { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ]
+            },
+            anual: {
+                mañana: [
+                    { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ],
+                tarde: [
+                    { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ]
+            },
         },
         uni: {
-            mañana: [
-                { id: "1", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "2", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" },
-                { id: "3", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "4", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "5", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "6", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-            ],
-            tarde: [
-                { id: "1", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "2", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" },
-                { id: "3", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "4", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "5", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "6", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-            ]
+            verano: {
+                mañana: [
+                    { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                ],
+                tarde: [
+                    { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                ]
+            },
+            semestral: {
+                mañana: [
+                    { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ],
+                tarde: [
+                    { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ]
+            },
+            anual: {
+                mañana: [
+                    { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ],
+                tarde: [
+                    { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ]
+            },
         },
         catolica: {
-            mañana: [
-                { id: "1", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "2", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" },
-                { id: "3", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "4", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "5", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "6", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-            ],
-            tarde: [
-                { id: "1", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "2", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" },
-                { id: "3", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "4", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "5", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                { id: "6", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-            ]
-        }
+            verano: {
+                mañana: [
+                    { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                ],
+                tarde: [
+                    { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                ]
+            },
+            semestral: {
+                mañana: [
+                    { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ],
+                tarde: [
+                    { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ]
+            },
+            anual: {
+                mañana: [
+                    { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ],
+                tarde: [
+                    { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                    { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                ]
+            },
+        },
     };
 
     const DB_CRONOGRAMAS = {
         unu: {
             mañana: {
-                "1": [
+                "v1_m": [
                     { c: "CUOTA 1 UNU M", f: "31/03/2026", i: 200 },
                     { c: "CUOTA 2 UNU M", f: "30/04/2026", i: 200 },
                     { c: "CUOTA 3 UNU M", f: "31/05/2026", i: 200 },
                     { c: "CUOTA 4 UNU M", f: "30/06/2026", i: 200 }
                 ],
-                "2": [
+                "v2_m": [
                     { c: "CUOTA 1 UNU M II", f: "31/03/2026", i: 250 },
                     { c: "CUOTA 2 UNU M II", f: "31/04/2026", i: 250 },
                     { c: "CUOTA 3 UNU M II", f: "31/05/2026", i: 250 },
                     { c: "CUOTA 4 UNU M II", f: "31/06/2026", i: 250 }
                 ],
-                "3": [
+                "s1_m": [
                     { c: "CUOTA 1 UNU M", f: "31/03/2026", i: 200 },
                     { c: "CUOTA 2 UNU M", f: "30/04/2026", i: 200 },
                     { c: "CUOTA 3 UNU M", f: "31/05/2026", i: 200 },
                     { c: "CUOTA 4 UNU M", f: "30/06/2026", i: 200 }
                 ],
-                "4": [
+                "s2_m": [
                     { c: "CUOTA 1 UNU M II", f: "31/03/2026", i: 250 },
                     { c: "CUOTA 2 UNU M II", f: "31/04/2026", i: 250 },
                     { c: "CUOTA 3 UNU M II", f: "31/05/2026", i: 250 },
                     { c: "CUOTA 4 UNU M II", f: "31/06/2026", i: 250 }
                 ],
-                "5": [
+                "a1_m": [
                     { c: "CUOTA 1 UNU M", f: "31/03/2026", i: 200 },
                     { c: "CUOTA 2 UNU M", f: "30/04/2026", i: 200 },
                     { c: "CUOTA 3 UNU M", f: "31/05/2026", i: 200 },
                     { c: "CUOTA 4 UNU M", f: "30/06/2026", i: 200 }
                 ],
-                "6": [
+                "a2_m": [
                     { c: "CUOTA 1 UNU M II", f: "31/03/2026", i: 250 },
                     { c: "CUOTA 2 UNU M II", f: "31/04/2026", i: 250 },
                     { c: "CUOTA 3 UNU M II", f: "31/05/2026", i: 250 },
@@ -229,77 +299,77 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             },
             tarde: {
-                "1": [
+                "v1_t": [
                     { c: "CUOTA 1 UNU T", f: "31/03/2026", i: 180 },
                     { c: "CUOTA 2 UNU T", f: "31/04/2026", i: 180 },
                     { c: "CUOTA 3 UNU T", f: "31/05/2026", i: 180 },
                     { c: "CUOTA 4 UNU T", f: "31/06/2026", i: 180 }
                 ],
-                "2": [
+                "v2_t": [
                     { c: "CUOTA 1 UNU T II", f: "31/03/2026", i: 190 },
                     { c: "CUOTA 2 UNU T II", f: "31/04/2026", i: 190 },
                     { c: "CUOTA 3 UNU T II", f: "31/05/2026", i: 190 },
                     { c: "CUOTA 4 UNU T II", f: "31/06/2026", i: 190 }
                 ],
-                "3": [
+                "s1_t": [
                     { c: "CUOTA 1 UNU T", f: "31/03/2026", i: 180 },
                     { c: "CUOTA 2 UNU T", f: "31/04/2026", i: 180 },
                     { c: "CUOTA 3 UNU T", f: "31/05/2026", i: 180 },
                     { c: "CUOTA 4 UNU T", f: "31/06/2026", i: 180 }
                 ],
-                "4": [
+                "s2_t": [
                     { c: "CUOTA 1 UNU T II", f: "31/03/2026", i: 190 },
                     { c: "CUOTA 2 UNU T II", f: "31/04/2026", i: 190 },
                     { c: "CUOTA 3 UNU T II", f: "31/05/2026", i: 190 },
                     { c: "CUOTA 4 UNU T II", f: "31/06/2026", i: 190 }
                 ],
-                "5": [
+                "a1_t": [
                     { c: "CUOTA 1 UNU T", f: "31/03/2026", i: 180 },
                     { c: "CUOTA 2 UNU T", f: "31/04/2026", i: 180 },
                     { c: "CUOTA 3 UNU T", f: "31/05/2026", i: 180 },
                     { c: "CUOTA 4 UNU T", f: "31/06/2026", i: 180 }
                 ],
-                "6": [
+                "a2_t": [
                     { c: "CUOTA 1 UNU T II", f: "31/03/2026", i: 190 },
                     { c: "CUOTA 2 UNU T II", f: "31/04/2026", i: 190 },
                     { c: "CUOTA 3 UNU T II", f: "31/05/2026", i: 190 },
                     { c: "CUOTA 4 UNU T II", f: "31/06/2026", i: 190 }
                 ]
-            }
+            },
         },
         unia: {
             mañana: {
-                "1": [
+                "v1_m": [
                     { c: "CUOTA 1 UNIA M", f: "31/03/2026", i: 210 },
                     { c: "CUOTA 2 UNIA M", f: "31/04/2026", i: 210 },
                     { c: "CUOTA 3 UNIA M", f: "31/05/2026", i: 210 },
                     { c: "CUOTA 4 UNIA M", f: "31/06/2026", i: 210 }
                 ],
-                "2": [
+                "v2_m": [
                     { c: "CUOTA 1 UNIA M II", f: "31/03/2026", i: 220 },
                     { c: "CUOTA 2 UNIA M II", f: "31/04/2026", i: 220 },
                     { c: "CUOTA 3 UNIA M II", f: "31/05/2026", i: 220 },
                     { c: "CUOTA 4 UNIA M II", f: "31/06/2026", i: 220 }
                 ],
-                "3": [
+                "s1_m": [
                     { c: "CUOTA 1 UNIA M", f: "31/03/2026", i: 210 },
                     { c: "CUOTA 2 UNIA M", f: "31/04/2026", i: 210 },
                     { c: "CUOTA 3 UNIA M", f: "31/05/2026", i: 210 },
                     { c: "CUOTA 4 UNIA M", f: "31/06/2026", i: 210 }
                 ],
-                "4": [
+                "s2_m": [
                     { c: "CUOTA 1 UNIA M II", f: "31/03/2026", i: 220 },
                     { c: "CUOTA 2 UNIA M II", f: "31/04/2026", i: 220 },
                     { c: "CUOTA 3 UNIA M II", f: "31/05/2026", i: 220 },
                     { c: "CUOTA 4 UNIA M II", f: "31/06/2026", i: 220 }
                 ],
-                "5": [
+                "a1_m": [
                     { c: "CUOTA 1 UNIA M", f: "31/03/2026", i: 210 },
                     { c: "CUOTA 2 UNIA M", f: "31/04/2026", i: 210 },
                     { c: "CUOTA 3 UNIA M", f: "31/05/2026", i: 210 },
                     { c: "CUOTA 4 UNIA M", f: "31/06/2026", i: 210 }
                 ],
-                "6": [
+                "a2_m": [
                     { c: "CUOTA 1 UNIA M II", f: "31/03/2026", i: 220 },
                     { c: "CUOTA 2 UNIA M II", f: "31/04/2026", i: 220 },
                     { c: "CUOTA 3 UNIA M II", f: "31/05/2026", i: 220 },
@@ -307,77 +377,77 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             },
             tarde: {
-                "1": [
+                "v1_t": [
                     { c: "CUOTA 1 UNIA T", f: "31/03/2026", i: 190 },
                     { c: "CUOTA 2 UNIA T", f: "31/04/2026", i: 190 },
                     { c: "CUOTA 3 UNIA T", f: "31/05/2026", i: 190 },
                     { c: "CUOTA 4 UNIA T", f: "31/06/2026", i: 190 }
                 ],
-                "2": [
+                "v2_t": [
                     { c: "CUOTA 1 UNIA T II", f: "31/03/2026", i: 200 },
                     { c: "CUOTA 2 UNIA T II", f: "31/04/2026", i: 200 },
                     { c: "CUOTA 3 UNIA T II", f: "31/05/2026", i: 200 },
                     { c: "CUOTA 4 UNIA T II", f: "31/06/2026", i: 200 }
                 ],
-                "3": [
+                "s1_t": [
                     { c: "CUOTA 1 UNIA T", f: "31/03/2026", i: 190 },
                     { c: "CUOTA 2 UNIA T", f: "31/04/2026", i: 190 },
                     { c: "CUOTA 3 UNIA T", f: "31/05/2026", i: 190 },
                     { c: "CUOTA 4 UNIA T", f: "31/06/2026", i: 190 }
                 ],
-                "4": [
+                "s2_t": [
                     { c: "CUOTA 1 UNIA T II", f: "31/03/2026", i: 200 },
                     { c: "CUOTA 2 UNIA T II", f: "31/04/2026", i: 200 },
                     { c: "CUOTA 3 UNIA T II", f: "31/05/2026", i: 200 },
                     { c: "CUOTA 4 UNIA T II", f: "31/06/2026", i: 200 }
                 ],
-                "5": [
+                "a1_t": [
                     { c: "CUOTA 1 UNIA T", f: "31/03/2026", i: 190 },
                     { c: "CUOTA 2 UNIA T", f: "31/04/2026", i: 190 },
                     { c: "CUOTA 3 UNIA T", f: "31/05/2026", i: 190 },
                     { c: "CUOTA 4 UNIA T", f: "31/06/2026", i: 190 }
                 ],
-                "6": [
+                "a2_t": [
                     { c: "CUOTA 1 UNIA T II", f: "31/03/2026", i: 200 },
                     { c: "CUOTA 2 UNIA T II", f: "31/04/2026", i: 200 },
                     { c: "CUOTA 3 UNIA T II", f: "31/05/2026", i: 200 },
                     { c: "CUOTA 4 UNIA T II", f: "31/06/2026", i: 200 }
                 ]
-            }
+            },
         },
         san_marcos: {
             mañana: {
-                "1": [
+                "v1_m": [
                     { c: "CUOTA 1 UNMSM M", f: "31/03/2026", i: 250 },
                     { c: "CUOTA 2 UNMSM M", f: "31/04/2026", i: 250 },
                     { c: "CUOTA 3 UNMSM M", f: "31/05/2026", i: 250 },
                     { c: "CUOTA 4 UNMSM M", f: "31/06/2026", i: 250 }
                 ],
-                "2": [
+                "v2_m": [
                     { c: "CUOTA 1 UNMSM M II", f: "31/03/2026", i: 260 },
                     { c: "CUOTA 2 UNMSM M II", f: "31/04/2026", i: 260 },
                     { c: "CUOTA 3 UNMSM M II", f: "31/05/2026", i: 260 },
                     { c: "CUOTA 4 UNMSM M II", f: "31/06/2026", i: 260 }
                 ],
-                "3": [
+                "s1_m": [
                     { c: "CUOTA 1 UNMSM M", f: "31/03/2026", i: 250 },
                     { c: "CUOTA 2 UNMSM M", f: "31/04/2026", i: 250 },
                     { c: "CUOTA 3 UNMSM M", f: "31/05/2026", i: 250 },
                     { c: "CUOTA 4 UNMSM M", f: "31/06/2026", i: 250 }
                 ],
-                "4": [
+                "s2_m": [
                     { c: "CUOTA 1 UNMSM M II", f: "31/03/2026", i: 260 },
                     { c: "CUOTA 2 UNMSM M II", f: "31/04/2026", i: 260 },
                     { c: "CUOTA 3 UNMSM M II", f: "31/05/2026", i: 260 },
                     { c: "CUOTA 4 UNMSM M II", f: "31/06/2026", i: 260 }
                 ],
-                "5": [
+                "a1_m": [
                     { c: "CUOTA 1 UNMSM M", f: "31/03/2026", i: 250 },
                     { c: "CUOTA 2 UNMSM M", f: "31/04/2026", i: 250 },
                     { c: "CUOTA 3 UNMSM M", f: "31/05/2026", i: 250 },
                     { c: "CUOTA 4 UNMSM M", f: "31/06/2026", i: 250 }
                 ],
-                "6": [
+                "a2_m": [
                     { c: "CUOTA 1 UNMSM M II", f: "31/03/2026", i: 260 },
                     { c: "CUOTA 2 UNMSM M II", f: "31/04/2026", i: 260 },
                     { c: "CUOTA 3 UNMSM M II", f: "31/05/2026", i: 260 },
@@ -385,77 +455,77 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             },
             tarde: {
-                "1": [
+                "v1_t": [
                     { c: "CUOTA 1 UNMSM T", f: "31/03/2026", i: 230 },
                     { c: "CUOTA 2 UNMSM T", f: "31/04/2026", i: 230 },
                     { c: "CUOTA 3 UNMSM T", f: "31/05/2026", i: 230 },
                     { c: "CUOTA 4 UNMSM T", f: "31/06/2026", i: 230 }
                 ],
-                "2": [
+                "v2_t": [
                     { c: "CUOTA 1 UNMSM T II", f: "31/03/2026", i: 240 },
                     { c: "CUOTA 2 UNMSM T II", f: "31/04/2026", i: 240 },
                     { c: "CUOTA 3 UNMSM T II", f: "31/05/2026", i: 240 },
                     { c: "CUOTA 4 UNMSM T II", f: "31/06/2026", i: 240 }
                 ],
-                "3": [
+                "s1_t": [
                     { c: "CUOTA 1 UNMSM T", f: "31/03/2026", i: 230 },
                     { c: "CUOTA 2 UNMSM T", f: "31/04/2026", i: 230 },
                     { c: "CUOTA 3 UNMSM T", f: "31/05/2026", i: 230 },
                     { c: "CUOTA 4 UNMSM T", f: "31/06/2026", i: 230 }
                 ],
-                "4": [
+                "s2_t": [
                     { c: "CUOTA 1 UNMSM T II", f: "31/03/2026", i: 240 },
                     { c: "CUOTA 2 UNMSM T II", f: "31/04/2026", i: 240 },
                     { c: "CUOTA 3 UNMSM T II", f: "31/05/2026", i: 240 },
                     { c: "CUOTA 4 UNMSM T II", f: "31/06/2026", i: 240 }
                 ],
-                "5": [
+                "a1_t": [
                     { c: "CUOTA 1 UNMSM T", f: "31/03/2026", i: 230 },
                     { c: "CUOTA 2 UNMSM T", f: "31/04/2026", i: 230 },
                     { c: "CUOTA 3 UNMSM T", f: "31/05/2026", i: 230 },
                     { c: "CUOTA 4 UNMSM T", f: "31/06/2026", i: 230 }
                 ],
-                "6": [
+                "a2_t": [
                     { c: "CUOTA 1 UNMSM T II", f: "31/03/2026", i: 240 },
                     { c: "CUOTA 2 UNMSM T II", f: "31/04/2026", i: 240 },
                     { c: "CUOTA 3 UNMSM T II", f: "31/05/2026", i: 240 },
                     { c: "CUOTA 4 UNMSM T II", f: "31/06/2026", i: 240 }
                 ]
-            }
+            },
         },
         uni: {
             mañana: {
-                "1": [
+                "v1_m": [
                     { c: "CUOTA 1 UNI M", f: "31/03/2026", i: 280 },
                     { c: "CUOTA 2 UNI M", f: "31/04/2026", i: 280 },
                     { c: "CUOTA 3 UNI M", f: "31/05/2026", i: 280 },
                     { c: "CUOTA 4 UNI M", f: "31/06/2026", i: 280 }
                 ],
-                "2": [
+                "v2_m": [
                     { c: "CUOTA 1 UNI M II", f: "31/03/2026", i: 290 },
                     { c: "CUOTA 2 UNI M II", f: "31/04/2026", i: 290 },
                     { c: "CUOTA 3 UNI M II", f: "31/05/2026", i: 290 },
                     { c: "CUOTA 4 UNI M II", f: "31/06/2026", i: 290 }
                 ],
-                "3": [
+                "s1_m": [
                     { c: "CUOTA 1 UNI M", f: "31/03/2026", i: 280 },
                     { c: "CUOTA 2 UNI M", f: "31/04/2026", i: 280 },
                     { c: "CUOTA 3 UNI M", f: "31/05/2026", i: 280 },
                     { c: "CUOTA 4 UNI M", f: "31/06/2026", i: 280 }
                 ],
-                "4": [
+                "s2_m": [
                     { c: "CUOTA 1 UNI M II", f: "31/03/2026", i: 290 },
                     { c: "CUOTA 2 UNI M II", f: "31/04/2026", i: 290 },
                     { c: "CUOTA 3 UNI M II", f: "31/05/2026", i: 290 },
                     { c: "CUOTA 4 UNI M II", f: "31/06/2026", i: 290 }
                 ],
-                "5": [
+                "a1_m": [
                     { c: "CUOTA 1 UNI M", f: "31/03/2026", i: 280 },
                     { c: "CUOTA 2 UNI M", f: "31/04/2026", i: 280 },
                     { c: "CUOTA 3 UNI M", f: "31/05/2026", i: 280 },
                     { c: "CUOTA 4 UNI M", f: "31/06/2026", i: 280 }
                 ],
-                "6": [
+                "a2_m": [
                     { c: "CUOTA 1 UNI M II", f: "31/03/2026", i: 290 },
                     { c: "CUOTA 2 UNI M II", f: "31/04/2026", i: 290 },
                     { c: "CUOTA 3 UNI M II", f: "31/05/2026", i: 290 },
@@ -463,77 +533,77 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             },
             tarde: {
-                "1": [
+                "v1_t": [
                     { c: "CUOTA 1 UNI T", f: "31/03/2026", i: 260 },
                     { c: "CUOTA 2 UNI T", f: "31/04/2026", i: 260 },
                     { c: "CUOTA 3 UNI T", f: "31/05/2026", i: 260 },
                     { c: "CUOTA 4 UNI T", f: "31/06/2026", i: 260 }
                 ],
-                "2": [
+                "v2_t": [
                     { c: "CUOTA 1 UNI T II", f: "31/03/2026", i: 270 },
                     { c: "CUOTA 2 UNI T II", f: "31/04/2026", i: 270 },
                     { c: "CUOTA 3 UNI T II", f: "31/05/2026", i: 270 },
                     { c: "CUOTA 4 UNI T II", f: "31/06/2026", i: 270 }
                 ],
-                "3": [
+                "s1_t": [
                     { c: "CUOTA 1 UNI T", f: "31/03/2026", i: 260 },
                     { c: "CUOTA 2 UNI T", f: "31/04/2026", i: 260 },
                     { c: "CUOTA 3 UNI T", f: "31/05/2026", i: 260 },
                     { c: "CUOTA 4 UNI T", f: "31/06/2026", i: 260 }
                 ],
-                "4": [
+                "s2_t": [
                     { c: "CUOTA 1 UNI T II", f: "31/03/2026", i: 270 },
                     { c: "CUOTA 2 UNI T II", f: "31/04/2026", i: 270 },
                     { c: "CUOTA 3 UNI T II", f: "31/05/2026", i: 270 },
                     { c: "CUOTA 4 UNI T II", f: "31/06/2026", i: 270 }
                 ],
-                "5": [
+                "a1_t": [
                     { c: "CUOTA 1 UNI T", f: "31/03/2026", i: 260 },
                     { c: "CUOTA 2 UNI T", f: "31/04/2026", i: 260 },
                     { c: "CUOTA 3 UNI T", f: "31/05/2026", i: 260 },
                     { c: "CUOTA 4 UNI T", f: "31/06/2026", i: 260 }
                 ],
-                "6": [
+                "a2_t": [
                     { c: "CUOTA 1 UNI T II", f: "31/03/2026", i: 270 },
                     { c: "CUOTA 2 UNI T II", f: "31/04/2026", i: 270 },
                     { c: "CUOTA 3 UNI T II", f: "31/05/2026", i: 270 },
                     { c: "CUOTA 4 UNI T II", f: "31/06/2026", i: 270 }
                 ]
-            }
+            },
         },
         catolica: {
             mañana: {
-                "1": [
+                "v1_m": [
                     { c: "CUOTA 1 Católica M", f: "31/03/2026", i: 300 },
                     { c: "CUOTA 2 Católica M", f: "31/04/2026", i: 300 },
                     { c: "CUOTA 3 Católica M", f: "31/05/2026", i: 300 },
                     { c: "CUOTA 4 Católica M", f: "31/06/2026", i: 300 }
                 ],
-                "2": [
+                "v2_m": [
                     { c: "CUOTA 1 Católica M II", f: "31/03/2026", i: 400 },
                     { c: "CUOTA 2 Católica M II", f: "31/04/2026", i: 400 },
                     { c: "CUOTA 3 Católica M II", f: "31/05/2026", i: 400 },
                     { c: "CUOTA 4 Católica M II", f: "31/06/2026", i: 400 }
                 ],
-                "3": [
+                "s1_m": [
                     { c: "CUOTA 1 Católica M", f: "31/03/2026", i: 300 },
                     { c: "CUOTA 2 Católica M", f: "31/04/2026", i: 300 },
                     { c: "CUOTA 3 Católica M", f: "31/05/2026", i: 300 },
                     { c: "CUOTA 4 Católica M", f: "31/06/2026", i: 300 }
                 ],
-                "4": [
+                "s2_m": [
                     { c: "CUOTA 1 Católica M II", f: "31/03/2026", i: 400 },
                     { c: "CUOTA 2 Católica M II", f: "31/04/2026", i: 400 },
                     { c: "CUOTA 3 Católica M II", f: "31/05/2026", i: 400 },
                     { c: "CUOTA 4 Católica M II", f: "31/06/2026", i: 400 }
                 ],
-                "5": [
+                "a1_m": [
                     { c: "CUOTA 1 Católica M", f: "31/03/2026", i: 300 },
                     { c: "CUOTA 2 Católica M", f: "31/04/2026", i: 300 },
                     { c: "CUOTA 3 Católica M", f: "31/05/2026", i: 300 },
                     { c: "CUOTA 4 Católica M", f: "31/06/2026", i: 300 }
                 ],
-                "6": [
+                "a2_m": [
                     { c: "CUOTA 1 Católica M II", f: "31/03/2026", i: 400 },
                     { c: "CUOTA 2 Católica M II", f: "31/04/2026", i: 400 },
                     { c: "CUOTA 3 Católica M II", f: "31/05/2026", i: 400 },
@@ -541,44 +611,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             },
             tarde: {
-                "1": [
+                "v1_t": [
                     { c: "CUOTA 1 Católica T", f: "31/03/2026", i: 200 },
                     { c: "CUOTA 2 Católica T", f: "31/04/2026", i: 200 },
                     { c: "CUOTA 3 Católica T", f: "31/05/2026", i: 200 },
                     { c: "CUOTA 4 Católica T", f: "31/06/2026", i: 200 }
                 ],
-                "2": [
+                "v2_t": [
                     { c: "CUOTA 1 Católica T II", f: "31/03/2026", i: 210 },
                     { c: "CUOTA 2 Católica T II", f: "31/04/2026", i: 210 },
                     { c: "CUOTA 3 Católica T II", f: "31/05/2026", i: 210 },
                     { c: "CUOTA 4 Católica T II", f: "31/06/2026", i: 210 }
                 ],
-                "3": [
+                "s1_t": [
                     { c: "CUOTA 1 Católica T", f: "31/03/2026", i: 200 },
                     { c: "CUOTA 2 Católica T", f: "31/04/2026", i: 200 },
                     { c: "CUOTA 3 Católica T", f: "31/05/2026", i: 200 },
                     { c: "CUOTA 4 Católica T", f: "31/06/2026", i: 200 }
                 ],
-                "4": [
+                "s2_t": [
                     { c: "CUOTA 1 Católica T II", f: "31/03/2026", i: 210 },
                     { c: "CUOTA 2 Católica T II", f: "31/04/2026", i: 210 },
                     { c: "CUOTA 3 Católica T II", f: "31/05/2026", i: 210 },
                     { c: "CUOTA 4 Católica T II", f: "31/06/2026", i: 210 }
                 ],
-                "5": [
+                "a1_t": [
                     { c: "CUOTA 1 Católica T", f: "31/03/2026", i: 200 },
                     { c: "CUOTA 2 Católica T", f: "31/04/2026", i: 200 },
                     { c: "CUOTA 3 Católica T", f: "31/05/2026", i: 200 },
                     { c: "CUOTA 4 Católica T", f: "31/06/2026", i: 200 }
                 ],
-                "6": [
+                "a2_t": [
                     { c: "CUOTA 1 Católica T II", f: "31/03/2026", i: 210 },
                     { c: "CUOTA 2 Católica T II", f: "31/04/2026", i: 210 },
                     { c: "CUOTA 3 Católica T II", f: "31/05/2026", i: 210 },
                     { c: "CUOTA 4 Católica T II", f: "31/06/2026", i: 210 }
                 ]
-            }
-        }
+            },
+        },
     };
 
     const selectorModalidad = document.getElementById('modalidadSelector');
@@ -599,6 +669,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const step2Colegio = document.getElementById('step-2-colegio');
     const step2Academia = document.getElementById('step-2-academia');
     const templateCiclo = document.getElementById('template-ciclo');
+    const tipoCicloSelect = document.getElementById('tipoCicloSelector');
 
 
     const horarios = {
@@ -625,7 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
                        turnoEscolarSelect.value !== "";
         }
         else if (modalidad === 'academia') {
-            const selectsValidos = uniSelect.value !== "" && turnoSelect.value !== "";
+            const selectsValidos = uniSelect.value !== "" && tipoCicloSelect.value !== "" && turnoSelect.value !== "";
 
             const cicloSeleccionado = document.querySelector('input[name="ciclo_op"]:checked');
             const pagoSeleccionado = document.querySelector('input[name="p"]:checked');
@@ -729,21 +800,53 @@ document.addEventListener('DOMContentLoaded', () => {
     turnoEscolarSelect.addEventListener('change', validarPaso1);
 
     uniSelect.addEventListener('change', function() {
-        const seleccion = this.value;
-
-        turnoSelect.length = 1;
+        const uniId = this.value;
+        limpiarSelector(tipoCicloSelect);
+        limpiarSelector(turnoSelect);
 
         ciclosCont.classList.add('hidden-section');
         cronogramaCont.classList.add('hidden-section');
 
-        if (horarios[seleccion]) {
+        if (uniId && DB_CICLOS[uniId]) {
+            tipoCicloSelect.disabled = false;
+            turnoSelect.disabled = true;
+
+            const tiposDisponibles = Object.keys(DB_CICLOS[uniId]);
+
+            tiposDisponibles.forEach(tipo => {
+                const nombreFormateado = "Ciclo " + tipo.charAt(0).toUpperCase() + tipo.slice(1);
+                tipoCicloSelect.add(new Option(nombreFormateado, tipo));
+            });
+        } else {
+            tipoCicloSelect.disabled = true;
+            turnoSelect.disabled = true;
+        }
+
+        validarPaso1();
+    });
+
+    tipoCicloSelect.addEventListener('change', function() {
+        const uniId = uniSelect.value;
+        const tipoId = this.value;
+
+        limpiarSelector(turnoSelect);
+        ciclosCont.classList.add('hidden-section');
+        cronogramaCont.classList.add('hidden-section');
+
+        const turnosDisponibles = (DB_CICLOS[uniId] && DB_CICLOS[uniId][tipoId])
+                                  ? DB_CICLOS[uniId][tipoId] : null;
+
+        if (turnosDisponibles) {
             turnoSelect.disabled = false;
 
-            const h = horarios[seleccion];
-            turnoSelect.add(new Option(`Mañana (${h.mañana})`, "mañana"));
-            turnoSelect.add(new Option(`Tarde (${h.tarde})`, "tarde"));
+            if (turnosDisponibles.mañana) {
+            turnoSelect.add(new Option("Mañana", "mañana"));
+            }
+            if (turnosDisponibles.tarde) {
+            turnoSelect.add(new Option("Tarde", "tarde"));
+            }
         } else {
-            turnoSelect.disabled = true;
+        turnoSelect.disabled = true;
         }
 
         validarPaso1();
@@ -753,8 +856,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const uniId = uniSelect.value;
         const turnoId = turnoSelect.value;
 
-        const ciclos = (DB_CICLOS[uniId] && DB_CICLOS[uniId][turnoId])
-                      ? DB_CICLOS[uniId][turnoId] : [];
+        const tipoId = tipoCicloSelect.value;
+        const ciclos = (DB_CICLOS[uniId] && DB_CICLOS[uniId][tipoId] && DB_CICLOS[uniId][tipoId][turnoId])
+               ? DB_CICLOS[uniId][tipoId][turnoId] : [];
 
         ciclosCont.innerHTML = "";
         if (ciclos.length === 0) {

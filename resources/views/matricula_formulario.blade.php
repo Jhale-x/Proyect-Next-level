@@ -104,6 +104,16 @@
                         <option value="catolica">Preparación Católica</option>
                     </select>
                 </div>
+
+                <div class="input-field-group">
+                    <select id="tipoCicloSelector" disabled>
+                        <option value="" disabled selected hidden>Tipo de Ciclo</option>
+                        <option value="verano">Ciclo Verano</option>
+                        <option value="semestral">Ciclo Semestral</option>
+                        <option value="anual">Ciclo Anual</option>
+                    </select>
+                </div>
+
                 <div class="input-field-group">
                     <select name="turno_academia" id="turnoAcademiaSelector" disabled>
                         <option value="" disabled selected hidden>Turno de Estudio</option>
