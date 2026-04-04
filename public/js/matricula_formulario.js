@@ -680,9 +680,15 @@ document.addEventListener('DOMContentLoaded', () => {
         catolica: { mañana: "9:30 AM - 3:00 PM", tarde: "5:00 PM - 10:00 PM" }
     };
 
-    function limpiarSelector(selectElement) {
-        selectElement.length = 1;
-        selectElement.selectedIndex = 0;
+    function limpiarSelector(selector) {
+        selector.options.length = 1;
+        selector.selectedIndex = 0;
+
+        const optionDefault = selector.options[0];
+
+        if (selector.id === "grado_escolar") optionDefault.textContent = "Seleccionar Grado";
+        if (selector.id === "seccion_escolar") optionDefault.textContent = "Seleccionar Sección";
+        if (selector.id === "turno_escolar") optionDefault.textContent = "Turno de Estudio";
     }
 
     function validarPaso1() {
@@ -710,13 +716,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     selectorModalidad.addEventListener('change', function() {
+        uniSelect.selectedIndex = 0;
+
         limpiarSecciones();
+        limpiarSelector(tipoCicloSelect);
+        limpiarSelector(turnoSelect);
+
+        tipoCicloSelect.disabled = true;
+        turnoSelect.disabled = true;
 
         secAcademia.classList.add('hidden-section');
         secColegio.classList.add('hidden-section');
-        footerActions.classList.add('hidden-section');
         ciclosCont.classList.add('hidden-section');
         cronogramaCont.classList.add('hidden-section');
+
+        cronogramaBody.innerHTML = "";
+        delete cronogramaBody.dataset.baseData;
 
         if (this.value === 'academia') {
             secAcademia.classList.remove('hidden-section');
@@ -724,6 +739,16 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (this.value === 'colegio') {
             secColegio.classList.remove('hidden-section');
             footerActions.classList.remove('hidden-section');
+
+            nivelSelect.selectedIndex = 0;
+
+            limpiarSelector(gradoSelect);
+            limpiarSelector(seccionSelect);
+            limpiarSelector(turnoEscolarSelect);
+
+            gradoSelect.options.length = 1;
+            seccionSelect.options.length = 1;
+            turnoEscolarSelect.options.length = 1;
         }
 
         validarPaso1();
@@ -882,8 +907,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     turnoSelect.addEventListener('change', function() {
         renderizarCiclos();
-
         cronogramaCont.classList.add('hidden-section');
+
+        const uniId = uniSelect.value;
+        const turnoId = this.value;
+
+        if (uniId && turnoId && horarios[uniId]) {
+            const textoHorario = horarios[uniId][turnoId];
+            console.log(`El horario para ${uniId} en la ${turnoId} es: ${textoHorario}`);
+        }
 
         validarPaso1();
     });
@@ -917,49 +949,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function limpiarSecciones() {
         uniSelect.selectedIndex = 0;
+        limpiarSelector(tipoCicloSelect);
+        limpiarSelector(turnoSelect);
 
-        turnoSelect.length = 1;
+        tipoCicloSelect.disabled = true;
         turnoSelect.disabled = true;
+
         ciclosCont.innerHTML = "";
-        cronogramaBody.innerHTML = "";
-
         ciclosCont.classList.add('hidden-section');
-        cronogramaCont.classList.add('hidden-section');
-
-        delete cronogramaBody.dataset.baseData;
 
         nivelSelect.selectedIndex = 0;
+        limpiarSelector(gradoSelect);
+        limpiarSelector(seccionSelect);
+        limpiarSelector(turnoEscolarSelect);
 
-        gradoSelect.length = 1;
         gradoSelect.disabled = true;
-
-        seccionSelect.length = 1;
         seccionSelect.disabled = true;
-
-        turnoEscolarSelect.length = 1;
         turnoEscolarSelect.disabled = true;
 
-        const camposPaso2 = [
-            ...step2Colegio.querySelectorAll('input, select'),
-            ...step2Academia.querySelectorAll('input, select')
-        ];
+        cronogramaBody.innerHTML = "";
+        cronogramaCont.classList.add('hidden-section');
+        delete cronogramaBody.dataset.baseData;
 
-        camposPaso2.forEach(elemento => {
-            if (elemento.type === 'radio') {
-                if (elemento.name === 'es_mayor' && elemento.value === 'no') {
-                    elemento.checked = true;
-                } else {
-                    elemento.checked = false;
-                }
-            } else {
-                elemento.value = "";
-            }
-        });
-
-        const seccionApoderadoAca = document.getElementById('seccion-apoderado-academia');
-        if (seccionApoderadoAca) {
-            seccionApoderadoAca.classList.remove('hidden-section');
-        }
+        validarPaso1();
     }
 
     function actualizarTotales() {
