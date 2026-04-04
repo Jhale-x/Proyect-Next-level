@@ -593,3 +593,49 @@ input[type="date"] {
 .step2-active {
     display: flex !important;
 }
+
+.resumen-container {
+    background: #f8fafc;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.resumen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.resumen-item {
+    font-size: 1rem;
+    color: var(--azul-oscuro);
+}
+
+.terms-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.checkbox-premium {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--azul-oscuro);
+}
+
+.checkbox-premium input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--rojo-principal);
+    cursor: pointer;
+}
+
+.checkbox-premium a {
+    color: var(--rojo-principal);
+    text-decoration: underline;
+}

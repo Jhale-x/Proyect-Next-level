@@ -1253,8 +1253,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalGeneralCol = document.getElementById('cronograma-total-general-colegio');
     const navStep2 = document.querySelector('.step2-navigation-actions');
     const btnRegresar = document.querySelector('.btn-premium-prev');
+    const step3Resumen = document.getElementById('step-3-resumen');
+    const checkTerminos = document.getElementById('check-terminos');
+    const checkPoliticas = document.getElementById('check-politicas');
+    const btnNextStep2 = document.querySelector('.btn-premium-next-step2');
 
     if (navStep2) navStep2.classList.add('hidden-section');
+
+    if (btnNextStep2) {
+        btnNextStep2.disabled = true;
+        btnNextStep2.style.cursor = "not-allowed";
+    }
 
     function limpiarSelector(selector) {
         selector.options.length = 1;
@@ -1298,6 +1307,148 @@ document.addEventListener('DOMContentLoaded', () => {
             btnContinuar.style.cursor = esValido ? "pointer" : "not-allowed";
         }
     }
+
+    function validarPaso2() {
+        const modalidad = selectorModalidad.value;
+        let esValido = true;
+
+        // 1. Identificamos qué contenedor de datos está activo (Colegio o Academia)
+        const contenedorActivo = (modalidad === 'colegio') ? step2Colegio : step2Academia;
+        if (!contenedorActivo) return;
+
+        // 2. Buscamos todos los campos obligatorios ([required]) dentro del contenedor activo
+        const camposObligatorios = contenedorActivo.querySelectorAll('input[required], select[required]');
+
+        camposObligatorios.forEach(input => {
+            // VERIFICACIÓN CRÍTICA:
+            // Si el input está dentro de un div con la clase 'hidden-section' (como el apoderado oculto),
+            // NO lo validamos. Solo validamos lo que el usuario ve.
+            const estaEnSeccionOculta = input.closest('.hidden-section');
+
+            if (!estaEnSeccionOculta) {
+                // Si el campo está visible y está vacío, el formulario deja de ser válido
+                if (!input.value.trim() || input.value === "") {
+                    esValido = false;
+                }
+            }
+        });
+
+        // 3. Lógica específica para Academia: Validar los botones de "Es mayor de edad"
+        if (modalidad === 'academia') {
+            const esMayorChecked = document.querySelector('input[name="es_mayor"]:checked');
+            // Si no han seleccionado ni "SÍ" ni "NO", no es válido
+            if (!esMayorChecked) {
+                esValido = false;
+            }
+        }
+
+        // 4. Aplicamos el estado visual y funcional al botón (Tu lógica premium)
+        if (btnNextStep2) {
+            btnNextStep2.disabled = !esValido;
+
+            if (esValido) {
+                btnNextStep2.style.cursor = "pointer";
+            } else {
+                btnNextStep2.style.cursor = "not-allowed";
+            }
+        }
+    }
+
+    // Escuchamos cambios en todos los inputs del Paso 2
+    document.querySelectorAll('#step-2-colegio input, #step-2-colegio select, #step-2-academia input, #step-2-academia select').forEach(input => {
+        input.addEventListener('input', validarPaso2);
+        input.addEventListener('change', validarPaso2);
+    });
+
+    function validarChecksPaso3() {
+        // 1. Verificamos si estamos en el Paso 3 (si el resumen es visible)
+        const enPaso3 = !step3Resumen.classList.contains('hidden-section');
+
+        if (enPaso3) {
+            // 2. Comprobamos si ambos checkboxes están marcados
+            const terminosAceptados = checkTerminos.checked;
+            const politicasAceptadas = checkPoliticas.checked;
+            const ambosAceptados = terminosAceptados && politicasAceptadas;
+
+            // 3. Controlamos el estado del botón sin afectar su color
+            btnNextStep2.disabled = !ambosAceptados;
+
+            if (ambosAceptados) {
+                // Estado habilitado
+                btnNextStep2.style.cursor = "pointer";
+            } else {
+                // Estado deshabilitado (pero sigue siendo rojo)
+                btnNextStep2.style.cursor = "not-allowed";
+            }
+        }
+    }
+
+    if (checkTerminos) checkTerminos.addEventListener('change', validarChecksPaso3);
+    if (checkPoliticas) checkPoliticas.addEventListener('change', validarChecksPaso3);
+
+    // MODIFICAR EL EVENTO CONTINUAR PARA PASAR DEL 2 AL 3
+    btnNextStep2.addEventListener('click', (e) => {
+        // 1. Si el botón está bloqueado (por validación de campos o checks), no hace nada
+        if (btnNextStep2.disabled) {
+            e.preventDefault();
+            return false;
+        }
+
+        // --- CASO A: ESTAMOS EN EL PASO 2 Y VAMOS AL PASO 3 (RESUMEN) ---
+        if (step3Resumen.classList.contains('hidden-section')) {
+
+            const modalidad = selectorModalidad.value;
+
+            // 2. Llenado dinámico de la información en el cuadro de Resumen
+            document.getElementById('res-modalidad').textContent = modalidad.toUpperCase();
+
+            if (modalidad === 'colegio') {
+                // Extraemos valores de los inputs de colegio
+                const nombres = document.querySelector('input[name="col_nombres"]').value;
+                const apePaterno = document.querySelector('input[name="col_ape_paterno"]').value;
+                const dni = document.querySelector('input[name="col_dni"]').value;
+
+                // Obtenemos el texto visible de los selectores (ej: "2do" en lugar de "2")
+                const gradoTexto = gradoSelect.options[gradoSelect.selectedIndex].text;
+                const seccionTexto = seccionSelect.options[seccionSelect.selectedIndex].text;
+
+                document.getElementById('res-alumno').textContent = `${nombres} ${apePaterno}`;
+                document.getElementById('res-dni').textContent = dni;
+                document.getElementById('res-ciclo').textContent = `${gradoTexto} - SECCIÓN ${seccionTexto}`;
+                document.getElementById('res-turno').textContent = turnoEscolarSelect.value.toUpperCase();
+            } else {
+                // Extraemos valores de los inputs de academia
+                const nombres = document.querySelector('input[name="aca_nombres"]').value;
+                const apePaterno = document.querySelector('input[name="aca_ape_paterno"]').value;
+                const dni = document.querySelector('input[name="aca_dni"]').value;
+
+                // Buscamos el nombre del ciclo que marcaron en los radio buttons
+                const cicloSeleccionado = document.querySelector('input[name="ciclo_op"]:checked');
+                const nombreCiclo = cicloSeleccionado ? cicloSeleccionado.closest('.ciclo-card').querySelector('.nombre-ciclo').textContent : "-";
+
+                document.getElementById('res-alumno').textContent = `${nombres} ${apePaterno}`;
+                document.getElementById('res-dni').textContent = dni;
+                document.getElementById('res-ciclo').textContent = nombreCiclo;
+                document.getElementById('res-turno').textContent = turnoSelect.value.toUpperCase();
+            }
+
+            // 3. Transición de pantallas (Esconder datos, mostrar resumen)
+            step2Colegio.classList.add('hidden-section');
+            step2Academia.classList.add('hidden-section');
+            step3Resumen.classList.remove('hidden-section');
+
+            // 4. Actualizar barra de progreso (Bolita 3)
+            document.getElementById('step-2-indicator').classList.remove('active');
+            document.getElementById('step-3-indicator').classList.add('active');
+
+            // 5. IMPORTANTE: Al entrar al paso 3, el botón DEBE bloquearse
+            // hasta que el usuario marque los checkboxes de términos.
+            validarChecksPaso3();
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        }
+    });
 
     selectorModalidad.addEventListener('change', function() {
         limpiarSecciones();
@@ -1689,33 +1840,63 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (btnRegresar) {
         btnRegresar.addEventListener('click', () => {
-            const form = document.getElementById('enrollmentForm');
-            if (form) form.reset();
+            const modalidad = selectorModalidad.value;
 
-            limpiarSecciones();
+            // --- CASO A: ESTAMOS EN EL PASO 3 Y VOLVEMOS AL PASO 2 ---
+            if (!step3Resumen.classList.contains('hidden-section')) {
+                // 1. Ocultar resumen
+                step3Resumen.classList.add('hidden-section');
 
-            if (selectorModalidad) selectorModalidad.selectedIndex = 0;
+                // 2. Mostrar formulario de datos correspondiente
+                if (modalidad === 'colegio') {
+                    step2Colegio.classList.remove('hidden-section');
+                } else {
+                    step2Academia.classList.remove('hidden-section');
+                }
 
-            step2Colegio.classList.add('hidden-section');
-            step2Academia.classList.add('hidden-section');
+                // 3. Actualizar Indicadores (Bolitas)
+                document.getElementById('step-3-indicator').classList.remove('active');
+                document.getElementById('step-2-indicator').classList.add('active');
 
-            if (navStep2) {
-                navStep2.classList.remove('step2-active');
-                navStep2.classList.add('hidden-section');
+                // 4. Re-validar los campos para que el botón se active si ya estaban llenos
+                validarPaso2();
             }
 
-            welcomeCard.classList.remove('hidden-section');
+            // --- CASO B: ESTAMOS EN EL PASO 2 Y VOLVEMOS AL PASO 1 (REINICIO TOTAL) ---
+            else {
+                // 1. Reiniciar el formulario completo (Nombres, DNI, Email, Radios)
+                const form = document.getElementById('enrollmentForm');
+                if (form) form.reset();
 
-            secColegio.classList.add('hidden-section');
-            secAcademia.classList.add('hidden-section');
-            footerActions.classList.add('hidden-section');
+                // 2. Limpiar cronogramas y selectores dinámicos
+                limpiarSecciones();
+                if (selectorModalidad) selectorModalidad.selectedIndex = 0;
 
-            document.getElementById('step-2-indicator').classList.remove('active');
-            document.getElementById('step-1-indicator').classList.add('active');
+                // 3. Ocultar secciones del Paso 2 y los botones de navegación
+                step2Colegio.classList.add('hidden-section');
+                step2Academia.classList.add('hidden-section');
 
+                if (navStep2) {
+                    navStep2.classList.remove('step2-active');
+                    navStep2.classList.add('hidden-section');
+                }
+
+                // 4. Mostrar bienvenida y ocultar el resto del Paso 1
+                welcomeCard.classList.remove('hidden-section');
+                secColegio.classList.add('hidden-section');
+                secAcademia.classList.add('hidden-section');
+                footerActions.classList.add('hidden-section'); // Oculto hasta que elija modalidad
+
+                // 5. Actualizar Indicadores (Volver a bolita 1)
+                document.getElementById('step-2-indicator').classList.remove('active');
+                document.getElementById('step-1-indicator').classList.add('active');
+
+                // 6. Asegurar que el botón del Paso 1 nazca bloqueado
+                validarPaso1();
+            }
+
+            // Scroll suave hacia arriba en cualquier caso
             window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            validarPaso1();
         });
     }
 
@@ -1729,10 +1910,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     btnContinuar.addEventListener('click', () => {
+        // 1. Seguridad inicial del Paso 1
         if (btnContinuar.disabled) return;
 
         const modalidad = selectorModalidad.value;
 
+        // 2. Ocultar todas las secciones del Paso 1 (Bienvenida y Selectores)
         const seccionesStep1 = [
             welcomeCard,
             secAcademia,
@@ -1748,43 +1931,61 @@ document.addEventListener('DOMContentLoaded', () => {
             if (seccion) seccion.classList.add('hidden-section');
         });
 
+        // 3. Activar los botones de navegación de la parte inferior (Regresar / Continuar Rojo)
         if (navStep2) {
             navStep2.classList.add('step2-active');
             navStep2.classList.remove('hidden-section');
         }
 
+        // 4. Actualizar barra de progreso (Bolitas)
         document.getElementById('step-1-indicator').classList.remove('active');
         document.getElementById('step-2-indicator').classList.add('active');
 
+        // 5. Mostrar el formulario de datos según la modalidad elegida
         if (modalidad === 'colegio') {
             step2Colegio.classList.remove('hidden-section');
         } else {
             step2Academia.classList.remove('hidden-section');
         }
 
+        // --- 6. PUNTO CLAVE DE SEGURIDAD ---
+        // Al entrar al Paso 2, forzamos la validación.
+        // Como los campos están vacíos, esto bloqueará el btnNextStep2 de inmediato.
+        validarPaso2();
+
+        // Subir el scroll suavemente para empezar desde arriba
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     document.addEventListener('change', (e) => {
 
+        // 1. Manejo de Selección de Ciclo (Genera el cronograma automáticamente)
         if (e.target.name === 'ciclo_op') {
             generarCronograma();
             validarPaso1();
         }
 
+        // 2. Manejo de Formas de Pago (Actualiza los totales en la tabla)
         if (e.target.name === 'p' || e.target.name === 'p_col') {
             actualizarTotales();
             validarPaso1();
         }
 
+        // 3. Manejo de Mayoría de Edad (Oculta/Muestra apoderado y RE-VALIDA)
         if (e.target.name === 'es_mayor') {
             const seccionApoderadoAca = document.getElementById('seccion-apoderado-academia');
             const seccionApoderadoCol = document.getElementById('seccion-apoderado-colegio');
 
             const debeOcultar = (e.target.value === 'si');
 
+            // Alternar visibilidad de las secciones de apoderado
             if (seccionApoderadoAca) seccionApoderadoAca.classList.toggle('hidden-section', debeOcultar);
             if (seccionApoderadoCol) seccionApoderadoCol.classList.toggle('hidden-section', debeOcultar);
+
+            // --- ESTO ES LO QUE TE FALTABA ---
+            // Al ocultar la sección, los campos 'required' dentro de ella se ignoran
+            // en nuestra nueva función validarPaso2. Llamamos a la validación aquí:
+            validarPaso2();
         }
     });
 });

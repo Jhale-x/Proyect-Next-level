@@ -58,9 +58,18 @@
             <div class="step-number">3</div>
             <div class="step-info">
                 <span class="step-label">Paso 3</span>
+                <span class="step-name">EN PROCESO</span>
+            </div>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step-box" id="step-4-indicator">
+            <div class="step-number">4</div>
+            <div class="step-info">
+                <span class="step-label">Paso 4</span>
                 <span class="step-name">FINALIZAR</span>
             </div>
         </div>
+
     </nav>
 
     <form id="enrollmentForm" class="premium-form fade-in">
@@ -226,7 +235,7 @@
                 <input type="text" name="col_nombres" placeholder="Nombres" required>
                 <input type="text" name="col_ape_paterno" placeholder="Apellido Paterno" required>
                 <input type="text" name="col_ape_materno" placeholder="Apellido Materno" required>
-                <input type="date" name="col_fecha_nac" required>
+                <input type="date" name="col_fecha_nac" max="2020-12-31" required>
                 <input type="text" name="col_dni" placeholder="DNI" maxlength="8" inputmode="numeric"required>
                 <select name="col_genero" required>
                     <option value="" disabled selected hidden>Género</option>
@@ -246,9 +255,9 @@
                 <input type="text" name="apo_nombres" placeholder="Nombres" required>
                 <input type="text" name="apo_ape_paterno" placeholder="Apellido Paterno" required>
                 <input type="text" name="apo_ape_materno" placeholder="Apellido Materno" required>
-                <input type="date" name="apo_fecha_nac" max="2008-12-31"required>
+                <input type="date" name="apo_fecha_nac" max="2008-12-31" required>
                 <input type="email" name="apo_email" placeholder="Correo Electrónico" required>
-                <input type="tel" name="apo_celular" placeholder="Número de Celular" required>
+                <input type="tel" name="apo_celular" placeholder="Número de Celular" maxlength="9" required>
                 <input type="text" name="apo_dni" placeholder="DNI" maxlength="8" inputmode="numeric" required>
             </div>
         </div>
@@ -272,8 +281,8 @@
                     <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
                 </select>
-                <input type="date" name="aca_fecha_nac" required>
-                <input type="tel" name="aca_celular" placeholder="Número de Celular" required>
+                <input type="date" name="aca_fecha_nac" max="2020-12-31" required>
+                <input type="tel" name="aca_celular" placeholder="Número de Celular" maxlength="9" required>
             </div>
 
             <div id="cont-mayor-edad" class="mayor-edad-container">
@@ -296,9 +305,57 @@
                     <input type="text" name="aca_apo_ape_materno" placeholder="Apellido Materno" required>
                     <input type="date" name="aca_apo_fecha_nac" max="2008-12-31" required>
                     <input type="email" name="aca_apo_email" placeholder="Correo Electrónico" required>
-                    <input type="tel" name="aca_apo_celular" placeholder="Número de Celular" required>
+                    <input type="tel" name="aca_apo_celular" placeholder="Número de Celular" maxlength="9" required>
                     <input type="text" name="aca_apo_dni" placeholder="DNI" maxlength="8" inputmode="numeric" required>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="premium-card hidden-section" id="step-3-resumen">
+        <div class="card-side-accent"></div>
+        <div class="card-body-content">
+            <h3 class="card-section-title">
+                <span class="icon-circle"><i class="fa-solid fa-file-invoice"></i></span>
+                RESUMEN DE MATRÍCULA
+            </h3>
+
+            <div class="resumen-container">
+                <div class="resumen-grid">
+                    <div class="resumen-item">
+                        <strong>Modalidad:</strong> <span id="res-modalidad">-</span>
+                    </div>
+                    <div class="resumen-item">
+                        <strong>Ciclo/Grado:</strong> <span id="res-ciclo">-</span>
+                    </div>
+                    <div class="resumen-item">
+                        <strong>Turno:</strong> <span id="res-turno">-</span>
+                    </div>
+                </div>
+
+                <hr class="separator-line">
+
+                <div class="resumen-grid">
+                    <div class="resumen-item">
+                        <strong>Alumno:</strong> <span id="res-alumno">-</span>
+                    </div>
+                    <div class="resumen-item">
+                        <strong>DNI:</strong> <span id="res-dni">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="separator-line">
+
+            <div class="terms-container">
+                <label class="checkbox-premium">
+                    <input type="checkbox" id="check-terminos">
+                    <span class="check-text">He leído y acepto los <a href="#">términos y condiciones</a>.</span>
+                </label>
+                <label class="checkbox-premium">
+                    <input type="checkbox" id="check-politicas">
+                    <span class="check-text">He leído y acepto la <a href="#">política de privacidad</a>.</span>
+                </label>
             </div>
         </div>
     </section>
