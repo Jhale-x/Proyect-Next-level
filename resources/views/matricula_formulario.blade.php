@@ -121,7 +121,7 @@
                 </div>
             </div>
 
-            <div id="ciclos-container" class="ciclos-wrapper hidden-section"></div>
+            <div id="ciclos-container-academia" class="ciclos-wrapper hidden-section"></div>
 
             <div id="cronograma-container" class="hidden-section">
                 <div class="cronograma-box fade-in">
@@ -182,6 +182,34 @@
                     <select name="turno_escolar" id="turno_escolar" disabled>
                         <option value="" disabled selected hidden>Turno de Estudio</option>
                     </select>
+                </div>
+            </div>
+
+            <div id="ciclos-container-colegio" class="ciclos-wrapper hidden-section"></div>
+
+            <div id="cronograma-container-colegio" class="hidden-section">
+                <div class="cronograma-box fade-in">
+                    <div class="cronograma-header">CRONOGRAMA DE PAGOS ESCOLAR</div>
+                    <table class="cronograma-table">
+                        <thead>
+                            <tr>
+                                <th>Cuota</th>
+                                <th>Vencimiento</th>
+                                <th>Importe</th>
+                                <th>Descuento</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cronograma-body-colegio"></tbody> <tfoot>
+                            <tr class="total-row-bold">
+                                <td colspan="4" class="text-right">Totales</td>
+                                <td id="cronograma-total-general-colegio">0.00</td> </tr>
+                        </tfoot>
+                    </table>
+                    <div class="pago-opciones">
+                        <label class="radio-pago"><input type="radio" name="p_col" value="c" checked> Quiero pagar en cuotas</label>
+                        <label class="radio-pago"><input type="radio" name="p_col" value="co"> Quiero pagar al contado</label>
+                    </div>
                 </div>
             </div>
         </div>

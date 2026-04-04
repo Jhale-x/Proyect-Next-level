@@ -4,95 +4,315 @@ document.addEventListener('DOMContentLoaded', () => {
         primaria: {
             "1": {
                 secciones: {
-                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
-                }
+                    "A": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "p1a_m", nombre: "PRIMARIA - 1ERO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "B": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "p1b_m", nombre: "PRIMARIA - 1ERO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "C": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "p1c_t", nombre: "PRIMARIA - 1ERO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "D": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "p1d_t", nombre: "PRIMARIA - 1ERO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                },
             },
             "2": {
                 secciones: {
-                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
-                }
+                    "A": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "p2a_m", nombre: "PRIMARIA - 2DO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "B": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "p2b_m", nombre: "PRIMARIA - 2DO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "C": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "p2c_t", nombre: "PRIMARIA - 2DO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "D": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "p2d_t", nombre: "PRIMARIA - 2DO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                },
             },
             "3": {
                 secciones: {
-                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
-                }
+                    "A": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "p3a_m", nombre: "PRIMARIA - 3ERO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "B": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "p3b_m", nombre: "PRIMARIA - 3ERO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "C": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "p3c_t", nombre: "PRIMARIA - 3ERO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "D": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "p3d_t", nombre: "PRIMARIA - 3ERO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                },
             },
             "4": {
                 secciones: {
-                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
-                }
+                    "A": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "p4a_m", nombre: "PRIMARIA - 4TO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "B": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "p4b_m", nombre: "PRIMARIA - 4TO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "C": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "p4c_t", nombre: "PRIMARIA - 4TO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "D": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "p4d_t", nombre: "PRIMARIA - 4TO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                },
             },
             "5": {
                 secciones: {
-                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
-                }
+                    "A": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "p5a_m", nombre: "PRIMARIA - 5TO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "B": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "p5b_m", nombre: "PRIMARIA - 5TO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "C": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "p5c_t", nombre: "PRIMARIA - 5TO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "D": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "p5d_t", nombre: "PRIMARIA - 5TO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                },
             },
             "6": {
                 secciones: {
-                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
-                }
+                    "A": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "p6a_m", nombre: "PRIMARIA - 6TO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "B": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "p1b_m", nombre: "PRIMARIA - 1ERO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "C": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "p1c_t", nombre: "PRIMARIA - 1ERO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "D": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "p1d_t", nombre: "PRIMARIA - 1ERO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                },
             },
         },
         secundaria: {
             "1": {
                 secciones: {
-                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
-                }
+                    "A": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "s1a_m", nombre: "SECUNDARIA - 1ERO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "B": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "s1b_m", nombre: "SECUNDARIA - 1ERO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "C": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "s1c_t", nombre: "SECUNDARIA - 1ERO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "D": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "s1d_t", nombre: "SECUNDARIA - 1ERO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                },
             },
             "2": {
                 secciones: {
-                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
-                }
+                    "A": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "s2a_m", nombre: "SECUNDARIA - 2DO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "B": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "s2b_m", nombre: "SECUNDARIA - 2DO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "C": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "s2c_t", nombre: "SECUNDARIA - 2DO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "D": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "s2d_t", nombre: "SECUNDARIA - 2DO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                },
             },
             "3": {
                 secciones: {
-                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
-                }
+                    "A": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "s3a_m", nombre: "SECUNDARIA - 3ERO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "B": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "s3b_m", nombre: "SECUNDARIA - 3ERO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "C": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "s3c_t", nombre: "SECUNDARIA - 3ERO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "D": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "s3d_t", nombre: "SECUNDARIA - 3ERO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                },
             },
-            "4":    {
+            "4": {
                 secciones: {
-                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
-                }
+                    "A": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "s4a_m", nombre: "SECUNDARIA - 4TO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "B": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "s4b_m", nombre: "SECUNDARIA - 4TO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "C": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "s4c_t", nombre: "SECUNDARIA - 4TO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "D": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "s4d_t", nombre: "SECUNDARIA - 4TO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                },
             },
             "5": {
                 secciones: {
-                    "A": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "B": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "C": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" },
-                    "D": { mañana: "7:00 AM - 12:00 PM", tarde: "12:45 PM - 6:00 PM" }
-                }
+                    "A": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "s5a_m", nombre: "SECUNDARIA - 5TO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "B": {
+                        mañana: {
+                            horario: "7:00 AM - 12:00 PM",
+                            grupos: [{ id: "s5b_m", nombre: "SECUNDARIA - 5TO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "C": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "s5c_t", nombre: "SECUNDARIA - 5TO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                    "D": {
+                        tarde: {
+                            horario: "12:45 PM - 5:00 PM",
+                            grupos: [{ id: "s5d_t", nombre: "SECUNDARIA - 5TO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                        }
+                    },
+                },
             },
-        }
+        },
     };
 
     const DB_CICLOS = {
@@ -348,7 +568,274 @@ document.addEventListener('DOMContentLoaded', () => {
         },
     };
 
-    const DB_CRONOGRAMAS = {
+    const DB_CRONOGRAMA_COLEGIO = {
+        "p1a_m": [
+            { c: "CUOTA 1 PRIMARIA - 1ERO - A", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 1ERO - A", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 1ERO - A", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 1ERO - A", f: "30/06/2026", i: 150.00 }
+        ],
+        "p1b_m": [
+            { c: "CUOTA 1 PRIMARIA - 1ERO - B", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 1ERO - B", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 1ERO - B", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 1ERO - B", f: "30/06/2026", i: 150.00 }
+        ],
+        "p1c_t": [
+            { c: "CUOTA 1 PRIMARIA - 1ERO - C", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 1ERO - C", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 1ERO - C", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 1ERO - C", f: "30/06/2026", i: 150.00 }
+        ],
+        "p1d_t": [
+            { c: "CUOTA 1 PRIMARIA - 1ERO - D", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 1ERO - D", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 1ERO - D", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 1ERO - D", f: "30/06/2026", i: 150.00 }
+        ],
+        "p2a_m": [
+            { c: "CUOTA 1 PRIMARIA - 2DO - A", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 2DO - A", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 2DO - A", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 2DO - A", f: "30/06/2026", i: 150.00 }
+        ],
+        "p2b_m": [
+            { c: "CUOTA 1 PRIMARIA - 2DO - B", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 2DO - B", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 2DO - B", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 2DO - B", f: "30/06/2026", i: 150.00 }
+        ],
+        "p2c_t": [
+            { c: "CUOTA 1 PRIMARIA - 2DO - C", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 2DO - C", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 2DO - C", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 2DO - C", f: "30/06/2026", i: 150.00 }
+        ],
+        "p2d_t": [
+            { c: "CUOTA 1 PRIMARIA - 2DO - D", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 2DO - D", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 2DO - D", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 2DO - D", f: "30/06/2026", i: 150.00 }
+        ],
+        "p3a_m": [
+            { c: "CUOTA 1 PRIMARIA - 3ERO - A", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 3ERO - A", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 3ERO - A", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 3ERO - A", f: "30/06/2026", i: 150.00 }
+        ],
+        "p3b_m": [
+            { c: "CUOTA 1 PRIMARIA - 3ERO - B", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 3ERO - B", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 3ERO - B", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 3ERO - B", f: "30/06/2026", i: 150.00 }
+        ],
+        "p3c_t": [
+            { c: "CUOTA 1 PRIMARIA - 3ERO - C", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 3ERO - C", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 3ERO - C", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 3ERO - C", f: "30/06/2026", i: 150.00 }
+        ],
+        "p3d_t": [
+            { c: "CUOTA 1 PRIMARIA - 3ERO - D", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 3ERO - D", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 3ERO - D", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 3ERO - D", f: "30/06/2026", i: 150.00 }
+        ],
+        "p4a_m": [
+            { c: "CUOTA 1 PRIMARIA - 4TO - A", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 4TO - A", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 4TO - A", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 4TO - A", f: "30/06/2026", i: 150.00 }
+        ],
+        "p4b_m": [
+            { c: "CUOTA 1 PRIMARIA - 4TO - B", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 4TO - B", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 4TO - B", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 4TO - B", f: "30/06/2026", i: 150.00 }
+        ],
+        "p4c_t": [
+            { c: "CUOTA 1 PRIMARIA - 4TO - C", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 4TO - C", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 4TO - C", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 4TO - C", f: "30/06/2026", i: 150.00 }
+        ],
+        "p4d_t": [
+            { c: "CUOTA 1 PRIMARIA - 4TO - D", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 4TO - D", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 4TO - D", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 4TO - D", f: "30/06/2026", i: 150.00 }
+        ],
+        "p5a_m": [
+            { c: "CUOTA 1 PRIMARIA - 5TO - A", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 5TO - A", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 5TO - A", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 5TO - A", f: "30/06/2026", i: 150.00 }
+        ],
+        "p5b_m": [
+            { c: "CUOTA 1 PRIMARIA - 5TO - B", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 5TO - B", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 5TO - B", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 5TO - B", f: "30/06/2026", i: 150.00 }
+        ],
+        "p5c_t": [
+            { c: "CUOTA 1 PRIMARIA - 5TO - C", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 5TO - C", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 5TO - C", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 5TO - C", f: "30/06/2026", i: 150.00 }
+        ],
+        "p5d_t": [
+            { c: "CUOTA 1 PRIMARIA - 5TO - D", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 5TO - D", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 5TO - D", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 5TO - D", f: "30/06/2026", i: 150.00 }
+        ],
+        "p6a_m": [
+            { c: "CUOTA 1 PRIMARIA - 6TO - A", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 6TO - A", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 6TO - A", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 6TO - A", f: "30/06/2026", i: 150.00 }
+        ],
+        "p6b_m": [
+            { c: "CUOTA 1 PRIMARIA - 6TO - B", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 6TO - B", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 6TO - B", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 6TO - B", f: "30/06/2026", i: 150.00 }
+        ],
+        "p6c_t": [
+            { c: "CUOTA 1 PRIMARIA - 6TO - C", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 6TO - C", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 6TO - C", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 6TO - C", f: "30/06/2026", i: 150.00 }
+        ],
+        "p6d_t": [
+            { c: "CUOTA 1 PRIMARIA - 6TO - D", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 6TO - D", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 6TO - D", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 6TO - D", f: "30/06/2026", i: 150.00 }
+        ],
+        "s1a_m": [
+            { c: "CUOTA 1 SECUNDARIA - 1ERO - A", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 1ERO - A", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 1ERO - A", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 1ERO - A", f: "30/06/2026", i: 150.00 }
+        ],
+        "s1b_m": [
+            { c: "CUOTA 1 SECUNDARIA - 1ERO - B", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 1ERO - B", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 1ERO - B", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 1ERO - B", f: "30/06/2026", i: 150.00 }
+        ],
+        "s1c_t": [
+            { c: "CUOTA 1 SECUNDARIA - 1ERO - C", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 1ERO - C", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 1ERO - C", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 1ERO - C", f: "30/06/2026", i: 150.00 }
+        ],
+        "s1d_t": [
+            { c: "CUOTA 1 SECUNDARIA - 1ERO - D", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 1ERO - D", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 1ERO - D", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 1ERO - D", f: "30/06/2026", i: 150.00 }
+        ],
+        "s2a_m": [
+            { c: "CUOTA 1 SECUNDARIA - 2DO - A", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 2DO - A", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 2DO - A", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 2DO - A", f: "30/06/2026", i: 150.00 }
+        ],
+        "s2b_m": [
+            { c: "CUOTA 1 SECUNDARIA - 2DO - B", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 2DO - B", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 2DO - B", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 2DO - B", f: "30/06/2026", i: 150.00 }
+        ],
+        "s2c_t": [
+            { c: "CUOTA 1 SECUNDARIA - 2DO - C", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 2DO - C", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 2DO - C", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 2DO - C", f: "30/06/2026", i: 150.00 }
+        ],
+        "s2d_t": [
+            { c: "CUOTA 1 SECUNDARIA - 2DO - D", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 2DO - D", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 2DO - D", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 2DO - D", f: "30/06/2026", i: 150.00 }
+        ],
+        "s3a_m": [
+            { c: "CUOTA 1 SECUNDARIA - 3ERO - A", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 3ERO - A", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 3ERO - A", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 3ERO - A", f: "30/06/2026", i: 150.00 }
+        ],
+        "s3b_m": [
+            { c: "CUOTA 1 SECUNDARIA - 3ERO - B", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 3ERO - B", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 3ERO - B", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 3ERO - B", f: "30/06/2026", i: 150.00 }
+        ],
+        "s3c_t": [
+            { c: "CUOTA 1 SECUNDARIA - 3ERO - C", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 3ERO - C", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 3ERO - C", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 3ERO - C", f: "30/06/2026", i: 150.00 }
+        ],
+        "s3d_t": [
+            { c: "CUOTA 1 SECUNDARIA - 3ERO - D", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 3ERO - D", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 3ERO - D", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 3ERO - D", f: "30/06/2026", i: 150.00 }
+        ],
+        "s4a_m": [
+            { c: "CUOTA 1 SECUNDARIA - 4TO - A", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 4TO - A", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 4TO - A", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 4TO - A", f: "30/06/2026", i: 150.00 }
+        ],
+        "s4b_m": [
+            { c: "CUOTA 1 SECUNDARIA - 4TO - B", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 4TO - B", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 4TO - B", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 4TO - B", f: "30/06/2026", i: 150.00 }
+        ],
+        "s4c_t": [
+            { c: "CUOTA 1 SECUNDARIA - 4TO - C", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 4TO - C", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 4TO - C", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 4TO - C", f: "30/06/2026", i: 150.00 }
+        ],
+        "s4d_t": [
+            { c: "CUOTA 1 SECUNDARIA - 4TO - D", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 4TO - D", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 4TO - D", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 4TO - D", f: "30/06/2026", i: 150.00 }
+        ],
+        "s5a_m": [
+            { c: "CUOTA 1 SECUNDARIA - 5TO - A", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 5TO - A", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 5TO - A", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 5TO - A", f: "30/06/2026", i: 150.00 }
+        ],
+        "s5b_m": [
+            { c: "CUOTA 1 SECUNDARIA - 5TO - B", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 5TO - B", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 5TO - B", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 5TO - B", f: "30/06/2026", i: 150.00 }
+        ],
+        "s5c_t": [
+            { c: "CUOTA 1 SECUNDARIA - 5TO - C", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 5TO - C", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 5TO - C", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 5TO - C", f: "30/06/2026", i: 150.00 }
+        ],
+        "s5d_t": [
+            { c: "CUOTA 1 SECUNDARIA - 5TO - D", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 5TO - D", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 5TO - D", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 5TO - D", f: "30/06/2026", i: 150.00 }
+        ],
+    }
+
+    const DB_CRONOGRAMA_ACADEMIA = {
         unu: {
             mañana: {
                 "v1_m": [
@@ -747,7 +1234,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const footerActions = document.getElementById('footer-actions');
     const uniSelect = document.getElementById('universidadSelector');
     const turnoSelect = document.getElementById('turnoAcademiaSelector');
-    const ciclosCont = document.getElementById('ciclos-container');
+    const ciclosCont = document.getElementById('ciclos-container-academia');
     const cronogramaCont = document.getElementById('cronograma-container');
     const cronogramaBody = document.getElementById('cronograma-body');
     const nivelSelect = document.getElementById('nivel_escolar');
@@ -760,6 +1247,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const step2Academia = document.getElementById('step-2-academia');
     const templateCiclo = document.getElementById('template-ciclo');
     const tipoCicloSelect = document.getElementById('tipoCicloSelector');
+    const ciclosContCol = document.getElementById('ciclos-container-colegio');
+    const cronogramaContCol = document.getElementById('cronograma-container-colegio');
+    const cronogramaBodyCol = document.getElementById('cronograma-body-colegio');
+    const totalGeneralCol = document.getElementById('cronograma-total-general-colegio');
 
     function limpiarSelector(selector) {
         selector.options.length = 1;
@@ -776,23 +1267,31 @@ document.addEventListener('DOMContentLoaded', () => {
         const modalidad = selectorModalidad.value;
         let esValido = false;
 
+        const cicloSeleccionado = document.querySelector('input[name="ciclo_op"]:checked');
+
         if (modalidad === 'colegio') {
-            esValido = nivelSelect.value !== "" &&
-                       gradoSelect.value !== "" &&
-                       seccionSelect.value !== "" &&
-                       turnoEscolarSelect.value !== "";
+            const selectoresLlenos = nivelSelect.value !== "" &&
+                                    gradoSelect.value !== "" &&
+                                    seccionSelect.value !== "" &&
+                                    turnoEscolarSelect.value !== "";
+
+            esValido = selectoresLlenos && cicloSeleccionado !== null;
         }
         else if (modalidad === 'academia') {
-            const selectsValidos = uniSelect.value !== "" && tipoCicloSelect.value !== "" && turnoSelect.value !== "";
+            const selectsAcademiaOK = uniSelect.value !== "" &&
+                                      tipoCicloSelect.value !== "" &&
+                                      turnoSelect.value !== "";
 
-            const cicloSeleccionado = document.querySelector('input[name="ciclo_op"]:checked');
-            const pagoSeleccionado = document.querySelector('input[name="p"]:checked');
-
-            esValido = selectsValidos && cicloSeleccionado !== null && pagoSeleccionado !== null;
+            esValido = selectsAcademiaOK && cicloSeleccionado !== null;
         }
 
         if (btnContinuar) {
             btnContinuar.disabled = !esValido;
+
+            btnContinuar.style.opacity = "1";
+            btnContinuar.style.filter = "none";
+
+            btnContinuar.style.cursor = esValido ? "pointer" : "not-allowed";
         }
     }
 
@@ -822,21 +1321,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     nivelSelect.addEventListener('change', function() {
         limpiarSelector(gradoSelect);
-        gradoSelect.length = 1;
+        limpiarSelector(seccionSelect);
+        limpiarSelector(turnoEscolarSelect);
+
         gradoSelect.disabled = false;
-
-        seccionSelect.selectedIndex = 0;
         seccionSelect.disabled = true;
-
-        turnoEscolarSelect.selectedIndex = 0;
         turnoEscolarSelect.disabled = true;
 
-        const maxGrado = (this.value === 'primaria') ? 6 : 5;
+        const containerCardsCol = document.getElementById('ciclos-container-colegio');
+        const containerCronogramaCol = document.getElementById('cronograma-container-colegio');
+
+        if (containerCardsCol) containerCardsCol.classList.add('hidden-section');
+        if (containerCronogramaCol) containerCronogramaCol.classList.add('hidden-section');
+
+        const nivelSeleccionado = this.value;
+        const maxGrado = (nivelSeleccionado === 'primaria') ? 6 : 5;
 
         for (let i = 1; i <= maxGrado; i++) {
-            const sufijo = (i === 1 || i === 3) ? "ero" : (i === 2) ? "do" : "to";
-            const textoGrado = `${i}${sufijo}`;
+            let sufijo = "to";
+            if (i === 1 || i === 3) sufijo = "ero";
+            else if (i === 2) sufijo = "do";
 
+            const textoGrado = `${i}${sufijo}`;
             gradoSelect.add(new Option(textoGrado, i));
         }
 
@@ -847,18 +1353,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const nivel = nivelSelect.value;
         const grado = this.value;
 
-        seccionSelect.length = 1;
-        turnoEscolarSelect.length = 1;
+        limpiarSelector(seccionSelect);
+        limpiarSelector(turnoEscolarSelect);
 
         turnoEscolarSelect.disabled = true;
 
-        const seccionesDisponibles = DB_COLEGIO[nivel][grado].secciones;
+        const containerCardsCol = document.getElementById('ciclos-container-colegio');
+        const containerCronogramaCol = document.getElementById('cronograma-container-colegio');
 
-        Object.keys(seccionesDisponibles).forEach(letra => {
-            seccionSelect.add(new Option(`Sección ${letra}`, letra));
-        });
+        if (containerCardsCol) containerCardsCol.classList.add('hidden-section');
+        if (containerCronogramaCol) containerCronogramaCol.classList.add('hidden-section');
 
-        seccionSelect.disabled = false;
+        if (DB_COLEGIO[nivel] && DB_COLEGIO[nivel][grado]) {
+            const seccionesDisponibles = DB_COLEGIO[nivel][grado].secciones;
+
+            Object.keys(seccionesDisponibles).forEach(letra => {
+                seccionSelect.add(new Option(`Sección ${letra}`, letra));
+            });
+
+            seccionSelect.disabled = false;
+        } else {
+            seccionSelect.disabled = true;
+        }
 
         validarPaso1();
     });
@@ -868,16 +1384,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const grado = gradoSelect.value;
         const letraSeccion = this.value;
 
-        turnoEscolarSelect.length = 1;
+        limpiarSelector(turnoEscolarSelect);
 
-        const horariosDisponibles = DB_COLEGIO[nivel][grado].secciones[letraSeccion];
+        const containerCardsCol = document.getElementById('ciclos-container-colegio');
+        const containerCronogramaCol = document.getElementById('cronograma-container-colegio');
 
-        if (horariosDisponibles) {
-            if (horariosDisponibles.mañana) {
-                turnoEscolarSelect.add(new Option(`Mañana (${horariosDisponibles.mañana})`, "mañana"));
+        if (containerCardsCol) containerCardsCol.classList.add('hidden-section');
+        if (containerCronogramaCol) containerCronogramaCol.classList.add('hidden-section');
+
+        const dataSeccion = (DB_COLEGIO[nivel] && DB_COLEGIO[nivel][grado] && DB_COLEGIO[nivel][grado].secciones)
+                            ? DB_COLEGIO[nivel][grado].secciones[letraSeccion] : null;
+
+        if (dataSeccion) {
+            if (dataSeccion.mañana) {
+                const textoMañana = `Mañana (${dataSeccion.mañana.horario})`;
+                turnoEscolarSelect.add(new Option(textoMañana, "mañana"));
             }
-            if (horariosDisponibles.tarde) {
-                turnoEscolarSelect.add(new Option(`Tarde (${horariosDisponibles.tarde})`, "tarde"));
+
+            if (dataSeccion.tarde) {
+                const textoTarde = `Tarde (${dataSeccion.tarde.horario})`;
+                turnoEscolarSelect.add(new Option(textoTarde, "tarde"));
             }
 
             turnoEscolarSelect.disabled = false;
@@ -888,7 +1414,10 @@ document.addEventListener('DOMContentLoaded', () => {
         validarPaso1();
     });
 
-    turnoEscolarSelect.addEventListener('change', validarPaso1);
+    turnoEscolarSelect.addEventListener('change', function() {
+        renderizarCiclos();
+        validarPaso1();
+    });
 
     uniSelect.addEventListener('change', function() {
         const uniId = this.value;
@@ -948,37 +1477,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function renderizarCiclos() {
-        const uniId = uniSelect.value;
-        const tipoId = tipoCicloSelect.value;
-        const turnoId = turnoSelect.value;
+        const modalidad = selectorModalidad.value;
+        let ciclos = [];
+        const contenedorDestino = (modalidad === 'academia') ? ciclosCont : ciclosContCol;
 
-        const configDelTurno = (DB_CICLOS[uniId] && DB_CICLOS[uniId][tipoId] && DB_CICLOS[uniId][tipoId][turnoId])
-                               ? DB_CICLOS[uniId][tipoId][turnoId] : null;
+        if (modalidad === 'academia') {
+            const uniId = uniSelect.value;
+            const tipoId = tipoCicloSelect.value;
+            const turnoId = turnoSelect.value;
 
-        const ciclos = (configDelTurno && configDelTurno.grupos) ? configDelTurno.grupos : [];
+            const configDelTurno = (DB_CICLOS[uniId] && DB_CICLOS[uniId][tipoId] && DB_CICLOS[uniId][tipoId][turnoId])
+                                   ? DB_CICLOS[uniId][tipoId][turnoId] : null;
 
-        while (ciclosCont.firstChild) {
-            ciclosCont.removeChild(ciclosCont.firstChild);
+            ciclos = (configDelTurno && configDelTurno.grupos) ? configDelTurno.grupos : [];
+        }
+        else if (modalidad === 'colegio') {
+            const nivel = nivelSelect.value;
+            const grado = gradoSelect.value;
+            const seccion = seccionSelect.value;
+            const turno = turnoEscolarSelect.value;
+
+            const dataTurno = (DB_COLEGIO[nivel] &&
+                               DB_COLEGIO[nivel][grado] &&
+                               DB_COLEGIO[nivel][grado].secciones[seccion])
+                               ? DB_COLEGIO[nivel][grado].secciones[seccion][turno] : null;
+
+            ciclos = (dataTurno && dataTurno.grupos) ? dataTurno.grupos : [];
+        }
+
+        if (!contenedorDestino) return;
+
+        while (contenedorDestino.firstChild) {
+            contenedorDestino.removeChild(contenedorDestino.firstChild);
         }
 
         if (ciclos.length === 0) {
-            ciclosCont.classList.add('hidden-section');
+            contenedorDestino.classList.add('hidden-section');
             return;
         }
 
         ciclos.forEach(ciclo => {
             const instancia = templateCiclo.content.cloneNode(true);
-
             const radio = instancia.querySelector('.ciclo-radio');
+
             radio.value = ciclo.id;
+            radio.name = "ciclo_op";
 
             instancia.querySelector('.nombre-ciclo').textContent = ciclo.nombre;
             instancia.querySelector('.fechas-ciclo').textContent = ciclo.fechas;
 
-            ciclosCont.appendChild(instancia);
+            contenedorDestino.appendChild(instancia);
         });
 
-        ciclosCont.classList.remove('hidden-section');
+        contenedorDestino.classList.remove('hidden-section');
     }
 
     turnoSelect.addEventListener('change', function() {
@@ -988,36 +1539,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function generarCronograma() {
-        const uniId = uniSelect.value;
-        const turnoId = turnoSelect.value;
+        const modalidad = selectorModalidad.value;
 
         const radioChecked = document.querySelector('input[name="ciclo_op"]:checked');
         if (!radioChecked) return;
 
-        const radioCuotas = document.querySelector('input[name="p"][value="c"]');
-        if (radioCuotas) {
-            radioCuotas.checked = true;
+        const cicloId = radioChecked.value;
+        let datosBase = null;
+
+        const bodyDestino = (modalidad === 'academia')
+                            ? cronogramaBody
+                            : cronogramaBodyCol;
+
+        const contenedorDestino = (modalidad === 'academia')
+                                  ? cronogramaCont
+                                  : cronogramaContCol;
+
+        if (modalidad === 'academia') {
+            const uniId = uniSelect.value;
+            const turnoId = turnoSelect.value;
+            datosBase = (DB_CRONOGRAMA_ACADEMIA[uniId] && DB_CRONOGRAMA_ACADEMIA[uniId][turnoId])
+                        ? DB_CRONOGRAMA_ACADEMIA[uniId][turnoId][cicloId] : null;
+        }
+        else if (modalidad === 'colegio') {
+            datosBase = DB_CRONOGRAMA_COLEGIO[cicloId] || null;
         }
 
-        const cicloId = radioChecked.value;
+        const radioCuotas = contenedorDestino.querySelector('input[value="c"]');
+        if (radioCuotas) radioCuotas.checked = true;
 
-        const datosBase = (DB_CRONOGRAMAS[uniId] && DB_CRONOGRAMAS[uniId][turnoId])
-                          ? DB_CRONOGRAMAS[uniId][turnoId][cicloId] : null;
-
-        while (cronogramaBody.firstChild) {
-            cronogramaBody.removeChild(cronogramaBody.firstChild);
+        if (!bodyDestino) return;
+        while (bodyDestino.firstChild) {
+            bodyDestino.removeChild(bodyDestino.firstChild);
         }
 
         if (!datosBase) {
-            cronogramaCont.classList.add('hidden-section');
+            contenedorDestino.classList.add('hidden-section');
             return;
         }
 
-        cronogramaBody.dataset.baseData = JSON.stringify(datosBase);
+        bodyDestino.dataset.baseData = JSON.stringify(datosBase);
 
         actualizarTotales();
 
-        cronogramaCont.classList.remove('hidden-section');
+        contenedorDestino.classList.remove('hidden-section');
 
         validarPaso1();
     }
@@ -1056,18 +1621,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function actualizarTotales() {
-        const radioPago = document.querySelector('input[name="p"]:checked');
-        if (!radioPago || !cronogramaBody.dataset.baseData) return;
+        const modalidad = selectorModalidad.value;
 
-        const datosBase = JSON.parse(cronogramaBody.dataset.baseData);
+        const bodyActual = (modalidad === 'academia') ? cronogramaBody : cronogramaBodyCol;
+        const totalTxtActual = (modalidad === 'academia')
+                               ? document.getElementById('cronograma-total-general')
+                               : totalGeneralCol;
+
+        const nameRadio = (modalidad === 'academia') ? 'p' : 'p_col';
+        const radioPago = document.querySelector(`input[name="${nameRadio}"]:checked`);
+
+        if (!radioPago || !bodyActual || !bodyActual.dataset.baseData) return;
+
+        const datosBase = JSON.parse(bodyActual.dataset.baseData);
         const modoPago = radioPago.value;
-        const totalGeneralTxt = document.getElementById('cronograma-total-general');
         const templateFila = document.getElementById('template-fila-cronograma');
 
-        while (cronogramaBody.firstChild) {
-            cronogramaBody.removeChild(cronogramaBody.firstChild);
+        while (bodyActual.firstChild) {
+            bodyActual.removeChild(bodyActual.firstChild);
         }
-        // ---------------------------------------------------------
 
         let sumaTotalFinal = 0;
 
@@ -1081,7 +1653,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 fila.querySelector('.col-descuento').textContent = "0.00";
                 fila.querySelector('.col-total').textContent = item.i.toFixed(2);
 
-                cronogramaBody.appendChild(fila);
+                bodyActual.appendChild(fila);
                 sumaTotalFinal += item.i;
             });
         } else {
@@ -1102,12 +1674,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             fila.querySelector('.col-total').textContent = neto.toFixed(2);
 
-            cronogramaBody.appendChild(fila);
+            bodyActual.appendChild(fila);
             sumaTotalFinal = neto;
         }
 
-        if (totalGeneralTxt) {
-            totalGeneralTxt.textContent = sumaTotalFinal.toFixed(2);
+        if (totalTxtActual) {
+            totalTxtActual.textContent = sumaTotalFinal.toFixed(2);
         }
     }
 
@@ -1144,34 +1716,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (e.target.name === 'ciclo_op') {
             generarCronograma();
-            const uniId = uniSelect.value;
-            const turnoId = turnoSelect.value;
-            const cicloId = e.target.value;
-
-            const datos = (DB_CRONOGRAMAS[uniId] && DB_CRONOGRAMAS[uniId][turnoId])
-                          ? DB_CRONOGRAMAS[uniId][turnoId][cicloId] : null;
-
-            if (datos) {
-                cronogramaBody.dataset.baseData = JSON.stringify(datos);
-                actualizarTotales();
-
-                cronogramaCont.classList.remove('hidden-section');
-            }
             validarPaso1();
         }
 
-        if (e.target.name === 'p') {
+        if (e.target.name === 'p' || e.target.name === 'p_col') {
             actualizarTotales();
             validarPaso1();
         }
 
+        // 3. LÓGICA DE MAYORÍA DE EDAD (Paso 2)
         if (e.target.name === 'es_mayor') {
             const seccionApoderadoAca = document.getElementById('seccion-apoderado-academia');
+            const seccionApoderadoCol = document.getElementById('seccion-apoderado-colegio');
 
-            if (seccionApoderadoAca) {
-                const debeOcultar = (e.target.value === 'si');
-                seccionApoderadoAca.classList.toggle('hidden-section', debeOcultar);
-            }
+            const debeOcultar = (e.target.value === 'si');
+
+            if (seccionApoderadoAca) seccionApoderadoAca.classList.toggle('hidden-section', debeOcultar);
+            if (seccionApoderadoCol) seccionApoderadoCol.classList.toggle('hidden-section', debeOcultar);
         }
     });
 });
