@@ -317,44 +317,71 @@
         <div class="card-body-content">
             <h3 class="card-section-title">
                 <span class="icon-circle"><i class="fa-solid fa-file-invoice"></i></span>
-                RESUMEN DE MATRÍCULA
+                CONFIRMACIÓN DE DATOS REGISTRADOS
             </h3>
 
-            <div class="resumen-container">
-                <div class="resumen-grid">
-                    <div class="resumen-item">
-                        <strong>Modalidad:</strong> <span id="res-modalidad">-</span>
-                    </div>
-                    <div class="resumen-item">
-                        <strong>Ciclo/Grado:</strong> <span id="res-ciclo">-</span>
-                    </div>
-                    <div class="resumen-item">
-                        <strong>Turno:</strong> <span id="res-turno">-</span>
+            <div class="resumen-premium-grid">
+                <div class="resumen-card-mini">
+                    <header><i class="fa-solid fa-graduation-cap"></i> INFORMACIÓN ACADÉMICA</header>
+                    <div class="res-content">
+                        <p><strong>Modalidad:</strong> <span id="res-modalidad">-</span></p>
+                        <p><strong>Ciclo/Grado:</strong> <span id="res-ciclo">-</span></p>
+                        <p><strong>Turno:</strong> <span id="res-turno">-</span></p>
                     </div>
                 </div>
 
-                <hr class="separator-line">
-
-                <div class="resumen-grid">
-                    <div class="resumen-item">
-                        <strong>Alumno:</strong> <span id="res-alumno">-</span>
+                <div class="resumen-card-mini">
+                    <header><i class="fa-solid fa-user"></i> DATOS DEL ESTUDIANTE</header>
+                    <div class="res-content">
+                        <p><strong>Nombres:</strong> <span id="res-alumno-full">-</span></p>
+                        <p><strong>DNI:</strong> <span id="res-alumno-dni">-</span></p>
+                        <p><strong>Correo:</strong> <span id="res-alumno-email">-</span></p>
+                        <p><strong>Género/Nac:</strong> <span id="res-alumno-extra">-</span></p>
                     </div>
-                    <div class="resumen-item">
-                        <strong>DNI:</strong> <span id="res-dni">-</span>
+                </div>
+
+                <div class="resumen-card-mini" id="res-card-apoderado">
+                    <header><i class="fa-solid fa-user-shield"></i> DATOS DEL APODERADO</header>
+                    <div class="res-content">
+                        <p><strong>Responsable:</strong> <span id="res-apo-nombre">-</span></p>
+                        <p><strong>DNI:</strong> <span id="res-apo-dni">-</span></p>
+                        <p><strong>Contacto:</strong> <span id="res-apo-cel">-</span></p>
+                    </div>
+                </div>
+
+                <div class="resumen-card-mini highlight-card full-width-resumen">
+                    <header><i class="fa-solid fa-wallet"></i> RESUMEN DE INVERSIÓN</header>
+                    <div class="res-content">
+                        <p><strong>Plan Elegido:</strong> <span id="res-pago-metodo">-</span></p>
+
+                        <div class="cronograma-resumen-container">
+                            <table class="resumen-tabla-mini">
+                                <thead>
+                                    <tr>
+                                        <th>Cuota</th>
+                                        <th>Vencimiento</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="res-cronograma-body-final">
+                                    </tbody>
+                            </table>
+                        </div>
+
+                        <p class="total-destacado">
+                        <strong>Total Final:</strong> S/ <span id="res-pago-total">0.00</span></p>
                     </div>
                 </div>
             </div>
 
-            <hr class="separator-line">
-
-            <div class="terms-container">
+            <div class="terms-container-v2">
                 <label class="checkbox-premium">
                     <input type="checkbox" id="check-terminos">
-                    <span class="check-text">He leído y acepto los <a href="#">términos y condiciones</a>.</span>
+                    <span class="check-text">He leído y acepto los <a href="#">Términos y Condiciones</a>.</span>
                 </label>
                 <label class="checkbox-premium">
                     <input type="checkbox" id="check-politicas">
-                    <span class="check-text">He leído y acepto la <a href="#">política de privacidad</a>.</span>
+                    <span class="check-text">He leído y acepto la <a href="#">Política de Privacidad y Cookies</a>.</span>
                 </label>
             </div>
         </div>
@@ -377,6 +404,14 @@
 
     </form>
     </section>
+
+    <template id="template-fila-resumen">
+        <tr>
+            <td class="res-col-cuota"></td>
+            <td class="res-col-vencimiento"></td>
+            <td class="res-col-total"></td>
+        </tr>
+    </template>
 
     <template id="template-ciclo">
         <label class="ciclo-card">
