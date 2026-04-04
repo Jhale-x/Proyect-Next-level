@@ -797,39 +797,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     selectorModalidad.addEventListener('change', function() {
-        uniSelect.selectedIndex = 0;
-
         limpiarSecciones();
-        limpiarSelector(tipoCicloSelect);
-        limpiarSelector(turnoSelect);
-
-        tipoCicloSelect.disabled = true;
-        turnoSelect.disabled = true;
 
         secAcademia.classList.add('hidden-section');
         secColegio.classList.add('hidden-section');
         ciclosCont.classList.add('hidden-section');
         cronogramaCont.classList.add('hidden-section');
-
-        cronogramaBody.innerHTML = "";
-        delete cronogramaBody.dataset.baseData;
+        footerActions.classList.add('hidden-section');
 
         if (this.value === 'academia') {
             secAcademia.classList.remove('hidden-section');
             footerActions.classList.remove('hidden-section');
+
         } else if (this.value === 'colegio') {
             secColegio.classList.remove('hidden-section');
             footerActions.classList.remove('hidden-section');
 
             nivelSelect.selectedIndex = 0;
 
-            limpiarSelector(gradoSelect);
-            limpiarSelector(seccionSelect);
-            limpiarSelector(turnoEscolarSelect);
-
-            gradoSelect.options.length = 1;
-            seccionSelect.options.length = 1;
-            turnoEscolarSelect.options.length = 1;
         }
 
         validarPaso1();
@@ -999,7 +984,6 @@ document.addEventListener('DOMContentLoaded', () => {
     turnoSelect.addEventListener('change', function() {
         renderizarCiclos();
         cronogramaCont.classList.add('hidden-section');
-        // Eliminamos el bloque de 'horarios' porque ya no existe esa variable
         validarPaso1();
     });
 
@@ -1008,16 +992,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const turnoId = turnoSelect.value;
 
         const radioChecked = document.querySelector('input[name="ciclo_op"]:checked');
-
         if (!radioChecked) return;
+
+        const radioCuotas = document.querySelector('input[name="p"][value="c"]');
+        if (radioCuotas) {
+            radioCuotas.checked = true;
+        }
 
         const cicloId = radioChecked.value;
 
         const datosBase = (DB_CRONOGRAMAS[uniId] && DB_CRONOGRAMAS[uniId][turnoId])
                           ? DB_CRONOGRAMAS[uniId][turnoId][cicloId] : null;
 
+        while (cronogramaBody.firstChild) {
+            cronogramaBody.removeChild(cronogramaBody.firstChild);
+        }
+
         if (!datosBase) {
-            cronogramaBody.innerHTML = "";
+            cronogramaCont.classList.add('hidden-section');
             return;
         }
 
@@ -1038,7 +1030,9 @@ document.addEventListener('DOMContentLoaded', () => {
         tipoCicloSelect.disabled = true;
         turnoSelect.disabled = true;
 
-        ciclosCont.innerHTML = "";
+        while (ciclosCont.firstChild) {
+            ciclosCont.removeChild(ciclosCont.firstChild);
+        }
         ciclosCont.classList.add('hidden-section');
 
         nivelSelect.selectedIndex = 0;
@@ -1050,8 +1044,12 @@ document.addEventListener('DOMContentLoaded', () => {
         seccionSelect.disabled = true;
         turnoEscolarSelect.disabled = true;
 
-        cronogramaBody.innerHTML = "";
+        while (cronogramaBody.firstChild) {
+            cronogramaBody.removeChild(cronogramaBody.firstChild);
+        }
+
         cronogramaCont.classList.add('hidden-section');
+
         delete cronogramaBody.dataset.baseData;
 
         validarPaso1();
@@ -1066,7 +1064,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalGeneralTxt = document.getElementById('cronograma-total-general');
         const templateFila = document.getElementById('template-fila-cronograma');
 
-        cronogramaBody.innerHTML = "";
+        while (cronogramaBody.firstChild) {
+            cronogramaBody.removeChild(cronogramaBody.firstChild);
+        }
+        // ---------------------------------------------------------
+
         let sumaTotalFinal = 0;
 
         if (modoPago === 'c') {
@@ -1096,7 +1098,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const celdaDesc = fila.querySelector('.col-descuento');
             celdaDesc.textContent = `-${montoDesc.toFixed(2)}`;
-
             celdaDesc.classList.add('monto-negativo');
 
             fila.querySelector('.col-total').textContent = neto.toFixed(2);
