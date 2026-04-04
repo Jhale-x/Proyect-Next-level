@@ -208,7 +208,7 @@
                 <input type="text" name="apo_nombres" placeholder="Nombres" required>
                 <input type="text" name="apo_ape_paterno" placeholder="Apellido Paterno" required>
                 <input type="text" name="apo_ape_materno" placeholder="Apellido Materno" required>
-                <input type="date" name="apo_fecha_nac" required>
+                <input type="date" name="apo_fecha_nac" max="2008-12-31"required>
                 <input type="email" name="apo_email" placeholder="Correo Electrónico" required>
                 <input type="tel" name="apo_celular" placeholder="Número de Celular" required>
                 <input type="text" name="apo_dni" placeholder="DNI" maxlength="8" required>
@@ -256,7 +256,7 @@
                     <input type="text" name="aca_apo_nombres" placeholder="Nombres">
                     <input type="text" name="aca_apo_ape_paterno" placeholder="Apellido Paterno">
                     <input type="text" name="aca_apo_ape_materno" placeholder="Apellido Materno">
-                    <input type="date" name="aca_apo_fecha_nac" required>
+                    <input type="date" name="aca_apo_fecha_nac" max="2008-12-31" required>
                     <input type="email" name="aca_apo_email" placeholder="Correo Electrónico">
                     <input type="tel" name="aca_apo_celular" placeholder="Número de Celular">
                     <input type="text" name="aca_apo_dni" placeholder="DNI" maxlength="8">
