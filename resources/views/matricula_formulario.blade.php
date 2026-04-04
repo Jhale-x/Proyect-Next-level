@@ -227,7 +227,7 @@
                 <input type="text" name="col_ape_paterno" placeholder="Apellido Paterno" required>
                 <input type="text" name="col_ape_materno" placeholder="Apellido Materno" required>
                 <input type="date" name="col_fecha_nac" required>
-                <input type="text" name="col_dni" placeholder="DNI" maxlength="8" required>
+                <input type="text" name="col_dni" placeholder="DNI" maxlength="8" inputmode="numeric"required>
                 <select name="col_genero" required>
                     <option value="" disabled selected hidden>Género</option>
                     <option value="M">Masculino</option>
@@ -249,7 +249,7 @@
                 <input type="date" name="apo_fecha_nac" max="2008-12-31"required>
                 <input type="email" name="apo_email" placeholder="Correo Electrónico" required>
                 <input type="tel" name="apo_celular" placeholder="Número de Celular" required>
-                <input type="text" name="apo_dni" placeholder="DNI" maxlength="8" required>
+                <input type="text" name="apo_dni" placeholder="DNI" maxlength="8" inputmode="numeric" required>
             </div>
         </div>
     </section>
@@ -265,7 +265,7 @@
                 <input type="text" name="aca_nombres" placeholder="Nombres" required>
                 <input type="text" name="aca_ape_paterno" placeholder="Apellido Paterno" required>
                 <input type="text" name="aca_ape_materno" placeholder="Apellido Materno" required>
-                <input type="text" name="aca_dni" placeholder="DNI" maxlength="8" required>
+                <input type="text" name="aca_dni" placeholder="DNI" maxlength="8" inputmode="numeric" required>
                 <input type="email" name="aca_email" placeholder="Correo Electrónico" required>
                 <select name="aca_genero" required>
                     <option value="" disabled selected hidden>Género</option>
@@ -291,13 +291,13 @@
                     DATOS DEL APODERADO
                 </h3>
                 <div class="form-responsive-grid">
-                    <input type="text" name="aca_apo_nombres" placeholder="Nombres">
-                    <input type="text" name="aca_apo_ape_paterno" placeholder="Apellido Paterno">
-                    <input type="text" name="aca_apo_ape_materno" placeholder="Apellido Materno">
+                    <input type="text" name="aca_apo_nombres" placeholder="Nombres" required>
+                    <input type="text" name="aca_apo_ape_paterno" placeholder="Apellido Paterno" required>
+                    <input type="text" name="aca_apo_ape_materno" placeholder="Apellido Materno" required>
                     <input type="date" name="aca_apo_fecha_nac" max="2008-12-31" required>
-                    <input type="email" name="aca_apo_email" placeholder="Correo Electrónico">
-                    <input type="tel" name="aca_apo_celular" placeholder="Número de Celular">
-                    <input type="text" name="aca_apo_dni" placeholder="DNI" maxlength="8">
+                    <input type="email" name="aca_apo_email" placeholder="Correo Electrónico" required>
+                    <input type="tel" name="aca_apo_celular" placeholder="Número de Celular" required>
+                    <input type="text" name="aca_apo_dni" placeholder="DNI" maxlength="8" inputmode="numeric" required>
                 </div>
             </div>
         </div>
@@ -311,7 +311,7 @@
 
         <div class="step2-navigation-actions hidden-section">
             <button type="button" class="btn-premium-prev">
-                <i class="fa-solid fa-arrow-left-long"></i> Regresar
+                <i class="fa-solid fa-arrow-left-long"></i> Regresar Proceso
             </button>
             <button type="button" class="btn-premium-next-step2">
                 Continuar Proceso <i class="fa-solid fa-arrow-right-long"></i>

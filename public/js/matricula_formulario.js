@@ -1719,6 +1719,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const inputsNumericos = document.querySelectorAll('input[name*="dni"], input[name*="celular"]');
+
+    inputsNumericos.forEach(input => {
+        input.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    });
+
 
     btnContinuar.addEventListener('click', () => {
         if (btnContinuar.disabled) return;

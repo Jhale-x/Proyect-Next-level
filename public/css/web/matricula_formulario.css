@@ -530,54 +530,66 @@ input[type="date"] {
 }
 
 .step2-navigation-actions {
-    display: none !important;
-    justify-content: space-between !important;
+    display: none;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     max-width: 1000px;
-    margin: 30px auto 10px auto;
+    margin: 40px auto 20px;
     padding: 0 10px;
+    gap: 20px;
 }
 
-.step2-active {
-    display: flex !important;
-}
-
-.btn-premium-prev {
-    background-color: var(--blanco) !important;
-    color: var(--rojo-principal) !important;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 10px;
+.btn-premium-prev,
+.btn-premium-next-step2 {
+    flex: 1;
+    max-width: 900px;
+    height: 55px;
     font-size: 1.1rem;
     font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    border-radius: 12px;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 10px;
-    box-shadow: 0 10px 20px rgba(230, 0, 0, 0.2);
-    transition: all 0.3s ease;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
 }
 
-.btn-premium-prev:hover {
-    box-shadow: 0 15px 30px rgba(230, 0, 0, 0.3);
-    transform: translateX(-2px);
+.btn-premium-prev {
+    background-color: var(--rojo-principal) !important;
+    color: var(--blanco) !important;
+    box-shadow: 0 8px 15px rgba(227, 16, 14, 0.2) !important;
 }
 
 .btn-premium-next-step2 {
     background-color: var(--rojo-principal) !important;
     color: var(--blanco) !important;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 10px;
-    font-weight: 700;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.3s ease;
+    box-shadow: 0 8px 15px rgba(227, 16, 14, 0.2) !important;
+}
+
+.btn-premium-prev:hover,
+.btn-premium-next-step2:hover {
+    transform: translateY(-3px);
+}
+
+.btn-premium-prev:hover {
+    box-shadow: 0 12px 20px rgba(227, 16, 14, 0.3) !important;
 }
 
 .btn-premium-next-step2:hover {
-    transform: translateX(5px);
+    box-shadow: 0 12px 20px rgba(227, 16, 14, 0.3) !important;
+}
+
+.btn-premium-prev:active,
+.btn-premium-next-step2:active {
+    transform: translateY(0);
+}
+
+.step2-active {
+    display: flex !important;
 }
