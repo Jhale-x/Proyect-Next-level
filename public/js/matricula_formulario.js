@@ -1251,6 +1251,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const cronogramaContCol = document.getElementById('cronograma-container-colegio');
     const cronogramaBodyCol = document.getElementById('cronograma-body-colegio');
     const totalGeneralCol = document.getElementById('cronograma-total-general-colegio');
+    const navStep2 = document.querySelector('.step2-navigation-actions');
+    const btnRegresar = document.querySelector('.btn-premium-prev');
+
+    if (navStep2) navStep2.classList.add('hidden-section');
 
     function limpiarSelector(selector) {
         selector.options.length = 1;
@@ -1683,6 +1687,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    if (btnRegresar) {
+        btnRegresar.addEventListener('click', () => {
+            const form = document.getElementById('enrollmentForm');
+            if (form) form.reset();
+
+            limpiarSecciones();
+
+            if (selectorModalidad) selectorModalidad.selectedIndex = 0;
+
+            step2Colegio.classList.add('hidden-section');
+            step2Academia.classList.add('hidden-section');
+
+            if (navStep2) {
+                navStep2.classList.remove('step2-active');
+                navStep2.classList.add('hidden-section');
+            }
+
+            welcomeCard.classList.remove('hidden-section');
+
+            secColegio.classList.add('hidden-section');
+            secAcademia.classList.add('hidden-section');
+            footerActions.classList.add('hidden-section');
+
+            document.getElementById('step-2-indicator').classList.remove('active');
+            document.getElementById('step-1-indicator').classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            validarPaso1();
+        });
+    }
+
+
     btnContinuar.addEventListener('click', () => {
         if (btnContinuar.disabled) return;
 
@@ -1694,12 +1731,19 @@ document.addEventListener('DOMContentLoaded', () => {
             secColegio,
             ciclosCont,
             cronogramaCont,
-            footerActions
+            footerActions,
+            ciclosContCol,
+            cronogramaContCol
         ];
 
         seccionesStep1.forEach(seccion => {
-            seccion.classList.add('hidden-section');
+            if (seccion) seccion.classList.add('hidden-section');
         });
+
+        if (navStep2) {
+            navStep2.classList.add('step2-active');
+            navStep2.classList.remove('hidden-section');
+        }
 
         document.getElementById('step-1-indicator').classList.remove('active');
         document.getElementById('step-2-indicator').classList.add('active');
@@ -1709,6 +1753,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             step2Academia.classList.remove('hidden-section');
         }
+
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
@@ -1724,7 +1769,6 @@ document.addEventListener('DOMContentLoaded', () => {
             validarPaso1();
         }
 
-        // 3. LÓGICA DE MAYORÍA DE EDAD (Paso 2)
         if (e.target.name === 'es_mayor') {
             const seccionApoderadoAca = document.getElementById('seccion-apoderado-academia');
             const seccionApoderadoCol = document.getElementById('seccion-apoderado-colegio');

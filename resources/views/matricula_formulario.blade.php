@@ -308,6 +308,16 @@
                 Continuar Proceso <i class="fa-solid fa-arrow-right-long"></i>
             </button>
         </div>
+
+        <div class="step2-navigation-actions hidden-section">
+            <button type="button" class="btn-premium-prev">
+                <i class="fa-solid fa-arrow-left-long"></i> Regresar
+            </button>
+            <button type="button" class="btn-premium-next-step2">
+                Continuar Proceso <i class="fa-solid fa-arrow-right-long"></i>
+            </button>
+        </div>
+
     </form>
     </section>
 

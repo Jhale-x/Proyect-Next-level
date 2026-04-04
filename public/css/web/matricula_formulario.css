@@ -528,3 +528,56 @@ input[type="date"] {
 .fade-in {
     animation: fadeInSlide 0.4s ease-out forwards;
 }
+
+.step2-navigation-actions {
+    display: none !important;
+    justify-content: space-between !important;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px auto 10px auto;
+    padding: 0 10px;
+}
+
+.step2-active {
+    display: flex !important;
+}
+
+.btn-premium-prev {
+    background-color: var(--blanco) !important;
+    color: var(--rojo-principal) !important;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 20px rgba(230, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn-premium-prev:hover {
+    box-shadow: 0 15px 30px rgba(230, 0, 0, 0.3);
+    transform: translateX(-2px);
+}
+
+.btn-premium-next-step2 {
+    background-color: var(--rojo-principal) !important;
+    color: var(--blanco) !important;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-premium-next-step2:hover {
+    transform: translateX(5px);
+}
