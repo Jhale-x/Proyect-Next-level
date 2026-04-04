@@ -609,20 +609,28 @@ document.addEventListener('DOMContentLoaded', () => {
         catolica: { mañana: "9:30 AM - 3:00 PM", tarde: "5:00 PM - 10:00 PM" }
     };
 
+    function limpiarSelector(selectElement) {
+        selectElement.length = 1;
+        selectElement.selectedIndex = 0;
+    }
+
     function validarPaso1() {
         const modalidad = selectorModalidad.value;
         let esValido = false;
 
         if (modalidad === 'colegio') {
             esValido = nivelSelect.value !== "" &&
-                   gradoSelect.value !== "" &&
-                   seccionSelect.value !== "" &&
-                   turnoEscolarSelect.value !== "";
-        } else if (modalidad === 'academia') {
-            const cicloRadio = document.querySelector('input[name="ciclo_op"]:checked');
-            const pagoRadio = document.querySelector('input[name="p"]:checked');
+                       gradoSelect.value !== "" &&
+                       seccionSelect.value !== "" &&
+                       turnoEscolarSelect.value !== "";
+        }
+        else if (modalidad === 'academia') {
+            const selectsValidos = uniSelect.value !== "" && turnoSelect.value !== "";
 
-            esValido = uniSelect.value !== "" && turnoSelect.value !== "" && cicloRadio !== null && pagoRadio !== null;
+            const cicloSeleccionado = document.querySelector('input[name="ciclo_op"]:checked');
+            const pagoSeleccionado = document.querySelector('input[name="p"]:checked');
+
+            esValido = selectsValidos && cicloSeleccionado !== null && pagoSeleccionado !== null;
         }
 
         if (btnContinuar) {
@@ -646,88 +654,109 @@ document.addEventListener('DOMContentLoaded', () => {
             secColegio.classList.remove('hidden-section');
             footerActions.classList.remove('hidden-section');
         }
+
         validarPaso1();
     });
 
     nivelSelect.addEventListener('change', function() {
-        gradoSelect.innerHTML = '<option value="" disabled selected hidden>Grado Correspondiente</option>';
+        limpiarSelector(gradoSelect);
+        gradoSelect.length = 1;
         gradoSelect.disabled = false;
 
         seccionSelect.selectedIndex = 0;
         seccionSelect.disabled = true;
+
         turnoEscolarSelect.selectedIndex = 0;
         turnoEscolarSelect.disabled = true;
 
         const maxGrado = (this.value === 'primaria') ? 6 : 5;
+
         for (let i = 1; i <= maxGrado; i++) {
-            const label = `${i}${ (i===1||i===3) ? "ero" : (i===2) ? "do" : "to" }`;
-            gradoSelect.add(new Option(label, i));
+            const sufijo = (i === 1 || i === 3) ? "ero" : (i === 2) ? "do" : "to";
+            const textoGrado = `${i}${sufijo}`;
+
+            gradoSelect.add(new Option(textoGrado, i));
         }
+
         validarPaso1();
     });
 
     gradoSelect.addEventListener('change', function() {
-    const nivel = nivelSelect.value;
-    const grado = this.value;
+        const nivel = nivelSelect.value;
+        const grado = this.value;
 
-    seccionSelect.innerHTML = '<option value="" disabled selected hidden>Sección</option>';
+        seccionSelect.length = 1;
+        turnoEscolarSelect.length = 1;
 
-    const seccionesDisponibles = DB_COLEGIO[nivel][grado].secciones;
+        turnoEscolarSelect.disabled = true;
 
-    Object.keys(seccionesDisponibles).forEach(letra => {
-        seccionSelect.add(new Option(`Sección ${letra}`, letra));
-    });
+        const seccionesDisponibles = DB_COLEGIO[nivel][grado].secciones;
 
-    seccionSelect.disabled = false;
-    turnoEscolarSelect.disabled = true;
-    validarPaso1();
+        Object.keys(seccionesDisponibles).forEach(letra => {
+            seccionSelect.add(new Option(`Sección ${letra}`, letra));
+        });
+
+        seccionSelect.disabled = false;
+
+        validarPaso1();
     });
 
     seccionSelect.addEventListener('change', function() {
-    const nivel = nivelSelect.value;
-    const grado = gradoSelect.value;
-    const letraSeccion = this.value;
+        const nivel = nivelSelect.value;
+        const grado = gradoSelect.value;
+        const letraSeccion = this.value;
 
-    turnoEscolarSelect.innerHTML = '<option value="" disabled selected hidden>Turno de Estudio</option>';
+        turnoEscolarSelect.length = 1;
 
-    const horarios = DB_COLEGIO[nivel][grado].secciones[letraSeccion];
+        const horariosDisponibles = DB_COLEGIO[nivel][grado].secciones[letraSeccion];
 
-    if (horarios.mañana) {
-        turnoEscolarSelect.add(new Option(`Mañana (${horarios.mañana})`, "mañana"));
-    }
-    if (horarios.tarde) {
-        turnoEscolarSelect.add(new Option(`Tarde (${horarios.tarde})`, "tarde"));
-    }
+        if (horariosDisponibles) {
+            if (horariosDisponibles.mañana) {
+                turnoEscolarSelect.add(new Option(`Mañana (${horariosDisponibles.mañana})`, "mañana"));
+            }
+            if (horariosDisponibles.tarde) {
+                turnoEscolarSelect.add(new Option(`Tarde (${horariosDisponibles.tarde})`, "tarde"));
+            }
 
-    turnoEscolarSelect.disabled = false;
-    validarPaso1();
+            turnoEscolarSelect.disabled = false;
+        } else {
+            turnoEscolarSelect.disabled = true;
+        }
+
+        validarPaso1();
     });
 
     turnoEscolarSelect.addEventListener('change', validarPaso1);
 
     uniSelect.addEventListener('change', function() {
         const seleccion = this.value;
-        turnoSelect.innerHTML = '<option value="" disabled selected hidden>Turno de Estudio</option>';
+
+        turnoSelect.length = 1;
+
         ciclosCont.classList.add('hidden-section');
         cronogramaCont.classList.add('hidden-section');
 
         if (horarios[seleccion]) {
             turnoSelect.disabled = false;
-            turnoSelect.add(new Option(`Mañana (${horarios[seleccion].mañana})`, "mañana"));
-            turnoSelect.add(new Option(`Tarde (${horarios[seleccion].tarde})`, "tarde"));
+
+            const h = horarios[seleccion];
+            turnoSelect.add(new Option(`Mañana (${h.mañana})`, "mañana"));
+            turnoSelect.add(new Option(`Tarde (${h.tarde})`, "tarde"));
         } else {
             turnoSelect.disabled = true;
         }
+
         validarPaso1();
     });
 
     function renderizarCiclos() {
         const uniId = uniSelect.value;
         const turnoId = turnoSelect.value;
-        const ciclos = DB_CICLOS[uniId] && DB_CICLOS[uniId][turnoId] ? DB_CICLOS[uniId][turnoId] : [];
+
+        const ciclos = (DB_CICLOS[uniId] && DB_CICLOS[uniId][turnoId])
+                      ? DB_CICLOS[uniId][turnoId] : [];
 
         ciclosCont.innerHTML = "";
-
         if (ciclos.length === 0) {
             ciclosCont.classList.add('hidden-section');
             return;
@@ -738,7 +767,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const radio = instancia.querySelector('.ciclo-radio');
             radio.value = ciclo.id;
-
             instancia.querySelector('.nombre-ciclo').textContent = ciclo.nombre;
             instancia.querySelector('.fechas-ciclo').textContent = ciclo.fechas;
 
@@ -750,21 +778,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     turnoSelect.addEventListener('change', function() {
         renderizarCiclos();
+
         cronogramaCont.classList.add('hidden-section');
+
         validarPaso1();
     });
 
     function generarCronograma() {
         const uniId = uniSelect.value;
         const turnoId = turnoSelect.value;
+
         const radioChecked = document.querySelector('input[name="ciclo_op"]:checked');
 
         if (!radioChecked) return;
 
         const cicloId = radioChecked.value;
 
-        const datosBase = DB_CRONOGRAMAS[uniId] && DB_CRONOGRAMAS[uniId][turnoId]
-                    ? DB_CRONOGRAMAS[uniId][turnoId][cicloId] : null;
+        const datosBase = (DB_CRONOGRAMAS[uniId] && DB_CRONOGRAMAS[uniId][turnoId])
+                          ? DB_CRONOGRAMAS[uniId][turnoId][cicloId] : null;
 
         if (!datosBase) {
             cronogramaBody.innerHTML = "";
@@ -775,47 +806,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
         actualizarTotales();
 
-    cronogramaCont.classList.remove('hidden-section');
+        cronogramaCont.classList.remove('hidden-section');
+
         validarPaso1();
     }
 
     function limpiarSecciones() {
-        uniSelect.value = "";
-        turnoSelect.innerHTML = '<option value="" disabled selected hidden>Turno de Estudio</option>';
+        uniSelect.selectedIndex = 0;
+
+        turnoSelect.length = 1;
         turnoSelect.disabled = true;
         ciclosCont.innerHTML = "";
+        cronogramaBody.innerHTML = "";
+
         ciclosCont.classList.add('hidden-section');
         cronogramaCont.classList.add('hidden-section');
-        cronogramaBody.innerHTML = "";
+
         delete cronogramaBody.dataset.baseData;
 
-        nivelSelect.value = "";
-        gradoSelect.innerHTML = '<option value="" disabled selected hidden>Grado Correspondiente</option>';
+        nivelSelect.selectedIndex = 0;
+
+        gradoSelect.length = 1;
         gradoSelect.disabled = true;
 
-        seccionSelect.innerHTML = '<option value="" disabled selected hidden>Sección</option>';
+        seccionSelect.length = 1;
         seccionSelect.disabled = true;
 
-        turnoEscolarSelect.innerHTML = '<option value="" disabled selected hidden>Turno de Estudio</option>';
+        turnoEscolarSelect.length = 1;
         turnoEscolarSelect.disabled = true;
 
-        const inputsPaso2 = [...step2Colegio.querySelectorAll('input'), ...step2Academia.querySelectorAll('input'),
-                             ...step2Colegio.querySelectorAll('select'), ...step2Academia.querySelectorAll('select')];
+        const camposPaso2 = [
+            ...step2Colegio.querySelectorAll('input, select'),
+            ...step2Academia.querySelectorAll('input, select')
+        ];
 
-    inputsPaso2.forEach(el => {
-        if (el.type === 'radio') {
-            if (el.name === 'es_mayor' && el.value === 'no') el.checked = true;
-            else el.checked = false;
-        } else {
-            el.value = "";
-        }
-    });
+        camposPaso2.forEach(elemento => {
+            if (elemento.type === 'radio') {
+                if (elemento.name === 'es_mayor' && elemento.value === 'no') {
+                    elemento.checked = true;
+                } else {
+                    elemento.checked = false;
+                }
+            } else {
+                elemento.value = "";
+            }
+        });
 
         const seccionApoderadoAca = document.getElementById('seccion-apoderado-academia');
-        if (seccionApoderadoAca) seccionApoderadoAca.classList.remove('hidden-section');
+        if (seccionApoderadoAca) {
+            seccionApoderadoAca.classList.remove('hidden-section');
         }
+    }
 
-        function actualizarTotales() {
+    function actualizarTotales() {
         const radioPago = document.querySelector('input[name="p"]:checked');
         if (!radioPago || !cronogramaBody.dataset.baseData) return;
 
@@ -828,7 +871,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let sumaTotalFinal = 0;
 
         if (modoPago === 'c') {
-        // MODO CUOTAS
             datosBase.forEach(item => {
                 const fila = templateFila.content.cloneNode(true);
 
@@ -842,30 +884,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 sumaTotalFinal += item.i;
             });
         } else {
-        const subtotal = datosBase.reduce((acc, cur) => acc + cur.i, 0);
-        const porcentajeDesc = 0.05; // 5%
-        const montoDesc = subtotal * porcentajeDesc;
-        const neto = subtotal - montoDesc;
+            const subtotal = datosBase.reduce((acc, cur) => acc + cur.i, 0);
+            const porcentajeDesc = 0.05;
+            const montoDesc = subtotal * porcentajeDesc;
+            const neto = subtotal - montoDesc;
 
-        const fila = templateFila.content.cloneNode(true);
+            const fila = templateFila.content.cloneNode(true);
 
-        fila.querySelector('.col-cuota').textContent = "PAGO ÚNICO AL CONTADO";
-        fila.querySelector('.col-vencimiento').textContent = datosBase[0].f;
-        fila.querySelector('.col-importe').textContent = subtotal.toFixed(2);
+            fila.querySelector('.col-cuota').textContent = "PAGO ÚNICO AL CONTADO";
+            fila.querySelector('.col-vencimiento').textContent = datosBase[0].f;
+            fila.querySelector('.col-importe').textContent = subtotal.toFixed(2);
 
-        const celdaDesc = fila.querySelector('.col-descuento');
-        celdaDesc.textContent = `-${montoDesc.toFixed(2)}`;
-        celdaDesc.classList.add('monto-negativo');
+            const celdaDesc = fila.querySelector('.col-descuento');
+            celdaDesc.textContent = `-${montoDesc.toFixed(2)}`;
 
-        fila.querySelector('.col-total').textContent = neto.toFixed(2);
+            celdaDesc.classList.add('monto-negativo');
 
-        cronogramaBody.appendChild(fila);
-        sumaTotalFinal = neto;
-    }
+            fila.querySelector('.col-total').textContent = neto.toFixed(2);
 
-    if (totalGeneralTxt) {
-        totalGeneralTxt.textContent = sumaTotalFinal.toFixed(2);
-    }
+            cronogramaBody.appendChild(fila);
+            sumaTotalFinal = neto;
+        }
+
+        if (totalGeneralTxt) {
+            totalGeneralTxt.textContent = sumaTotalFinal.toFixed(2);
+        }
     }
 
     btnContinuar.addEventListener('click', () => {
@@ -873,8 +916,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const modalidad = selectorModalidad.value;
 
-        [welcomeCard, secAcademia, secColegio, ciclosCont, cronogramaCont, footerActions].forEach(el => {
-            el.classList.add('hidden-section');
+        const seccionesStep1 = [
+            welcomeCard,
+            secAcademia,
+            secColegio,
+            ciclosCont,
+            cronogramaCont,
+            footerActions
+        ];
+
+        seccionesStep1.forEach(seccion => {
+            seccion.classList.add('hidden-section');
         });
 
         document.getElementById('step-1-indicator').classList.remove('active');
@@ -885,11 +937,26 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             step2Academia.classList.remove('hidden-section');
         }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     document.addEventListener('change', (e) => {
+
         if (e.target.name === 'ciclo_op') {
             generarCronograma();
+            const uniId = uniSelect.value;
+            const turnoId = turnoSelect.value;
+            const cicloId = e.target.value;
+
+            const datos = (DB_CRONOGRAMAS[uniId] && DB_CRONOGRAMAS[uniId][turnoId])
+                          ? DB_CRONOGRAMAS[uniId][turnoId][cicloId] : null;
+
+            if (datos) {
+                cronogramaBody.dataset.baseData = JSON.stringify(datos);
+                actualizarTotales();
+
+                cronogramaCont.classList.remove('hidden-section');
+            }
             validarPaso1();
         }
 
@@ -900,12 +967,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (e.target.name === 'es_mayor') {
             const seccionApoderadoAca = document.getElementById('seccion-apoderado-academia');
+
             if (seccionApoderadoAca) {
-                if (e.target.value === 'si') {
-                    seccionApoderadoAca.classList.add('hidden-section');
-                } else {
-                    seccionApoderadoAca.classList.remove('hidden-section');
-                }
+                const debeOcultar = (e.target.value === 'si');
+                seccionApoderadoAca.classList.toggle('hidden-section', debeOcultar);
             }
         }
     });

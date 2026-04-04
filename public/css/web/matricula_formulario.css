@@ -518,3 +518,12 @@ input[type="date"] {
     text-transform: uppercase;
     font-family: inherit;
 }
+
+.monto-negativo {
+    color: var(--azul-oscuro) !important;
+    font-weight: 800;
+}
+
+.fade-in {
+    animation: fadeInSlide 0.4s ease-out forwards;
+}
