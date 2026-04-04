@@ -98,162 +98,252 @@ document.addEventListener('DOMContentLoaded', () => {
     const DB_CICLOS = {
         unu: {
             verano: {
-                mañana: [
-                    { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
-                ],
-                tarde: [
-                    { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                    ]
+                },
             },
             semestral: {
-                mañana: [
-                    { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ],
-                tarde: [
-                    { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ]
+                },
             },
             anual: {
-                mañana: [
-                    { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ],
-                tarde: [
-                    { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ]
+                },
             },
         },
         unia: {
             verano: {
-                mañana: [
-                    { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
-                ],
-                tarde: [
-                    { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                    ]
+                },
             },
             semestral: {
-                mañana: [
-                    { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ],
-                tarde: [
-                    { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ]
+                },
             },
             anual: {
-                mañana: [
-                    { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ],
-                tarde: [
-                    { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ]
+                },
             },
         },
         san_marcos: {
             verano: {
-                mañana: [
-                    { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
-                ],
-                tarde: [
-                    { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                    ]
+                },
             },
             semestral: {
-                mañana: [
-                    { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ],
-                tarde: [
-                    { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ]
+                },
             },
             anual: {
-                mañana: [
-                    { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ],
-                tarde: [
-                    { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ]
+                },
             },
         },
         uni: {
             verano: {
-                mañana: [
-                    { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
-                ],
-                tarde: [
-                    { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                    ]
+                },
             },
             semestral: {
-                mañana: [
-                    { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ],
-                tarde: [
-                    { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ]
+                },
             },
             anual: {
-                mañana: [
-                    { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ],
-                tarde: [
-                    { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ]
+                },
             },
         },
         catolica: {
             verano: {
-                mañana: [
-                    { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
-                ],
-                tarde: [
-                    { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "v1_m", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "v2_m", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "v1_t", nombre: "CICLO VERANO I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "v2_t", nombre: "CICLO VERANO II", fechas: "21/07/2026 - 15/12/2026" }
+                    ]
+                },
             },
             semestral: {
-                mañana: [
-                    { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ],
-                tarde: [
-                    { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "s1_m", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "s2_m", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "s1_t", nombre: "CICLO SEMESTRAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "s2_t", nombre: "CICLO SEMESTRAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ]
+                },
             },
             anual: {
-                mañana: [
-                    { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ],
-                tarde: [
-                    { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
-                    { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
-                ]
+                mañana: {
+                    horario: "7:00 AM - 12:00 PM",
+                    grupos: [
+                        { id: "a1_m", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "a2_m", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ],
+                },
+                tarde: {
+                    horario: "12:45 PM - 5:00 PM",
+                    grupos: [
+                        { id: "a1_t", nombre: "CICLO ANUAL I", fechas: "16/03/2026 - 18/07/2026" },
+                        { id: "a2_t", nombre: "CICLO ANUAL II", fechas: "16/03/2026 - 18/07/2026" }
+                    ]
+                },
             },
         },
     };
@@ -671,15 +761,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const templateCiclo = document.getElementById('template-ciclo');
     const tipoCicloSelect = document.getElementById('tipoCicloSelector');
 
-
-    const horarios = {
-        unu: { mañana: "7:30 AM - 1:00 PM", tarde: "3:00 PM - 8:00 PM" },
-        unia: { mañana: "8:00 AM - 1:30 PM", tarde: "3:30 PM - 8:30 PM" },
-        san_marcos: { mañana: "8:30 AM - 2:00 PM", tarde: "4:00 PM - 9:00 PM" },
-        uni: { mañana: "9:00 AM - 2:30 PM", tarde: "4:30 PM - 9:30 PM" },
-        catolica: { mañana: "9:30 AM - 3:00 PM", tarde: "5:00 PM - 10:00 PM" }
-    };
-
     function limpiarSelector(selector) {
         selector.options.length = 1;
         selector.selectedIndex = 0;
@@ -855,23 +936,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const tipoId = this.value;
 
         limpiarSelector(turnoSelect);
+
         ciclosCont.classList.add('hidden-section');
         cronogramaCont.classList.add('hidden-section');
 
-        const turnosDisponibles = (DB_CICLOS[uniId] && DB_CICLOS[uniId][tipoId])
-                                  ? DB_CICLOS[uniId][tipoId] : null;
+        const configTurnos = (DB_CICLOS[uniId] && DB_CICLOS[uniId][tipoId])
+                             ? DB_CICLOS[uniId][tipoId] : null;
 
-        if (turnosDisponibles) {
+        if (configTurnos) {
             turnoSelect.disabled = false;
 
-            if (turnosDisponibles.mañana) {
-            turnoSelect.add(new Option("Mañana", "mañana"));
-            }
-            if (turnosDisponibles.tarde) {
-            turnoSelect.add(new Option("Tarde", "tarde"));
-            }
+            Object.keys(configTurnos).forEach(turnoKey => {
+                const data = configTurnos[turnoKey];
+
+                const labelTurno = turnoKey.charAt(0).toUpperCase() + turnoKey.slice(1);
+
+                const textoConHorario = `${labelTurno} (${data.horario})`;
+
+                turnoSelect.add(new Option(textoConHorario, turnoKey));
+            });
         } else {
-        turnoSelect.disabled = true;
+            turnoSelect.disabled = true;
         }
 
         validarPaso1();
@@ -879,13 +964,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderizarCiclos() {
         const uniId = uniSelect.value;
+        const tipoId = tipoCicloSelect.value;
         const turnoId = turnoSelect.value;
 
-        const tipoId = tipoCicloSelect.value;
-        const ciclos = (DB_CICLOS[uniId] && DB_CICLOS[uniId][tipoId] && DB_CICLOS[uniId][tipoId][turnoId])
-               ? DB_CICLOS[uniId][tipoId][turnoId] : [];
+        const configDelTurno = (DB_CICLOS[uniId] && DB_CICLOS[uniId][tipoId] && DB_CICLOS[uniId][tipoId][turnoId])
+                               ? DB_CICLOS[uniId][tipoId][turnoId] : null;
 
-        ciclosCont.innerHTML = "";
+        const ciclos = (configDelTurno && configDelTurno.grupos) ? configDelTurno.grupos : [];
+
+        while (ciclosCont.firstChild) {
+            ciclosCont.removeChild(ciclosCont.firstChild);
+        }
+
         if (ciclos.length === 0) {
             ciclosCont.classList.add('hidden-section');
             return;
@@ -896,6 +986,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const radio = instancia.querySelector('.ciclo-radio');
             radio.value = ciclo.id;
+
             instancia.querySelector('.nombre-ciclo').textContent = ciclo.nombre;
             instancia.querySelector('.fechas-ciclo').textContent = ciclo.fechas;
 
@@ -908,15 +999,7 @@ document.addEventListener('DOMContentLoaded', () => {
     turnoSelect.addEventListener('change', function() {
         renderizarCiclos();
         cronogramaCont.classList.add('hidden-section');
-
-        const uniId = uniSelect.value;
-        const turnoId = this.value;
-
-        if (uniId && turnoId && horarios[uniId]) {
-            const textoHorario = horarios[uniId][turnoId];
-            console.log(`El horario para ${uniId} en la ${turnoId} es: ${textoHorario}`);
-        }
-
+        // Eliminamos el bloque de 'horarios' porque ya no existe esa variable
         validarPaso1();
     });
 
