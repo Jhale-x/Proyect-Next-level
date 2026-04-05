@@ -58,7 +58,7 @@
             <div class="step-number">3</div>
             <div class="step-info">
                 <span class="step-label">Paso 3</span>
-                <span class="step-name">EN PROCESO</span>
+                <span class="step-name">CONFIRMACIÓN</span>
             </div>
         </div>
         <div class="step-divider"></div>

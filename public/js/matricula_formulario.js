@@ -1784,6 +1784,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         ciclosCont.classList.add('hidden-section');
 
+        cronogramaCont.classList.add('hidden-section');
+        while (cronogramaBody.firstChild) {
+            cronogramaBody.removeChild(cronogramaBody.firstChild);
+        }
+        delete cronogramaBody.dataset.baseData;
+
         nivelSelect.selectedIndex = 0;
         limpiarSelector(gradoSelect);
         limpiarSelector(seccionSelect);
@@ -1793,13 +1799,16 @@ document.addEventListener('DOMContentLoaded', () => {
         seccionSelect.disabled = true;
         turnoEscolarSelect.disabled = true;
 
-        while (cronogramaBody.firstChild) {
-            cronogramaBody.removeChild(cronogramaBody.firstChild);
+        while (ciclosContCol.firstChild) {
+            ciclosContCol.removeChild(ciclosContCol.firstChild);
         }
+        ciclosContCol.classList.add('hidden-section');
 
-        cronogramaCont.classList.add('hidden-section');
-
-        delete cronogramaBody.dataset.baseData;
+        cronogramaContCol.classList.add('hidden-section');
+        while (cronogramaBodyCol.firstChild) {
+            cronogramaBodyCol.removeChild(cronogramaBodyCol.firstChild);
+        }
+        delete cronogramaBodyCol.dataset.baseData;
 
         validarPaso1();
     }

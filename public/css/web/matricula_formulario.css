@@ -726,30 +726,6 @@ input[type="date"] {
     grid-column: span 2;
 }
 
-.resumen-tabla-mini td:nth-child(2),
-.resumen-tabla-mini th:nth-child(2) {
-    text-align: center;
-}
-
-.resumen-tabla-mini td:last-child,
-.resumen-tabla-mini th:last-child {
-    text-align: right;
-}
-
-.res-col-cuota {
-    width: 50%;
-}
-
-.res-col-vencimiento {
-    width: 25%;
-}
-
-.res-col-total {
-    width: 25%;
-    color: var(--rojo-principal);
-    font-weight: 800;
-}
-
 .terms-container-v2 {
     grid-column: span 2;
     background: #f8fafc;
@@ -769,4 +745,35 @@ input[type="date"] {
 .resumen-card-mini header i {
     margin-right: 8px;
     color: var(--rojo-principal);
+}
+
+.resumen-tabla-mini th,
+.resumen-tabla-mini td {
+    padding: 10px 5px;
+    text-align: center !important; /* Esto centra TODO el contenido bajo sus títulos */
+}
+
+/* Ajuste de anchos para eliminar espacios en blanco */
+.res-col-cuota {
+    width: 10%;
+}
+
+.res-col-vencimiento {
+    width: 20%;
+}
+
+.res-col-descuento {
+    width: 20%;
+}
+
+.res-col-total {
+    width: 7%;
+    color: #576574 !important;
+    font-weight: 800;
+}
+
+/* Clase para resaltar el descuento en verde */
+.texto-descuento-aplicado {
+    color: #576574 !important;
+    font-weight: 700;
 }
