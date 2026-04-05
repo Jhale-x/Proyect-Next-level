@@ -360,6 +360,7 @@
                                     <tr>
                                         <th>Cuota</th>
                                         <th>Vencimiento</th>
+                                        <th>Descuento</th>
                                         <th>Total</th>
                                     </tr>
                                 </thead>
@@ -409,6 +410,7 @@
         <tr>
             <td class="res-col-cuota"></td>
             <td class="res-col-vencimiento"></td>
+            <td class="res-col-descuento"></td>
             <td class="res-col-total"></td>
         </tr>
     </template>

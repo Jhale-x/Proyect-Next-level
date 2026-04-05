@@ -675,7 +675,7 @@ input[type="date"] {
 }
 
 .highlight-card {
-    background: #fff5f5; /* Un tono rojizo muy suave */
+    background: #fff5f5;
     border-color: #feb2b2;
 }
 
@@ -722,31 +722,36 @@ input[type="date"] {
     border-bottom: none;
 }
 
-/* --- AJUSTES DE COLUMNAS PARA EL RESUMEN --- */
-
-/* Hace que el bloque de inversión ocupe las dos columnas para que sea más legible */
 .full-width-resumen {
     grid-column: span 2;
 }
 
 .resumen-tabla-mini td:nth-child(2),
 .resumen-tabla-mini th:nth-child(2) {
-    text-align: center; /* Centrar fechas de vencimiento */
+    text-align: center;
 }
 
 .resumen-tabla-mini td:last-child,
 .resumen-tabla-mini th:last-child {
-    text-align: right; /* Alinear montos a la derecha */
+    text-align: right;
 }
 
-/* Clases específicas usadas por el JS para la clonación */
-.res-col-cuota { width: 50%; }
-.res-col-vencimiento { width: 25%; }
-.res-col-total { width: 25%; color: var(--rojo-principal); font-weight: 800; }
+.res-col-cuota {
+    width: 50%;
+}
 
-/* --- CONTENEDOR DE TÉRMINOS Y CONDICIONES (PASO 3) --- */
+.res-col-vencimiento {
+    width: 25%;
+}
+
+.res-col-total {
+    width: 25%;
+    color: var(--rojo-principal);
+    font-weight: 800;
+}
+
 .terms-container-v2 {
-    grid-column: span 2; /* Ocupa todo el ancho */
+    grid-column: span 2;
     background: #f8fafc;
     padding: 25px;
     border-radius: 15px;
@@ -761,7 +766,6 @@ input[type="date"] {
     font-size: 0.95rem;
 }
 
-/* --- DETALLES DE LAS TARJETAS DEL RESUMEN --- */
 .resumen-card-mini header i {
     margin-right: 8px;
     color: var(--rojo-principal);

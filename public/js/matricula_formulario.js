@@ -1312,37 +1312,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const modalidad = selectorModalidad.value;
         let esValido = true;
 
-        // 1. Identificamos qué contenedor de datos está activo (Colegio o Academia)
         const contenedorActivo = (modalidad === 'colegio') ? step2Colegio : step2Academia;
         if (!contenedorActivo) return;
 
-        // 2. Buscamos todos los campos obligatorios ([required]) dentro del contenedor activo
         const camposObligatorios = contenedorActivo.querySelectorAll('input[required], select[required]');
 
         camposObligatorios.forEach(input => {
-            // VERIFICACIÓN CRÍTICA:
-            // Si el input está dentro de un div con la clase 'hidden-section' (como el apoderado oculto),
-            // NO lo validamos. Solo validamos lo que el usuario ve.
             const estaEnSeccionOculta = input.closest('.hidden-section');
 
             if (!estaEnSeccionOculta) {
-                // Si el campo está visible y está vacío, el formulario deja de ser válido
                 if (!input.value.trim() || input.value === "") {
                     esValido = false;
                 }
             }
         });
 
-        // 3. Lógica específica para Academia: Validar los botones de "Es mayor de edad"
         if (modalidad === 'academia') {
             const esMayorChecked = document.querySelector('input[name="es_mayor"]:checked');
-            // Si no han seleccionado ni "SÍ" ni "NO", no es válido
             if (!esMayorChecked) {
                 esValido = false;
             }
         }
 
-        // 4. Aplicamos el estado visual y funcional al botón (Tu lógica premium)
         if (btnNextStep2) {
             btnNextStep2.disabled = !esValido;
 
@@ -1354,30 +1345,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Escuchamos cambios en todos los inputs del Paso 2
     document.querySelectorAll('#step-2-colegio input, #step-2-colegio select, #step-2-academia input, #step-2-academia select').forEach(input => {
         input.addEventListener('input', validarPaso2);
         input.addEventListener('change', validarPaso2);
     });
 
     function validarChecksPaso3() {
-        // 1. Verificamos si estamos en el Paso 3 (si el resumen es visible)
         const enPaso3 = !step3Resumen.classList.contains('hidden-section');
 
         if (enPaso3) {
-            // 2. Comprobamos si ambos checkboxes están marcados
             const terminosAceptados = checkTerminos.checked;
             const politicasAceptadas = checkPoliticas.checked;
             const ambosAceptados = terminosAceptados && politicasAceptadas;
 
-            // 3. Controlamos el estado del botón sin afectar su color
             btnNextStep2.disabled = !ambosAceptados;
 
             if (ambosAceptados) {
-                // Estado habilitado
                 btnNextStep2.style.cursor = "pointer";
             } else {
-                // Estado deshabilitado (pero sigue siendo rojo)
                 btnNextStep2.style.cursor = "not-allowed";
             }
         }
@@ -1386,19 +1371,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (checkTerminos) checkTerminos.addEventListener('change', validarChecksPaso3);
     if (checkPoliticas) checkPoliticas.addEventListener('change', validarChecksPaso3);
 
-    // MODIFICAR EL EVENTO CONTINUAR PARA PASAR DEL 2 AL 3
     btnNextStep2.addEventListener('click', (e) => {
-        // 1. Barrera de seguridad: Evita el avance si el botón está deshabilitado
         if (btnNextStep2.disabled) {
             e.preventDefault();
             return false;
         }
 
-        // Solo actuamos si el resumen está actualmente oculto (estamos en el Paso 2)
         if (step3Resumen.classList.contains('hidden-section')) {
             const modalidad = selectorModalidad.value;
 
-            // --- BLOQUE 1: INFORMACIÓN ACADÉMICA ---
             document.getElementById('res-modalidad').textContent = modalidad.toUpperCase();
 
             if (modalidad === 'colegio') {
@@ -1407,7 +1388,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('res-ciclo').textContent = `${gradoTexto} - SECCIÓN ${seccionTexto}`;
                 document.getElementById('res-turno').textContent = turnoEscolarSelect.value.toUpperCase();
 
-                // --- BLOQUE 2: DATOS DEL ESTUDIANTE (COLEGIO) ---
                 const nom = document.querySelector('input[name="col_nombres"]').value;
                 const apeP = document.querySelector('input[name="col_ape_paterno"]').value;
                 const apeM = document.querySelector('input[name="col_ape_materno"]').value;
@@ -1419,7 +1399,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const fec = document.querySelector('input[name="col_fecha_nac"]').value;
                 document.getElementById('res-alumno-extra').textContent = `${gen} | NAC: ${fec}`;
 
-                // --- BLOQUE 3: DATOS DEL APODERADO (COLEGIO) ---
                 document.getElementById('res-card-apoderado').style.display = 'block';
                 const nomApo = document.querySelector('input[name="apo_nombres"]').value;
                 const apePApo = document.querySelector('input[name="apo_ape_paterno"]').value;
@@ -1428,12 +1407,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('res-apo-cel').textContent = document.querySelector('input[name="apo_celular"]').value;
 
             } else {
-                // MODALIDAD ACADEMIA
                 const cicloActivo = document.querySelector('input[name="ciclo_op"]:checked');
                 document.getElementById('res-ciclo').textContent = cicloActivo ? cicloActivo.closest('.ciclo-card').querySelector('.nombre-ciclo').textContent : "-";
                 document.getElementById('res-turno').textContent = turnoSelect.value.toUpperCase();
 
-                // --- BLOQUE 2: DATOS DEL ESTUDIANTE (ACADEMIA) ---
                 const nom = document.querySelector('input[name="aca_nombres"]').value;
                 const apeP = document.querySelector('input[name="aca_ape_paterno"]').value;
                 const apeM = document.querySelector('input[name="aca_ape_materno"]').value;
@@ -1445,7 +1422,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const fec = document.querySelector('input[name="aca_fecha_nac"]').value;
                 document.getElementById('res-alumno-extra').textContent = `${gen} | NAC: ${fec}`;
 
-                // --- BLOQUE 3: DATOS DEL APODERADO (ACADEMIA - CONDICIONAL) ---
                 const esMayor = document.querySelector('input[name="es_mayor"]:checked')?.value === 'si';
                 const cardApo = document.getElementById('res-card-apoderado');
 
@@ -1461,45 +1437,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            // --- BLOQUE 4: CRONOGRAMA DE INVERSIÓN (CLONACIÓN MEDIANTE TEMPLATE) ---
             const tablaOrigen = (modalidad === 'colegio') ? cronogramaBodyCol : cronogramaBody;
             const resCronogramaBody = document.getElementById('res-cronograma-body-final');
             const templateFilaRes = document.getElementById('template-fila-resumen');
 
-            // Limpiamos la tabla de resumen para evitar duplicados si el usuario regresa y avanza
             while (resCronogramaBody.firstChild) {
                 resCronogramaBody.removeChild(resCronogramaBody.firstChild);
             }
 
-            // Clonamos cada fila de la tabla de pagos original
             tablaOrigen.querySelectorAll('tr').forEach(filaOriginal => {
                 const instancia = templateFilaRes.content.cloneNode(true);
 
                 instancia.querySelector('.res-col-cuota').textContent = filaOriginal.querySelector('.col-cuota').textContent;
                 instancia.querySelector('.res-col-vencimiento').textContent = filaOriginal.querySelector('.col-vencimiento').textContent;
-                instancia.querySelector('.res-col-total').textContent = "S/ " + filaOriginal.querySelector('.col-total').textContent;
 
+                const descTexto = filaOriginal.querySelector('.col-descuento').textContent;
+                const celdaDesc = instancia.querySelector('.res-col-descuento');
+                celdaDesc.textContent = "S/ " + descTexto;
+
+                if (descTexto !== "0.00") {
+                    celdaDesc.classList.add('texto-descuento-aplicado');
+                }
+
+                instancia.querySelector('.res-col-total').textContent = "S/ " + filaOriginal.querySelector('.col-total').textContent;
                 resCronogramaBody.appendChild(instancia);
             });
 
-            // Llenado de totales y método de pago
             const nameRadio = (modalidad === 'colegio') ? 'p_col' : 'p';
             const pagoElegido = document.querySelector(`input[name="${nameRadio}"]:checked`);
             document.getElementById('res-pago-metodo').textContent = (pagoElegido && pagoElegido.value === 'c') ? "PAGO EN CUOTAS" : "PAGO AL CONTADO (5% DESC.)";
             document.getElementById('res-pago-total').textContent = (modalidad === 'colegio') ? totalGeneralCol.textContent : document.getElementById('cronograma-total-general').textContent;
 
-            // --- TRANSICIÓN DE PANTALLAS ---
             step2Colegio.classList.add('hidden-section');
             step2Academia.classList.add('hidden-section');
             step3Resumen.classList.remove('hidden-section');
-
-            // Actualización de la barra de progreso
             document.getElementById('step-2-indicator').classList.remove('active');
             document.getElementById('step-3-indicator').classList.add('active');
 
-            // Bloquear botón nuevamente hasta que acepte términos en el Paso 3
             validarChecksPaso3();
-
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     });
@@ -1897,7 +1872,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const modalidad = selectorModalidad.value;
 
             if (!step3Resumen.classList.contains('hidden-section')) {
-                // 1. Ocultar resumen
                 step3Resumen.classList.add('hidden-section');
 
                 if (modalidad === 'colegio') {
