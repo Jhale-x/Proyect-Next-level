@@ -750,10 +750,9 @@ input[type="date"] {
 .resumen-tabla-mini th,
 .resumen-tabla-mini td {
     padding: 10px 5px;
-    text-align: center !important; /* Esto centra TODO el contenido bajo sus títulos */
+    text-align: center !important;
 }
 
-/* Ajuste de anchos para eliminar espacios en blanco */
 .res-col-cuota {
     width: 10%;
 }
@@ -772,7 +771,6 @@ input[type="date"] {
     font-weight: 800;
 }
 
-/* Clase para resaltar el descuento en verde */
 .texto-descuento-aplicado {
     color: #576574 !important;
     font-weight: 700;

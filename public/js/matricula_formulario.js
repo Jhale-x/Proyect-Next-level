@@ -1395,6 +1395,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('res-alumno-dni').textContent = document.querySelector('input[name="col_dni"]').value;
                 document.getElementById('res-alumno-email').textContent = document.querySelector('input[name="col_email"]').value;
 
+                document.getElementById('res-alumno-celular').textContent = "NO REGISTRADO";
+
                 const gen = document.querySelector('select[name="col_genero"]').value === 'M' ? 'MASCULINO' : 'FEMENINO';
                 const fec = document.querySelector('input[name="col_fecha_nac"]').value;
                 document.getElementById('res-alumno-extra').textContent = `${gen} | NAC: ${fec}`;
@@ -1417,6 +1419,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('res-alumno-full').textContent = `${nom} ${apeP} ${apeM}`;
                 document.getElementById('res-alumno-dni').textContent = document.querySelector('input[name="aca_dni"]').value;
                 document.getElementById('res-alumno-email').textContent = document.querySelector('input[name="aca_email"]').value;
+                document.getElementById('res-alumno-celular').textContent = document.querySelector('input[name="aca_celular"]').value;
 
                 const gen = document.querySelector('select[name="aca_genero"]').value === 'M' ? 'MASCULINO' : 'FEMENINO';
                 const fec = document.querySelector('input[name="aca_fecha_nac"]').value;

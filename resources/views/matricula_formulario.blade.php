@@ -336,6 +336,7 @@
                         <p><strong>Nombres:</strong> <span id="res-alumno-full">-</span></p>
                         <p><strong>DNI:</strong> <span id="res-alumno-dni">-</span></p>
                         <p><strong>Correo:</strong> <span id="res-alumno-email">-</span></p>
+                        <p><strong>Celular:</strong> <span id="res-alumno-celular">-</span></p>
                         <p><strong>Género/Nac:</strong> <span id="res-alumno-extra">-</span></p>
                     </div>
                 </div>
