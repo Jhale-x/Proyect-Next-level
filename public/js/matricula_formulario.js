@@ -1425,6 +1425,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('res-apo-nombre').textContent = `${nomApo.toUpperCase()} ${apePApo.toUpperCase()}`;
                 document.getElementById('res-apo-dni').textContent = document.querySelector('input[name="apo_dni"]').value;
                 document.getElementById('res-apo-cel').textContent = document.querySelector('input[name="apo_celular"]').value;
+                document.getElementById('res-apo-nac').textContent = document.querySelector('input[name="apo_fecha_nac"]').value;
 
             } else {
                 const cicloActivo = document.querySelector('input[name="ciclo_op"]:checked');
@@ -1460,6 +1461,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('res-apo-nombre').textContent = `${nomApo.toUpperCase()} ${apePApo.toUpperCase()}`;
                     document.getElementById('res-apo-dni').textContent = document.querySelector('input[name="aca_apo_dni"]').value;
                     document.getElementById('res-apo-cel').textContent = document.querySelector('input[name="aca_apo_celular"]').value;
+                    document.getElementById('res-apo-nac').textContent = document.querySelector('input[name="aca_apo_fecha_nac"]').value;
                 }
             }
 
@@ -1933,6 +1935,7 @@ document.addEventListener('DOMContentLoaded', () => {
         delete cronogramaBodyCol.dataset.baseData;
 
         document.getElementById('res-eleccion').textContent = "-";
+        document.getElementById('res-apo-nac').textContent = "-";
 
         validarPaso1();
     }

@@ -378,6 +378,7 @@
                         <p><strong>Responsable:</strong> <span id="res-apo-nombre">-</span></p>
                         <p><strong>DNI:</strong> <span id="res-apo-dni">-</span></p>
                         <p><strong>Contacto:</strong> <span id="res-apo-cel">-</span></p>
+                        <p><strong>Nac:</strong> <span id="res-apo-nac">-</span></p>
                     </div>
                 </div>
 

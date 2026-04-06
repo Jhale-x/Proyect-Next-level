@@ -675,8 +675,8 @@ input[type="date"] {
 }
 
 .highlight-card {
-    background: #fff5f5;
-    border-color: #feb2b2;
+    background: #fff5f5af;
+    border-color: #feb2b274;
 }
 
 .total-destacado {
