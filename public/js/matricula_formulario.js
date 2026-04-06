@@ -570,268 +570,268 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const DB_CRONOGRAMA_COLEGIO = {
         "p1a_m": [
-            { c: "CUOTA 1 PRIMARIA - 1ERO - A", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 1ERO - A", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 1ERO - A", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 1ERO - A", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 1ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 1ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 1ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 1ERO", f: "30/06/2026", i: 150.00 }
         ],
         "p1b_m": [
-            { c: "CUOTA 1 PRIMARIA - 1ERO - B", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 1ERO - B", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 1ERO - B", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 1ERO - B", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 1ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 1ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 1ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 1ERO", f: "30/06/2026", i: 150.00 }
         ],
         "p1c_t": [
-            { c: "CUOTA 1 PRIMARIA - 1ERO - C", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 1ERO - C", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 1ERO - C", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 1ERO - C", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 1ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 1ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 1ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 1ERO", f: "30/06/2026", i: 150.00 }
         ],
         "p1d_t": [
-            { c: "CUOTA 1 PRIMARIA - 1ERO - D", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 1ERO - D", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 1ERO - D", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 1ERO - D", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 1ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 1ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 1ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 1ERO", f: "30/06/2026", i: 150.00 }
         ],
         "p2a_m": [
-            { c: "CUOTA 1 PRIMARIA - 2DO - A", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 2DO - A", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 2DO - A", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 2DO - A", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 2DO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 2DO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 2DO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 2DO", f: "30/06/2026", i: 150.00 }
         ],
         "p2b_m": [
-            { c: "CUOTA 1 PRIMARIA - 2DO - B", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 2DO - B", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 2DO - B", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 2DO - B", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 2DO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 2DO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 2DO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 2DO", f: "30/06/2026", i: 150.00 }
         ],
         "p2c_t": [
-            { c: "CUOTA 1 PRIMARIA - 2DO - C", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 2DO - C", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 2DO - C", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 2DO - C", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 2DO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 2DO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 2DO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 2DO", f: "30/06/2026", i: 150.00 }
         ],
         "p2d_t": [
-            { c: "CUOTA 1 PRIMARIA - 2DO - D", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 2DO - D", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 2DO - D", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 2DO - D", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 2DO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 2DO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 2DO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 2DO", f: "30/06/2026", i: 150.00 }
         ],
         "p3a_m": [
-            { c: "CUOTA 1 PRIMARIA - 3ERO - A", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 3ERO - A", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 3ERO - A", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 3ERO - A", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 3ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 3ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 3ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 3ERO", f: "30/06/2026", i: 150.00 }
         ],
         "p3b_m": [
-            { c: "CUOTA 1 PRIMARIA - 3ERO - B", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 3ERO - B", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 3ERO - B", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 3ERO - B", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 3ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 3ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 3ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 3ERO", f: "30/06/2026", i: 150.00 }
         ],
         "p3c_t": [
-            { c: "CUOTA 1 PRIMARIA - 3ERO - C", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 3ERO - C", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 3ERO - C", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 3ERO - C", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 3ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 3ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 3ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 3ERO", f: "30/06/2026", i: 150.00 }
         ],
         "p3d_t": [
-            { c: "CUOTA 1 PRIMARIA - 3ERO - D", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 3ERO - D", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 3ERO - D", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 3ERO - D", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 3ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 3ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 3ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 3ERO", f: "30/06/2026", i: 150.00 }
         ],
         "p4a_m": [
-            { c: "CUOTA 1 PRIMARIA - 4TO - A", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 4TO - A", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 4TO - A", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 4TO - A", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 4TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 4TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 4TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 4TO", f: "30/06/2026", i: 150.00 }
         ],
         "p4b_m": [
-            { c: "CUOTA 1 PRIMARIA - 4TO - B", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 4TO - B", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 4TO - B", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 4TO - B", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 4TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 4TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 4TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 4TO", f: "30/06/2026", i: 150.00 }
         ],
         "p4c_t": [
-            { c: "CUOTA 1 PRIMARIA - 4TO - C", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 4TO - C", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 4TO - C", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 4TO - C", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 4TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 4TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 4TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 4TO", f: "30/06/2026", i: 150.00 }
         ],
         "p4d_t": [
-            { c: "CUOTA 1 PRIMARIA - 4TO - D", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 4TO - D", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 4TO - D", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 4TO - D", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 4TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 4TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 4TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 4TO", f: "30/06/2026", i: 150.00 }
         ],
         "p5a_m": [
-            { c: "CUOTA 1 PRIMARIA - 5TO - A", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 5TO - A", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 5TO - A", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 5TO - A", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 5TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 5TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 5TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 5TO", f: "30/06/2026", i: 150.00 }
         ],
         "p5b_m": [
-            { c: "CUOTA 1 PRIMARIA - 5TO - B", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 5TO - B", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 5TO - B", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 5TO - B", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 5TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 5TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 5TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 5TO", f: "30/06/2026", i: 150.00 }
         ],
         "p5c_t": [
-            { c: "CUOTA 1 PRIMARIA - 5TO - C", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 5TO - C", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 5TO - C", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 5TO - C", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 5TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 5TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 5TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 5TO", f: "30/06/2026", i: 150.00 }
         ],
         "p5d_t": [
-            { c: "CUOTA 1 PRIMARIA - 5TO - D", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 5TO - D", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 5TO - D", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 5TO - D", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 5TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 5TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 5TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 5TO", f: "30/06/2026", i: 150.00 }
         ],
         "p6a_m": [
-            { c: "CUOTA 1 PRIMARIA - 6TO - A", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 6TO - A", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 6TO - A", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 6TO - A", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 6TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 6TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 6TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 6TO", f: "30/06/2026", i: 150.00 }
         ],
         "p6b_m": [
-            { c: "CUOTA 1 PRIMARIA - 6TO - B", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 6TO - B", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 6TO - B", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 6TO - B", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 6TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 6TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 6TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 6TO", f: "30/06/2026", i: 150.00 }
         ],
         "p6c_t": [
-            { c: "CUOTA 1 PRIMARIA - 6TO - C", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 6TO - C", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 6TO - C", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 6TO - C", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 6TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 6TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 6TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 6TO", f: "30/06/2026", i: 150.00 }
         ],
         "p6d_t": [
-            { c: "CUOTA 1 PRIMARIA - 6TO - D", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 PRIMARIA - 6TO - D", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 PRIMARIA - 6TO - D", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 PRIMARIA - 6TO - D", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 PRIMARIA - 6TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 PRIMARIA - 6TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 PRIMARIA - 6TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 PRIMARIA - 6TO", f: "30/06/2026", i: 150.00 }
         ],
         "s1a_m": [
-            { c: "CUOTA 1 SECUNDARIA - 1ERO - A", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 1ERO - A", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 1ERO - A", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 1ERO - A", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 1ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 1ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 1ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 1ERO", f: "30/06/2026", i: 150.00 }
         ],
         "s1b_m": [
-            { c: "CUOTA 1 SECUNDARIA - 1ERO - B", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 1ERO - B", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 1ERO - B", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 1ERO - B", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 1ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 1ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 1ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 1ERO", f: "30/06/2026", i: 150.00 }
         ],
         "s1c_t": [
-            { c: "CUOTA 1 SECUNDARIA - 1ERO - C", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 1ERO - C", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 1ERO - C", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 1ERO - C", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 1ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 1ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 1ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 1ERO", f: "30/06/2026", i: 150.00 }
         ],
         "s1d_t": [
-            { c: "CUOTA 1 SECUNDARIA - 1ERO - D", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 1ERO - D", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 1ERO - D", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 1ERO - D", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 1ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 1ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 1ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 1ERO", f: "30/06/2026", i: 150.00 }
         ],
         "s2a_m": [
-            { c: "CUOTA 1 SECUNDARIA - 2DO - A", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 2DO - A", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 2DO - A", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 2DO - A", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 2DO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 2DO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 2DO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 2DO", f: "30/06/2026", i: 150.00 }
         ],
         "s2b_m": [
-            { c: "CUOTA 1 SECUNDARIA - 2DO - B", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 2DO - B", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 2DO - B", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 2DO - B", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 2DO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 2DO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 2DO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 2DO", f: "30/06/2026", i: 150.00 }
         ],
         "s2c_t": [
-            { c: "CUOTA 1 SECUNDARIA - 2DO - C", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 2DO - C", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 2DO - C", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 2DO - C", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 2DO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 2DO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 2DO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 2DO", f: "30/06/2026", i: 150.00 }
         ],
         "s2d_t": [
-            { c: "CUOTA 1 SECUNDARIA - 2DO - D", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 2DO - D", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 2DO - D", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 2DO - D", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 2DO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 2DO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 2DO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 2DO", f: "30/06/2026", i: 150.00 }
         ],
         "s3a_m": [
-            { c: "CUOTA 1 SECUNDARIA - 3ERO - A", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 3ERO - A", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 3ERO - A", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 3ERO - A", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 3ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 3ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 3ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 3ERO", f: "30/06/2026", i: 150.00 }
         ],
         "s3b_m": [
-            { c: "CUOTA 1 SECUNDARIA - 3ERO - B", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 3ERO - B", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 3ERO - B", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 3ERO - B", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 3ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 3ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 3ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 3ERO", f: "30/06/2026", i: 150.00 }
         ],
         "s3c_t": [
-            { c: "CUOTA 1 SECUNDARIA - 3ERO - C", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 3ERO - C", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 3ERO - C", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 3ERO - C", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 3ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 3ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 3ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 3ERO", f: "30/06/2026", i: 150.00 }
         ],
         "s3d_t": [
-            { c: "CUOTA 1 SECUNDARIA - 3ERO - D", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 3ERO - D", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 3ERO - D", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 3ERO - D", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 3ERO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 3ERO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 3ERO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 3ERO", f: "30/06/2026", i: 150.00 }
         ],
         "s4a_m": [
-            { c: "CUOTA 1 SECUNDARIA - 4TO - A", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 4TO - A", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 4TO - A", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 4TO - A", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 4TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 4TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 4TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 4TO", f: "30/06/2026", i: 150.00 }
         ],
         "s4b_m": [
-            { c: "CUOTA 1 SECUNDARIA - 4TO - B", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 4TO - B", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 4TO - B", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 4TO - B", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 4TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 4TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 4TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 4TO", f: "30/06/2026", i: 150.00 }
         ],
         "s4c_t": [
-            { c: "CUOTA 1 SECUNDARIA - 4TO - C", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 4TO - C", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 4TO - C", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 4TO - C", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 4TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 4TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 4TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 4TO", f: "30/06/2026", i: 150.00 }
         ],
         "s4d_t": [
-            { c: "CUOTA 1 SECUNDARIA - 4TO - D", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 4TO - D", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 4TO - D", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 4TO - D", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 4TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 4TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 4TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 4TO", f: "30/06/2026", i: 150.00 }
         ],
         "s5a_m": [
-            { c: "CUOTA 1 SECUNDARIA - 5TO - A", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 5TO - A", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 5TO - A", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 5TO - A", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 5TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 5TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 5TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 5TO", f: "30/06/2026", i: 150.00 }
         ],
         "s5b_m": [
-            { c: "CUOTA 1 SECUNDARIA - 5TO - B", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 5TO - B", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 5TO - B", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 5TO - B", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 5TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 5TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 5TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 5TO", f: "30/06/2026", i: 150.00 }
         ],
         "s5c_t": [
-            { c: "CUOTA 1 SECUNDARIA - 5TO - C", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 5TO - C", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 5TO - C", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 5TO - C", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 5TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 5TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 5TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 5TO", f: "30/06/2026", i: 150.00 }
         ],
         "s5d_t": [
-            { c: "CUOTA 1 SECUNDARIA - 5TO - D", f: "31/03/2026", i: 150.00 },
-            { c: "CUOTA 2 SECUNDARIA - 5TO - D", f: "30/04/2026", i: 150.00 },
-            { c: "CUOTA 3 SECUNDARIA - 5TO - D", f: "31/05/2026", i: 150.00 },
-            { c: "CUOTA 4 SECUNDARIA - 5TO - D", f: "30/06/2026", i: 150.00 }
+            { c: "CUOTA 1 SECUNDARIA - 5TO", f: "31/03/2026", i: 150.00 },
+            { c: "CUOTA 2 SECUNDARIA - 5TO", f: "30/04/2026", i: 150.00 },
+            { c: "CUOTA 3 SECUNDARIA - 5TO", f: "31/05/2026", i: 150.00 },
+            { c: "CUOTA 4 SECUNDARIA - 5TO", f: "30/06/2026", i: 150.00 }
         ],
     }
 
@@ -1257,6 +1257,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const checkTerminos = document.getElementById('check-terminos');
     const checkPoliticas = document.getElementById('check-politicas');
     const btnNextStep2 = document.querySelector('.btn-premium-next-step2');
+    const sedeColSelect = document.getElementById('sedecolegioSelector');
+    const entornoColSelect = document.getElementById('entornocolegioSelector');
+    const sedeAcaSelect = document.getElementById('sedeacademiaSelector');
+    const entornoAcaSelect = document.getElementById('entornoacademiaSelector');
+
+    entornoColSelect.disabled = true;
+    entornoAcaSelect.disabled = true;
+    nivelSelect.disabled = true;
+    uniSelect.disabled = true;
 
     if (navStep2) navStep2.classList.add('hidden-section');
 
@@ -1283,7 +1292,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const cicloSeleccionado = document.querySelector('input[name="ciclo_op"]:checked');
 
         if (modalidad === 'colegio') {
-            const selectoresLlenos = nivelSelect.value !== "" &&
+            const selectoresLlenos =sedeColSelect.value !== "" &&
+                                    entornoColSelect.value !== "" &&
+                                    nivelSelect.value !== "" &&
                                     gradoSelect.value !== "" &&
                                     seccionSelect.value !== "" &&
                                     turnoEscolarSelect.value !== "";
@@ -1291,9 +1302,11 @@ document.addEventListener('DOMContentLoaded', () => {
             esValido = selectoresLlenos && cicloSeleccionado !== null;
         }
         else if (modalidad === 'academia') {
-            const selectsAcademiaOK = uniSelect.value !== "" &&
-                                      tipoCicloSelect.value !== "" &&
-                                      turnoSelect.value !== "";
+            const selectsAcademiaOK =sedeAcaSelect.value !== "" &&
+                                     entornoAcaSelect.value !== "" &&
+                                     uniSelect.value !== "" &&
+                                     tipoCicloSelect.value !== "" &&
+                                     turnoSelect.value !== "";
 
             esValido = selectsAcademiaOK && cicloSeleccionado !== null;
         }
@@ -1388,6 +1401,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('res-ciclo').textContent = `${gradoTexto} - SECCIÓN ${seccionTexto}`;
                 document.getElementById('res-turno').textContent = turnoEscolarSelect.value.toUpperCase();
 
+                document.getElementById('res-sede').textContent = sedeColSelect.value.toUpperCase();
+                document.getElementById('res-entorno').textContent = entornoColSelect.value.toUpperCase();
+
                 const nom = document.querySelector('input[name="col_nombres"]').value;
                 const apeP = document.querySelector('input[name="col_ape_paterno"]').value;
                 const apeM = document.querySelector('input[name="col_ape_materno"]').value;
@@ -1412,6 +1428,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const cicloActivo = document.querySelector('input[name="ciclo_op"]:checked');
                 document.getElementById('res-ciclo').textContent = cicloActivo ? cicloActivo.closest('.ciclo-card').querySelector('.nombre-ciclo').textContent : "-";
                 document.getElementById('res-turno').textContent = turnoSelect.value.toUpperCase();
+
+                document.getElementById('res-sede').textContent = sedeAcaSelect.value.toUpperCase();
+                document.getElementById('res-entorno').textContent = entornoAcaSelect.value.toUpperCase();
 
                 const nom = document.querySelector('input[name="aca_nombres"]').value;
                 const apeP = document.querySelector('input[name="aca_ape_paterno"]').value;
@@ -1482,9 +1501,95 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    sedeColSelect.addEventListener('change', function() {
+        if (this.value !== "") {
+            entornoColSelect.disabled = false;
+        } else {
+            entornoColSelect.disabled = true;
+        }
+
+        entornoColSelect.value = "";
+
+        nivelSelect.selectedIndex = 0;
+        nivelSelect.disabled = true;
+
+        limpiarSelector(gradoSelect);
+        limpiarSelector(seccionSelect);
+        limpiarSelector(turnoEscolarSelect);
+
+        gradoSelect.disabled = true;
+        seccionSelect.disabled = true;
+        turnoEscolarSelect.disabled = true;
+
+        validarPaso1();
+    });
+
+    entornoColSelect.addEventListener('change', function() {
+        if (this.value !== "") {
+            nivelSelect.disabled = false;
+        } else {
+            nivelSelect.disabled = true;
+        }
+
+        nivelSelect.selectedIndex = 0;
+
+        limpiarSelector(gradoSelect);
+        limpiarSelector(seccionSelect);
+        limpiarSelector(turnoEscolarSelect);
+
+        gradoSelect.disabled = true;
+        seccionSelect.disabled = true;
+        turnoEscolarSelect.disabled = true;
+
+        validarPaso1();
+    });
+
+    sedeAcaSelect.addEventListener('change', function() {
+        if (this.value !== "") {
+            entornoAcaSelect.disabled = false;
+        } else {
+            entornoAcaSelect.disabled = true;
+        }
+
+        entornoAcaSelect.value = "";
+
+        uniSelect.selectedIndex = 0;
+        uniSelect.disabled = true;
+
+        limpiarSelector(tipoCicloSelect);
+        limpiarSelector(turnoSelect);
+        tipoCicloSelect.disabled = true;
+        turnoSelect.disabled = true;
+
+        ciclosCont.classList.add('hidden-section');
+        cronogramaCont.classList.add('hidden-section');
+
+        validarPaso1();
+    });
+
+    entornoAcaSelect.addEventListener('change', function() {
+        if (this.value !== "") {
+            uniSelect.disabled = false;
+        } else {
+            uniSelect.disabled = true;
+        }
+
+        uniSelect.selectedIndex = 0;
+
+        limpiarSelector(tipoCicloSelect);
+        limpiarSelector(turnoSelect);
+
+        tipoCicloSelect.disabled = true;
+        turnoSelect.disabled = true;
+
+        ciclosCont.classList.add('hidden-section');
+        cronogramaCont.classList.add('hidden-section');
+
+        validarPaso1();
+    });
+
     selectorModalidad.addEventListener('change', function() {
         limpiarSecciones();
-
         secAcademia.classList.add('hidden-section');
         secColegio.classList.add('hidden-section');
         ciclosCont.classList.add('hidden-section');
@@ -1775,10 +1880,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function limpiarSecciones() {
+        sedeAcaSelect.selectedIndex = 0;
+        entornoAcaSelect.selectedIndex = 0;
+        entornoAcaSelect.disabled = true;
+
         uniSelect.selectedIndex = 0;
+        uniSelect.disabled = true;
+
         limpiarSelector(tipoCicloSelect);
         limpiarSelector(turnoSelect);
-
         tipoCicloSelect.disabled = true;
         turnoSelect.disabled = true;
 
@@ -1786,18 +1896,23 @@ document.addEventListener('DOMContentLoaded', () => {
             ciclosCont.removeChild(ciclosCont.firstChild);
         }
         ciclosCont.classList.add('hidden-section');
-
         cronogramaCont.classList.add('hidden-section');
+
         while (cronogramaBody.firstChild) {
             cronogramaBody.removeChild(cronogramaBody.firstChild);
         }
         delete cronogramaBody.dataset.baseData;
 
+        sedeColSelect.selectedIndex = 0;
+        entornoColSelect.selectedIndex = 0;
+        entornoColSelect.disabled = true;
+
         nivelSelect.selectedIndex = 0;
+        nivelSelect.disabled = true;
+
         limpiarSelector(gradoSelect);
         limpiarSelector(seccionSelect);
         limpiarSelector(turnoEscolarSelect);
-
         gradoSelect.disabled = true;
         seccionSelect.disabled = true;
         turnoEscolarSelect.disabled = true;
@@ -1806,8 +1921,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ciclosContCol.removeChild(ciclosContCol.firstChild);
         }
         ciclosContCol.classList.add('hidden-section');
-
         cronogramaContCol.classList.add('hidden-section');
+
         while (cronogramaBodyCol.firstChild) {
             cronogramaBodyCol.removeChild(cronogramaBodyCol.firstChild);
         }

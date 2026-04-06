@@ -104,6 +104,20 @@
             </h3>
             <div class="form-responsive-grid">
                 <div class="input-field-group">
+                    <select name="aca_sede" id="sedeacademiaSelector" required>
+                        <option value="" disabled selected hidden>Seleccionar Sede</option>
+                        <option value="Pucallpa, Ucayali">Pucallpa, Ucayali</option>
+                    </select>
+                </div>
+
+                <div class="input-field-group">
+                    <select name="aca_entorno" id="entornoacademiaSelector" required>
+                        <option value="" disabled selected hidden>Seleccionar Entorno</option>
+                        <option value="Presencial">Presencial</option>
+                    </select>
+                </div>
+
+                <div class="input-field-group">
                     <select name="universidad" id="universidadSelector">
                         <option value="" disabled selected hidden>Universidad Objectivo</option>
                         <option value="unu">Preparación UNU</option>
@@ -169,6 +183,20 @@
                 COLEGIO
             </h3>
             <div class="form-responsive-grid">
+                <div class="input-field-group">
+                    <select name="col_sede" id="sedecolegioSelector" required>
+                        <option value="" disabled selected hidden>Seleccionar Sede</option>
+                        <option value="Pucallpa, Ucayali">Pucallpa, Ucayali</option>
+                    </select>
+                </div>
+
+                <div class="input-field-group">
+                    <select name="col_entorno" id="entornocolegioSelector" required>
+                        <option value="" disabled selected hidden>Seleccionar Entorno</option>
+                        <option value="Presencial">Presencial</option>
+                    </select>
+                </div>
+
                 <div class="input-field-group">
                     <select name="nivel_escolar" id="nivel_escolar">
                         <option value="" disabled selected hidden>Nivel Educativo</option>
@@ -326,6 +354,8 @@
                     <div class="res-content">
                         <p><strong>Modalidad:</strong> <span id="res-modalidad">-</span></p>
                         <p><strong>Ciclo/Grado:</strong> <span id="res-ciclo">-</span></p>
+                        <p><strong>Sede:</strong> <span id="res-sede">-</span></p>
+                        <p><strong>Entorno:</strong> <span id="res-entorno">-</span></p>
                         <p><strong>Turno:</strong> <span id="res-turno">-</span></p>
                     </div>
                 </div>
