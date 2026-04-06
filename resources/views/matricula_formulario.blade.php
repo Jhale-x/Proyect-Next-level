@@ -421,6 +421,54 @@
         </div>
     </section>
 
+    <section class="premium-card hidden-section" id="step-4-final">
+        <div class="card-side-accent success-accent"></div>
+        <div class="card-body-content text-center">
+            <div class="success-icon-wrapper">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h2 class="main-success-title">¡USTED SE HA MATRICULADO CORRECTAMENTE!</h2>
+            <p class="success-subtitle">Su registro ha sido procesado con éxito. A continuación, los detalles de su matrícula:</p>
+
+            <div class="resumen-final-mini">
+                <div class="res-final-grid">
+                    <p><strong>Modalidad:</strong> <span id="final-modalidad">-</span></p>
+                    <p><strong>Elección:</strong> <span id="final-eleccion">-</span></p>
+                    <p><strong>Ciclo/Grado:</strong> <span id="final-ciclo">-</span></p>
+                    <p><strong>Sede:</strong> <span id="final-sede">-</span></p>
+                    <p><strong>Entorno:</strong> <span id="final-entorno">-</span></p>
+                    <p><strong>Turno:</strong> <span id="final-turno">-</span></p>
+                </div>
+            </div>
+
+            <div class="codigo-matricula-container">
+                <span class="codigo-label">CÓDIGO DE PAGO ÚNICO:</span>
+                <div class="codigo-box">
+                    <span id="codigo-generado">GENERANDO...</span>
+                    <p class="codigo-hint">Use este código para realizar el pago en ventanilla o App.</p>
+                </div>
+            </div>
+
+            <div class="separator-line"></div>
+
+            <p class="bancos-instruccion">Puede realizar el pago de su matrícula a través de los canales autorizados de los siguientes bancos:</p>
+            <div class="bancos-container">
+                <a href="#" class="banco-item" title="Guía BBVA"><img src="{{ asset('images/BBVA-NEXTLEVEL.png') }}" alt="BBVA"></a>
+                <a href="#" class="banco-item" title="Guía BCP"><img src="{{ asset('images/BCP-NEXTLEVEL.png') }}" alt="BCP"></a>
+                <a href="#" class="banco-item" title="Guía YAPE"><img src="{{ asset('images/YAPE-NEXTLEVEL.png') }}" alt="YAPE"></a>
+            </div>
+
+            <div class="recuerda-box">
+                <h4><i class="fa-solid fa-circle-exclamation"></i> ¡RECUERDA!</h4>
+                <ul>
+                    <li>Debe realizar el pago de su matrícula dentro de las próximas 24 horas.</li>
+                    <li>De no realizar el pago, su código expirará y deberá registrarse nuevamente.</li>
+                    <li>Al finalizar el pago, le llegará un correo con la información detallada.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
         <div class="form-footer-actions hidden-section" id="footer-actions">
             <button type="button" class="btn-premium-next">
                 Continuar Proceso <i class="fa-solid fa-arrow-right-long"></i>
@@ -434,6 +482,15 @@
             <button type="button" class="btn-premium-next-step2">
                 Continuar Proceso <i class="fa-solid fa-arrow-right-long"></i>
             </button>
+        </div>
+
+        <div id="step4-navigation-actions" class="step2-navigation-actions hidden-section">
+            <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20información.%20Me%20interesa:%0A%0A1.%20Matrícula%20Colegio%20%0A2.%20Ciclos%20Academia%20%0A3.%20Agendar%20Visita%20Guiada%0A4.%20Costos%20y%20Pensiones%0A%0APor%20favor,%20bríndeme%20detalles." target="_blank" class="btn-premium-next-step2 btn-whatsapp-final">
+                <i class="fa-brands fa-whatsapp"></i> ¡CONTÁCTANOS!
+            </a>
+            <a href="{{ route('web.inicio') }}" class="btn-premium-next-step2">
+                IR A INICIO <i class="fa-solid fa-house"></i>
+            </a>
         </div>
 
     </form>

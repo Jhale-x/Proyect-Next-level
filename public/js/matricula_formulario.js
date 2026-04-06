@@ -1261,6 +1261,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const entornoColSelect = document.getElementById('entornocolegioSelector');
     const sedeAcaSelect = document.getElementById('sedeacademiaSelector');
     const entornoAcaSelect = document.getElementById('entornoacademiaSelector');
+    const step4Final = document.getElementById('step-4-final');
+    const navStep4 = document.getElementById('step4-navigation-actions');
 
     entornoColSelect.disabled = true;
     entornoAcaSelect.disabled = true;
@@ -1390,14 +1392,52 @@ document.addEventListener('DOMContentLoaded', () => {
             return false;
         }
 
+        if (!step3Resumen.classList.contains('hidden-section')) {
+
+            btnNextStep2.disabled = true;
+            btnNextStep2.textContent = "PROCESANDO...";
+            btnNextStep2.style.cursor = "not-allowed";
+
+            setTimeout(() => {
+                document.getElementById('final-modalidad').textContent = document.getElementById('res-modalidad').textContent;
+                document.getElementById('final-eleccion').textContent = document.getElementById('res-eleccion').textContent;
+                document.getElementById('final-ciclo').textContent = document.getElementById('res-ciclo').textContent;
+                document.getElementById('final-sede').textContent = document.getElementById('res-sede').textContent;
+                document.getElementById('final-entorno').textContent = document.getElementById('res-entorno').textContent;
+                document.getElementById('final-turno').textContent = document.getElementById('res-turno').textContent;
+
+                const randomNum = Math.floor(100000 + Math.random() * 900000);
+                document.getElementById('codigo-generado').textContent = `NL-2026-${randomNum}`;
+
+                step3Resumen.classList.add('hidden-section');
+
+                if (navStep2) {
+                    navStep2.classList.remove('step2-active');
+                    navStep2.classList.add('hidden-section');
+                }
+
+                const step4Card = document.getElementById('step-4-final');
+                const navFinal = document.getElementById('step4-navigation-actions');
+
+                if (step4Card) step4Card.classList.remove('hidden-section');
+                if (navFinal) {
+                    navFinal.classList.remove('hidden-section');
+                    navFinal.classList.add('step2-active');
+                }
+
+                document.getElementById('step-3-indicator').classList.remove('active');
+                document.getElementById('step-4-indicator').classList.add('active');
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 3000);
+
+            return;
+        }
+
         if (step3Resumen.classList.contains('hidden-section')) {
             const modalidad = selectorModalidad.value;
-
             const cicloActivoRadio = document.querySelector('input[name="ciclo_op"]:checked');
-            let fechasCiclo = "";
-            if (cicloActivoRadio) {
-                fechasCiclo = cicloActivoRadio.closest('.ciclo-card').querySelector('.fechas-ciclo').textContent;
-            }
+            let fechasCiclo = cicloActivoRadio ? cicloActivoRadio.closest('.ciclo-card').querySelector('.fechas-ciclo').textContent : "";
 
             document.getElementById('res-modalidad').textContent = modalidad.toUpperCase();
 
@@ -1405,102 +1445,79 @@ document.addEventListener('DOMContentLoaded', () => {
                 const gradoTexto = gradoSelect.options[gradoSelect.selectedIndex].text;
                 const seccionTexto = seccionSelect.options[seccionSelect.selectedIndex].text;
                 const eleccionTexto = nivelSelect.options[nivelSelect.selectedIndex].text;
+
                 document.getElementById('res-eleccion').textContent = eleccionTexto.toUpperCase();
                 document.getElementById('res-ciclo').textContent = `${gradoTexto.toUpperCase()} - ${seccionTexto.toUpperCase()}`;
                 document.getElementById('res-turno').textContent = `${turnoEscolarSelect.value.toUpperCase()} | ${fechasCiclo}`;
-
                 document.getElementById('res-sede').textContent = sedeColSelect.value.toUpperCase();
                 document.getElementById('res-entorno').textContent = entornoColSelect.value.toUpperCase();
 
                 const nom = document.querySelector('input[name="col_nombres"]').value;
                 const apeP = document.querySelector('input[name="col_ape_paterno"]').value;
                 const apeM = document.querySelector('input[name="col_ape_materno"]').value;
-                document.getElementById('res-alumno-full').textContent = `${nom.toUpperCase()} ${apeP.toUpperCase()} ${apeM.toUpperCase()}`;
+                document.getElementById('res-alumno-full').textContent = `${nom} ${apeP} ${apeM}`.toUpperCase();
                 document.getElementById('res-alumno-dni').textContent = document.querySelector('input[name="col_dni"]').value;
-                document.getElementById('res-alumno-email').textContent = document.querySelector('input[name="col_email"]').value;
-
+                document.getElementById('res-alumno-email').textContent = document.querySelector('input[name="col_email"]').value.toUpperCase();
                 document.getElementById('res-alumno-celular').textContent = "NO REGISTRADO";
+                document.getElementById('res-alumno-extra').textContent = `${document.querySelector('select[name="col_genero"]').value} | NAC: ${document.querySelector('input[name="col_fecha_nac"]').value}`.toUpperCase();
 
-                const gen = document.querySelector('select[name="col_genero"]').value === 'M' ? 'MASCULINO' : 'FEMENINO';
-                const fec = document.querySelector('input[name="col_fecha_nac"]').value;
-                document.getElementById('res-alumno-extra').textContent = `${gen.toUpperCase()} | NAC: ${fec.toUpperCase()}`;
-
-                document.getElementById('res-card-apoderado').style.display = 'block';
                 const nomApo = document.querySelector('input[name="apo_nombres"]').value;
                 const apePApo = document.querySelector('input[name="apo_ape_paterno"]').value;
-                document.getElementById('res-apo-nombre').textContent = `${nomApo.toUpperCase()} ${apePApo.toUpperCase()}`;
+                document.getElementById('res-apo-nombre').textContent = `${nomApo} ${apePApo}`.toUpperCase();
                 document.getElementById('res-apo-dni').textContent = document.querySelector('input[name="apo_dni"]').value;
                 document.getElementById('res-apo-cel').textContent = document.querySelector('input[name="apo_celular"]').value;
                 document.getElementById('res-apo-nac').textContent = document.querySelector('input[name="apo_fecha_nac"]').value;
+                document.getElementById('res-card-apoderado').style.display = 'block';
 
             } else {
-                const cicloActivo = document.querySelector('input[name="ciclo_op"]:checked');
                 const eleccionAcaTexto = uniSelect.options[uniSelect.selectedIndex].text;
-                document.getElementById('res-eleccion').textContent = eleccionAcaTexto.toUpperCase();
-                document.getElementById('res-ciclo').textContent = cicloActivo ? cicloActivo.closest('.ciclo-card').querySelector('.nombre-ciclo').textContent : "-";
-                document.getElementById('res-turno').textContent = `${turnoSelect.value.toUpperCase()} | ${fechasCiclo}`;
+                const cicloTxt = document.querySelector('input[name="ciclo_op"]:checked')?.closest('.ciclo-card').querySelector('.nombre-ciclo').textContent || "-";
 
+                document.getElementById('res-eleccion').textContent = eleccionAcaTexto.toUpperCase();
+                document.getElementById('res-ciclo').textContent = cicloTxt.toUpperCase();
+                document.getElementById('res-turno').textContent = `${turnoSelect.value.toUpperCase()} | ${fechasCiclo}`;
                 document.getElementById('res-sede').textContent = sedeAcaSelect.value.toUpperCase();
                 document.getElementById('res-entorno').textContent = entornoAcaSelect.value.toUpperCase();
 
                 const nom = document.querySelector('input[name="aca_nombres"]').value;
                 const apeP = document.querySelector('input[name="aca_ape_paterno"]').value;
                 const apeM = document.querySelector('input[name="aca_ape_materno"]').value;
-                document.getElementById('res-alumno-full').textContent = `${nom.toUpperCase()} ${apeP.toUpperCase()} ${apeM.toUpperCase()}`;
+                document.getElementById('res-alumno-full').textContent = `${nom} ${apeP} ${apeM}`.toUpperCase();
                 document.getElementById('res-alumno-dni').textContent = document.querySelector('input[name="aca_dni"]').value;
-                document.getElementById('res-alumno-email').textContent = document.querySelector('input[name="aca_email"]').value;
+                document.getElementById('res-alumno-email').textContent = document.querySelector('input[name="aca_email"]').value.toUpperCase();
                 document.getElementById('res-alumno-celular').textContent = document.querySelector('input[name="aca_celular"]').value;
+                document.getElementById('res-alumno-extra').textContent = `${document.querySelector('select[name="aca_genero"]').value} | NAC: ${document.querySelector('input[name="aca_fecha_nac"]').value}`.toUpperCase();
 
-                const gen = document.querySelector('select[name="aca_genero"]').value === 'M' ? 'MASCULINO' : 'FEMENINO';
-                const fec = document.querySelector('input[name="aca_fecha_nac"]').value;
-                document.getElementById('res-alumno-extra').textContent = `${gen.toUpperCase()} | NAC: ${fec.toUpperCase()}`;
-
-                const esMayor = document.querySelector('input[name="es_mayor"]:checked')?.value === 'si';
-                const cardApo = document.getElementById('res-card-apoderado');
-
-                if (esMayor) {
-                    cardApo.style.display = 'none';
+                if (document.querySelector('input[name="es_mayor"]:checked')?.value === 'si') {
+                    document.getElementById('res-card-apoderado').style.display = 'none';
                 } else {
-                    cardApo.style.display = 'block';
                     const nomApo = document.querySelector('input[name="aca_apo_nombres"]').value;
                     const apePApo = document.querySelector('input[name="aca_apo_ape_paterno"]').value;
-                    document.getElementById('res-apo-nombre').textContent = `${nomApo.toUpperCase()} ${apePApo.toUpperCase()}`;
+                    document.getElementById('res-apo-nombre').textContent = `${nomApo} ${apePApo}`.toUpperCase();
                     document.getElementById('res-apo-dni').textContent = document.querySelector('input[name="aca_apo_dni"]').value;
                     document.getElementById('res-apo-cel').textContent = document.querySelector('input[name="aca_apo_celular"]').value;
                     document.getElementById('res-apo-nac').textContent = document.querySelector('input[name="aca_apo_fecha_nac"]').value;
+                    document.getElementById('res-card-apoderado').style.display = 'block';
                 }
             }
 
             const tablaOrigen = (modalidad === 'colegio') ? cronogramaBodyCol : cronogramaBody;
             const resCronogramaBody = document.getElementById('res-cronograma-body-final');
             const templateFilaRes = document.getElementById('template-fila-resumen');
-
-            while (resCronogramaBody.firstChild) {
-                resCronogramaBody.removeChild(resCronogramaBody.firstChild);
-            }
+            while (resCronogramaBody.firstChild) resCronogramaBody.removeChild(resCronogramaBody.firstChild);
 
             tablaOrigen.querySelectorAll('tr').forEach(filaOriginal => {
                 const instancia = templateFilaRes.content.cloneNode(true);
-
                 instancia.querySelector('.res-col-cuota').textContent = filaOriginal.querySelector('.col-cuota').textContent;
                 instancia.querySelector('.res-col-vencimiento').textContent = filaOriginal.querySelector('.col-vencimiento').textContent;
-
-                const descTexto = filaOriginal.querySelector('.col-descuento').textContent;
-                const celdaDesc = instancia.querySelector('.res-col-descuento');
-                celdaDesc.textContent = "S/ " + descTexto;
-
-                if (descTexto !== "0.00") {
-                    celdaDesc.classList.add('texto-descuento-aplicado');
-                }
-
+                instancia.querySelector('.res-col-descuento').textContent = "S/ " + filaOriginal.querySelector('.col-descuento').textContent;
                 instancia.querySelector('.res-col-total').textContent = "S/ " + filaOriginal.querySelector('.col-total').textContent;
                 resCronogramaBody.appendChild(instancia);
             });
 
-            const nameRadio = (modalidad === 'colegio') ? 'p_col' : 'p';
-            const pagoElegido = document.querySelector(`input[name="${nameRadio}"]:checked`);
-            document.getElementById('res-pago-metodo').textContent = (pagoElegido && pagoElegido.value === 'c') ? "PAGO EN CUOTAS" : "PAGO AL CONTADO (5% DESC.)";
             document.getElementById('res-pago-total').textContent = (modalidad === 'colegio') ? totalGeneralCol.textContent : document.getElementById('cronograma-total-general').textContent;
+
+            btnNextStep2.textContent = "MATRICULARSE";
 
             step2Colegio.classList.add('hidden-section');
             step2Academia.classList.add('hidden-section');

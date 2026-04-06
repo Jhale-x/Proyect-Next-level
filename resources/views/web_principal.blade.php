@@ -35,7 +35,7 @@
             </button>
 
             <ul class="nav-menu">
-                <li><a href="#" class="active">INICIO</a></li>
+                <li><a href="{{ route('web.inicio') }}" class="active">INICIO</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">&#9662;</span></a>
                     <ul class="dropdown-menu">
