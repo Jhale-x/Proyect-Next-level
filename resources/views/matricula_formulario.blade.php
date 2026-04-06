@@ -353,6 +353,7 @@
                     <header><i class="fa-solid fa-graduation-cap"></i> INFORMACIÓN ACADÉMICA</header>
                     <div class="res-content">
                         <p><strong>Modalidad:</strong> <span id="res-modalidad">-</span></p>
+                        <p><strong>Elección:</strong> <span id="res-eleccion">-</span></p>
                         <p><strong>Ciclo/Grado:</strong> <span id="res-ciclo">-</span></p>
                         <p><strong>Sede:</strong> <span id="res-sede">-</span></p>
                         <p><strong>Entorno:</strong> <span id="res-entorno">-</span></p>
@@ -401,7 +402,7 @@
                         </div>
 
                         <p class="total-destacado">
-                        <strong>Total Final:</strong> S/ <span id="res-pago-total">0.00</span></p>
+                        <strong>TOTAL FINAL :</strong> S/ <span id="res-pago-total">0.00</span></p>
                     </div>
                 </div>
             </div>

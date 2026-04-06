@@ -1398,7 +1398,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (modalidad === 'colegio') {
                 const gradoTexto = gradoSelect.options[gradoSelect.selectedIndex].text;
                 const seccionTexto = seccionSelect.options[seccionSelect.selectedIndex].text;
-                document.getElementById('res-ciclo').textContent = `${gradoTexto} - SECCIÓN ${seccionTexto}`;
+                const eleccionTexto = nivelSelect.options[nivelSelect.selectedIndex].text;
+                document.getElementById('res-eleccion').textContent = eleccionTexto.toUpperCase();
+                document.getElementById('res-ciclo').textContent = `${gradoTexto.toUpperCase()} - ${seccionTexto.toUpperCase()}`;
                 document.getElementById('res-turno').textContent = turnoEscolarSelect.value.toUpperCase();
 
                 document.getElementById('res-sede').textContent = sedeColSelect.value.toUpperCase();
@@ -1407,7 +1409,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const nom = document.querySelector('input[name="col_nombres"]').value;
                 const apeP = document.querySelector('input[name="col_ape_paterno"]').value;
                 const apeM = document.querySelector('input[name="col_ape_materno"]').value;
-                document.getElementById('res-alumno-full').textContent = `${nom} ${apeP} ${apeM}`;
+                document.getElementById('res-alumno-full').textContent = `${nom.toUpperCase()} ${apeP.toUpperCase()} ${apeM.toUpperCase()}`;
                 document.getElementById('res-alumno-dni').textContent = document.querySelector('input[name="col_dni"]').value;
                 document.getElementById('res-alumno-email').textContent = document.querySelector('input[name="col_email"]').value;
 
@@ -1415,17 +1417,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 const gen = document.querySelector('select[name="col_genero"]').value === 'M' ? 'MASCULINO' : 'FEMENINO';
                 const fec = document.querySelector('input[name="col_fecha_nac"]').value;
-                document.getElementById('res-alumno-extra').textContent = `${gen} | NAC: ${fec}`;
+                document.getElementById('res-alumno-extra').textContent = `${gen.toUpperCase()} | NAC: ${fec.toUpperCase()}`;
 
                 document.getElementById('res-card-apoderado').style.display = 'block';
                 const nomApo = document.querySelector('input[name="apo_nombres"]').value;
                 const apePApo = document.querySelector('input[name="apo_ape_paterno"]').value;
-                document.getElementById('res-apo-nombre').textContent = `${nomApo} ${apePApo}`;
+                document.getElementById('res-apo-nombre').textContent = `${nomApo.toUpperCase()} ${apePApo.toUpperCase()}`;
                 document.getElementById('res-apo-dni').textContent = document.querySelector('input[name="apo_dni"]').value;
                 document.getElementById('res-apo-cel').textContent = document.querySelector('input[name="apo_celular"]').value;
 
             } else {
                 const cicloActivo = document.querySelector('input[name="ciclo_op"]:checked');
+                const eleccionAcaTexto = uniSelect.options[uniSelect.selectedIndex].text;
+                document.getElementById('res-eleccion').textContent = eleccionAcaTexto.toUpperCase();
                 document.getElementById('res-ciclo').textContent = cicloActivo ? cicloActivo.closest('.ciclo-card').querySelector('.nombre-ciclo').textContent : "-";
                 document.getElementById('res-turno').textContent = turnoSelect.value.toUpperCase();
 
@@ -1435,14 +1439,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const nom = document.querySelector('input[name="aca_nombres"]').value;
                 const apeP = document.querySelector('input[name="aca_ape_paterno"]').value;
                 const apeM = document.querySelector('input[name="aca_ape_materno"]').value;
-                document.getElementById('res-alumno-full').textContent = `${nom} ${apeP} ${apeM}`;
+                document.getElementById('res-alumno-full').textContent = `${nom.toUpperCase()} ${apeP.toUpperCase()} ${apeM.toUpperCase()}`;
                 document.getElementById('res-alumno-dni').textContent = document.querySelector('input[name="aca_dni"]').value;
                 document.getElementById('res-alumno-email').textContent = document.querySelector('input[name="aca_email"]').value;
                 document.getElementById('res-alumno-celular').textContent = document.querySelector('input[name="aca_celular"]').value;
 
                 const gen = document.querySelector('select[name="aca_genero"]').value === 'M' ? 'MASCULINO' : 'FEMENINO';
                 const fec = document.querySelector('input[name="aca_fecha_nac"]').value;
-                document.getElementById('res-alumno-extra').textContent = `${gen} | NAC: ${fec}`;
+                document.getElementById('res-alumno-extra').textContent = `${gen.toUpperCase()} | NAC: ${fec.toUpperCase()}`;
 
                 const esMayor = document.querySelector('input[name="es_mayor"]:checked')?.value === 'si';
                 const cardApo = document.getElementById('res-card-apoderado');
@@ -1453,7 +1457,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     cardApo.style.display = 'block';
                     const nomApo = document.querySelector('input[name="aca_apo_nombres"]').value;
                     const apePApo = document.querySelector('input[name="aca_apo_ape_paterno"]').value;
-                    document.getElementById('res-apo-nombre').textContent = `${nomApo} ${apePApo}`;
+                    document.getElementById('res-apo-nombre').textContent = `${nomApo.toUpperCase()} ${apePApo.toUpperCase()}`;
                     document.getElementById('res-apo-dni').textContent = document.querySelector('input[name="aca_apo_dni"]').value;
                     document.getElementById('res-apo-cel').textContent = document.querySelector('input[name="aca_apo_celular"]').value;
                 }
@@ -1927,6 +1931,8 @@ document.addEventListener('DOMContentLoaded', () => {
             cronogramaBodyCol.removeChild(cronogramaBodyCol.firstChild);
         }
         delete cronogramaBodyCol.dataset.baseData;
+
+        document.getElementById('res-eleccion').textContent = "-";
 
         validarPaso1();
     }
