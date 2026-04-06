@@ -675,8 +675,8 @@ input[type="date"] {
 }
 
 .highlight-card {
-    background: #fff5f5af;
-    border-color: #feb2b274;
+    background: #fcfcfc;
+    border: 1px solid #edf2f7;
 }
 
 .total-destacado {
@@ -728,10 +728,10 @@ input[type="date"] {
 
 .terms-container-v2 {
     grid-column: span 2;
-    background: #f8fafc;
+    background: #fcfcfc;
     padding: 25px;
     border-radius: 15px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #edf2f7;
     display: flex;
     flex-direction: column;
     gap: 15px;

@@ -1393,6 +1393,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (step3Resumen.classList.contains('hidden-section')) {
             const modalidad = selectorModalidad.value;
 
+            const cicloActivoRadio = document.querySelector('input[name="ciclo_op"]:checked');
+            let fechasCiclo = "";
+            if (cicloActivoRadio) {
+                fechasCiclo = cicloActivoRadio.closest('.ciclo-card').querySelector('.fechas-ciclo').textContent;
+            }
+
             document.getElementById('res-modalidad').textContent = modalidad.toUpperCase();
 
             if (modalidad === 'colegio') {
@@ -1401,7 +1407,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const eleccionTexto = nivelSelect.options[nivelSelect.selectedIndex].text;
                 document.getElementById('res-eleccion').textContent = eleccionTexto.toUpperCase();
                 document.getElementById('res-ciclo').textContent = `${gradoTexto.toUpperCase()} - ${seccionTexto.toUpperCase()}`;
-                document.getElementById('res-turno').textContent = turnoEscolarSelect.value.toUpperCase();
+                document.getElementById('res-turno').textContent = `${turnoEscolarSelect.value.toUpperCase()} | ${fechasCiclo}`;
 
                 document.getElementById('res-sede').textContent = sedeColSelect.value.toUpperCase();
                 document.getElementById('res-entorno').textContent = entornoColSelect.value.toUpperCase();
@@ -1432,7 +1438,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const eleccionAcaTexto = uniSelect.options[uniSelect.selectedIndex].text;
                 document.getElementById('res-eleccion').textContent = eleccionAcaTexto.toUpperCase();
                 document.getElementById('res-ciclo').textContent = cicloActivo ? cicloActivo.closest('.ciclo-card').querySelector('.nombre-ciclo').textContent : "-";
-                document.getElementById('res-turno').textContent = turnoSelect.value.toUpperCase();
+                document.getElementById('res-turno').textContent = `${turnoSelect.value.toUpperCase()} | ${fechasCiclo}`;
 
                 document.getElementById('res-sede').textContent = sedeAcaSelect.value.toUpperCase();
                 document.getElementById('res-entorno').textContent = entornoAcaSelect.value.toUpperCase();
@@ -1936,6 +1942,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('res-eleccion').textContent = "-";
         document.getElementById('res-apo-nac').textContent = "-";
+        document.getElementById('res-turno').textContent = "-";
 
         validarPaso1();
     }
