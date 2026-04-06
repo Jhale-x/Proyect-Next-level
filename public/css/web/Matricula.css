@@ -1,5 +1,6 @@
 .banner {
-    height: 600px;
+    height: 610px;
+    width: 100%;
     background-image: url('../../images/imagen10.jpg');
     background-size: cover;
     background-position: center;

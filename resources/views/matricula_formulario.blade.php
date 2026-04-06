@@ -79,7 +79,7 @@
         <div class="card-body-content">
             <h3 class="card-section-title">
                 <span class="icon-circle"><i class="fa-solid fa-user-graduate"></i></span>
-                SELECCIÓN DE MODALIDAD
+                MODALIDAD
             </h3>
 
             <div class="input-field-group">
@@ -526,6 +526,10 @@
     </template>
 
     </main>
+
+    <div class="footer-bottom">
+        <p>© 2026 Next Level. Todos los derechos reservados.</p>
+    </div>
 
     <script src="{{ asset('js/matricula_formulario.js') }}"></script>
 

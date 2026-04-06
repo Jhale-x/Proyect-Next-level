@@ -7,25 +7,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     "A": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "p1a_m", nombre: "PRIMARIA - 1ERO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p1a_m", nombre: "PRIMARIA 1ERO - A", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "B": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "p1b_m", nombre: "PRIMARIA - 1ERO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p1b_m", nombre: "PRIMARIA 1ERO - B", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "C": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "p1c_t", nombre: "PRIMARIA - 1ERO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p1c_t", nombre: "PRIMARIA 1ERO - C", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "D": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "p1d_t", nombre: "PRIMARIA - 1ERO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p1d_t", nombre: "PRIMARIA 1ERO - D", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                 },
@@ -35,25 +35,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     "A": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "p2a_m", nombre: "PRIMARIA - 2DO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p2a_m", nombre: "PRIMARIA 2DO - A", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "B": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "p2b_m", nombre: "PRIMARIA - 2DO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p2b_m", nombre: "PRIMARIA 2DO - B", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "C": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "p2c_t", nombre: "PRIMARIA - 2DO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p2c_t", nombre: "PRIMARIA 2DO - C", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "D": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "p2d_t", nombre: "PRIMARIA - 2DO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p2d_t", nombre: "PRIMARIA 2DO - D", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                 },
@@ -63,25 +63,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     "A": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "p3a_m", nombre: "PRIMARIA - 3ERO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p3a_m", nombre: "PRIMARIA 3ERO - A", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "B": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "p3b_m", nombre: "PRIMARIA - 3ERO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p3b_m", nombre: "PRIMARIA 3ERO - B", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "C": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "p3c_t", nombre: "PRIMARIA - 3ERO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p3c_t", nombre: "PRIMARIA 3ERO - C", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "D": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "p3d_t", nombre: "PRIMARIA - 3ERO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p3d_t", nombre: "PRIMARIA 3ERO - D", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                 },
@@ -91,25 +91,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     "A": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "p4a_m", nombre: "PRIMARIA - 4TO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p4a_m", nombre: "PRIMARIA 4TO - A", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "B": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "p4b_m", nombre: "PRIMARIA - 4TO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p4b_m", nombre: "PRIMARIA 4TO - B", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "C": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "p4c_t", nombre: "PRIMARIA - 4TO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p4c_t", nombre: "PRIMARIA 4TO - C", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "D": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "p4d_t", nombre: "PRIMARIA - 4TO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p4d_t", nombre: "PRIMARIA 4TO - D", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                 },
@@ -119,25 +119,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     "A": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "p5a_m", nombre: "PRIMARIA - 5TO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p5a_m", nombre: "PRIMARIA 5TO - A", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "B": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "p5b_m", nombre: "PRIMARIA - 5TO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p5b_m", nombre: "PRIMARIA 5TO - B", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "C": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "p5c_t", nombre: "PRIMARIA - 5TO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p5c_t", nombre: "PRIMARIA 5TO - C", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "D": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "p5d_t", nombre: "PRIMARIA - 5TO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p5d_t", nombre: "PRIMARIA 5TO - D", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                 },
@@ -147,25 +147,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     "A": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "p6a_m", nombre: "PRIMARIA - 6TO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p6a_m", nombre: "PRIMARIA 6TO - A", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "B": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "p1b_m", nombre: "PRIMARIA - 1ERO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p1b_m", nombre: "PRIMARIA 1ERO - B", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "C": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "p1c_t", nombre: "PRIMARIA - 1ERO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p1c_t", nombre: "PRIMARIA 1ERO - C", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "D": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "p1d_t", nombre: "PRIMARIA - 1ERO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "p1d_t", nombre: "PRIMARIA 1ERO - D", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                 },
@@ -177,25 +177,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     "A": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "s1a_m", nombre: "SECUNDARIA - 1ERO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s1a_m", nombre: "SECUNDARIA 1ERO - A", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "B": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "s1b_m", nombre: "SECUNDARIA - 1ERO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s1b_m", nombre: "SECUNDARIA 1ERO - B", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "C": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "s1c_t", nombre: "SECUNDARIA - 1ERO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s1c_t", nombre: "SECUNDARIA 1ERO - C", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "D": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "s1d_t", nombre: "SECUNDARIA - 1ERO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s1d_t", nombre: "SECUNDARIA 1ERO - D", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                 },
@@ -205,25 +205,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     "A": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "s2a_m", nombre: "SECUNDARIA - 2DO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s2a_m", nombre: "SECUNDARIA 2DO - A", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "B": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "s2b_m", nombre: "SECUNDARIA - 2DO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s2b_m", nombre: "SECUNDARIA 2DO - B", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "C": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "s2c_t", nombre: "SECUNDARIA - 2DO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s2c_t", nombre: "SECUNDARIA 2DO - C", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "D": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "s2d_t", nombre: "SECUNDARIA - 2DO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s2d_t", nombre: "SECUNDARIA 2DO - D", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                 },
@@ -233,25 +233,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     "A": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "s3a_m", nombre: "SECUNDARIA - 3ERO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s3a_m", nombre: "SECUNDARIA 3ERO - A", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "B": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "s3b_m", nombre: "SECUNDARIA - 3ERO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s3b_m", nombre: "SECUNDARIA 3ERO - B", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "C": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "s3c_t", nombre: "SECUNDARIA - 3ERO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s3c_t", nombre: "SECUNDARIA 3ERO - C", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "D": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "s3d_t", nombre: "SECUNDARIA - 3ERO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s3d_t", nombre: "SECUNDARIA 3ERO - D", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                 },
@@ -261,25 +261,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     "A": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "s4a_m", nombre: "SECUNDARIA - 4TO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s4a_m", nombre: "SECUNDARIA 4TO - A", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "B": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "s4b_m", nombre: "SECUNDARIA - 4TO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s4b_m", nombre: "SECUNDARIA 4TO - B", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "C": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "s4c_t", nombre: "SECUNDARIA - 4TO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s4c_t", nombre: "SECUNDARIA 4TO - C", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "D": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "s4d_t", nombre: "SECUNDARIA - 4TO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s4d_t", nombre: "SECUNDARIA 4TO - D", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                 },
@@ -289,25 +289,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     "A": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "s5a_m", nombre: "SECUNDARIA - 5TO - SECCIÓN A", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s5a_m", nombre: "SECUNDARIA 5TO - A", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "B": {
                         mañana: {
                             horario: "7:00 AM - 12:00 PM",
-                            grupos: [{ id: "s5b_m", nombre: "SECUNDARIA - 5TO - SECCIÓN B", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s5b_m", nombre: "SECUNDARIA 5TO - B", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "C": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "s5c_t", nombre: "SECUNDARIA - 5TO - SECCIÓN C", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s5c_t", nombre: "SECUNDARIA 5TO - C", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                     "D": {
                         tarde: {
                             horario: "12:45 PM - 5:00 PM",
-                            grupos: [{ id: "s5d_t", nombre: "SECUNDARIA - 5TO - SECCIÓN D", fechas: "02/03/2026 - 15/12/2026"}]
+                            grupos: [{ id: "s5d_t", nombre: "SECUNDARIA 5TO - D", fechas: "02/03/2026 - 15/12/2026"}]
                         }
                     },
                 },
@@ -1517,7 +1517,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.getElementById('res-pago-total').textContent = (modalidad === 'colegio') ? totalGeneralCol.textContent : document.getElementById('cronograma-total-general').textContent;
 
-            btnNextStep2.textContent = "MATRICULARSE";
+            btnNextStep2.childNodes[0].nodeValue = "MATRICULARSE ";
 
             step2Colegio.classList.add('hidden-section');
             step2Academia.classList.add('hidden-section');
@@ -2039,6 +2039,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     step2Academia.classList.remove('hidden-section');
                 }
+
+                btnNextStep2.childNodes[0].nodeValue = "CONTINUAR PROCESO ";
 
                 document.getElementById('step-3-indicator').classList.remove('active');
                 document.getElementById('step-2-indicator').classList.add('active');

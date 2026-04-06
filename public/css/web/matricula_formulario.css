@@ -974,9 +974,284 @@ input[type="date"] {
     text-decoration: none !important;
 }
 
+.btn-whatsapp-final i {
+    font-size: 25px;
+}
+
 @keyframes bounceInSuccess {
     0% { transform: scale(0.3); opacity: 0; }
     50% { transform: scale(1.05); opacity: 1; }
     70% { transform: scale(0.9); }
     100% { transform: scale(1); }
+}
+
+.footer-bottom {
+    width: 100%;
+    margin-top: 40px !important;
+    padding: 25px 0;
+    background-color: transparent;
+    /* Estas 3 líneas aseguran el centrado total */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: var(--azul-oscuro);
+    margin: 0 auto; /* Asegura margen automático a los lados */
+    font-size: 14px;
+    font-weight: 490; /* Para que sea un poco más legible */
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+
+    /* --- 1. ESTRUCTURA GLOBAL Y CONTENEDORES --- */
+    .registration-container {
+        max-width: 100%;
+        padding: 0 10px; /* Reducimos padding lateral para ganar espacio */
+        margin: 10px auto 40px;
+    }
+
+    /* Reset obligatorio de tus márgenes negativos de escritorio */
+    .steps-progress,
+    .premium-card {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* --- 2. HERO BANNER --- */
+    .hero-banner {
+        padding: 40px 0;
+    }
+
+    .banner-inner {
+        flex-direction: column; /* Título arriba, botones abajo */
+        padding: 0 15px;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .banner-title h1 {
+        font-size: 2.2rem; /* Tamaño manejable para móvil */
+        line-height: 1.1;
+    }
+
+    .banner-contact {
+        flex-direction: row !important; /* Botones uno sobre otro */
+        justify-content: center;
+        width: 100%;
+        margin: 0;
+        gap: 10px;
+    }
+
+    .btn-banner,
+    .whatsapp-link-wrapper {
+        flex: 1; /* Hace que ambos midan lo mismo */
+        max-width: 140px; /* Evita que se estiren demasiado hacia los lados */
+    }
+
+    .whatsapp-badge i {
+        font-size: 1.2rem; /* Icono un poco más pequeño para que no rompa el diseño */
+    }
+
+    .btn-banner {
+        padding: 10px 5px; /* Menos padding interno */
+        font-size: 0.9rem;
+        justify-content: center;
+    }
+
+    .btn-banner,
+    .whatsapp-link-wrapper,
+    .whatsapp-badge {
+        width: 100%; /* Botones de ancho completo */
+        justify-content: center;
+    }
+
+    .whatsapp-badge {
+        padding: 10px 5px;
+        font-size: 0.9rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* --- 3. INDICADORES DE PASOS (STEPS) --- */
+    .steps-progress {
+        padding: 15px;
+        justify-content: flex-start;
+        overflow-x: auto; /* Scroll lateral si los pasos no caben */
+        gap: 15px;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 10px;
+    }
+
+    .step-box {
+        min-width: 140px; /* Mantiene legibilidad al scrollear */
+        flex-shrink: 0;
+    }
+
+    .step-divider {
+        display: none; /* Quitamos la línea para que no estorbe en móvil */
+    }
+
+    .step-name {
+        font-size: 0.85rem;
+    }
+
+    /* --- 4. TARJETAS PREMIUM (CARDS) --- */
+    .premium-card {
+        flex-direction: column; /* El acento rojo arriba, contenido abajo */
+        border-radius: 15px;
+    }
+
+    .card-side-accent {
+        width: 100%; /* El acento ahora es una franja horizontal superior */
+        height: 8px;
+    }
+
+    .card-body-content {
+        padding: 25px 15px;
+    }
+
+    .card-section-title {
+        font-size: 1.3rem;
+        flex-wrap: wrap; /* Evita que el título se salga */
+    }
+
+    /* --- 5. FORMULARIOS (GRIDS) --- */
+    .form-responsive-grid {
+        grid-template-columns: 1fr !important; /* Forzamos 1 sola columna */
+        gap: 15px;
+    }
+
+    select {
+        height: 50px !important;
+        font-size: 14px !important;
+        padding: 0 15px !important;
+        border-radius: 8px !important;
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        background-repeat: no-repeat !important;
+        background-position: right 15px center !important;
+        background-size: 18px !important;
+    }
+
+    #step-2-colegio input,
+    #step-2-academia input {
+        padding: 12px 15px;
+        font-size: 12px;
+    }
+
+    .custom-select-wrapper,
+    .input-field-group {
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+
+    .custom-select-wrapper i.select-arrow {
+        display: none !important;
+    }
+
+    .mayor-edad-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .cronograma-box {
+        margin-top: 20px;
+        overflow-x: auto;
+    }
+
+    .cronograma-table {
+        min-width: 550px;
+    }
+
+    .cronograma-table th,
+    .cronograma-table td {
+        padding: 10px 5px;
+        font-size: 0.85rem;
+    }
+
+    .resumen-premium-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .full-width-resumen,
+    .terms-container-v2 {
+        grid-column: span 1;
+    }
+
+    .resumen-tabla-mini {
+        display: block;
+        overflow-x: auto;
+    }
+
+    .main-success-title {
+        font-size: 1.4rem;
+    }
+
+    .res-final-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px;
+    }
+
+    #codigo-generado {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+
+    .bancos-container {
+        gap: 15px;
+    }
+
+    .banco-item img {
+        height: 35px !important;
+    }
+
+    .banco-item img[src*="YAPE"] {
+        height: 70px !important;
+    }
+
+    .step2-navigation-actions {
+        flex-direction: column;
+        padding: 0;
+        gap: 15px;
+        margin-top: 25px;
+    }
+
+    .btn-premium-prev,
+    .btn-premium-next-step2 {
+        width: 100%;
+        max-width: 100%;
+        height: 50px;
+        font-size: 1rem;
+    }
+
+    #step4-navigation-actions {
+        flex-direction: column-reverse;
+    }
+
+    .footer-bottom {
+        display: block !important;
+        width: 95% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 30px 0 !important;
+        text-align: center !important;
+        clear: both;
+    }
+
+    .footer-bottom p {
+        display: inline-block !important;
+        width: 100% !important;
+        text-align: center !important;
+        margin: 0 auto !important;
+        font-size: 12px !important;
+        padding: 0 10px !important;
+    }
 }
