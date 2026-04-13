@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'Next Level')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @php($landingCssVersion = filemtime(public_path('css/landing.css')))
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/course.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing.css') . '?v=' . $landingCssVersion }}">
     @stack('styles')
 
 </head>
@@ -42,6 +43,7 @@
                 <a href="{{ route('docente.activity') }}"
                     class="{{ request()->routeIs('docente.activity') ? 'active' : '' }}">
                     <i class="bi bi-activity"></i> <span>Actividad</span>
+                    @php($landingCssVersion = filemtime(public_path('css/landing.css')))
                 </a>
                 <a href="{{ route('docente.calendar') }}"
                     class="{{ request()->routeIs('docente.calendar') ? 'active' : '' }}">
@@ -59,20 +61,12 @@
                     class="{{ request()->routeIs('docente.tools') ? 'active' : '' }}">
                     <i class="bi bi-tools"></i> <span>Herramientas</span>
                 </a>
-<<<<<<< HEAD
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">@csrf
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
                 </form>
                 <a href="#" class="logout"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <i class="bi bi-box-arrow-right"></i> <span>Cerrar sesión</span>
-=======
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-
-                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
->>>>>>> a7d439919800e4a16f88df4d76cfdfdb85daf643
                 </a>
             </nav>
         </aside>
@@ -81,6 +75,7 @@
         </main>
     </div>
     @vite(['resources/js/app.js'])
+    <script src="{{ asset('js/course.js') }}"></script>
 </body>
 
 </html>

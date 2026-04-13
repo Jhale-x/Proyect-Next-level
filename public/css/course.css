@@ -1,69 +1,222 @@
 body {
-    background: #f4f7f6;
+    background: linear-gradient(135deg, #eef2ff, #fdf2f8);
+}
+
+/* GRID PARA QUE SE EXPANDA BIEN */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
 }
 
 .course-card {
-    background: #fff;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
     display: flex;
     overflow: hidden;
-    transition: .3s;
-    border: 1px solid #eee;
+    transition: all 0.35s ease;
+    border: 1px solid rgba(229, 231, 235, 0.6);
     cursor: pointer;
     height: 100%;
+    position: relative;
 }
 
 .course-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .1);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
 .course-bar {
-    width: 8px;
-    background: linear-gradient(180deg, #0a2d44 0%, #dc3545 100%);
-    flex-shrink: 0;
+    width: 6px;
+    background: linear-gradient(180deg, #03037a, #650000);
+    position: relative;
 }
 
-.course-header-banner {
+.course-bar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: inherit;
+    filter: blur(6px);
+    opacity: 0.6;
+}
+
+/* CONTENIDO */
+.course-content {
+    padding: 18px;
+    flex: 1;
+}
+
+.course-title,
+.course-card h6 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+    letter-spacing: 0.3px;
+    transition: 0.3s;
+}
+
+.course-card:hover h6 {
+    color: #2563eb;
+}
+
+/* EFECTO HOVER EXTRA */
+.course-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.6),
+        transparent 80%
+    );
+    opacity: 0;
+    transition: 0.4s;
+}
+
+.course-card:hover::after {
+    opacity: 1;
+}
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-header .actions {
+    display: flex;
+    gap: 10px;
+}
+.page-wrap {
+    height: calc(100vh - 14.5vh);
+}
+.container {
+    height: calc(100vh - 14.5vh);
+}
+
+.row.g-3 {
+    --bs-gutter-y: 1.5rem;
+}
+
+.btn {
+    border-radius: 10px;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2563eb, #1e3a8a);
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #22c55e, #15803d);
+    border: none;
+}
+
+.views-container {
     position: relative;
-    background-size: cover;
-    background-position: center;
+}
+
+.view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.view.active {
+    position: relative;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+    visibility: visible;
+}
+.course-header-banner {
+    background: linear-gradient(135deg, #1e3a8a, #9333ea);
     color: white;
-    padding: 60px 40px;
-    border-radius: 15px;
-    margin-bottom: 25px;
+    padding: 30px;
+    border-radius: 18px;
+    position: relative;
     overflow: hidden;
 }
 
 .course-header-banner::after {
     content: "";
     position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, .6);
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+    top: -50%;
+    left: -50%;
 }
-
-.course-header-banner h1 {
-    position: relative;
-    z-index: 2;
-}
-
 .btn-back {
-    cursor: pointer;
-    color: #0a2d44;
-    font-weight: bold;
-    margin-bottom: 15px;
     display: inline-block;
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: #374151;
     text-decoration: none;
+    transition: 0.3s;
 }
 
+.btn-back:hover {
+    color: #2563eb;
+    transform: translateX(-3px);
+}
+.table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table thead {
+    background: #f9fafb;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr:hover {
+    background: #f1f5f9;
+}
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    transition: 0.2s;
+}
+
+.form-control:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
 .salon-card {
     cursor: pointer;
-    transition: .2s;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    border-radius: 12px;
+    transition: 0.25s;
+    border: 1px solid #e5e7eb;
 }
 
 .salon-card:hover {
-    background: #f8f9fa;
-    transform: translateY(-2px);
+    background: #eff6ff;
+    border-color: #2563eb;
+}
+
+.salon-card input:checked + span {
+    font-weight: bold;
+}
+::selection {
+    background: #2563eb;
+    color: white;
 }

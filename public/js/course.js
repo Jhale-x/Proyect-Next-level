@@ -1,4 +1,5 @@
 let cursoActual = null;
+let cursoNombreActual = null;
 let docenteActual = null;
 let salonActual = null;
 let actividadesActuales = [];
@@ -11,20 +12,43 @@ function vista(ocultar, mostrar) {
     if (elMostrar) elMostrar.classList.remove('d-none');
 }
 
+function cambiarVista(mostrar) {
+    document.querySelectorAll('.view').forEach(v => {
+        v.classList.remove('active');
+    });
+
+    document.getElementById(mostrar).classList.add('active');
+}
+
 function abrirMateria(nombre, id_curso) {
     cursoActual = id_curso;
+    cursoNombreActual = nombre;
 
-    vista('vista-materias', 'vista-docentes');
+    cambiarVista('vista-docentes');
 
     const tituloMateria = document.getElementById('titulo-materia');
     const actividadCursoId = document.getElementById('actividad_curso_id');
     const asignarCursoId = document.getElementById('asignar_curso_id');
     const docenteCursoId = document.getElementById('docente_curso_id');
+    const asignarCursoName = document.getElementById('asignar_modal_curso_name');
+    const actividadCursoName = document.getElementById('actividad_modal_curso_name');
 
     if (tituloMateria) tituloMateria.innerText = nombre;
     if (actividadCursoId) actividadCursoId.value = id_curso;
     if (asignarCursoId) asignarCursoId.value = id_curso;
     if (docenteCursoId) docenteCursoId.value = id_curso;
+    if (asignarCursoName) asignarCursoName.textContent = nombre;
+    if (actividadCursoName) actividadCursoName.textContent = nombre;
+
+    const listaDocentes = document.getElementById('lista-docentes-materia');
+    if (listaDocentes) {
+        listaDocentes.innerHTML = `
+            <div class="col-12 text-center py-5">
+                <div class="spinner-border text-primary"></div>
+                <p class="mt-2 text-muted">Cargando...</p>
+            </div>
+        `;
+    }
 
     fetch(`/admin/courses/${id_curso}/docentes`)
         .then((r) => r.json())
@@ -49,16 +73,83 @@ function abrirMateria(nombre, id_curso) {
                 `;
             });
 
-            const lista = document.getElementById('lista-docentes-materia');
-            if (lista) lista.innerHTML = html;
+            if (listaDocentes) listaDocentes.innerHTML = html;
         })
-        .catch((error) => console.error('Error docentes:', error));
+        .catch((error) => {
+            console.error('Error docentes:', error);
+            if (listaDocentes) listaDocentes.innerHTML = `<div class="col-12"><div class="alert alert-danger">Error al cargar docentes.</div></div>`;
+        });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const asignarModal = document.getElementById('modalAsignarActividad');
+    if (asignarModal) {
+        const updateAsignarModalCourse = () => {
+            const asignarCursoId = document.getElementById('asignar_curso_id');
+            const asignarCursoName = document.getElementById('asignar_modal_curso_name');
+            if (asignarCursoId && cursoActual !== null) {
+                asignarCursoId.value = cursoActual;
+            }
+            if (asignarCursoName && cursoNombreActual) {
+                asignarCursoName.textContent = cursoNombreActual;
+            }
+        };
+
+        asignarModal.addEventListener('show.bs.modal', updateAsignarModalCourse);
+
+        const asignarButton = document.querySelector('[data-bs-target="#modalAsignarActividad"]');
+        if (asignarButton) {
+            asignarButton.addEventListener('click', updateAsignarModalCourse);
+        }
+    }
+
+    const actividadModal = document.getElementById('modalActividad');
+    if (actividadModal) {
+        const updateActividadModalCourse = () => {
+            const actividadCursoId = document.getElementById('actividad_curso_id');
+            const actividadCursoName = document.getElementById('actividad_modal_curso_name');
+            if (actividadCursoId && cursoActual !== null) {
+                actividadCursoId.value = cursoActual;
+            }
+            if (actividadCursoName && cursoNombreActual) {
+                actividadCursoName.textContent = cursoNombreActual;
+            }
+        };
+
+        actividadModal.addEventListener('show.bs.modal', updateActividadModalCourse);
+
+        const actividadButton = document.querySelector('[data-bs-target="#modalActividad"]');
+        if (actividadButton) {
+            actividadButton.addEventListener('click', updateActividadModalCourse);
+        }
+    }
+
+    const salonesModal = document.getElementById('modalAsignarSalones');
+    if (salonesModal) {
+        const updateSalonesModalCourse = () => {
+            const salonCursoIdInput = document.getElementById('salones_asignar_curso_id');
+            const salonCursoName = document.getElementById('salones_modal_curso_name');
+            if (salonCursoIdInput && cursoActual !== null) {
+                salonCursoIdInput.value = cursoActual;
+            }
+            if (salonCursoName && cursoNombreActual) {
+                salonCursoName.textContent = cursoNombreActual;
+            }
+        };
+
+        salonesModal.addEventListener('show.bs.modal', updateSalonesModalCourse);
+
+        const salonesButton = document.querySelector('[data-bs-target="#modalAsignarSalones"]');
+        if (salonesButton) {
+            salonesButton.addEventListener('click', updateSalonesModalCourse);
+        }
+    }
+});
 
 function abrirDocente(nombre, id_docente) {
     docenteActual = id_docente;
 
-    vista('vista-docentes', 'vista-salones-docente');
+    cambiarVista('vista-salones-docente');
 
     const tituloDocente = document.getElementById('titulo-docente');
     const docenteIdInput = document.getElementById('docente_id');
@@ -66,7 +157,26 @@ function abrirDocente(nombre, id_docente) {
     if (tituloDocente) tituloDocente.innerText = nombre;
     if (docenteIdInput) docenteIdInput.value = id_docente;
 
+    const salonCursoIdInput = document.getElementById('salones_asignar_curso_id');
+    const salonCursoName = document.getElementById('salones_modal_curso_name');
+    if (salonCursoIdInput && cursoActual !== null) {
+        salonCursoIdInput.value = cursoActual;
+    }
+    if (salonCursoName && cursoNombreActual) {
+        salonCursoName.textContent = cursoNombreActual;
+    }
+
     const queryCurso = cursoActual ? `?id_curso=${cursoActual}` : '';
+
+    const listaSalones = document.getElementById('lista-salones-docente');
+    if (listaSalones) {
+        listaSalones.innerHTML = `
+            <div class="col-12 text-center py-5">
+                <div class="spinner-border text-primary"></div>
+                <p class="mt-2 text-muted">Cargando...</p>
+            </div>
+        `;
+    }
 
     fetch(`/admin/courses/docente/${id_docente}/salones${queryCurso}`)
         .then((r) => r.json())
@@ -83,16 +193,18 @@ function abrirDocente(nombre, id_docente) {
                 `;
             });
 
-            const lista = document.getElementById('lista-salones-docente');
-            if (lista) lista.innerHTML = html;
+            if (listaSalones) listaSalones.innerHTML = html;
         })
-        .catch((error) => console.error('Error salones:', error));
+        .catch((error) => {
+            console.error('Error salones:', error);
+            if (listaSalones) listaSalones.innerHTML = `<div class="col-12"><div class="alert alert-danger">Error al cargar salones.</div></div>`;
+        });
 }
 
 function abrirDetalle(idSalon) {
     salonActual = idSalon;
 
-    vista('vista-salones-docente', 'vista-detalle');
+    cambiarVista('vista-detalle');
 
     const exportForm = document.getElementById('export-form');
     const importForm = document.getElementById('import-form');
@@ -286,19 +398,19 @@ function guardarNotasDetalle() {
 }
 
 function volverMaterias() {
-    vista('vista-docentes', 'vista-materias');
+    cambiarVista('vista-materias');
 }
 
 function volverDocentes() {
-    vista('vista-salones-docente', 'vista-docentes');
+    cambiarVista('vista-docentes');
 }
 
 function volverASalones() {
-    vista('vista-detalle', 'vista-salones-docente');
+    cambiarVista('vista-salones-docente');
 }
 
 function cerrarRegistroExcel() {
-    vista('vista-detalle', 'vista-salones-docente');
+    cambiarVista('vista-salones-docente');
 }
 
 document.addEventListener('DOMContentLoaded', function () {

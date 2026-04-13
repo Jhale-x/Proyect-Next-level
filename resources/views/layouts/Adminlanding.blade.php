@@ -5,74 +5,13 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'Next Level')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @php($landingCssVersion = filemtime(public_path('css/landing.css')))
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/course.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing.css') . '?v=' . $landingCssVersion }}">
     <link rel="stylesheet" href="{{ asset('css/messages.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/activity.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/adminPaginaInstitucional.css') }}">
     @stack('styles')
-
-    <style>
-        body {
-            background-color: #f5f6fa;
-        }
-
-        .admin-topbar {
-            background: #ffffff;
-            border-radius: 14px;
-            box-shadow: 0 6px 20px rgba(16, 24, 40, 0.07);
-            margin: 1rem 1rem 0;
-            padding: 0.75rem 1rem;
-        }
-
-        .admin-topbar .search-box {
-            max-width: 380px;
-        }
-
-        .admin-topbar .search-box .form-control {
-            border-radius: 10px;
-            border-color: #e7eaf0;
-            padding-left: 2.2rem;
-        }
-
-        .admin-topbar .search-icon {
-            position: absolute;
-            top: 50%;
-            left: 0.8rem;
-            transform: translateY(-50%);
-            color: #8c94a1;
-        }
-
-        .admin-topbar .icon-btn {
-            width: 40px;
-            height: 40px;
-            border: 1px solid #e7eaf0;
-            border-radius: 10px;
-            background: #fff;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            color: #334155;
-            transition: all .2s ease;
-        }
-
-        .admin-topbar .icon-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
-            color: #0d6efd;
-        }
-
-        .admin-user-trigger {
-            border: 1px solid #e7eaf0;
-            border-radius: 10px;
-            padding: 0.35rem 0.6rem;
-            background: #fff;
-        }
-    </style>
-
-
 </head>
 
 <body>
@@ -104,10 +43,11 @@
 
                 <a href="{{ route('admin.activity') }}"
                     class="{{ request()->routeIs('admin.activity') ? 'active' : '' }}">
+                    @php($landingCssVersion = filemtime(public_path('css/landing.css')))
                     <i class="bi bi-activity"></i>
                     <span>Actividad</span>
                 </a>
-
+                <link rel="stylesheet" href="{{ asset('css/landing.css') . '?v=' . $landingCssVersion }}">
                 <div class="sidebar-item">
                     <a href="{{ route('admin.courses') }}"
                         class="{{ request()->routeIs('admin.courses') || request()->routeIs('admin.eti') ? 'active' : '' }}">
@@ -233,6 +173,7 @@
         </main>
     </div>
 
+    @stack('modals')
     @vite(['resources/js/app.js'])
     <script src="{{ asset('js/course.js') }}"></script>
     @stack('scripts')

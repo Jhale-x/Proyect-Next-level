@@ -119,31 +119,31 @@
 
         <!-- ===== ALUMNO ===== -->
         <!--
-                                    <div class="card shadow-sm border-0">
-                                        <div class="card-body">
+                                        <div class="card shadow-sm border-0">
+                                            <div class="card-body">
 
-                                            <h4 class="fw-bold mb-3">Mi Reporte de Calificaciones</h4>
+                                                <h4 class="fw-bold mb-3">Mi Reporte de Calificaciones</h4>
 
-                                            <div class="row g-3">
-                                                <div class="col-md-4">
-                                                    <div class="p-3 border rounded text-center">
-                                                        <h6>Promedio General</h6>
-                                                        <h1 class="display-4 text-primary">A</h1>
+                                                <div class="row g-3">
+                                                    <div class="col-md-4">
+                                                        <div class="p-3 border rounded text-center">
+                                                            <h6>Promedio General</h6>
+                                                            <h1 class="display-4 text-primary">A</h1>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-8">
+                                                        <h6>Actividades</h6>
+                                                        <ul class="list-group">
+                                                            <li class="list-group-item">Tarea: 16</li>
+                                                            <li class="list-group-item">Exposición: 18</li>
+                                                            <li class="list-group-item">Examen: 15</li>
+                                                        </ul>
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-8">
-                                                    <h6>Actividades</h6>
-                                                    <ul class="list-group">
-                                                        <li class="list-group-item">Tarea: 16</li>
-                                                        <li class="list-group-item">Exposición: 18</li>
-                                                        <li class="list-group-item">Examen: 15</li>
-                                                    </ul>
-                                                </div>
                                             </div>
-
-                                        </div>
-                                    </div>-->
+                                        </div>-->
 
     </div>
 
@@ -216,14 +216,28 @@
 
                         <input type="hidden" name="id_curso" id="asignar_curso_id">
 
-                        <label for="actividad_existente_doc">Actividad existente</label>
-                        <select id="actividad_existente_doc" name="id_actividad" class="form-select">
-                            @foreach ($actividades as $actividad)
-                                <option value="{{ $actividad->id_actividad }}">
-                                    {{ $actividad->actividad }}
-                                </option>
-                            @endforeach
-                        </select>
+                        <div class="mb-3">
+                            <label for="actividad_existente_doc">Actividad existente</label>
+                            <select id="actividad_existente_doc" name="id_actividad" class="form-select">
+                                @foreach ($actividades as $actividad)
+                                    <option value="{{ $actividad->id_actividad }}">
+                                        {{ $actividad->actividad }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="actividad_fecha_entrega_doc">Fecha de entrega</label>
+                            <input id="actividad_fecha_entrega_doc" type="date" name="fecha_entrega"
+                                class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="actividad_hora_entrega_doc">Hora de entrega</label>
+                            <input id="actividad_hora_entrega_doc" type="time" name="hora_entrega"
+                                class="form-control">
+                        </div>
 
                     </div>
 

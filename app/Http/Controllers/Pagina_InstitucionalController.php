@@ -6,10 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Anuncio;
 use App\Models\Alumno;
 use App\Models\User;
-use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
 class Pagina_InstitucionalController extends Controller
@@ -24,6 +22,11 @@ class Pagina_InstitucionalController extends Controller
                 return redirect()->route('admin.pagina_institucional');
             }
         }
+
+        if (Auth::guard('alumno')->check()) {
+            return redirect()->route('alumno.pagina_institucional');
+        }
+
         $anuncios = $this->anunciosPublicadosQuery()
             ->orderBy('fecha_publicacion', 'desc')
             ->get();
@@ -42,39 +45,33 @@ class Pagina_InstitucionalController extends Controller
 
     public function adminIndex()
     {
+        // 📊 Usuarios del sistema
         $totalUsuariosSistema = User::count();
         $totalAlumnos = Alumno::count();
         $totalUsuarios = $totalUsuariosSistema + $totalAlumnos;
+
         $admins = User::where('rol', 'administrador')->count();
         $docentes = User::where('rol', 'docente')->count();
         $auxiliares = User::where('rol', 'auxiliar')->count();
+
         $usuariosRecientes = User::orderBy('created_at', 'desc')->take(5)->get();
 
-        $academia = 0;
-        $colegio = 0;
+        // 🎓 ALUMNOS POR TIPO (según tu BD real)
+        $alumnos = $totalAlumnos;
 
-        if (Schema::hasColumn('alumnos', 'tipo')) {
-            $academia = Alumno::where('tipo', 'academia')->count();
-            $colegio = Alumno::where('tipo', 'colegio')->count();
-        } elseif (
-            Schema::hasTable('salones')
-            && Schema::hasTable('niveles')
-            && Schema::hasColumn('alumnos', 'id_salon')
-            && Schema::hasColumn('niveles', 'nivel')
-        ) {
-            $academia = DB::table('alumnos')
-                ->join('salones', 'alumnos.id_salon', '=', 'salones.id_salon')
-                ->join('niveles', 'salones.id_nivel', '=', 'niveles.id_nivel')
-                ->whereRaw('LOWER(niveles.nivel) LIKE ?', ['%academia%'])
-                ->count();
+        $academia = DB::table('alumnos')
+            ->join('salones', 'alumnos.id_salon', '=', 'salones.id_salon')
+            ->join('niveles', 'salones.id_nivel', '=', 'niveles.id_nivel')
+            ->whereRaw('LOWER(niveles.nivel) LIKE ?', ['%academia%'])
+            ->count();
 
-            $colegio = DB::table('alumnos')
-                ->join('salones', 'alumnos.id_salon', '=', 'salones.id_salon')
-                ->join('niveles', 'salones.id_nivel', '=', 'niveles.id_nivel')
-                ->whereRaw('LOWER(niveles.nivel) LIKE ?', ['%colegio%'])
-                ->count();
-        }
+        $colegio = DB::table('alumnos')
+            ->join('salones', 'alumnos.id_salon', '=', 'salones.id_salon')
+            ->join('niveles', 'salones.id_nivel', '=', 'niveles.id_nivel')
+            ->whereIn(DB::raw('LOWER(niveles.nivel)'), ['inicial', 'primaria', 'secundaria'])
+            ->count();
 
+        // 📰 Anuncios
         $recientes = Anuncio::with('user')
             ->orderBy('fecha_publicacion', 'desc')
             ->take(3)
@@ -89,6 +86,7 @@ class Pagina_InstitucionalController extends Controller
             'admins' => $admins,
             'docentes' => $docentes,
             'auxiliares' => $auxiliares,
+            'alumnos' => $alumnos,       // 🔥 IMPORTANTE (antes no estaba)
             'academia' => $academia,
             'colegio' => $colegio,
             'usuariosRecientes' => $usuariosRecientes,
@@ -113,11 +111,11 @@ class Pagina_InstitucionalController extends Controller
             'descripcion'       => 'required|string',
             'contenido'         => 'nullable|string',
             'imagen'            => 'nullable|image|max:2048',
-            'fecha_publicacion' => 'required|date_format:Y-m-d\TH:i',
             'estado'            => 'required|in:activo,inactivo,programado',
         ]);
 
-        $validated['fecha_publicacion'] = Carbon::createFromFormat('Y-m-d\TH:i', $validated['fecha_publicacion']);
+        // La fecha de publicación se maneja automáticamente desde el servidor.
+        $validated['fecha_publicacion'] = now()->toDateString();
 
         if (Auth::check()) {
             $validated['id_usuario'] = Auth::user()->id_usuario;
@@ -146,6 +144,32 @@ class Pagina_InstitucionalController extends Controller
 
         return redirect()->route('admin.pagina_institucional')
             ->with('success', 'Anuncio eliminado correctamente.');
+    }
+
+    public function updateAnuncio(Request $request, $id)
+    {
+        $anuncio = Anuncio::findOrFail($id);
+
+        $validated = $request->validate([
+            'titulo'      => 'required|string|max:255',
+            'descripcion' => 'required|string',
+            'contenido'   => 'nullable|string',
+            'imagen'      => 'nullable|image|max:2048',
+            'estado'      => 'required|in:activo,inactivo,programado',
+        ]);
+
+        if ($request->hasFile('imagen')) {
+            if ($anuncio->imagen) {
+                Storage::disk('public')->delete($anuncio->imagen);
+            }
+
+            $validated['imagen'] = $request->file('imagen')->store('anuncios', 'public');
+        }
+
+        $anuncio->update($validated);
+
+        return redirect()->route('admin.pagina_institucional')
+            ->with('success', 'Anuncio actualizado correctamente.');
     }
 
     private function anunciosPublicadosQuery()

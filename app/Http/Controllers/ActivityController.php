@@ -29,15 +29,15 @@ class ActivityController extends Controller
                 DB::raw('COALESCE(ca.porcentaje, a.porcentaje) as porcentaje'),
                 'c.materia',
                 's.id_salon',
-                DB::raw("COALESCE(CONCAT(n.nivel, ' - ', g.grado, ' ', sec.seccion), CONCAT('Salon ', s.id_salon), 'Sin salon asignado') as salon_nombre")
+                DB::raw("COALESCE(CONCAT(n.nivel, ' - ', g.grado, ' ', sec.seccion), 'Sin salon asignado') as salon_nombre")
             )
-            ->orderBy('salon_nombre')
+            ->orderBy('c.materia')
             ->orderBy('ca.fecha_entrega', 'desc')
             ->get();
 
         // Compatibilidad: algunas vistas usan $activities y otras $actividades.
         $actividades = $activities;
-        $activitiesBySalon = $activities->groupBy('salon_nombre');
+        $activitiesBySalon = collect($activities ?? [])->groupBy('materia');
 
 
         if (Auth::guard('alumno')->check()) {
@@ -105,6 +105,8 @@ class ActivityController extends Controller
         $request->validate([
             'id_curso' => 'required|exists:cursos,id_curso',
             'id_actividad' => 'required|exists:actividades,id_actividad',
+            'fecha_entrega' => 'required|date',
+            'hora_entrega' => 'nullable|date_format:H:i',
         ]);
 
         $alreadyAssigned = DB::table('curso_actividades')
@@ -124,11 +126,13 @@ class ActivityController extends Controller
             'id_curso' => $request->id_curso,
             'id_actividad' => $request->id_actividad,
             'porcentaje' => $actividad->porcentaje,
+            'fecha_entrega' => $request->fecha_entrega,
+            'hora_entrega' => $request->hora_entrega,
             'created_at' => now(),
             'updated_at' => now()
         ]);
 
-        return back();
+        return back()->with('success', 'Actividad asignada correctamente 🔥');
     }
 
     public function updateFecha(Request $request, $id)

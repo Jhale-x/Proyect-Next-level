@@ -8,6 +8,7 @@ use App\Models\Nivel;
 use App\Models\Grado;
 use App\Models\Seccion;
 use App\Models\Facultad;
+use App\Models\Alumno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,6 +21,16 @@ class UsersController extends Controller
         $admins = User::where('rol', 'administrador')->count();
         $docentes = User::where('rol', 'docente')->count();
         $auxiliares = User::where('rol', 'auxiliar')->count();
+
+        $alumnos = Alumno::count();
+
+        $academia = Alumno::whereHas('salon.nivel', function ($q) {
+            $q->where('nivel', 'like', '%academia%');
+        })->count();
+
+        $colegio = Alumno::whereHas('salon.nivel', function ($q) {
+            $q->whereIn('nivel', ['Inicial', 'Primaria', 'Secundaria']);
+        })->count();
 
         $usuariosRecientes = User::latest()->take(5)->get();
 
@@ -39,7 +50,10 @@ class UsersController extends Controller
             'niveles',
             'grados',
             'secciones',
-            'facultades'
+            'facultades',
+            'alumnos',
+            'academia',
+            'colegio'
         ));
     }
 
@@ -51,10 +65,10 @@ class UsersController extends Controller
         // 🔍 búsqueda
         if ($request->filled('search')) {
             $search = $request->search;
-            $query->where(function($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->where('nombre', 'LIKE', "%$search%")
-                  ->orWhere('apellido', 'LIKE', "%$search%")
-                  ->orWhere('dni', 'LIKE', "%$search%");
+                    ->orWhere('apellido', 'LIKE', "%$search%")
+                    ->orWhere('dni', 'LIKE', "%$search%");
             });
         }
 

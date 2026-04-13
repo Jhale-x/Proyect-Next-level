@@ -149,13 +149,6 @@ class CourseController extends Controller
         $salones = $validated['salones'] ?? [];
 
         DB::transaction(function () use ($docenteId, $cursoId, $salones) {
-            DB::table('docente_salon')
-                ->where('id_usuario', $docenteId)
-                ->where('id_curso', $cursoId)
-                ->when(!empty($salones), fn($query) => $query->whereNotIn('id_salon', $salones))
-                ->when(empty($salones), fn($query) => $query)
-                ->delete();
-
             foreach ($salones as $id_salon) {
                 DB::table('docente_salon')->updateOrInsert(
                     [

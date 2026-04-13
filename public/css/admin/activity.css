@@ -8,14 +8,33 @@ body {
     background: #f8f9fa;
     font-family:
         -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin-left: auto;
+    overflow: hidden;
+}
+
+/* Fija el main-content para que no haga scroll de página */
+.main-content {
+    height: calc(100vh - 30px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
 }
 
 .activity-wrapper {
-    width: 100%;
-    max-width: 100%;
-    padding: 30px 40px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
 }
-
 .header {
     display: flex;
     justify-content: space-between;
@@ -68,8 +87,30 @@ body {
 
 /* Timeline container */
 .timeline-container {
-    position: relative;
-    max-width: 1200px;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px;
+    scroll-behavior: smooth;
+    min-height: 0;
+}
+
+.timeline-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.timeline-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.timeline-container::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+.timeline-container::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
 }
 
 /* Timeline */
@@ -233,6 +274,8 @@ body {
 
     .activity-item {
         flex-direction: column;
+        overflow-y: auto;
+        padding-right: 100px;
     }
 
     .activity-date {
@@ -250,4 +293,130 @@ body {
     .activity-card::after {
         left: -28px;
     }
+}
+
+.activity-wrapper .header h1 {
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 0.2rem;
+}
+
+.activity-wrapper .header .sub {
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+.filters-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+}
+
+.filters-grid .form-select,
+.filters-grid .form-control {
+    border-radius: 10px;
+    border-color: #dbe1ea;
+}
+
+.quick-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.quick-types .btn {
+    border-radius: 999px;
+}
+
+.timeline::before {
+    width: 3px;
+    background: linear-gradient(to bottom, #0d6efd, #6c757d);
+}
+
+.activity-card {
+    border-left-width: 4px;
+    border-left-style: solid;
+    border-left-color: #6c757d;
+    border-radius: 12px;
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
+}
+
+.activity-card::before {
+    content: "";
+    font-family: bootstrap-icons;
+    background: #fff;
+    border-color: #dbe1ea;
+}
+
+.activity-card.tipo-comunicacion {
+    border-left-color: #0d6efd;
+}
+
+.activity-card.tipo-comunicacion::before {
+    content: "\\F217";
+    color: #0d6efd;
+}
+
+.activity-card.tipo-tarea {
+    border-left-color: #198754;
+}
+
+.activity-card.tipo-tarea::before {
+    content: "\\F4C6";
+    color: #198754;
+}
+
+.activity-card.tipo-anuncio {
+    border-left-color: #ffc107;
+}
+
+.activity-card.tipo-anuncio::before {
+    content: "\\F47A";
+    color: #b58100;
+}
+
+.activity-date {
+    font-style: normal;
+}
+
+.activity-meta .badge {
+    border-radius: 999px;
+}
+
+.activity-title {
+    color: #111827;
+}
+
+.activity-comment {
+    color: #5f6572;
+    font-style: normal;
+    margin-bottom: 0.6rem;
+}
+
+.empty-filter {
+    display: none;
+    border: 1px dashed #cdd4df;
+    border-radius: 10px;
+    padding: 1rem;
+    color: #6b7280;
+    background: #fff;
+}
+
+@media (max-width: 992px) {
+    .filters-grid {
+        grid-template-columns: 1fr;
+    }
+}
+.page-wrap {
+    height: calc(100vh - 14.5vh);
 }

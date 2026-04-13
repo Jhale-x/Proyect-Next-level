@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'Next Level')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    @php($landingCssVersion = filemtime(public_path('css/landing.css')))
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/course.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/landing.css') . '?v=' . $landingCssVersion }}">
     @stack('styles')
 </head>
 
@@ -44,16 +45,17 @@
 
                 <a href="{{ route('auxiliar.suport') }}"
                     class="{{ request()->routeIs('auxiliar.suport') ? 'active' : '' }}">
+                    @php($landingCssVersion = filemtime(public_path('css/landing.css')))
                     <i class="bi bi-life-preserver"></i>
                     <span>Soporte</span>
                 </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
+                <link rel="stylesheet" href="{{ asset('css/landing.css') . '?v=' . $landingCssVersion }}">
+                @csrf
                 </form>
 
                 <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
                 </a>
             </nav>
         </aside>

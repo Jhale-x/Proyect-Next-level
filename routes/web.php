@@ -46,6 +46,7 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(functi
     // Gestión Institucional
     Route::get('/pagina-institucional', [Pagina_InstitucionalController::class, 'adminIndex'])->name('admin.pagina_institucional');
     Route::post('/pagina-institucional', [Pagina_InstitucionalController::class, 'storeAnuncio'])->name('admin.pagina_institucional.store');
+    Route::put('/pagina-institucional/{id}', [Pagina_InstitucionalController::class, 'updateAnuncio'])->name('admin.pagina_institucional.update');
     Route::delete('/pagina-institucional/{id}', [Pagina_InstitucionalController::class, 'destroyAnuncio'])->name('admin.pagina_institucional.destroy');
 
     // --- SECCIÓN ETI Y USUARIOS ---
@@ -85,6 +86,8 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(functi
         Route::get('/por-nivel', [SalonController::class, 'porNivel'])->name('admin.salones.porNivel');
         Route::get('/{id}/detalle', [CourseController::class, 'detalleSalon'])->name('admin.salones.detalle');
         Route::post('/{id}/guardar-notas', [CourseController::class, 'guardarNotasSalon'])->name('admin.salones.guardarNotas');
+        Route::get('/{id}/export/{idCurso}', [SalonController::class, 'export'])->name('admin.salones.export');
+        Route::post('/{id}/import', [SalonController::class, 'import'])->name('admin.salones.import');
     });
 
     // --- CONFIGURACIÓN ACADÉMICA ---
@@ -99,7 +102,7 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(functi
         Route::post('/facultades/multiple', [NivelController::class, 'storeFacultades'])->name('admin.config.facultades.storeMultiple');
     });
 
-    Route::get('/eti', [EtisController::class, 'index'])->name('admin.eti');
+    Route::get('/eti', [EtisController::class, 'viewEti'])->name('admin.eti');
     Route::get('/qualifications', [QualificationController::class, 'index'])->name('admin.qualifications');
     Route::get('/qualifications/cursos', [QualificationController::class, 'cursos'])->name('admin.qualifications.cursos');
     Route::get('/qualifications/cursos/{idCurso}/salones', [QualificationController::class, 'salones'])->name('admin.qualifications.salones');

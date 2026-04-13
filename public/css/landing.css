@@ -4,9 +4,10 @@
 }
 
 body {
-    background-color: #f4f6f9;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 40%, #dc2626 100%);
+    background-attachment: fixed;
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     overflow-x: hidden;
 }
 
@@ -27,19 +28,19 @@ body {
 
 /* CONFIGURACIÓN RESPONSIVE */
 @media (max-width: 992px) {
-    .sidebar { 
-        transform: translateX(-260px); 
+    .sidebar {
+        transform: translateX(-260px);
     }
-    .sidebar.active { 
-        transform: translateX(0); 
+    .sidebar.active {
+        transform: translateX(0);
     }
     .main-content {
         margin-left: 0 !important;
         width: 100% !important;
         padding-top: 80px !important; /* Espacio para el mobile-header */
     }
-    .mobile-header { 
-        display: flex !important; 
+    .mobile-header {
+        display: flex !important;
     }
 }
 
@@ -56,7 +57,7 @@ body {
     padding: 0 20px;
     z-index: 1000;
     justify-content: space-between;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar-overlay {
@@ -66,16 +67,16 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     z-index: 1050;
 }
-.sidebar-overlay.active { 
-    display: block; 
+.sidebar-overlay.active {
+    display: block;
 }
 
 .sidebar .logo {
     padding: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
     display: flex;
     align-items: center;
     gap: 10px;
@@ -83,16 +84,20 @@ body {
     font-weight: bold;
 }
 
-.logo-img { width: 36px; height: 36px; object-fit: contain; }
+.logo-img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
 
-.sidebar .menu { 
-    flex: 1; 
-    overflow-y: auto; 
+.sidebar .menu {
+    flex: 1;
+    overflow-y: auto;
 }
 
 /* Estilo de enlaces */
 .sidebar a {
-    color: rgba(255,255,255,0.75);
+    color: rgba(255, 255, 255, 0.75);
     text-decoration: none;
     padding: 12px 20px;
     display: flex;
@@ -103,92 +108,236 @@ body {
 }
 
 .sidebar a:hover {
-    background-color: rgba(255,255,255,0.08);
+    background-color: rgba(255, 255, 255, 0.08);
     color: #fff;
 }
 
 .sidebar a.active {
-    background-color: rgba(255,255,255,0.12);
+    background-color: rgba(255, 255, 255, 0.12);
     color: #fff;
     border-left: 4px solid #dc3545;
 }
 
-.logout { 
-    border-top: 1px solid rgba(255,255,255,0.15); 
+.logout {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     margin-top: auto; /* Empuja el botón al fondo */
 }
-.logout:hover { 
-    background-color: #dc3545; 
-    color: #fff; 
+.logout:hover {
+    background-color: #dc3545;
+    color: #fff;
 }
 
+/* CAPA VISUAL EXTRA */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(255, 255, 255, 0.08),
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at bottom left,
+            rgba(255, 255, 255, 0.05),
+            transparent 50%
+        );
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* MAIN CONTENT PRO */
 .main-content {
     margin-left: 260px;
     padding: 20px;
     width: calc(100% - 260px);
-    transition: margin-left 0.3s ease, width 0.3s ease;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    margin-top: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* TOPBAR PRO */
+.admin-topbar {
+    background: linear-gradient(135deg, #ffffff, #f1f5f9);
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    margin: 1rem 1rem 0;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* SEARCH */
+.admin-topbar .search-box {
+    max-width: 380px;
+}
+
+.admin-topbar .search-box .form-control {
+    border-radius: 10px;
+    border-color: #e7eaf0;
+    padding-left: 2.2rem;
+}
+
+.admin-topbar .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 0.8rem;
+    transform: translateY(-50%);
+    color: #8c94a1;
+}
+
+/* BOTONES ICON */
+.admin-topbar .icon-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #e7eaf0;
+    border-radius: 10px;
+    background: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #334155;
+    transition: all 0.2s ease;
+}
+
+.admin-topbar .icon-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+    color: #dc2626;
+}
+
+/* USER TRIGGER */
+.admin-user-trigger {
+    border: 1px solid #e7eaf0;
+    border-radius: 10px;
+    padding: 0.35rem 0.6rem;
+    background: #fff;
+}
+
+/* CARDS PRO */
+.card {
+    border: none;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* STATS CARD */
+.stats-card {
+    border-radius: 18px;
+    background: linear-gradient(135deg, #1e3a8a, #dc2626);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.stats-card::after {
+    content: "";
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+}
+
+/* MINI BARS */
+.mini-bar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.mini-fill {
+    height: 100%;
+    background: #fff;
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+/* ICONO STATS */
+.stats-icon {
+    font-size: 2.5rem;
+    opacity: 0.8;
 }
 
 /* SUBMENU STYLES */
-.sidebar-item { position: relative; }
-.sidebar-link { cursor: pointer; }
-
-.submenu { 
-    display: none; 
-    flex-direction: column; 
-    background-color: #081a36; 
+.sidebar-item {
+    position: relative;
+}
+.sidebar-link {
+    cursor: pointer;
 }
 
-.submenu a { 
-    padding: 10px 20px 10px 45px; 
-    font-size: 0.9rem; 
-    color: rgba(255,255,255,0.7); 
+.submenu {
+    display: none;
+    flex-direction: column;
+    background-color: #081a36;
+}
+
+.submenu a {
+    padding: 10px 20px 10px 45px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
     border-left: none !important;
 }
 
 /* Mostrar submenú en hover (Desktop) */
 @media (min-width: 993px) {
-    .sidebar-item:hover .submenu { 
-        display: flex; 
+    .sidebar-item:hover .submenu {
+        display: flex;
     }
 }
 
 /* TIMELINE STYLES */
-.timeline { 
-    position: relative; 
+.timeline {
+    position: relative;
     padding: 20px 0;
-    margin-left: 20px; 
+    margin-left: 20px;
 }
-.timeline::before { 
-    content: ''; 
-    position: absolute; 
-    left: 15px; 
-    top: 0; 
-    bottom: 0; 
-    width: 2px; 
-    background: #dee2e6; 
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #dee2e6;
 }
-.timeline-item { 
-    display: flex; 
-    margin-bottom: 30px; 
-    position: relative; 
+.timeline-item {
+    display: flex;
+    margin-bottom: 30px;
+    position: relative;
 }
-.timeline-icon { 
-    min-width: 32px; 
-    height: 32px; 
-    border-radius: 50%; 
+.timeline-icon {
+    min-width: 32px;
+    height: 32px;
+    border-radius: 50%;
     background-color: #0a1f44; /* Color base */
-    color: #fff; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    margin-right: 20px; 
-    z-index: 1; 
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+    z-index: 1;
 }
-.timeline-content { 
-    background: #fff; 
-    padding: 15px; 
-    border-radius: 6px; 
-    box-shadow: 0 0 10px rgba(0,0,0,0.05); 
-    width: 100%; 
+.timeline-content {
+    background: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    width: 100%;
 }

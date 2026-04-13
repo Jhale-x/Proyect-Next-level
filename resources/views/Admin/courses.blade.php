@@ -3,7 +3,6 @@
 @section('content')
     <div class="container py-4">
 
-        {{-- HEADER --}}
         <div class="d-flex flex-wrap gap-2 mb-4">
             <h3 class="fw-bold me-auto">📚 Cursos</h3>
 
@@ -14,9 +13,9 @@
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalGrado">Grado</button>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalSeccion">Sección</button>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalFacultad">Facultad</button>
+
         </div>
 
-        {{-- ALERTAS --}}
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
@@ -26,123 +25,530 @@
         @if (session('error'))
             <div class="alert alert-danger">{{ session('error') }}</div>
         @endif
-
-        {{-- ================= VISTA CURSOS ================= --}}
-        <div id="vista-materias">
-
-            {{-- 🔥 RESUMEN --}}
-            <div class="card mb-4 p-3 shadow-sm border-0">
-                <div class="d-flex justify-content-between flex-wrap">
-                    <div>
-                        <small class="text-muted">Total Cursos</small>
-                        <h4 class="mb-0">{{ count($cursos ?? []) }}</h4>
-                    </div>
-                    <div>
-                        <small class="text-muted">Activos</small>
-                        <h6>{{ $activos ?? 0 }}</h6>
-                    </div>
-                    <div>
-                        <small class="text-muted">Inactivos</small>
-                        <h6>{{ $inactivos ?? 0 }}</h6>
-                    </div>
-                </div>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                {{ $errors->first() }}
             </div>
+        @endif
 
-            {{-- 🔥 FILTROS --}}
-            <div class="row mb-3">
-                <div class="col-md-4">
-                    <input type="text" id="filtroCursoTexto" class="form-control" placeholder="Buscar curso...">
-                </div>
-
-                <div class="col-md-4">
-                    <input type="text" id="filtroGrado" class="form-control" placeholder="Filtrar por grado...">
-                </div>
-
-                <div class="col-md-4">
-                    <select id="filtroNivel" class="form-select">
-                        <option value="all">Todos los niveles</option>
-                        @foreach ($niveles ?? [] as $nivel)
-                            <option value="{{ strtolower($nivel->nivel) }}">{{ $nivel->nivel }}</option>
-                        @endforeach
-                    </select>
-                </div>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
+        @endif
 
-            {{-- 🔥 CARDS --}}
-            <div class="row g-3" id="grid-cursos">
-                @foreach ($cursos ?? [] as $curso)
-                    <div class="col-md-4 col-lg-3 curso-item" data-course="{{ strtolower($curso->materia) }}">
+        <!-- ================= VISTAS ================= -->
+        <div class="views-container">
 
-                        <div class="course-card" onclick="abrirMateria('{{ $curso->materia }}', {{ $curso->id_curso }})">
-
-                            <div class="course-bar"></div>
-
-                            <div class="p-3">
-                                <h6 class="fw-bold mb-1">{{ $curso->materia }}</h6>
-
-                                <small class="text-muted d-block">
-                                    👨‍🏫
-                                    @if (isset($curso->docentes) && count($curso->docentes) > 0)
-                                        {{ collect($curso->docentes)->take(2)->pluck('name')->join(', ') }}
-                                        @if (count($curso->docentes) > 2)
-                                            ...
-                                        @endif
-                                    @else
-                                        Sin docentes
-                                    @endif
-                                </small>
-
-                                <small class="text-muted">
-                                    {{ count($curso->docentes ?? []) }} docente(s)
-                                </small>
+            <!-- ================= VISTA CURSOS ================= -->
+            <div id="vista-materias" class="view active">
+                <div class="row g-3">
+                    @foreach ($cursos ?? [] as $curso)
+                        <div class="col-md-4 col-lg-3">
+                            <div class="course-card"
+                                onclick="abrirMateria('{{ $curso->materia }}', {{ $curso->id_curso }})">
+                                <div class="course-bar"></div>
+                                <div class="p-3">
+                                    <h6 class="fw-bold d-flex align-items-center gap-2">
+                                        @php
+                                            $materia = strtolower($curso->materia);
+                                            $icono = match (true) {
+                                                str_contains($materia, 'matem') => '📊',
+                                                str_contains($materia, 'comuni') ||
+                                                    str_contains($materia, 'leng') ||
+                                                    str_contains($materia, 'liter')
+                                                    => '📝',
+                                                str_contains($materia, 'cienc') ||
+                                                    str_contains($materia, 'biol') ||
+                                                    str_contains($materia, 'quim') ||
+                                                    str_contains($materia, 'fis')
+                                                    => '🔬',
+                                                str_contains($materia, 'histo') ||
+                                                    str_contains($materia, 'geog') ||
+                                                    str_contains($materia, 'social')
+                                                    => '🌍',
+                                                str_contains($materia, 'ingl') || str_contains($materia, 'idio')
+                                                    => '🌐',
+                                                str_contains($materia, 'arte') || str_contains($materia, 'musi')
+                                                    => '🎨',
+                                                str_contains($materia, 'educ') && str_contains($materia, 'fis') => '⚽',
+                                                str_contains($materia, 'comput') ||
+                                                    str_contains($materia, 'tecno') ||
+                                                    str_contains($materia, 'inform')
+                                                    => '💻',
+                                                default => '📘',
+                                            };
+                                        @endphp
+                                        {{ $icono }} {{ $curso->materia }}
+                                    </h6>
+                                </div>
                             </div>
-
                         </div>
+                    @endforeach
+                </div>
+
+            </div>
+
+            <!-- ================= VISTA DOCENTES ================= -->
+            <div id="vista-docentes" class="view">
+
+                <a href="javascript:void(0)" class="btn-back" onclick="volverMaterias()">← Volver</a>
+
+                <div id="banner-materia" class="course-header-banner shadow-sm">
+                    <h1 id="titulo-materia" class="display-5 fw-bold mb-0"></h1>
+                </div>
+
+                <!-- 🔥 BOTÓN SOLO CUANDO ESTÁS DENTRO DEL CURSO -->
+                <div class="d-flex gap-2 mb-3">
+
+                    <!-- NUEVA -->
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalActividad">
+                        ➕ Registrar Actividad
+                    </button>
+
+                    <!-- EXISTENTE -->
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAsignarActividad">
+                        📌 Asignar Actividad
+                    </button>
+
+                </div>
+
+
+                <div class="row g-4 mt-4" id="lista-docentes-materia"></div>
+
+            </div>
+
+
+            <!-- ================= VISTA SALONES DOCENTE ================= -->
+            <div id="vista-salones-docente" class="view">
+                <a class="btn-back" onclick="volverDocentes()">← Volver</a>
+
+                <div id="banner-docente" class="course-header-banner">
+                    <h1 id="titulo-docente"></h1>
+                </div>
+
+                <button class="btn btn-primary btn-sm mb-3" data-bs-toggle="modal" data-bs-target="#modalAsignarSalones">
+                    ➕ Asignar Salón
+                </button>
+
+                <div class="row g-4" id="lista-salones-docente"></div>
+            </div>
+            <!-- ================= VISTA DETALLE SALON ================= -->
+            <div id="vista-detalle" class="view">
+
+                <!-- Excel actions (export / import) -->
+                <div id="excel-actions" class="mb-3 text-end">
+                    <form id="export-form" action="" method="GET" class="d-inline">
+                        <button class="btn btn-outline-success btn-sm">
+                            📥 Descargar Excel
+                        </button>
+                    </form>
+                    <form id="import-form" action="" method="POST" enctype="multipart/form-data"
+                        class="d-inline-block ms-2">
+                        @csrf
+                        <input type="hidden" name="id_curso" id="import_curso_id">
+                        <input type="file" name="excel" accept=".xlsx,.xls" required
+                            class="form-control form-control-sm d-inline-block w-auto">
+                        <button class="btn btn-outline-primary btn-sm">📤 Subir Excel</button>
+                    </form>
+                </div>
+
+                <div class="card shadow-sm border-0 rounded-3">
+                    <div class="card-body p-0">
+
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle mb-0">
+
+                                <thead class="table-light">
+                                    <tr id="cabecera-actividades"></tr>
+                                </thead>
+
+                                <tbody id="tabla-alumnos"></tbody>
+
+                            </table>
+                        </div>
+
                     </div>
-                @endforeach
+                </div>
+
+                <div class="mt-3 text-end">
+                    <button class="btn btn-secondary" onclick="cerrarRegistroExcel()">Cerrar</button>
+                    <button class="btn btn-success" id="btn-guardar-notas">Guardar</button>
+                </div>
+
             </div>
-
-        </div>
-
-        {{-- ================= VISTA DOCENTES ================= --}}
-        <div id="vista-docentes" class="d-none animate__animated animate__fadeIn">
-            <a href="javascript:void(0)" class="btn-back" onclick="volverMaterias()">← Volver</a>
-
-            <div id="banner-materia" class="course-header-banner shadow-sm">
-                <h1 id="titulo-materia" class="display-5 fw-bold mb-0"></h1>
-            </div>
-
-            <div class="d-flex gap-2 mb-3">
-                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalActividad">
-                    ➕ Registrar Actividad
-                </button>
-
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAsignarActividad">
-                    📌 Asignar Actividad
-                </button>
-            </div>
-
-            <div class="row g-4 mt-4" id="lista-docentes-materia"></div>
-        </div>
-
-        {{-- ================= RESTO IGUAL (NO TOCADO) ================= --}}
-        {{-- 👉 TODO tu código de salones, detalle, excel, modales sigue EXACTAMENTE igual --}}
-
+        </div><!-- /.views-container -->
     </div>
 
-    {{-- 🔥 FILTRO SCRIPT --}}
-    <script>
-        const txt = document.getElementById('filtroCursoTexto');
-
-        function filtrarCursos() {
-            const t = txt.value.toLowerCase();
-
-            document.querySelectorAll('.curso-item').forEach(card => {
-                const course = card.dataset.course;
-                card.style.display = course.includes(t) ? '' : 'none';
-            });
-        }
-
-        if (txt) txt.addEventListener('input', filtrarCursos);
-    </script>
 @endsection
+
+@push('modals')
+    <!-- MODAL REGISTRO NIVELES -->
+    <div class="modal fade" id="modalNivel" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <form action="{{ route('admin.niveles.storeMultiple') }}" method="POST">
+                    @csrf
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Registrar Niveles</h5>0
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div id="contenedor-niveles">
+                            <div class="input-group mb-2">
+                                <input type="text" name="niveles[]" class="form-control"
+                                    placeholder="Nombre del nivel" required>
+                                <button type="button" class="btn btn-danger eliminar">X</button>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-secondary w-100 mt-2" id="agregarNivel">
+                            ➕ Agregar otro
+                        </button>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success w-100">
+                            Guardar
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!-- MODAL REGISTRO SECCIONES -->
+    <div class="modal fade" id="modalSeccion" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <form action="{{ route('admin.secciones.storeMultiple') }}" method="POST">
+                    @csrf
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Registrar Secciones</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div id="contenedor-secciones">
+                            <div class="input-group mb-2">
+                                <input type="text" name="secciones[]" class="form-control"
+                                    placeholder="Nombre de la sección" required>
+                                <button type="button" class="btn btn-danger eliminar-seccion">X</button>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-secondary w-100 mt-2" id="agregarSeccion">
+                            ➕ Agregar otra
+                        </button>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success w-100">
+                            Guardar
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!-- MODAL REGISTRO GRADOS -->
+    <div class="modal fade" id="modalGrado" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <form action="{{ route('admin.grados.storeMultiple') }}" method="POST">
+                    @csrf
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Registrar Grados</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div id="contenedor-grados"></div>
+
+                        <button type="button" class="btn btn-secondary w-100 mt-2" id="agregarGrado">
+                            ➕ Agregar otro
+                        </button>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success w-100">
+                            Guardar
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/template" id="template-grado">
+    <div class="bloque-grado border p-3 mb-3 rounded bg-light">
+
+        <label class="form-label">Nivel</label>
+        <select class="form-control mb-2 select-nivel" name="grados[][id_nivel]">
+            <option value="">Seleccione un nivel</option>
+            @foreach ($niveles ?? [] as $nivel)
+                <option value="{{ $nivel->id_nivel }}">
+                    {{ $nivel->nivel }}
+                </option>
+            @endforeach
+        </select>
+
+        <label class="form-label">Nombre del Grado</label>
+        <input type="text" class="form-control mb-2 input-grado"
+               name="grados[][grado]" placeholder="Ej: Primero, Segundo, etc" required>
+
+        <button type="button" class="btn btn-danger btn-eliminar w-100">
+            Eliminar
+        </button>
+
+    </div>
+</script>
+    <!-- MODAL REGISTRO FACULTADES -->
+    <div class="modal fade" id="modalFacultad" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <form action="{{ route('admin.facultades.storeMultiple') }}" method="POST">
+                    @csrf
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Registrar Facultades</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div id="contenedor-facultades"></div>
+
+                        <button type="button" class="btn btn-secondary w-100 mt-2" id="agregarFacultad">
+                            ➕ Agregar otra
+                        </button>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-success w-100">
+                            Guardar
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <script type="text/template" id="template-facultad">
+    <div class="bloque-facultad border p-3 mb-3 rounded bg-light">
+
+        <label class="form-label">Nombre de la Facultad</label>
+        <input type="text" class="form-control mb-2 input-facultad"
+               name="facultades[]" placeholder="Ej: Ingeniería, Medicina" required>
+
+        <button type="button" class="btn btn-danger btn-eliminar-facultad w-100">
+            Eliminar
+        </button>
+
+    </div>
+</script>
+    <!-- ================= MODAL REGISTRO ACTIVIDAD ================= -->
+    <div class="modal fade" id="modalActividad">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <form action="{{ route('admin.activities.store') }}" method="POST">
+                    @csrf
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Registrar Actividad</h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <!-- curso seleccionado -->
+                        <input type="hidden" name="id_curso" id="actividad_curso_id">
+                        <div class="mb-3">
+                            <span class="text-muted">Curso seleccionado: <strong
+                                    id="actividad_modal_curso_name">ninguno</strong></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Nombre</label>
+                            <input type="text" name="actividad" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Descripción</label>
+                            <textarea name="descripcion" class="form-control"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Porcentaje</label>
+                            <input type="number" name="porcentaje" class="form-control" min="1" max="100"
+                                required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Fecha de entrega</label>
+                            <input type="date" name="fecha_entrega" class="form-control" required>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-success">Guardar</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!-- ================= MODAL ASIGNAR ACTIVIDAD ================= -->
+    <div class="modal fade" id="modalAsignarActividad">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <form action="{{ route('admin.activities.asignar') }}" method="POST">
+                    @csrf
+
+                    <div class="modal-header">
+                        <h5>Asignar Actividad</h5>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <input type="hidden" name="id_curso" id="asignar_curso_id">
+
+                        <div class="mb-3">
+                            <span class="text-muted">Curso seleccionado: <strong
+                                    id="asignar_modal_curso_name">ninguno</strong></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Actividad existente</label>
+                            <select name="id_actividad" class="form-select" required>
+                                @foreach ($actividades ?? [] as $actividad)
+                                    <option value="{{ $actividad->id_actividad }}">
+                                        {{ $actividad->actividad }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Fecha de entrega</label>
+                            <input type="date" name="fecha_entrega" class="form-control" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Hora de entrega</label>
+                            <input type="time" name="hora_entrega" class="form-control">
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-primary">Asignar</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= MODAL ASIGNAR SALONES ================= -->
+    <div class="modal fade" id="modalAsignarSalones">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5>Asignar Salones al Docente</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <form action="{{ route('admin.courses.asignarSalones') }}" method="POST">
+                    @csrf
+
+                    <div class="modal-body">
+                        <input type="hidden" name="docente_id" id="docente_id">
+                        <input type="hidden" name="id_curso" id="salones_asignar_curso_id">
+
+                        <div class="mb-3">
+                            <span class="text-muted">Curso seleccionado: <strong id="salones_modal_curso_name">ninguno</strong></span>
+                        </div>
+
+                        <h6>Primaria</h6>
+                        <div class="row g-2 mb-3">
+                            @foreach ($salonesPrimaria ?? [] as $salon)
+                                <div class="col-md-3">
+                                    <label class="card p-2 salon-card">
+                                        <input type="checkbox" name="salones[]" value="{{ $salon->id_salon }}">
+                                        {{ $salon->grado->grado }} - {{ $salon->seccion->seccion }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <h6>Secundaria</h6>
+                        <div class="row g-2">
+                            @foreach ($salonesSecundaria ?? [] as $salon)
+                                <div class="col-md-3">
+                                    <label class="card p-2 salon-card">
+                                        <input type="checkbox" name="salones[]" value="{{ $salon->id_salon }}">
+                                        {{ $salon->grado->grado }} - {{ $salon->seccion->seccion }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-success">Guardar asignación</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalCurso" tabindex="-1" aria-labelledby="modalCursoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCursoLabel">Registrar Curso</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <form action="{{ route('admin.courses.store') }}" method="POST">
+                    @csrf
+
+                    <div class="mb-3">
+                        <label>Materia</label>
+                        <input type="text" name="materia" class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Guardar
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+@endpush
