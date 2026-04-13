@@ -2,31 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Matricula extends Model
 {
-    use HasFactory;
-
     protected $table = 'matriculas';
+    protected $primaryKey = 'id_matricula';
 
     protected $fillable = [
         'id_alumno',
-        'id_salon',
-        'anio_academico',
-        'estado' // activo, retirado, etc.
+        'año_academico',
+        'modalidad',
+        'eleccion',
+        'ciclo_grado',
+        'sede',
+        'entorno',
+        'turno',
+        'fecha_registro'
     ];
+    
+    public $timestamps = false;
 
-    // Relación con Alumno
+    // Relaciones
     public function alumno()
     {
-        return $this->belongsTo(Alumno::class, 'id_alumno');
-    }
-
-    // Relación con Salón
-    public function salon()
-    {
-        return $this->belongsTo(Salon::class, 'id_salon');
+        return $this->belongsTo(Alumno::class, 'id_alumno', 'id_alumno');
     }
 }

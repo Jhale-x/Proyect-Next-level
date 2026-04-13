@@ -69,6 +69,7 @@
                 <div class="banner-container">
                     <div class="enrollment-card">
                         
+                        {{-- Mensajes de Notificación --}}
                         @if(session('success'))
                             <div style="background: #d4edda; color: #155724; padding: 12px; border-radius: 8px; margin-bottom: 15px; font-size: 0.9rem; border: 1px solid #c3e6cb; text-align: left;">
                                 <i class="fa-solid fa-circle-check"></i> {{ session('success') }}
@@ -93,7 +94,8 @@
 
                         <h3>¡Matricúlate <br> 100% ONLINE AQUÍ!</h3>
                         
-                        <form action="{{ route('admin.matriculas.store') }}" method="POST" class="enrollment-form">
+                        {{-- CAMBIO CLAVE: Se cambió la ruta a 'matricula.verificar.post' --}}
+                        <form action="{{ route('matricula.verificar.post') }}" method="POST" class="enrollment-form">
                             @csrf
                             <div class="form-group">
                                 <div class="select-wrapper">
@@ -166,4 +168,52 @@
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
 </body>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const tipoDoc = document.getElementById('tipo_doc');
+    const inputDoc = document.getElementById('documento');
+    const inputCodigo = document.getElementById('codigo');
+    const helpContainer = document.querySelector('.help-container');
+    const btnVerify = document.querySelector('.btn-verify');
+
+    const avisoCE = document.createElement('p');
+    avisoCE.style.color = '#ffcc00';
+    avisoCE.style.fontSize = '0.8rem';
+    avisoCE.style.marginTop = '10px';
+    avisoCE.style.display = 'none';
+    avisoCE.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Por ahora, la matrícula online solo está disponible para DNI.';
+    btnVerify.parentNode.insertBefore(avisoCE, btnVerify.nextSibling);
+
+    tipoDoc.addEventListener('change', function() {
+        inputDoc.value = '';
+        inputCodigo.value = '';
+
+        if (this.value === 'ce') {
+            btnVerify.disabled = true;
+            btnVerify.style.backgroundColor = '#666';
+            btnVerify.style.cursor = 'not-allowed';
+            btnVerify.style.opacity = '0.7';
+            btnVerify.innerText = 'NO DISPONIBLE';
+            avisoCE.style.display = 'block';
+            helpContainer.style.visibility = 'hidden'; 
+            inputDoc.placeholder = "No disponible";
+            inputDoc.disabled = true;
+            inputCodigo.disabled = true;
+        } else {
+            btnVerify.disabled = false;
+            btnVerify.style.backgroundColor = ''; 
+            btnVerify.style.cursor = 'pointer';
+            btnVerify.style.opacity = '1';
+            btnVerify.innerText = 'VERIFICAR';
+            avisoCE.style.display = 'none';
+            helpContainer.style.visibility = 'visible'; 
+            inputDoc.placeholder = "Número de documento";
+            inputDoc.disabled = false;
+            inputCodigo.disabled = false;
+            inputDoc.maxLength = 8;
+        }
+    });
+});
+</script>
 </html>

@@ -36,14 +36,48 @@ Route::get('/', [Web_Principal::class, 'index'])
 Route::get('/inicio', [Web_Principal::class, 'index'])
     ->name('web.inicio');
 
-// 1. Pantalla de validación de DNI
+// Paso 1: Vista inicial y validación de DNI
+// --- SISTEMA DE MATRÍCULA (FLUJO PÚBLICO) ---
+// --- SISTEMA DE MATRÍCULA (FLUJO PÚBLICO) ---
 Route::get('/matricula', [MatriculaController::class, 'index'])->name('matricula');
 
-// 2. Procesa la validación del DNI/CV
-Route::post('/matricula/verificar', [MatriculaController::class, 'store'])->name('admin.matriculas.store');
+// ======================================================
+// API RUTAS PARA MATRÍCULA (PÚBLICAS)
+// ======================================================
+// En routes/web.php o routes/api.php
+Route::prefix('api/matricula')->group(function () {
+    Route::get('/sedes', [MatriculaController::class, 'getSedes']);
+    Route::get('/entornos', [MatriculaController::class, 'getEntornos']);
+    Route::get('/universidades', [MatriculaController::class, 'getUniversidades']);
+    Route::get('/tipos-ciclo', [MatriculaController::class, 'getTiposCiclo']);
+    Route::get('/turnos', [MatriculaController::class, 'getTurnos']);
+    Route::get('/ciclos', [MatriculaController::class, 'getCiclos']);
+    Route::get('/cuotas/{ciclo_id}', [MatriculaController::class, 'getCuotas']);
+    Route::post('/guardar', [MatriculaController::class, 'procesarMatricula']);
+});
 
-// 3. El formulario de 3 pasos (donde eliges Modalidad/Academia/Colegio)
+// Ruta de prueba para verificar que la API funciona
+Route::get('/api/test', function() {
+    return response()->json([
+        'success' => true,
+        'message' => 'API funcionando correctamente',
+        'timestamp' => now()->toDateTimeString()
+    ]);
+});
+
+// Ruta que procesa el formulario (POST)
+Route::post('/matricula/verificar', [MatriculaController::class, 'store'])->name('matricula.verificar.post');
+
+// CAPTURA DE ERROR: Si el usuario entra por GET (refrescar página), redirigimos amigablemente
+Route::get('/matricula/verificar', function() {
+    return redirect()->route('matricula');
+});
+
+Route::get('/matricula', [MatriculaController::class, 'index'])->name('matricula');
+Route::post('/matricula/validar', [MatriculaController::class, 'store'])->name('matricula.validar');
+Route::get('/matricula/formulario', [MatriculaController::class, 'mostrarFormulario'])->name('matricula.formulario');
 Route::get('/matricula-formulario', [MatriculaController::class, 'mostrarFormulario'])->name('matricula.formulario');
+Route::post('/matricula/guardar', [MatriculaController::class, 'procesarMatricula'])->name('matricula.guardar');
 
 // --- AUTENTICACIÓN ---
 Route::prefix('auth')->group(function () {

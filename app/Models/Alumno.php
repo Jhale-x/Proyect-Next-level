@@ -28,6 +28,9 @@ class Alumno extends Authenticatable
         'remember_token',
     ];
 
+    // 🔧 IMPORTANTE: Desactivar timestamps si no existen las columnas
+    public $timestamps = false;
+
     public function getAuthPassword()
     {
         return $this->contrasena;
@@ -40,7 +43,6 @@ class Alumno extends Authenticatable
 
     // --- RELACIONES ---
 
-    // ESTA ES LA QUE CAUSABA EL ERROR
     public function salon()
     {
         return $this->belongsTo(Salon::class, 'id_salon', 'id_salon');
