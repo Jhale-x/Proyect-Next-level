@@ -8,8 +8,13 @@ class Course extends Model
 {
     protected $table = 'cursos';
     protected $primaryKey = 'id_curso';
-
+    
     protected $fillable = [
-        'materia'
+        'nombre',
+        'descripcion',
+        'id_grado',
+        'id_salon'
     ];
+    
+    public $timestamps = false;
 }

@@ -11,70 +11,83 @@ use App\Models\Apoderado;
 
 class LoginController extends Controller
 {
-    // ==========================================
-    // VISTAS
-    // ==========================================
-
+    // Mostrar el portal de selección
+    public function showPortal()
+    {
+        return view('intranet');
+    }
+    
+    // Mostrar formulario de login para familia/apoderados (también usado para alumnos)
     public function showColegio()
     {
         return view('auth.login_colegio');
     }
+    
+    // Mostrar formulario de login para academia
     public function showAcademia()
     {
         return view('auth.login_academia');
     }
+    
+    // Mostrar formulario de login para usuarios (admin, docente, auxiliar)
     public function showUser()
     {
         return view('auth.login_user');
     }
 
-    // ==========================================
-    // LOGIN ALUMNOS (COLEGIO / ACADEMIA)
-    // ==========================================
+    // Mostrar formulario de login para alumnos (método separado si lo prefieres)
+    public function showAlumnoLogin()
+    {
+        return view('auth.login_colegio'); // Reutiliza la misma vista
+    }
 
+    // Login de alumno
     public function loginAlumno(Request $request)
     {
         $request->validate([
-            'usuario' => 'required',
-            'password' => 'required'
+            'usuario' => 'required|string',
+            'password' => 'required|string'
         ]);
 
-        // Buscamos al alumno por su usuario
         $alumno = Alumno::where('usuario', $request->usuario)->first();
 
         if (!$alumno) {
-            return back()->with('error', 'Datos incorrectos: El usuario no existe.');
+            return back()->with('error', 'Usuario no encontrado. Verifica tus credenciales.');
         }
 
-        // 1. Verificamos si la contraseña coincide usando Hash
-        // Nota: Se usa 'contrasena' sin Ñ porque así sale en tu captura de phpMyAdmin
-        $valid = Hash::check($request->password, $alumno->contrasena);
-
-        // 2. SOPORTE PARA TEXTO PLANO
-        // Si el hash falla, probamos comparación directa (por si editaste la BD a mano)
-        if (!$valid && $alumno->contrasena === $request->password) {
-            $valid = true;
-            // Aprovechamos para encriptarla correctamente ahora mismo
-            $alumno->contrasena = Hash::make($request->password);
-            $alumno->save();
+        if (!Hash::check($request->password, $alumno->contrasena)) {
+            return back()->with('error', 'Contraseña incorrecta.');
         }
 
-        if (!$valid) {
-            return back()->with('error', 'Datos incorrectos: Contraseña no válida.');
-        }
-
-        // Autenticamos en el guard específico de alumno
         Auth::guard('alumno')->login($alumno);
         $request->session()->regenerate();
 
-        // REDIRECCIÓN: Eliminada la lógica de 'tipo' porque la columna no existe en tu BD
         return redirect()->route('alumno.pagina_institucional');
     }
 
-    // ==========================================
-    // LOGIN USERS (ADMIN / DOCENTE / AUXILIAR)
-    // ==========================================
+    // Login para familia/apoderados
+    public function loginFamilia(Request $request)
+    {
+        $request->validate([
+            'documento' => 'required|string'
+        ]);
 
+        $apoderado = Apoderado::where('dni', $request->documento)->first();
+        if ($apoderado) {
+            session(['apoderado_id' => $apoderado->id_apoderado]);
+            return redirect()->route('alumno.pagina_institucional');
+        }
+
+        $user = User::where('dni', $request->documento)->first();
+        if ($user) {
+            session(['user_id' => $user->id_usuario]);
+            return redirect()->route('alumno.pagina_institucional');
+        }
+
+        return back()->withErrors(['documento' => 'Documento no encontrado']);
+    }
+
+    // Login para usuarios (admin, docente, auxiliar)
     public function loginUser(Request $request)
     {
         $request->validate([
@@ -115,46 +128,25 @@ class LoginController extends Controller
         return back()->with('error', 'Rol desconocido');
     }
 
-    // ==========================================
-    // LOGIN FAMILIA
-    // ==========================================
-
-    public function loginFamilia(Request $request)
+    // Logout general
+    public function logout(Request $request)
     {
-        $request->validate([
-            'documento' => 'required'
-        ]);
+        Auth::guard('web')->logout();
+        Auth::guard('alumno')->logout();
 
-        $apoderado = Apoderado::where('dni', $request->documento)->first();
-        if ($apoderado) {
-            session(['apoderado_id' => $apoderado->id_apoderado]);
-            return redirect('/courses');
-        }
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-        $user = User::where('dni', $request->documento)->first();
-        if ($user) {
-            session(['user_id' => $user->id_usuario]);
-            return redirect('/courses');
-        }
-
-        return back()->withErrors(['documento' => 'Documento no encontrado']);
+        return redirect()->route('login.user');
     }
 
-    // ==========================================
-    // LOGOUT GENERAL
-    // ==========================================
-
-    public function logout(Request $request)
-{
-    // 1. Cerramos sesión en todos los guards
-    Auth::guard('web')->logout();
-    Auth::guard('alumno')->logout();
-
-    // 2. Limpiamos la sesión y el token CSRF
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
-
-    // 3. REDIRECCIÓN AL PORTAL (La vista de los hexágonos)
-    return redirect()->route('login.user'); 
-}
+    // Logout específico para alumnos
+    public function logoutAlumno(Request $request)
+    {
+        Auth::guard('alumno')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
+        return redirect()->route('login.alumno');
+    }
 }

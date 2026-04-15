@@ -2,102 +2,117 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Alumno;
-use App\Models\Nivel;
-use App\Models\Grado;
-use App\Models\Seccion;
-use App\Models\Facultad;
-use App\Models\Salon;
-use App\Models\Course;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\Alumno;
+use App\Models\Docente;
+use App\Models\Course;
 
 class AlumnosController extends Controller
 {
-    public function index(Request $request)
+    public function dashboard()
     {
-        // 1. Iniciamos consulta con relaciones para evitar error de "propiedad en null"
-        $query = Alumno::with(['salon.nivel', 'salon.grado', 'salon.seccion']);
-
-        // 2. Filtro de búsqueda (Nombre, Apellido o DNI)
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('nombre', 'LIKE', "%$search%")
-                  ->orWhere('apellido', 'LIKE', "%$search%")
-                  ->orWhere('dni', 'LIKE', "%$search%");
-            });
-        }
-
-        // 3. Filtros por Nivel y Grado (vía tabla Salones)
-        if ($request->filled('nivel')) {
-            $query->whereHas('salon', function($q) use ($request) {
-                $q->where('id_nivel', $request->nivel);
-            });
-        }
-
-        if ($request->filled('grado')) {
-            $query->whereHas('salon', function($q) use ($request) {
-                $q->where('id_grado', $request->grado);
-            });
-        }
-
-        $alumnos = $query->get();
-        $niveles = Nivel::all();
-        $grados = Grado::all();
-
-        return view('Admin.ListadoAlumno', compact('alumnos', 'niveles', 'grados'));
+        $alumno = Auth::guard('alumno')->user();
+        $cursos = $this->getCursos($alumno);
+        
+        return view('Alumno.dashboard', compact('alumno', 'cursos'));
     }
-
-    public function datosFormulario()
+    
+    public function paginaInstitucional()
     {
-        return [
-            'niveles'    => Nivel::all(),
-            'grados'     => Grado::all(),
-            'secciones'  => Seccion::all(),
-            'facultades' => Facultad::all(),
-            'cursos'     => Course::all(),
-        ];
+        $alumno = Auth::guard('alumno')->user();
+        return view('Alumno.pagina_institucional', compact('alumno'));
     }
-
-    public function create()
+    
+    public function activity()
     {
-        $datos = $this->datosFormulario();
-        return view('Admin.users', $datos);
+        $alumno = Auth::guard('alumno')->user();
+        return view('Alumno.activity', compact('alumno'));
     }
-
-    public function store(Request $request)
+    
+    public function organizations()
     {
-        $request->validate([
-            'nombre'           => 'required|string|max:100',
-            'apellido'         => 'required|string|max:100',
-            'dni'              => 'required|unique:alumnos,dni',
-            'fecha_nacimiento' => 'required|date',
-            'usuario'          => 'required|unique:alumnos,usuario',
-            'contraseña'       => 'required|min:6', 
-            'id_nivel'         => 'required',
-        ]);
-
-        $salon = Salon::where('id_nivel', $request->id_nivel)
-            ->when($request->id_grado, fn($q) => $q->where('id_grado', $request->id_grado))
-            ->when($request->id_seccion, fn($q) => $q->where('id_seccion', $request->id_seccion))
+        $alumno = Auth::guard('alumno')->user();
+        return view('Alumno.organizations', compact('alumno'));
+    }
+    
+    public function calendar()
+    {
+        $alumno = Auth::guard('alumno')->user();
+        return view('Alumno.calendar', compact('alumno'));
+    }
+    
+    public function messages()
+    {
+        $alumno = Auth::guard('alumno')->user();
+        return view('Alumno.messages', compact('alumno'));
+    }
+    
+    public function qualifications()
+    {
+        $alumno = Auth::guard('alumno')->user();
+        return view('Alumno.qualifications', compact('alumno'));
+    }
+    
+    public function tools()
+    {
+        $alumno = Auth::guard('alumno')->user();
+        return view('Alumno.tools', compact('alumno'));
+    }
+    
+    public function eti()
+    {
+        $alumno = Auth::guard('alumno')->user();
+        return view('Alumno.eti', compact('alumno'));
+    }
+    
+    public function support()
+    {
+        $alumno = Auth::guard('alumno')->user();
+        return view('Alumno.support', compact('alumno'));
+    }
+    
+    public function courses()
+    {
+        $alumno = Auth::guard('alumno')->user();
+        $cursos = $this->getCursos($alumno);
+        
+        return view('Alumno.courses', compact('alumno', 'cursos'));
+    }
+    
+    public function courseDetail($id)
+    {
+        $alumno = Auth::guard('alumno')->user();
+        
+        $curso = DB::table('docente_curso as dc')
+            ->join('docente_salon as ds', 'dc.id_docente_salon', '=', 'ds.id_docente_salon')
+            ->join('cursos as c', 'dc.id_curso', '=', 'c.id_curso')
+            ->join('users as u', 'ds.id_usuario', '=', 'u.id_usuario')
+            ->where('ds.id_salon', $alumno->id_salon)
+            ->where('c.id_curso', $id)
+            ->select('c.id_curso', 'c.materia as nombre', 'u.nombre as docente')
             ->first();
-
-        if (!$salon) {
-            return back()->withInput()->with('error', 'No existe un salón con esos datos');
+        
+        if (!$curso) {
+            abort(404, 'Curso no encontrado');
         }
-
-        Alumno::create([
-            'id_salon'         => $salon->id_salon,
-            'nombre'           => $request->nombre,
-            'apellido'         => $request->apellido,
-            'dni'              => $request->dni,
-            'fecha_nacimiento' => $request->fecha_nacimiento,
-            'usuario'          => $request->usuario,
-            'contrasena'       => Hash::make($request->input('contraseña')), 
-            'tipo'             => $request->tipo ?? 'colegio',
-        ]);
-
-        return redirect()->route('admin.alumnos.index')->with('success', 'Alumno registrado');
+        
+        return view('Alumno.course_detail', compact('alumno', 'curso'));
+    }
+    
+    private function getCursos($alumno)
+    {
+        if (!$alumno->id_salon) {
+            return collect();
+        }
+        
+        return DB::table('docente_curso as dc')
+            ->join('docente_salon as ds', 'dc.id_docente_salon', '=', 'ds.id_docente_salon')
+            ->join('cursos as c', 'dc.id_curso', '=', 'c.id_curso')
+            ->join('users as u', 'ds.id_usuario', '=', 'u.id_usuario')
+            ->where('ds.id_salon', $alumno->id_salon)
+            ->select('c.id_curso', 'c.materia as nombre', 'u.nombre as docente')
+            ->get();
     }
 }

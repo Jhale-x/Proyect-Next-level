@@ -22,29 +22,51 @@ use App\Http\Controllers\Pagina_InstitucionalController;
 use App\Http\Controllers\AlumnosController;
 use App\Http\Controllers\MatriculaController;
 
-// --- RUTAS PÚBLICAS ---
+// ======================================================
+// RUTAS DE LOGIN
+// ======================================================
+Route::get('/intranet', [LoginController::class, 'showPortal'])->name('portal');
+Route::get('/login-colegio', [LoginController::class, 'showColegio'])->name('login.colegio');
+Route::get('/login-academia', [LoginController::class, 'showAcademia'])->name('login.academia');
+Route::get('/login-user', [LoginController::class, 'showUser'])->name('login.user');
+
+// Login de alumnos (POST)
+Route::post('/login-alumno', [LoginController::class, 'loginAlumno'])->name('login.alumno');
+
+// Login de familia (POST)
+Route::post('/login-familia', [LoginController::class, 'loginFamilia'])->name('login.familia');
+
+// Login de usuarios (POST)
+Route::post('/login-user', [LoginController::class, 'loginUser']);
+
+// Logout
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/logout-alumno', [LoginController::class, 'logoutAlumno'])->name('logout.alumno');
+
+// ======================================================
+// RUTAS PÚBLICAS
+// ======================================================
 Route::get('/', [Web_Principal::class, 'index'])->name('web_principal');
 Route::get('/propuesta-educativa', [Web_Principal::class, 'propuestaEducativa'])->name('propuesta_educativa');
 Route::get('/pagina_institucional', [Pagina_InstitucionalController::class, 'index'])->name('pagina_institucional');
+Route::get('/inicio', [Web_Principal::class, 'index'])->name('web.inicio');
 
-// Esta ruta servirá para ambos nombres que estás usando en las vistas
-Route::get('/', [Web_Principal::class, 'index'])
-    ->name('web_principal');
-
-// Creamos un "alias" o segunda ruta idéntica para 'web.inicio' 
-// Así no tienes que editar todos tus archivos .blade.php
-Route::get('/inicio', [Web_Principal::class, 'index'])
-    ->name('web.inicio');
-
-// Paso 1: Vista inicial y validación de DNI
-// --- SISTEMA DE MATRÍCULA (FLUJO PÚBLICO) ---
-// --- SISTEMA DE MATRÍCULA (FLUJO PÚBLICO) ---
+// ======================================================
+// SISTEMA DE MATRÍCULA
+// ======================================================
 Route::get('/matricula', [MatriculaController::class, 'index'])->name('matricula');
+Route::post('/matricula/verificar', [MatriculaController::class, 'store'])->name('matricula.verificar.post');
+Route::get('/matricula/verificar', function() {
+    return redirect()->route('matricula');
+});
+Route::post('/matricula/validar', [MatriculaController::class, 'store'])->name('matricula.validar');
+Route::get('/matricula/formulario', [MatriculaController::class, 'mostrarFormulario'])->name('matricula.formulario');
+Route::get('/matricula-formulario', [MatriculaController::class, 'mostrarFormulario'])->name('matricula.formulario');
+Route::post('/matricula/guardar', [MatriculaController::class, 'procesarMatricula'])->name('matricula.guardar');
 
 // ======================================================
-// API RUTAS PARA MATRÍCULA (PÚBLICAS)
+// API RUTAS PARA MATRÍCULA
 // ======================================================
-// En routes/web.php o routes/api.php
 Route::prefix('api/matricula')->group(function () {
     Route::get('/sedes', [MatriculaController::class, 'getSedes']);
     Route::get('/entornos', [MatriculaController::class, 'getEntornos']);
@@ -56,7 +78,6 @@ Route::prefix('api/matricula')->group(function () {
     Route::post('/guardar', [MatriculaController::class, 'procesarMatricula']);
 });
 
-// Ruta de prueba para verificar que la API funciona
 Route::get('/api/test', function() {
     return response()->json([
         'success' => true,
@@ -65,71 +86,58 @@ Route::get('/api/test', function() {
     ]);
 });
 
-// Ruta que procesa el formulario (POST)
-Route::post('/matricula/verificar', [MatriculaController::class, 'store'])->name('matricula.verificar.post');
+// ======================================================
+// LOGIN DE ALUMNOS (VISTA)
+// ======================================================
+Route::get('/login-alumno', [LoginController::class, 'showColegio'])->name('login.alumno');
 
-// CAPTURA DE ERROR: Si el usuario entra por GET (refrescar página), redirigimos amigablemente
-Route::get('/matricula/verificar', function() {
-    return redirect()->route('matricula');
+// ======================================================
+// RUTAS DEL ALUMNO (AUTHENTICATED) - USANDO AlumnosController
+// ======================================================
+Route::prefix('alumno')->middleware(['auth:alumno'])->group(function () {
+    Route::get('/dashboard', [AlumnosController::class, 'dashboard'])->name('alumno.dashboard');
+    Route::get('/pagina-institucional', [AlumnosController::class, 'paginaInstitucional'])->name('alumno.pagina_institucional');
+    Route::get('/activity', [AlumnosController::class, 'activity'])->name('alumno.activity');
+    Route::get('/organizations', [AlumnosController::class, 'organizations'])->name('alumno.organizations');
+    Route::get('/calendar', [AlumnosController::class, 'calendar'])->name('alumno.calendar');
+    Route::get('/messages', [AlumnosController::class, 'messages'])->name('alumno.messages');
+    Route::get('/qualifications', [AlumnosController::class, 'qualifications'])->name('alumno.qualifications');
+    Route::get('/tools', [AlumnosController::class, 'tools'])->name('alumno.tools');
+    Route::get('/eti', [AlumnosController::class, 'eti'])->name('alumno.eti');
+    Route::get('/support', [AlumnosController::class, 'support'])->name('alumno.support');
+    Route::get('/courses', [AlumnosController::class, 'courses'])->name('alumno.courses');
+    Route::get('/courses/{id}', [AlumnosController::class, 'courseDetail'])->name('alumno.courses.show');
 });
 
-Route::get('/matricula', [MatriculaController::class, 'index'])->name('matricula');
-Route::post('/matricula/validar', [MatriculaController::class, 'store'])->name('matricula.validar');
-Route::get('/matricula/formulario', [MatriculaController::class, 'mostrarFormulario'])->name('matricula.formulario');
-Route::get('/matricula-formulario', [MatriculaController::class, 'mostrarFormulario'])->name('matricula.formulario');
-Route::post('/matricula/guardar', [MatriculaController::class, 'procesarMatricula'])->name('matricula.guardar');
-
-// --- AUTENTICACIÓN ---
-Route::prefix('auth')->group(function () {
-    Route::get('/intranet', fn() => view('intranet'))->name('portal');
-    Route::get('/login-academia', fn() => view('Auth.login_academia'))->name('login.academia');
-    Route::get('/login-colegio', [LoginController::class, 'showColegio'])->name('login.colegio');
-    Route::post('/login-alumno', [LoginController::class, 'loginAlumno'])->name('login.alumno');
-    Route::post('/login-familia', [LoginController::class, 'loginFamilia'])->name('login.familia');
-    Route::get('/login-user', [LoginController::class, 'showUser'])->name('login.user');
-    Route::post('/login-user', [LoginController::class, 'loginUser']);
-    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-});
-
-// --- ADMINISTRACIÓN ---
+// ======================================================
+// ADMINISTRACIÓN
+// ======================================================
 Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(function () {
-    
     Route::get('/dashboard', fn() => view('Admin.dashboard'))->name('admin.dashboard');
 
-    // --- MATRÍCULAS ---
     Route::prefix('matriculas')->group(function () {
         Route::get('/', [MatriculaController::class, 'index'])->name('admin.matriculas.index');
     });
 
-
-    // Gestión Institucional
     Route::get('/pagina-institucional', [Pagina_InstitucionalController::class, 'adminIndex'])->name('admin.pagina_institucional');
     Route::post('/pagina-institucional', [Pagina_InstitucionalController::class, 'storeAnuncio'])->name('admin.pagina_institucional.store');
     Route::delete('/pagina-institucional/{id}', [Pagina_InstitucionalController::class, 'destroyAnuncio'])->name('admin.pagina_institucional.destroy');
 
-    // --- SECCIÓN ETI Y USUARIOS ---
-    // 'admin.users' es la pantalla de gestión de botones
-    Route::get('/gestion-usuarios', [EtisController::class, 'index'])->name('admin.users'); 
-    // 'admin.eti' es la pantalla de cursos ETI
+    Route::get('/gestion-usuarios', [EtisController::class, 'index'])->name('admin.users');
     Route::get('/eti', [EtisController::class, 'viewEti'])->name('admin.eti');
 
-    // --- ALUMNOS ---
     Route::prefix('alumnos')->group(function () {
         Route::get('/registro', [AlumnosController::class, 'create'])->name('admin.alumnos.create');
-        Route::get('/listado', [AlumnosController::class, 'index'])->name('admin.alumnos.index'); 
+        Route::get('/listado', [AlumnosController::class, 'index'])->name('admin.alumnos.index');
         Route::post('/', [AlumnosController::class, 'store'])->name('admin.alumnos.store');
         Route::get('/datos-formulario', [AlumnosController::class, 'datosFormulario'])->name('admin.alumnos.datosFormulario');
     });
 
-    // --- PERSONAL (Users) ---
     Route::prefix('users')->group(function () {
-        // Ruta para ver el listado
-        Route::get('/listado', [UsersController::class, 'index'])->name('admin.users.index'); 
-        
-        // CORRECCIÓN: Agregamos el nombre exacto que pide el error
+        Route::get('/listado', [UsersController::class, 'index'])->name('admin.users.index');
         Route::post('/', [UsersController::class, 'store'])->name('admin.users.store');
     });
-    // --- CURSOS Y SALONES ---
+
     Route::prefix('courses')->group(function () {
         Route::get('/', [CourseController::class, 'index'])->name('admin.courses');
         Route::post('/', [CourseController::class, 'store'])->name('admin.courses.store');
@@ -146,36 +154,32 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(functi
         Route::post('/{id}/guardar-notas', [CourseController::class, 'guardarNotasSalon'])->name('admin.salones.guardarNotas');
     });
 
-    // --- CONFIGURACIÓN ACADÉMICA ---
     Route::post('/niveles/store-multiple', [NivelController::class, 'storeMultiple'])->name('admin.niveles.storeMultiple');
     Route::post('/grados/store-multiple', [GradoController::class, 'storeMultiple'])->name('admin.grados.storeMultiple');
     Route::post('/secciones/store-multiple', [SeccionController::class, 'storeMultiple'])->name('admin.secciones.storeMultiple');
     Route::post('/facultades/store-multiple', [FacultadController::class, 'storeMultiple'])->name('admin.facultades.storeMultiple');
 
-    // --- ACTIVIDADES (Corregido para evitar RouteNotFound) ---
     Route::prefix('activities')->group(function () {
         Route::get('/', [ActivityController::class, 'index'])->name('admin.activity');
         Route::post('/store', [ActivityController::class, 'store'])->name('admin.activities.store');
         Route::post('/asignar', [ActivityController::class, 'asignar'])->name('admin.activities.asignar');
     });
 
-    // --- MENSAJES ---
     Route::prefix('messages')->group(function () {
         Route::get('/', [MessageController::class, 'index'])->name('admin.messages');
         Route::get('/get-chat/{id_curso}', [MessageController::class, 'getMessagesByCurso'])->name('admin.messages.getChat');
-        
-        // CAMBIA 'admin.messages.store' POR 'admin.messages.ajax'
         Route::post('/store-ajax', [MessageController::class, 'storeAjax'])->name('admin.messages.ajax');
     });
 
-    // --- OTROS ---
     Route::get('/calendar', [CalendarController::class, 'index'])->name('admin.calendar');
     Route::get('/organizations', [OrganizationController::class, 'index'])->name('admin.organizations');
     Route::get('/tools', [ToolController::class, 'index'])->name('admin.tools');
-    Route::get('/support', [SuportController::class, 'index'])->name('admin.support'); 
+    Route::get('/support', [SuportController::class, 'index'])->name('admin.support');
 });
 
-// --- ROL DOCENTE ---
+// ======================================================
+// ROL DOCENTE
+// ======================================================
 Route::prefix('docente')->middleware(['auth', 'role:docente'])->group(function () {
     Route::get('/dashboard', fn() => view('Docentes.dashboard'))->name('docente.dashboard');
     Route::get('/pagina-institucional', [Pagina_InstitucionalController::class, 'docenteIndex'])->name('docente.pagina_institucional');
@@ -186,21 +190,11 @@ Route::prefix('docente')->middleware(['auth', 'role:docente'])->group(function (
     Route::get('/tools', [ToolController::class, 'index'])->name('docente.tools');
 });
 
-// --- ROL AUXILIAR ---
+// ======================================================
+// ROL AUXILIAR
+// ======================================================
 Route::prefix('auxiliar')->middleware(['auth', 'role:auxiliar'])->group(function () {
     Route::get('/dashboard', fn() => view('auxiliar.dashboard'))->name('auxiliar.dashboard');
     Route::get('/support', [SuportController::class, 'index'])->name('auxiliar.support');
     Route::get('/tools', [ToolController::class, 'index'])->name('auxiliar.tools');
-});
-
-// --- ROL ALUMNO ---
-Route::prefix('alumno')->middleware(['auth:alumno'])->group(function () {
-    Route::get('/dashboard', fn() => view('Alumno.dashboard'))->name('alumno.dashboard');
-    Route::get('/pagina-institucional', [Pagina_InstitucionalController::class, 'alumnoIndex'])->name('alumno.pagina_institucional');
-    Route::get('/calendar', [CalendarController::class, 'index'])->name('alumno.calendar');
-    Route::get('/messages', [MessageController::class, 'index'])->name('alumno.messages');
-    Route::get('/activity', [ActivityController::class, 'index'])->name('alumno.activity');
-    Route::get('/courses', [CourseController::class, 'index'])->name('alumno.courses');
-    Route::get('/eti', [EtisController::class, 'index'])->name('alumno.eti');  
-    Route::get('/support', [SuportController::class, 'index'])->name('alumno.support');
 });

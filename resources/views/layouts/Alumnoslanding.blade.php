@@ -3,16 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Next Level')</title>
+    <title>@yield('title', 'Next Level - Alumno')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/course.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/alumno/activityAlumno.css') }}">
-
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/alumno/layout.css') }}">
+    @stack('styles')
 </head>
 
 <body>
@@ -37,44 +35,41 @@
             </div>
 
             <nav class="menu">
-                <a href="{{ route('alumno.pagina_institucional') }}"
-                    class="{{ request()->routeIs('alumno.pagina_institucional') ? 'active' : '' }}">
+                
+
+                <a href="{{ route('alumno.pagina_institucional') }}" class="{{ request()->routeIs('alumno.pagina_institucional') ? 'active' : '' }}">
                     <i class="bi bi-house-door"></i>
-                    <span>Pagina Institucional</span>
+                    <span>Página Institucional</span>
                 </a>
 
-                <a href="{{ route('alumno.activity') }}"
-                    class="{{ request()->routeIs('alumno.activity') ? 'active' : '' }}">
+                <a href="{{ route('alumno.courses') }}" class="{{ request()->routeIs('alumno.courses') ? 'active' : '' }}">
+                    <i class="bi bi-book"></i>
+                    <span>Mis Cursos</span>
+                </a>
+
+                <a href="{{ route('alumno.activity') }}" class="{{ request()->routeIs('alumno.activity') ? 'active' : '' }}">
                     <i class="bi bi-activity"></i>
                     <span>Actividad</span>
                 </a>
 
-                <a href="{{ route('alumno.organizations') }}"
-                    class="{{ request()->routeIs('alumno.organizations') ? 'active' : '' }}">
-                    <i class="bi bi-diagram-3"></i>
-                    <span>Organizaciones</span>
-                </a>
+                
 
-                <a href="{{ route('alumno.calendar') }}"
-                    class="{{ request()->routeIs('alumno.calendar') ? 'active' : '' }}">
+                <a href="{{ route('alumno.calendar') }}" class="{{ request()->routeIs('alumno.calendar') ? 'active' : '' }}">
                     <i class="bi bi-calendar-event"></i>
                     <span>Calendario</span>
                 </a>
 
-                <a href="{{ route('alumno.messages') }}"
-                    class="{{ request()->routeIs('alumno.messages') ? 'active' : '' }}">
+                <a href="{{ route('alumno.messages') }}" class="{{ request()->routeIs('alumno.messages') ? 'active' : '' }}">
                     <i class="bi bi-envelope"></i>
                     <span>Mensajes</span>
                 </a>
 
-                <a href="{{ route('alumno.qualifications') }}"
-                    class="{{ request()->routeIs('alumno.qualifications') ? 'active' : '' }}">
+                <a href="{{ route('alumno.qualifications') }}" class="{{ request()->routeIs('alumno.qualifications') ? 'active' : '' }}">
                     <i class="bi bi-award"></i>
                     <span>Calificaciones</span>
                 </a>
 
-                <a href="{{ route('alumno.tools') }}"
-                    class="{{ request()->routeIs('alumno.tools') ? 'active' : '' }}">
+                <a href="{{ route('alumno.tools') }}" class="{{ request()->routeIs('alumno.tools') ? 'active' : '' }}">
                     <i class="bi bi-tools"></i>
                     <span>Herramientas</span>
                 </a>
@@ -89,12 +84,9 @@
                 </form>
 
                 <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
                 </a>
             </nav>
-
-
-
         </aside>
 
         <main class="main-content" id="mainContent">
@@ -111,8 +103,7 @@
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('js/course.js') }}"></script>
-
+    @stack('scripts')
 </body>
 
 </html>

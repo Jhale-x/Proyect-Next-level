@@ -1,0 +1,191 @@
+/* ======================================================
+   LAYOUT ALUMNO - Next Level
+   ====================================================== */
+
+:root {
+    --rojo-principal: #e60000;
+    --rojo-oscuro: #cc0000;
+    --azul-oscuro: #0d2242;
+    --blanco: #ffffff;
+    --gris-claro: #f8fafc;
+    --gris-borde: #e2e8f0;
+    --texto-gris: #576574;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background-color: #f5f7fb;
+}
+
+/* ======================================================
+   SIDEBAR
+   ====================================================== */
+.sidebar {
+    width: 280px;
+    background: linear-gradient(180deg, #0d2242 0%, #0a1a33 100%);
+    min-height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 25px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.sidebar .logo-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.sidebar .logo span {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.sidebar .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 15px;
+}
+
+.sidebar .menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.sidebar .menu a i {
+    width: 22px;
+    font-size: 1.1rem;
+}
+
+.sidebar .menu a:hover {
+    background: rgba(230, 0, 0, 0.2);
+    color: white;
+}
+
+.sidebar .menu a.active {
+    background: var(--rojo-principal);
+    color: white;
+    box-shadow: 0 4px 10px rgba(230, 0, 0, 0.3);
+}
+
+/* ======================================================
+   MAIN CONTENT
+   ====================================================== */
+.main-content {
+    margin-left: 280px;
+    width: calc(100% - 280px);
+    min-height: 100vh;
+    padding: 20px 30px;
+    transition: all 0.3s ease;
+}
+
+/* ======================================================
+   MOBILE HEADER
+   ====================================================== */
+.mobile-header {
+    display: none;
+    background: var(--rojo-principal);
+    padding: 15px 20px;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    color: white;
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+@media (max-width: 768px) {
+    .sidebar {
+        left: -280px;
+    }
+    
+    .sidebar.active {
+        left: 0;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 80px 15px 20px;
+    }
+    
+    .mobile-header {
+        display: flex;
+    }
+    
+    .sidebar-overlay.active {
+        display: block;
+    }
+}
+
+/* ======================================================
+   UTILIDADES
+   ====================================================== */
+.container-fluid {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--rojo-principal);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--rojo-oscuro);
+}

@@ -28,7 +28,6 @@ class Alumno extends Authenticatable
         'remember_token',
     ];
 
-    // 🔧 IMPORTANTE: Desactivar timestamps si no existen las columnas
     public $timestamps = false;
 
     public function getAuthPassword()
@@ -41,15 +40,27 @@ class Alumno extends Authenticatable
         return 'id_alumno';
     }
 
-    // --- RELACIONES ---
-
+    // Relación con salón
     public function salon()
     {
         return $this->belongsTo(Salon::class, 'id_salon', 'id_salon');
     }
 
+    // Relación con apoderado
     public function apoderado()
     {
         return $this->belongsTo(Apoderado::class, 'id_apoderado', 'id_apoderado');
+    }
+
+    // Obtener cursos del alumno según su salón
+    public function getCursos()
+    {
+        if (!$this->id_salon) {
+            return collect();
+        }
+        
+        return DocenteCurso::where('id_salon', $this->id_salon)
+            ->with(['curso'])
+            ->get();
     }
 }

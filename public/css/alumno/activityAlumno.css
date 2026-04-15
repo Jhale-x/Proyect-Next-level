@@ -1,19 +1,80 @@
-/* Color principal del borde */
-.activity-card {
-    border-left: 3px solid #27ae60;
+/* ======================================================
+   ACTIVITY ALUMNO - Next Level
+   ====================================================== */
+
+.activity-container {
+    padding: 20px;
 }
 
-/* Icono y conectores */
-.activity-card::before {
-    content: '📖'; /* Icono de libro */
-    border: 2px solid #27ae60;
-}
-
-.activity-card::after {
-    border: 2px solid #2ecc71;
-}
-
-/* Encabezado */
 .activity-header {
-    color: #27ae60;
+    margin-bottom: 30px;
+}
+
+.activity-header h2 {
+    color: var(--azul-oscuro);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.activity-header p {
+    color: var(--texto-gris);
+}
+
+.activity-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--rojo-principal);
+}
+
+.activity-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.activity-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--azul-oscuro);
+    margin-bottom: 8px;
+}
+
+.activity-date {
+    font-size: 0.8rem;
+    color: var(--texto-gris);
+    margin-bottom: 10px;
+}
+
+.activity-description {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+.activity-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.status-pendiente {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-completado {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-atrasado {
+    background: #f8d7da;
+    color: #721c24;
 }
