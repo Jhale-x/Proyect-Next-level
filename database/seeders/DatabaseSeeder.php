@@ -21,5 +21,8 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        // Seeder para asociar cursos con salones
+        $this->call(CursoSalonSeeder::class);
     }
 }

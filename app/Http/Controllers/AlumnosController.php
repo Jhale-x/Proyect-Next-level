@@ -49,6 +49,59 @@ class AlumnosController extends Controller
         return view('Admin.ListadoAlumno', compact('alumnos', 'niveles', 'grados'));
     }
 
+    public function show($id_alumno)
+    {
+        $alumno = Alumno::with(['salon.nivel', 'salon.grado', 'salon.seccion'])
+            ->findOrFail($id_alumno);
+
+        return view('Admin.AlumnoDetalle', compact('alumno'));
+    }
+
+    public function edit($id_alumno)
+    {
+        $alumno = Alumno::with(['salon'])->findOrFail($id_alumno);
+        $datos = $this->datosFormulario();
+
+        return view('Admin.AlumnoEditar', array_merge($datos, compact('alumno')));
+    }
+
+    public function update(Request $request, $id_alumno)
+    {
+        $alumno = Alumno::findOrFail($id_alumno);
+
+        $request->validate([
+            'nombre'           => 'required|string|max:100',
+            'apellido'         => 'required|string|max:100',
+            'dni'              => 'required|unique:alumnos,dni,' . $alumno->id_alumno . ',id_alumno',
+            'fecha_nacimiento' => 'required|date',
+            'usuario'          => 'required|unique:alumnos,usuario,' . $alumno->id_alumno . ',id_alumno',
+            'contraseña'       => 'nullable|min:6',
+            'id_nivel'         => 'required',
+        ]);
+
+        $salon = Salon::where('id_nivel', $request->id_nivel)
+            ->when($request->id_grado, fn($q) => $q->where('id_grado', $request->id_grado))
+            ->when($request->id_seccion, fn($q) => $q->where('id_seccion', $request->id_seccion))
+            ->first();
+
+        if (!$salon) {
+            return back()->withInput()->with('error', 'No existe un salón con esos datos');
+        }
+
+        $alumno->update([
+            'id_salon'         => $salon->id_salon,
+            'nombre'           => $request->nombre,
+            'apellido'         => $request->apellido,
+            'dni'              => $request->dni,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
+            'usuario'          => $request->usuario,
+            'contrasena'       => $request->filled('contraseña') ? Hash::make($request->input('contraseña')) : $alumno->contrasena,
+        ]);
+
+        return redirect()->route('admin.alumnos.show', $alumno->id_alumno)
+            ->with('success', 'Alumno actualizado correctamente');
+    }
+
     public function datosFormulario()
     {
         return [
@@ -58,6 +111,12 @@ class AlumnosController extends Controller
             'facultades' => Facultad::all(),
             'cursos'     => Course::all(),
         ];
+    }
+
+    public function gradosPorNivel($id_nivel)
+    {
+        $grados = Grado::where('id_nivel', $id_nivel)->get();
+        return response()->json($grados);
     }
 
     public function create()

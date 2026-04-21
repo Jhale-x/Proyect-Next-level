@@ -42,6 +42,7 @@ Route::prefix('auth')->group(function () {
 Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(function () {
 
     Route::get('/dashboard', fn() => view('Admin.dashboard'))->name('admin.dashboard');
+    Route::get('/buscar-alumnos', [MessageController::class, 'buscarAlumnos'])->name('admin.messages.search');
 
     // Gestión Institucional
     Route::get('/pagina-institucional', [Pagina_InstitucionalController::class, 'adminIndex'])->name('admin.pagina_institucional');
@@ -59,14 +60,23 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(functi
     Route::prefix('alumnos')->group(function () {
         Route::get('/registro', [AlumnosController::class, 'create'])->name('admin.alumnos.create');
         Route::get('/listado', [AlumnosController::class, 'index'])->name('admin.alumnos.index');
+        Route::get('/detalle/{id_alumno}', [AlumnosController::class, 'show'])->name('admin.alumnos.show');
+        Route::get('/editar/{id_alumno}', [AlumnosController::class, 'edit'])->name('admin.alumnos.edit');
+        Route::put('/{id_alumno}', [AlumnosController::class, 'update'])->name('admin.alumnos.update');
         Route::post('/', [AlumnosController::class, 'store'])->name('admin.alumnos.store');
         Route::get('/datos-formulario', [AlumnosController::class, 'datosFormulario'])->name('admin.alumnos.datosFormulario');
     });
+
+    // Grados por nivel para el formulario de alumnos
+    Route::get('/grados/{id_nivel}', [AlumnosController::class, 'gradosPorNivel'])->name('admin.grados.porNivel');
 
     // --- PERSONAL (Users) ---
     Route::prefix('users')->group(function () {
         // Ruta para ver el listado
         Route::get('/listado', [UsersController::class, 'index'])->name('admin.users.index');
+        Route::get('/detalle/{id_usuario}', [UsersController::class, 'show'])->name('admin.users.show');
+        Route::get('/editar/{id_usuario}', [UsersController::class, 'edit'])->name('admin.users.edit');
+        Route::put('/{id_usuario}', [UsersController::class, 'update'])->name('admin.users.update');
 
         // CORRECCIÓN: Agregamos el nombre exacto que pide el error
         Route::post('/', [UsersController::class, 'store'])->name('admin.users.store');
@@ -121,9 +131,12 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(functi
     Route::prefix('messages')->group(function () {
         Route::get('/', [MessageController::class, 'index'])->name('admin.messages');
         Route::get('/get-chat/{id_curso}', [MessageController::class, 'getMessagesByCurso'])->name('admin.messages.getChat');
+        Route::get('/curso/{id}/salones', [MessageController::class, 'salonesCurso'])->name('admin.messages.salones');
 
-        // CAMBIA 'admin.messages.store' POR 'admin.messages.ajax'
         Route::post('/store-ajax', [MessageController::class, 'storeAjax'])->name('admin.messages.ajax');
+        Route::post('/store-ajax', [MessageController::class, 'storeAjax'])->name('admin.messages.store');
+        Route::get('/buscar-usuarios', [MessageController::class, 'buscarUsuarios'])
+            ->name('admin.buscar.usuarios');
     });
 
     // --- OTROS ---
@@ -158,8 +171,8 @@ Route::prefix('docente')->middleware(['auth', 'role:docente'])->group(function (
 // --- ROL AUXILIAR ---
 Route::prefix('auxiliar')->middleware(['auth', 'role:auxiliar'])->group(function () {
     Route::get('/dashboard', fn() => view('auxiliar.dashboard'))->name('auxiliar.dashboard');
+    Route::get('/buscar-alumnos', [MessageController::class, 'buscarAlumnos'])->name('auxiliar.messages.search');
     Route::get('/support', [SuportController::class, 'index'])->name('auxiliar.support');
-    Route::get('/calendar', [CalendarController::class, 'index'])->name('auxiliar.calendar');
     Route::get('/activity', [ActivityController::class, 'index'])->name('auxiliar.activity');
     Route::get('/messages', [MessageController::class, 'index'])->name('auxiliar.messages');
     Route::get('/messages/get-chat/{id_curso}', [MessageController::class, 'getMessagesByCurso'])->name('auxiliar.messages.getChat');

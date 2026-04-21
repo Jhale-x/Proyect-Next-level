@@ -3,6 +3,7 @@ let cursoNombreActual = null;
 let docenteActual = null;
 let salonActual = null;
 let actividadesActuales = [];
+let porcentajesOriginales = {}; 
 
 function vista(ocultar, mostrar) {
     const elOcultar = document.getElementById(ocultar);
@@ -228,6 +229,12 @@ function abrirDetalle(idSalon) {
         .then((r) => r.json())
         .then((data) => {
             actividadesActuales = data.actividades || [];
+            porcentajesOriginales = {};
+            actividadesActuales.forEach((act) => {
+                const porcentaje = Number(act.porcentaje ?? act.actividad.porcentaje ?? 0);
+                act.porcentaje = porcentaje;
+                porcentajesOriginales[act.id_curso_actividad] = porcentaje;
+            });
 
             const notasMap = {};
             (data.notas || []).forEach((n) => {
@@ -246,9 +253,10 @@ function abrirDetalle(idSalon) {
                         <br>
                         <small class="text-muted">${porcentaje}%${fechaStr}${horaStr}</small>
                         <br>
-                        <button class="btn btn-outline-secondary btn-sm mt-1 btn-editar-fecha"
+                        <button type="button" class="btn btn-outline-secondary btn-sm mt-1 btn-editar-fecha"
                             data-id="${act.id_curso_actividad}"
                             data-nombre="${act.actividad.actividad}"
+                            data-porcentaje="${porcentaje}"
                             data-fecha="${act.fecha_entrega ?? ''}"
                             data-hora="${act.hora_entrega ? act.hora_entrega.slice(0,5) : ''}">
                             ✏️
@@ -335,7 +343,7 @@ function recalcularPromedios() {
 
             if (!actividad) return;
 
-            const peso = (actividad.actividad.porcentaje ?? 0) / 100;
+            const peso = (actividad.porcentaje ?? 0) / 100;
 
             total += nota * peso;
 
@@ -344,6 +352,56 @@ function recalcularPromedios() {
         promCell.textContent = total.toFixed(2);
 
     });
+}
+
+function actualizarEncabezadosActividades() {
+    document.querySelectorAll('.btn-editar-fecha').forEach((button) => {
+        const id = button.dataset.id;
+        const actividad = actividadesActuales.find((a) => a.id_curso_actividad == id);
+        if (!actividad) return;
+
+        button.dataset.porcentaje = actividad.porcentaje ?? 0;
+
+        const th = button.closest('th');
+        if (!th) return;
+
+        const small = th.querySelector('small.text-muted');
+        if (small) {
+            const fechaStr = actividad.fecha_entrega ? ` · ${actividad.fecha_entrega}` : '';
+            const horaStr = actividad.hora_entrega ? ` ${actividad.hora_entrega.slice(0,5)}` : '';
+            small.textContent = `${actividad.porcentaje ?? 0}%${fechaStr}${horaStr}`;
+        }
+    });
+}
+
+function distribuirDiferenciaPorcentajes(idActual, nuevoValor) {
+    const anterior = Number(porcentajesOriginales[idActual] ?? 0);
+    const diferencia = nuevoValor - anterior;
+    const otros = actividadesActuales.filter((act) => act.id_curso_actividad != idActual);
+
+    if (otros.length === 0) {
+        porcentajesOriginales[idActual] = Number(nuevoValor.toFixed(2));
+        const actividad = actividadesActuales.find((act) => act.id_curso_actividad == idActual);
+        if (actividad) actividad.porcentaje = porcentajesOriginales[idActual];
+        return;
+    }
+
+    const ajuste = diferencia / otros.length;
+
+    otros.forEach((act) => {
+        let valor = Number(porcentajesOriginales[act.id_curso_actividad] ?? 0);
+        let nuevo = valor - ajuste;
+        if (nuevo < 0) nuevo = 0;
+        nuevo = Number(nuevo.toFixed(2));
+        porcentajesOriginales[act.id_curso_actividad] = nuevo;
+        act.porcentaje = nuevo;
+    });
+
+    porcentajesOriginales[idActual] = Number(nuevoValor.toFixed(2));
+    const actividadActual = actividadesActuales.find((act) => act.id_curso_actividad == idActual);
+    if (actividadActual) actividadActual.porcentaje = porcentajesOriginales[idActual];
+
+    actualizarEncabezadosActividades();
 }
 
 function guardarNotasDetalle() {
@@ -425,6 +483,20 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('input', function (e) {
         if (e.target.matches('#tabla-alumnos input[type="number"]')) {
             recalcularPromedios();
+            return;
+        }
+
+        if (e.target.classList.contains('input-porcentaje')) {
+            const idActual = e.target.dataset.id;
+            if (!idActual) return;
+
+            const nuevo = parseFloat(e.target.value);
+            if (isNaN(nuevo)) return;
+
+            distribuirDiferenciaPorcentajes(idActual, nuevo);
+            e.target.value = porcentajesOriginales[idActual];
+            recalcularPromedios();
+            return;
         }
     });
 
@@ -432,18 +504,39 @@ document.addEventListener('DOMContentLoaded', function () {
     document.addEventListener('click', function (e) {
         const btn = e.target.closest('.btn-editar-fecha');
         if (!btn) return;
+        e.preventDefault();
 
-        const id     = btn.dataset.id;
-        const nombre = btn.dataset.nombre;
-        const fecha  = btn.dataset.fecha;
-        const hora   = btn.dataset.hora;
+        const id         = btn.dataset.id;
+        const nombre     = btn.dataset.nombre;
+        const porcentaje = btn.dataset.porcentaje ?? '';
+        const fecha      = btn.dataset.fecha ?? '';
+        const hora       = btn.dataset.hora ?? '';
 
-        document.getElementById('edit_id_curso_actividad').value = id;
-        document.getElementById('edit_nombre_actividad').value   = nombre;
-        document.getElementById('edit_fecha_entrega').value      = fecha;
-        document.getElementById('edit_hora_entrega').value       = hora;
+        const editId = document.getElementById('edit_id_curso_actividad');
+        const editNombre = document.getElementById('edit_nombre_actividad');
+        const editPorcentaje = document.getElementById('edit_porcentaje');
+        const editFecha = document.getElementById('edit_fecha_entrega');
+        const editHora = document.getElementById('edit_hora_entrega');
 
-        const modal = new bootstrap.Modal(document.getElementById('modalEditarFecha'));
+        if (editId) editId.value = id;
+        if (editNombre) editNombre.value = nombre;
+        if (editPorcentaje) {
+            editPorcentaje.value = porcentaje;
+            editPorcentaje.dataset.id = id;
+        }
+        if (editFecha) editFecha.value = fecha;
+        if (editHora) editHora.value = hora;
+
+        const modalElement = document.getElementById('modalEditarFecha');
+        if (!modalElement) {
+            console.error('No se encontró el modal modalEditarFecha.');
+            return;
+        }
+
+        let modal = bootstrap.Modal.getInstance(modalElement);
+        if (!modal) {
+            modal = new bootstrap.Modal(modalElement);
+        }
         modal.show();
     });
 
@@ -451,18 +544,38 @@ document.addEventListener('DOMContentLoaded', function () {
     const btnGuardarFecha = document.getElementById('btn-guardar-fecha');
     if (btnGuardarFecha) {
         btnGuardarFecha.addEventListener('click', function () {
-            const id    = document.getElementById('edit_id_curso_actividad').value;
-            const fecha = document.getElementById('edit_fecha_entrega').value;
-            const hora  = document.getElementById('edit_hora_entrega').value;
+            const id         = document.getElementById('edit_id_curso_actividad').value;
+            const fecha      = document.getElementById('edit_fecha_entrega').value;
+            const hora       = document.getElementById('edit_hora_entrega').value;
+            const porcentaje = document.getElementById('edit_porcentaje').value;
 
             if (!fecha) {
                 alert('La fecha de entrega es obligatoria.');
                 return;
             }
 
+            let token = '';
             const tokenInput = document.querySelector('input[name="_token"]');
-            const token = tokenInput ? tokenInput.value : '';
+            if (tokenInput) {
+                token = tokenInput.value;
+            } else {
+                const tokenMeta = document.querySelector('meta[name="csrf-token"]');
+                token = tokenMeta ? tokenMeta.getAttribute('content') : '';
+            }
             const baseUrl = typeof activityBaseUrl !== 'undefined' ? activityBaseUrl : '/admin/activities';
+
+            const payload = {
+                fecha_entrega: fecha,
+                hora_entrega: hora || null,
+            };
+
+            if (porcentaje !== '') {
+                payload.porcentaje = Number(porcentaje);
+            }
+
+            if (Object.keys(porcentajesOriginales).length) {
+                payload.porcentajes = porcentajesOriginales;
+            }
 
             fetch(`${baseUrl}/${id}/fecha`, {
                 method: 'PUT',
@@ -471,7 +584,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     'X-CSRF-TOKEN': token,
                     'Accept': 'application/json',
                 },
-                body: JSON.stringify({ fecha_entrega: fecha, hora_entrega: hora || null }),
+                body: JSON.stringify(payload),
             })
                 .then(async (r) => {
                     const json = await r.json().catch(() => ({}));

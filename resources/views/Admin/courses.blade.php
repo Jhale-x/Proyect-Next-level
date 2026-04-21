@@ -526,6 +526,44 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modalEditarFecha" tabindex="-1" aria-labelledby="modalEditarFechaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEditarFechaLabel">Editar fecha de entrega</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="edit_id_curso_actividad" name="id_curso_actividad">
+
+                    <div class="mb-3">
+                        <label for="edit_nombre_actividad" class="form-label">Actividad</label>
+                        <input type="text" id="edit_nombre_actividad" name="nombre_actividad" class="form-control" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="edit_porcentaje" class="form-label">Porcentaje</label>
+                        <input type="number" id="edit_porcentaje" name="porcentaje" class="form-control input-porcentaje" data-id="" min="0" max="100" step="1">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="edit_fecha_entrega" class="form-label">Fecha de entrega</label>
+                        <input type="date" id="edit_fecha_entrega" name="fecha_entrega" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="edit_hora_entrega" class="form-label">Hora de entrega</label>
+                        <input type="time" id="edit_hora_entrega" name="hora_entrega" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btn-guardar-fecha">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="modalCurso" tabindex="-1" aria-labelledby="modalCursoLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

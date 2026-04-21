@@ -82,6 +82,54 @@ class UsersController extends Controller
         return view('Admin.ListadoPersonal', compact('users'));
     }
 
+    public function show($id_usuario)
+    {
+        $user = User::with('cursoRelacion')->findOrFail($id_usuario);
+
+        return view('Admin.PersonalDetalle', compact('user'));
+    }
+
+    public function edit($id_usuario)
+    {
+        $user = User::findOrFail($id_usuario);
+        $cursos = Course::all();
+
+        return view('Admin.PersonalEditar', compact('user', 'cursos'));
+    }
+
+    public function update(Request $request, $id_usuario)
+    {
+        $user = User::findOrFail($id_usuario);
+
+        $request->validate([
+            'nombre'            => 'required|string|max:100',
+            'apellido'          => 'required|string|max:100',
+            'dni'               => 'required|unique:users,dni,' . $user->id_usuario . ',id_usuario',
+            'fecha_nacimiento'  => 'required|date',
+            'usuario'           => 'required|unique:users,usuario,' . $user->id_usuario . ',id_usuario',
+            'contrasena'        => 'nullable|min:6',
+            'rol'               => 'required|in:administrador,docente,auxiliar',
+            'id_curso'          => 'nullable|exists:cursos,id_curso|required_if:rol,docente'
+        ]);
+
+        $user->id_curso = $request->rol === 'docente' ? $request->id_curso : null;
+        $user->nombre = $request->nombre;
+        $user->apellido = $request->apellido;
+        $user->dni = $request->dni;
+        $user->fecha_nacimiento = $request->fecha_nacimiento;
+        $user->usuario = $request->usuario;
+        $user->rol = $request->rol;
+
+        if ($request->filled('contrasena')) {
+            $user->contrasena = Hash::make($request->contrasena);
+        }
+
+        $user->save();
+
+        return redirect()->route('admin.users.show', $user->id_usuario)
+            ->with('success', 'Personal actualizado correctamente');
+    }
+
     // 🟩 GUARDAR
     public function store(Request $request)
     {

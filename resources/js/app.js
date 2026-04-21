@@ -1,5 +1,7 @@
 import './bootstrap';
-import 'bootstrap';
+import * as bootstrap from 'bootstrap';
+
+window.bootstrap = bootstrap;
 
 const initializeSidebarToggle = () => {
 	const sidebar = document.getElementById('sidebar');

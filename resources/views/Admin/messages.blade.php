@@ -6,23 +6,29 @@
     <div class="container-fluid mt-3">
         <div class="main-chat-viewport shadow-sm rounded">
 
-            <div class="course-list-wrapper">
-                <h3 class="mb-4" style="font-family: serif;">Mensajes</h3>
-
-                @php $colores = ['#ff6b00', '#e91e63', '#4caf50', '#9c27b0', '#03a9f4']; @endphp
-
-                @foreach ($cursos as $index => $curso)
-                    <div class="course-item" style="border-left-color: {{ $colores[$index % count($colores)] }};">
-                        <div class="course-info">
-                            <span class="id-label">ID: 202610-{{ $curso->materia }}-{{ $curso->id_curso }}</span>
-                            <span class="materia-name">{{ $curso->materia }}</span>
-                        </div>
-                        <button class="btn btn-link text-muted text-decoration-none small"
-                            onclick="abrirNuevoMensaje('{{ $curso->materia }}', {{ $curso->id_curso }})">
-                            <i class="bi bi-envelope"></i> Nuevo mensaje
-                        </button>
+            <div class="views-container">
+                <!-- 📚 CURSOS -->
+                <div id="vista-mensajes-cursos" class="view active">
+                    <div class="row g-3">
+                        @foreach ($cursos as $curso)
+                            <div class="col-md-3">
+                                <div class="course-card"
+                                    onclick="abrirCursoMsg('{{ $curso->materia }}', {{ $curso->id_curso }})">
+                                    <div class="p-3 fw-bold">
+                                        📘 {{ $curso->materia }}
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                @endforeach
+                </div>
+
+                <!-- 🏫 SALONES -->
+                <div id="vista-mensajes-salones" class="view">
+                    <a class="btn-back" onclick="volverCursosMsg()">← Volver</a>
+                    <h4 id="titulo-curso-msg" class="mb-3"></h4>
+                    <div class="row g-3" id="lista-salones-msg"></div>
+                </div>
             </div>
 
             <div id="panelNuevoMensaje">
@@ -38,11 +44,12 @@
                 <div class="panel-body text-center">
                     <div class="w-100 text-start mb-4" style="max-width: 700px;">
                         <label for="destinatario_msg" class="small fw-bold">Hasta:</label>
-                        <div class="input-group">
+                        <div class="input-group position-relative">
                             <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
                             <input id="destinatario_msg" type="text" class="form-control"
                                 placeholder="Escriba un miembro o grupo del curso">
                         </div>
+                        <div id="resultados_busqueda" class="list-group mt-2"></div>
                     </div>
 
                     <img src="https://cdn-icons-png.flaticon.com/512/2665/2665038.png" class="mailbox-img">
@@ -52,7 +59,9 @@
 
                 <div class="panel-footer">
                     <input type="hidden" id="current_id_curso">
+                    <input type="hidden" id="current_id_curso_salon">
                     <div class="border p-2 bg-white rounded">
+                        <div id="mensajeEstado" class="mb-2" style="display:none;"></div>
                         <textarea id="mensaje_contenido" class="form-control border-0" rows="3" placeholder="Escribe un mensaje"></textarea>
                     </div>
                     <div class="text-end mt-3">
@@ -71,7 +80,9 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/messages.css') }}">
 @endpush
-
 @push('scripts')
+    <script>
+        window.buscarAlumnosUrl = "{{ url('/admin/messages/buscar-usuarios') }}";
+    </script>
     <script src="{{ asset('js/messages.js') }}"></script>
 @endpush

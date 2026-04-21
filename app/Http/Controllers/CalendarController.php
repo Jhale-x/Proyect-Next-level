@@ -24,14 +24,18 @@ class CalendarController extends Controller
                 's.id_salon'
             );
 
-        // Para docentes: filtrar solo las actividades de sus salones
         $user = Auth::user();
         if ($user && $user->rol === 'docente') {
-            $salonesDocente = DB::table('docente_salon')
+            $cursosDocente = DB::table('docente_salon')
                 ->where('id_usuario', $user->id_usuario)
-                ->pluck('id_salon');
+                ->pluck('id_curso')
+                ->unique();
 
-            $query->whereIn('s.id_salon', $salonesDocente);
+            if ($cursosDocente->isNotEmpty()) {
+                $query->whereIn('ca.id_curso', $cursosDocente);
+            } else {
+                $query->whereRaw('0 = 1');
+            }
         }
 
         $actividades = $query->distinct('ca.id_curso_actividad')->get();

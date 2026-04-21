@@ -54,6 +54,59 @@
         <p><strong>{{ $anuncios->count() }} resultados</strong></p>
 
         <!-- Favoritos -->
+        <!-- ACTIVIDADES -->
+        <h5 class="mt-4 mb-3">📝 Actividades pendientes</h5>
+
+        @if ($actividades->isEmpty())
+            <div class="alert alert-info">No tienes actividades registradas.</div>
+        @else
+            @foreach ($actividades as $actividad)
+                <div class="card mb-3 p-3 d-flex flex-row justify-content-between align-items-center">
+
+                    <div class="d-flex gap-3">
+
+                        <!-- Línea lateral -->
+                        <div
+                            style="width:5px; background:
+                    @if ($actividad->estado == 'pendiente') #dc3545
+                    @elseif($actividad->estado == 'entregado') #198754
+                    @else #ffc107 @endif;">
+                        </div>
+
+                        <div>
+                            <small class="text-muted">
+                                Entrega: {{ $actividad->fecha_entrega }} {{ $actividad->hora_entrega }}
+                            </small>
+
+                            <h6 class="mb-1">{{ $actividad->titulo }}</h6>
+
+                            <small>
+                                Curso: {{ $actividad->curso->nombre ?? 'Sin curso' }}
+                            </small>
+
+                            <br>
+
+                            <!-- Estado -->
+                            <span
+                                class="
+                        @if ($actividad->estado == 'pendiente') text-danger
+                        @elseif($actividad->estado == 'entregado') text-success
+                        @else text-warning @endif">
+                                {{ ucfirst($actividad->estado) }}
+                            </span>
+
+                            | <a href="#">Ver actividad</a>
+                        </div>
+
+                    </div>
+
+                    <!-- Icono -->
+                    <i class="bi bi-journal-text fs-4 text-primary"></i>
+
+                </div>
+            @endforeach
+        @endif
+
         <h5 class="mt-4 mb-3">Favoritos</h5>
 
         @if ($anuncios->isEmpty())

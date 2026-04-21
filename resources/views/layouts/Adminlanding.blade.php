@@ -94,12 +94,6 @@
                     </div>
                 </div>
 
-                <a href="{{ route('admin.organizations') }}"
-                    class="{{ request()->routeIs('admin.organizations') ? 'active' : '' }}">
-                    <i class="bi bi-diagram-3"></i>
-                    <span>Organizaciones</span>
-                </a>
-
                 <a href="{{ route('admin.calendar') }}"
                     class="{{ request()->routeIs('admin.calendar') ? 'active' : '' }}">
                     <i class="bi bi-calendar-event"></i>

@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Message;
 use App\Models\Course;
+use App\Models\User;
+use App\Models\CursoSalon;
 use Illuminate\Support\Facades\DB;
+use App\Models\Alumno;
 
 class MessageController extends Controller
 {
@@ -58,13 +61,58 @@ class MessageController extends Controller
         return response()->json($messages);
     }
 
+    public function buscarUsuarios(Request $request)
+    {
+        $q = $request->q;
+
+
+        $idSalon = DB::table('curso_salon')
+            ->where('id_curso_salon', $request->id_curso_salon)
+            ->value('id_salon');
+
+        // DOCENTES
+        $docentes = User::where(function ($query) use ($q) {
+            $query->where('nombre', 'like', "%$q%")
+                ->orWhere('apellido', 'like', "%$q%");
+        })
+            ->where('rol', 'docente')
+            ->limit(5)
+            ->get()
+            ->map(fn($u) => [
+                'id' => $u->id_usuario,
+                'name' => $u->nombre . ' ' . $u->apellido,
+                'role' => 'docente'
+            ]);
+
+        // ALUMNOS
+        $alumnos = Alumno::where(function ($query) use ($q) {
+            $query->whereRaw("LOWER(nombre) LIKE ?", ["%$q%"])
+                ->orWhere('apellido', 'like', "%$q%");
+        })
+            ->where('id_salon', $idSalon)
+            ->limit(5)
+            ->get()
+            ->map(fn($a) => [
+                'id' => $a->id_alumno,
+                'name' => $a->nombre . ' ' . $a->apellido,
+                'role' => 'alumno'
+            ]);
+
+        // UNIÓN CORRECTA
+        $resultado = collect($docentes)->merge($alumnos)->values();
+
+        return response()->json($resultado);
+    }
     public function storeAjax(Request $request)
     {
         $data = $request->isJson() ? $request->json()->all() : $request->all();
 
         $validated = validator($data, [
             'id_curso' => ['required', 'integer', 'exists:cursos,id_curso'],
+            'id_curso_salon' => ['nullable', 'integer', 'exists:curso_salon,id_curso_salon'],
             'contenido' => ['required', 'string', 'max:2000'],
+            'tipo' => ['required', 'in:individual,grupo'],
+            'destinatario_id' => ['nullable', 'integer', 'exists:users,id_usuario'],
         ])->validate();
 
         $esAlumno = Auth::guard('alumno')->check();
@@ -77,23 +125,31 @@ class MessageController extends Controller
             ], 401);
         }
 
-        $cursoSalonIds = DB::table('curso_salon')
-            ->where('id_curso', $validated['id_curso'])
-            ->pluck('id_curso_salon');
+        if ($validated['tipo'] === 'individual' && empty($validated['destinatario_id'])) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Selecciona un destinatario válido.'
+            ], 422);
+        }
 
-        $idCursoSalon = $cursoSalonIds->count() === 1
-            ? $cursoSalonIds->first()
-            : null;
-
-        $mensaje = Message::create([
+        $mensajeData = [
             'id_emisor' => $miId,
             'emisor_tipo' => $esAlumno ? 'alumno' : 'user',
             'id_emisor_usuario' => $esAlumno ? null : $miId,
             'id_emisor_alumno' => $esAlumno ? $miId : null,
             'id_curso'  => $validated['id_curso'],
-            'id_curso_salon' => $idCursoSalon,
+            'id_curso_salon' => $validated['id_curso_salon'],
             'contenido' => $validated['contenido'],
-        ]);
+        ];
+
+        if ($validated['tipo'] === 'individual') {
+            $mensajeData['id_receptor'] = $validated['destinatario_id'];
+            $mensajeData['receptor_tipo'] = 'user';
+            $mensajeData['id_receptor_usuario'] = $validated['destinatario_id'];
+            $mensajeData['id_receptor_alumno'] = null;
+        }
+
+        $mensaje = Message::create($mensajeData);
 
         return response()->json([
             'status' => 'success',
@@ -103,5 +159,23 @@ class MessageController extends Controller
                 'es_mio'    => true
             ]
         ]);
+    }
+
+    public function salonesCurso($id_curso)
+    {
+        $salones = CursoSalon::with('salon.grado', 'salon.seccion')
+            ->where('id_curso', $id_curso)
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'id_curso_salon' => $item->id_curso_salon,
+                    'salon' => [
+                        'grado' => $item->salon->grado->grado ?? 'N/A',
+                        'seccion' => $item->salon->seccion->seccion ?? 'N/A'
+                    ]
+                ];
+            });
+
+        return response()->json($salones);
     }
 }

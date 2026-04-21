@@ -116,6 +116,7 @@
         $actividadesPorHora = $actividadesDia->groupBy(function ($a) {
             return $a->hora_entrega ? (int) explode(':', $a->hora_entrega)[0] : -1;
         });
+        $actividadesSinHora = $actividadesDia->filter(fn($a) => !$a->hora_entrega);
 
         // Para la vista semanal: agrupar por fecha
         $actsSemana = [];
@@ -194,6 +195,21 @@
         {{-- ══════════════ VISTA DÍA ══════════════ --}}
         {{-- (10) Scroll interno --}}
         <div id="vista-dia" class="calendar-body mt-2">
+            @if ($actividadesSinHora->count())
+                <div class="mb-3">
+                    <div class="fw-semibold mb-2">Actividades sin hora definida</div>
+                    @foreach ($actividadesSinHora as $act)
+                        @php $color = $getCursoColor($act->curso); @endphp
+                        <div class="event-card mb-2"
+                            style="border-left-color:{{ $color }}; background:{{ $color }}18;">
+                            <strong style="color:{{ $color }}">{{ $act->curso }}</strong>
+                            <span class="text-secondary"> — {{ $act->titulo }}</span>
+                            <small class="text-muted ms-1">Sin hora asignada</small>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
             @for ($i = 0; $i < 24; $i++)
                 {{-- (1) Hover en fila hora --}}
                 <div class="d-flex border-bottom py-2 align-items-start hour-row">

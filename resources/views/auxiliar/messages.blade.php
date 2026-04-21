@@ -43,6 +43,12 @@
                             <input id="destinatario_msg" type="text" class="form-control"
                                 placeholder="Escriba un miembro o grupo del curso">
                         </div>
+                        <div id="resultados_busqueda" class="list-group mt-1"></div>
+                        <div class="mt-2">
+                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="seleccionarGrupo()">
+                                👥 Enviar a todo el salón
+                            </button>
+                        </div>
                     </div>
 
                     <img src="https://cdn-icons-png.flaticon.com/512/2665/2665038.png" class="mailbox-img">
@@ -52,6 +58,8 @@
 
                 <div class="panel-footer">
                     <input type="hidden" id="current_id_curso">
+                    <div id="mensajeEstado" class="text-success small fw-bold" style="display:none;margin-bottom:12px">
+                    </div>
                     <div class="border p-2 bg-white rounded">
                         <textarea id="mensaje_contenido" class="form-control border-0" rows="3" placeholder="Escribe un mensaje"></textarea>
                     </div>
@@ -73,5 +81,8 @@
 @endpush
 
 @push('scripts')
+    <script>
+        window.buscarAlumnosUrl = '{{ route('auxiliar.messages.search') }}';
+    </script>
     <script src="{{ asset('js/messages.js') }}"></script>
 @endpush

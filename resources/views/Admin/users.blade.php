@@ -3,246 +3,379 @@
 @section('title', 'Registro de Usuarios')
 
 @push('styles')
-<style>
-    .form-control, .form-select { border-radius: 8px; }
+    <style>
+        .form-control,
+        .form-select {
+            border-radius: 8px;
+        }
 
-    .fade-form { animation: fadeIn 0.3s ease; }
+        .fade-form {
+            animation: fadeIn 0.3s ease;
+        }
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
 
-    .nav-tabs .nav-link.active {
-        font-weight: 700;
-        color: #0d6efd;
-    }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .section-title {
-        font-size: .8rem;
-        font-weight: 700;
-        letter-spacing: .06em;
-        text-transform: uppercase;
-        color: #6c757d;
-    }
+        .nav-tabs .nav-link.active {
+            font-weight: 700;
+            color: #0d6efd;
+        }
 
-    .card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    }
-</style>
+        .section-title {
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: #6c757d;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+    </style>
 @endpush
 
 @section('content')
-<div class="container-fluid py-4">
+    <div class="container-fluid py-4">
 
-    <h2 class="fw-bold mb-1">Registro de Usuarios</h2>
-    <p class="text-muted mb-4 small">Registra alumnos o personal del sistema.</p>
+        <h2 class="fw-bold mb-1">Registro de Usuarios</h2>
+        <p class="text-muted mb-4 small">Registra alumnos o personal del sistema.</p>
 
-    {{-- TABS --}}
-    <ul class="nav nav-tabs mb-4">
-        <li class="nav-item">
-            <button class="nav-link active" id="tab-alumno">👨‍🎓 Alumno</button>
-        </li>
-        <li class="nav-item">
-            <button class="nav-link" id="tab-personal">🧑‍💼 Personal</button>
-        </li>
-    </ul>
+        {{-- TABS --}}
+        <ul class="nav nav-tabs mb-4">
+            <li class="nav-item">
+                <button class="nav-link active" id="tab-alumno">👨‍🎓 Alumno</button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="tab-personal">🧑‍💼 Personal</button>
+            </li>
+        </ul>
 
-    {{-- ALERTAS --}}
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+        {{-- ALERTAS --}}
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
 
-    @if ($errors->any())
-        <div class="alert alert-danger shadow-sm">
-            <ul class="mb-0">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    {{-- ================= ALUMNO ================= --}}
-    <div id="form-alumno" class="fade-form">
-
-        {{-- PROGRESO --}}
-        <div class="mb-4">
-            <div class="d-flex justify-content-between small text-muted">
-                <span>Progreso</span>
-                <span id="pct-alumno">0%</span>
+        @if ($errors->any())
+            <div class="alert alert-danger shadow-sm">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
-            <div class="progress" style="height:6px">
-                <div id="bar-alumno" class="progress-bar"></div>
-            </div>
-        </div>
+        @endif
 
-        <form method="POST" action="{{ route('admin.alumnos.store') }}" id="frmAlumno">
-            @csrf
+        {{-- ================= ALUMNO ================= --}}
+        <div id="form-alumno" class="fade-form">
 
-            {{-- DATOS --}}
-            <div class="card p-3 mb-3">
-                <p class="section-title">Datos</p>
-                <div class="row g-3">
-                    <div class="col-md-3"><input id="nombre_al" name="nombre" class="form-control" placeholder="Nombre" required></div>
-                    <div class="col-md-3"><input id="apellido_al" name="apellido" class="form-control" placeholder="Apellido" required></div>
-                    <div class="col-md-3"><input id="dni_al" name="dni" maxlength="8" class="form-control" placeholder="DNI" required></div>
-                    <div class="col-md-3"><input type="date" id="fecha_al" name="fecha_nacimiento" class="form-control" required></div>
+            {{-- PROGRESO --}}
+            <div class="mb-4">
+                <div class="d-flex justify-content-between small text-muted">
+                    <span>Progreso</span>
+                    <span id="pct-alumno">0%</span>
+                </div>
+                <div class="progress" style="height:6px">
+                    <div id="bar-alumno" class="progress-bar"></div>
                 </div>
             </div>
 
-            {{-- UBICACIÓN --}}
-            <div class="card p-3 mb-3">
-                <p class="section-title">Ubicación</p>
-                <div class="row g-3">
+            <form method="POST" action="{{ route('admin.alumnos.store') }}" id="frmAlumno">
+                @csrf
 
-                    <div class="col-md-4">
-                        <select id="nivel" name="id_nivel" class="form-select">
-                            <option value="">Nivel</option>
-                            @foreach ($niveles as $n)
-                                <option value="{{ $n->id_nivel }}">{{ $n->nivel }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-md-4 d-none" id="box-grado">
-                        <select id="grado" name="id_grado" class="form-select"></select>
-                    </div>
-
-                    <div class="col-md-4 d-none" id="box-seccion">
-                        <select id="seccion" name="id_seccion" class="form-select">
-                            @foreach ($secciones as $s)
-                                <option value="{{ $s->id_seccion }}">{{ $s->seccion }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-md-4 d-none" id="box-facultad">
-                        <select id="facultad" name="id_facultad" class="form-select">
-                            @foreach ($facultades as $f)
-                                <option value="{{ $f->id_facultad }}">{{ $f->facultad }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                </div>
-            </div>
-
-            {{-- CUENTA --}}
-            <div class="card p-3 mb-3">
-                <p class="section-title">Cuenta</p>
-                <div class="row g-3">
-                    <div class="col-md-6"><input id="user_al" name="usuario" class="form-control bg-light" readonly></div>
-                    <div class="col-md-6"><input id="pass_al" name="contraseña" class="form-control bg-light" readonly></div>
-                </div>
-            </div>
-
-            {{-- APODERADO --}}
-            <div class="card p-3 mb-3">
-                <label><input type="checkbox" id="chkApoderado"> Registrar apoderado</label>
-
-                <div id="bloque-apoderado" class="d-none mt-3">
+                {{-- DATOS --}}
+                <div class="card p-3 mb-3">
+                    <p class="section-title">Datos</p>
                     <div class="row g-3">
-                        <div class="col-md-4"><input name="apoderado_nombre" class="form-control" placeholder="Nombre"></div>
-                        <div class="col-md-4"><input name="apoderado_apellido" class="form-control" placeholder="Apellido"></div>
-                        <div class="col-md-4"><input name="apoderado_dni" maxlength="8" class="form-control" placeholder="DNI"></div>
+                        <div class="col-md-3"><input id="nombre_al" name="nombre" class="form-control" placeholder="Nombre"
+                                required></div>
+                        <div class="col-md-3"><input id="apellido_al" name="apellido" class="form-control"
+                                placeholder="Apellido" required></div>
+                        <div class="col-md-3"><input id="dni_al" name="dni" maxlength="8" class="form-control"
+                                placeholder="DNI" required></div>
+                        <div class="col-md-3"><input type="date" id="fecha_al" name="fecha_nacimiento"
+                                class="form-control" required></div>
                     </div>
                 </div>
-            </div>
 
-            <button class="btn btn-primary" id="btnAlumno" disabled>Registrar Alumno</button>
-        </form>
+                {{-- UBICACIÓN --}}
+                <div class="card p-3 mb-3">
+                    <p class="section-title">Ubicación</p>
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+                            <select id="nivel" name="id_nivel" class="form-select">
+                                <option value="">Nivel</option>
+                                @foreach ($niveles as $n)
+                                    <option value="{{ $n->id_nivel }}">{{ $n->nivel }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 d-none" id="box-grado">
+                            <select id="grado" name="id_grado" class="form-select"></select>
+                        </div>
+
+                        <div class="col-md-4 d-none" id="box-seccion">
+                            <select id="seccion" name="id_seccion" class="form-select">
+                                @foreach ($secciones as $s)
+                                    <option value="{{ $s->id_seccion }}">{{ $s->seccion }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-4 d-none" id="box-facultad">
+                            <select id="facultad" name="id_facultad" class="form-select">
+                                @foreach ($facultades as $f)
+                                    <option value="{{ $f->id_facultad }}">{{ $f->facultad }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+
+                {{-- CUENTA --}}
+                <div class="card p-3 mb-3">
+                    <p class="section-title">Cuenta</p>
+                    <div class="row g-3">
+                        <div class="col-md-6"><input id="user_al" name="usuario" class="form-control bg-light" readonly>
+                        </div>
+                        <div class="col-md-6"><input id="pass_al" name="contraseña" class="form-control bg-light"
+                                readonly></div>
+                    </div>
+                </div>
+
+                {{-- APODERADO --}}
+                <div class="card p-3 mb-3">
+                    <label><input type="checkbox" id="chkApoderado"> Registrar apoderado</label>
+
+                    <div id="bloque-apoderado" class="d-none mt-3">
+                        <div class="row g-3">
+                            <div class="col-md-4"><input id="apoderado_nombre" name="apoderado_nombre" class="form-control"
+                                    placeholder="Nombre">
+                            </div>
+                            <div class="col-md-4"><input id="apoderado_apellido" name="apoderado_apellido"
+                                    class="form-control" placeholder="Apellido"></div>
+                            <div class="col-md-4"><input id="apoderado_dni" name="apoderado_dni" maxlength="8"
+                                    class="form-control" placeholder="DNI"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" id="btnAlumno" disabled>Registrar Alumno</button>
+            </form>
+        </div>
+
+        {{-- ================= PERSONAL ================= --}}
+        <div id="form-personal" class="fade-form d-none">
+
+            <form action="{{ route('admin.users.store') }}" method="POST">
+                @csrf
+
+                <div class="card p-3 mb-3">
+                    <div class="row g-3">
+                        <div class="col-md-3"><input id="nombre_per" name="nombre" class="form-control"
+                                placeholder="Nombre"></div>
+                        <div class="col-md-3"><input id="apellido_per" name="apellido" class="form-control"
+                                placeholder="Apellido"></div>
+                        <div class="col-md-3"><input id="dni_per" name="dni" class="form-control"
+                                placeholder="DNI"></div>
+                        <div class="col-md-3"><input type="date" id="fecha_per" name="fecha_nacimiento"
+                                class="form-control"></div>
+                    </div>
+                </div>
+
+                <div class="card p-3 mb-3">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <select name="rol" id="cargo" class="form-select">
+                                <option value="administrador">Administrador</option>
+                                <option value="docente">Docente</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <select name="id_curso" id="id_curso" class="form-select">
+                                <option value="">Materia</option>
+                                @foreach ($cursos as $c)
+                                    <option value="{{ $c->id_curso }}">{{ $c->materia }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-2"><input id="user_per" name="usuario" class="form-control" readonly></div>
+                        <div class="col-md-2"><input id="pass_per" name="contrasena" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-secondary">Guardar</button>
+            </form>
+        </div>
+
     </div>
 
-    {{-- ================= PERSONAL ================= --}}
-    <div id="form-personal" class="fade-form d-none">
+    {{-- JS ORIGINAL (NO TOCADO) --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const formAlumno = document.getElementById('form-alumno');
+            const formPersonal = document.getElementById('form-personal');
 
-        <form action="{{ route('admin.users.store') }}" method="POST">
-            @csrf
+            const tabAlumno = document.getElementById('tab-alumno');
+            const tabPersonal = document.getElementById('tab-personal');
 
-            <div class="card p-3 mb-3">
-                <div class="row g-3">
-                    <div class="col-md-3"><input id="nombre_per" name="nombre" class="form-control" placeholder="Nombre"></div>
-                    <div class="col-md-3"><input id="apellido_per" name="apellido" class="form-control" placeholder="Apellido"></div>
-                    <div class="col-md-3"><input id="dni_per" name="dni" class="form-control" placeholder="DNI"></div>
-                    <div class="col-md-3"><input type="date" id="fecha_per" name="fecha_nacimiento" class="form-control"></div>
-                </div>
-            </div>
+            const nivel = document.getElementById('nivel');
+            const boxGrado = document.getElementById('box-grado');
+            const boxSeccion = document.getElementById('box-seccion');
+            const boxFacultad = document.getElementById('box-facultad');
+            const chkApoderado = document.getElementById('chkApoderado');
+            const bloqueApoderado = document.getElementById('bloque-apoderado');
 
-            <div class="card p-3 mb-3">
-                <div class="row g-3">
-                    <div class="col-md-4">
-                        <select name="rol" id="cargo" class="form-select">
-                            <option value="administrador">Administrador</option>
-                            <option value="docente">Docente</option>
-                        </select>
-                    </div>
+            const tabHandler = (showForm, hideForm, activeTab, inactiveTab) => {
+                showForm.classList.remove('d-none');
+                hideForm.classList.add('d-none');
+                activeTab.classList.add('active');
+                inactiveTab.classList.remove('active');
+            };
 
-                    <div class="col-md-4">
-                        <select name="id_curso" id="id_curso" class="form-select">
-                            <option value="">Materia</option>
-                            @foreach ($cursos as $c)
-                                <option value="{{ $c->id_curso }}">{{ $c->materia }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+            tabAlumno.onclick = () => tabHandler(formAlumno, formPersonal, tabAlumno, tabPersonal);
+            tabPersonal.onclick = () => tabHandler(formPersonal, formAlumno, tabPersonal, tabAlumno);
 
-                    <div class="col-md-2"><input id="user_per" name="usuario" class="form-control" readonly></div>
-                    <div class="col-md-2"><input id="pass_per" name="contrasena" class="form-control" readonly></div>
-                </div>
-            </div>
+            function vincular(dniId, fechaId, userId, passId) {
+                const dni = document.getElementById(dniId);
+                const fecha = document.getElementById(fechaId);
+                const user = document.getElementById(userId);
+                const pass = document.getElementById(passId);
 
-            <button class="btn btn-secondary">Guardar</button>
-        </form>
-    </div>
+                if (!dni || !fecha || !user || !pass) return;
 
-</div>
+                dni.addEventListener('input', () => {
+                    user.value = dni.value + '@nextlevel.edu.pe';
+                });
 
-{{-- JS ORIGINAL (NO TOCADO) --}}
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const formAlumno = document.getElementById('form-alumno');
-    const formPersonal = document.getElementById('form-personal');
+                fecha.addEventListener('change', () => {
+                    if (!fecha.value) {
+                        pass.value = '';
+                        return;
+                    }
+                    let [y, m, d] = fecha.value.split('-');
+                    pass.value = d + m + y;
+                });
+            }
 
-    const tabAlumno = document.getElementById('tab-alumno');
-    const tabPersonal = document.getElementById('tab-personal');
+            vincular('dni_al', 'fecha_al', 'user_al', 'pass_al');
+            vincular('dni_per', 'fecha_per', 'user_per', 'pass_per');
 
-    tabAlumno.onclick = () => {
-        formAlumno.classList.remove('d-none');
-        formPersonal.classList.add('d-none');
-        tabAlumno.classList.add('active');
-        tabPersonal.classList.remove('active');
-    };
+            const isVisible = element => {
+                return element && element.offsetParent !== null && window.getComputedStyle(element).display !==
+                    'none';
+            };
 
-    tabPersonal.onclick = () => {
-        formPersonal.classList.remove('d-none');
-        formAlumno.classList.add('d-none');
-        tabPersonal.classList.add('active');
-        tabAlumno.classList.remove('active');
-    };
+            function calcularProgreso() {
+                const campos = ['nombre_al', 'apellido_al', 'dni_al', 'fecha_al', 'nivel'];
 
-    function vincular(dniId, fechaId, userId, passId) {
-        const dni = document.getElementById(dniId);
-        const fecha = document.getElementById(fechaId);
-        const user = document.getElementById(userId);
-        const pass = document.getElementById(passId);
+                if (isVisible(boxGrado)) campos.push('grado');
+                if (isVisible(boxSeccion)) campos.push('seccion');
+                if (isVisible(boxFacultad)) campos.push('facultad');
 
-        if (!dni || !fecha) return;
+                if (chkApoderado && chkApoderado.checked) {
+                    campos.push('apoderado_nombre', 'apoderado_apellido', 'apoderado_dni');
+                }
 
-        dni.addEventListener('input', () => {
-            user.value = dni.value + '@nextlevel.edu.pe';
+                let llenos = 0;
+                campos.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el && el.value.trim() !== '') {
+                        llenos++;
+                    }
+                });
+
+                const porcentaje = campos.length === 0 ? 0 : Math.round((llenos / campos.length) * 100);
+
+                const pct = document.getElementById('pct-alumno');
+                const bar = document.getElementById('bar-alumno');
+                const btn = document.getElementById('btnAlumno');
+
+                if (pct) pct.innerText = porcentaje + '%';
+                if (bar) bar.style.width = porcentaje + '%';
+                if (btn) btn.disabled = porcentaje < 100;
+            }
+
+            const campos = ['nombre_al', 'apellido_al', 'dni_al', 'fecha_al', 'nivel', 'grado', 'seccion',
+                'facultad', 'apoderado_nombre', 'apoderado_apellido', 'apoderado_dni'
+            ];
+
+            campos.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.addEventListener('input', calcularProgreso);
+                    el.addEventListener('change', calcularProgreso);
+                }
+            });
+
+            if (chkApoderado) {
+                chkApoderado.addEventListener('change', () => {
+                    if (bloqueApoderado) {
+                        bloqueApoderado.classList.toggle('d-none', !chkApoderado.checked);
+                    }
+                    calcularProgreso();
+                });
+            }
+
+            if (nivel) {
+                nivel.addEventListener('change', function() {
+                    if (this.value !== '') {
+                        if (boxGrado) boxGrado.classList.remove('d-none');
+
+                        if (this.value == 1 || this.value == 2) {
+                            if (boxSeccion) boxSeccion.classList.remove('d-none');
+                            if (boxFacultad) boxFacultad.classList.add('d-none');
+                        } else {
+                            if (boxSeccion) boxSeccion.classList.add('d-none');
+                            if (boxFacultad) boxFacultad.classList.remove('d-none');
+                        }
+                    } else {
+                        if (boxGrado) boxGrado.classList.add('d-none');
+                        if (boxSeccion) boxSeccion.classList.add('d-none');
+                        if (boxFacultad) boxFacultad.classList.add('d-none');
+                    }
+
+                    const idNivel = this.value;
+                    const grado = document.getElementById('grado');
+                    if (grado) {
+                        grado.innerHTML = '<option value="">Grado</option>';
+                    }
+
+                    if (idNivel && grado) {
+                        fetch(`/admin/grados/${idNivel}`)
+                            .then(res => res.json())
+                            .then(data => {
+                                data.forEach(g => {
+                                    grado.innerHTML +=
+                                        `<option value="${g.id_grado}">${g.grado}</option>`;
+                                });
+                                calcularProgreso();
+                            })
+                            .catch(() => calcularProgreso());
+                    } else {
+                        calcularProgreso();
+                    }
+                });
+            }
+
+            calcularProgreso();
         });
-
-        fecha.addEventListener('change', () => {
-            let [y, m, d] = fecha.value.split('-');
-            pass.value = d + m + y;
-        });
-    }
-
-    vincular('dni_al', 'fecha_al', 'user_al', 'pass_al');
-    vincular('dni_per', 'fecha_per', 'user_per', 'pass_per');
-});
-</script>
+    </script>
 
 @endsection

@@ -59,7 +59,7 @@ class ActivityController extends Controller
         $request->validate([
             'actividad' => 'required|string|max:255',
             'id_curso'  => 'required|exists:cursos,id_curso',
-            'porcentaje' => 'required|integer|min:1|max:100',
+            'porcentaje' => 'nullable|integer|min:1|max:100',
             'fecha_entrega' => 'required|date',
             'hora_entrega' => 'nullable|date_format:H:i',
         ]);
@@ -78,20 +78,59 @@ class ActivityController extends Controller
                 ->withErrors(['actividad' => 'Esta actividad ya está registrada en este curso.']);
         }
 
-        DB::transaction(function () use ($request, $activityName) {
-            // Eliminada fecha_entrega del Create
+        $actividades = DB::table('curso_actividades')
+            ->where('id_curso', $request->id_curso)
+            ->get();
+
+        $cantidad = $actividades->count();
+        $porcentajeInput = $request->porcentaje;
+
+        DB::transaction(function () use ($request, $activityName, $actividades, $cantidad, $porcentajeInput) {
+
+            // Crear actividad
             $actividad = Activity::create([
                 'actividad'   => $activityName,
                 'descripcion' => $request->descripcion,
-                'porcentaje' => $request->porcentaje,
+                'porcentaje'  => $porcentajeInput ?? 0,
             ]);
 
+            if ($porcentajeInput) {
+                // 🟡 MODO MIXTO
+                $restante = 100 - $porcentajeInput;
+
+                if ($restante < 0) {
+                    throw new \Exception("El porcentaje no puede ser mayor a 100%");
+                }
+
+                if ($cantidad > 0) {
+                    $nuevo = floor($restante / $cantidad);
+
+                    foreach ($actividades as $act) {
+                        DB::table('curso_actividades')
+                            ->where('id_curso_actividad', $act->id_curso_actividad)
+                            ->update(['porcentaje' => $nuevo]);
+                    }
+                }
+
+                $porcentajeFinal = $porcentajeInput;
+
+            } else {
+                // 🟢 MODO AUTOMÁTICO
+                $nuevoTotal = $cantidad + 1;
+                $porcentajeFinal = floor(100 / $nuevoTotal);
+
+                DB::table('curso_actividades')
+                    ->where('id_curso', $request->id_curso)
+                    ->update(['porcentaje' => $porcentajeFinal]);
+            }
+
+            // Insertar relación
             DB::table('curso_actividades')->insert([
                 'id_curso' => $request->id_curso,
                 'id_actividad' => $actividad->id_actividad,
                 'fecha_entrega' => $request->fecha_entrega,
                 'hora_entrega' => $request->hora_entrega,
-                'porcentaje' => $request->porcentaje,
+                'porcentaje' => $porcentajeFinal,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
@@ -140,20 +179,45 @@ class ActivityController extends Controller
         $request->validate([
             'fecha_entrega' => 'required|date',
             'hora_entrega'  => 'nullable|date_format:H:i',
+            'porcentaje'    => 'nullable|numeric|min:0|max:100',
+            'porcentajes'   => 'nullable|array',
+            'porcentajes.*' => 'numeric|min:0|max:100',
         ]);
 
-        $updated = DB::table('curso_actividades')
-            ->where('id_curso_actividad', $id)
-            ->update([
-                'fecha_entrega' => $request->fecha_entrega,
-                'hora_entrega'  => $request->hora_entrega,
-                'updated_at'    => now(),
-            ]);
+        $updateData = [
+            'fecha_entrega' => $request->fecha_entrega,
+            'hora_entrega'  => $request->hora_entrega,
+            'updated_at'    => now(),
+        ];
 
-        if (!$updated) {
+        if ($request->filled('porcentaje')) {
+            $updateData['porcentaje'] = $request->porcentaje;
+        }
+
+        $actividadActual = DB::table('curso_actividades')
+            ->where('id_curso_actividad', $id)
+            ->first();
+
+        if (!$actividadActual) {
             return response()->json(['ok' => false, 'message' => 'Actividad no encontrada.'], 404);
         }
 
-        return response()->json(['ok' => true, 'message' => 'Fecha y hora actualizadas correctamente.']);
+        $porcentajes = $request->input('porcentajes', []);
+
+        DB::transaction(function () use ($id, $updateData, $porcentajes) {
+            DB::table('curso_actividades')
+                ->where('id_curso_actividad', $id)
+                ->update($updateData);
+
+            if (is_array($porcentajes)) {
+                foreach ($porcentajes as $idCursoActividad => $porcentaje) {
+                    DB::table('curso_actividades')
+                        ->where('id_curso_actividad', $idCursoActividad)
+                        ->update(['porcentaje' => $porcentaje, 'updated_at' => now()]);
+                }
+            }
+        });
+
+        return response()->json(['ok' => true, 'message' => 'Fecha, hora y porcentajes actualizados correctamente.']);
     }
 }
