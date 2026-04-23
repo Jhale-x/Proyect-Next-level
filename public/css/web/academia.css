@@ -1,20 +1,10 @@
 .hero-sobre {
     position: relative;
-    height: 450px;
+    height: 550px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-}
-
-.hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(15, 39, 73, 0.9) 0%, rgba(27, 58, 107, 0.7) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2;
 }
 
 .hero-bg-img {
@@ -23,48 +13,6 @@
     height: 100%;
     object-fit: cover;
     z-index: 1;
-}
-
-.hero-content {
-    text-align: center;
-    color: var(--blanco);
-    max-width: 800px;
-    padding: 0 25px;
-    z-index: 3;
-}
-
-.hero-content h1 {
-    font-size: 3.4rem;
-    font-weight: 900;
-    margin-bottom: 20px;
-    letter-spacing: -1.5px;
-    line-height: 1.1;
-}
-
-.hero-line {
-    width: 90px;
-    height: 6px;
-    background: var(--rojo-principal);
-    margin: 10px auto;
-}
-
-.hero-content p {
-    font-size: 17px;
-    margin-bottom: 18px;
-    opacity: 0.9;
-}
-
-.section-tag {
-    display: inline-block;
-    background: var(--rojo-principal);
-    color: var(--blanco);
-    padding: 5px 24px;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
 }
 
 .academia-intro {
@@ -543,28 +491,6 @@
     .hero-sobre {
         height: 400px;
     }
-
-    .hero-content h1 {
-        font-size: 41px !important;
-        letter-spacing: -0.5px;
-        margin-bottom: 15px;
-        font-weight: 800;
-    }
-
-    .section-tag {
-        font-size: 10px;
-        padding: 8px 11px;
-        display: inline-block;
-        margin-bottom: 12px;
-    }
-
-    .hero-content p {
-        font-size: 15px;
-        line-height: 1.4;
-        max-width: 100%;
-        opacity: 0.9;
-    }
-
 
     .academia-intro {
         margin-top: -10px;

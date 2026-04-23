@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/ciclos.css') }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
     <nav class="main-nav">
         <div class="nav-container">
             <a href="{{ route('web.inicio') }}" class="nav-brand">
-                <img src="{{ asset('images/logo_letras.png') }}" alt="Next Level" class="nav-logo-full">
+                <img src="{{ asset('images/Logo-Letras-Next-Level.png') }}" alt="Next Level" class="nav-logo-full">
             </a>
 
             <button class="mobile-menu-toggle" id="menuOpen" type="button">
@@ -52,7 +52,7 @@
                     </ul>
                 </li>
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
             </ul>
@@ -77,7 +77,7 @@
                         <span>NIVELES</span> <i class="fa-solid fa-chevron-right"></i>
                     </li>
                     <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                    <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
                 </ul>
@@ -132,7 +132,7 @@
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
                         <div class="acordeon-content">
-                            <a href="{{ url('ciclo-anual-unu') }}" class="ciclo-link">
+                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">Anual UNU</span>
@@ -140,7 +140,7 @@
                                 </div>
                             </div>
                             </a>
-                            <a href="{{ url('ciclo-semestral-unu') }}" class="ciclo-link">
+                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">Semestral UNU</span>
@@ -148,7 +148,7 @@
                                 </div>
                             </div>
                             </a>
-                            <a href="{{ url('ciclo-verano-unu') }}" class="ciclo-link">
+                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">Verano Pre UNU</span>
@@ -166,7 +166,7 @@
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
                         <div class="acordeon-content">
-                            <a href="{{ url('ciclo-anual-unia') }}" class="ciclo-link">
+                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">Anual UNIA</span>
@@ -174,7 +174,7 @@
                                 </div>
                             </div>
                             </a>
-                            <a href="{{ url('ciclo-semestral-unia') }}" class="ciclo-link">
+                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">Semestral UNIA</span>
@@ -182,7 +182,7 @@
                                 </div>
                             </div>
                             </a>
-                            <a href="{{ url('ciclo-verano-unia') }}" class="ciclo-link">
+                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">Verano Pre UNIA</span>
@@ -200,7 +200,7 @@
                             <i class="fa-solid fa-chevron-down"></i>
                         </div>
                         <div class="acordeon-content">
-                            <a href="{{ url('ciclos-unmsm') }}" class="ciclo-link">
+                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">UNMSM (San Marcos)</span>
@@ -208,7 +208,7 @@
                                 </div>
                             </div>
                             </a>
-                            <a href="{{ url('ciclos-uni') }}" class="ciclo-link">
+                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">UNI (Ingeniería)</span>
@@ -216,7 +216,7 @@
                                 </div>
                             </div>
                             </a>
-                            <a href="{{ url('ciclos-pucp') }}" class="ciclo-link">
+                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
                             <div class="ciclo-item">
                                 <div class="ciclo-info">
                                     <span class="ciclo-name">PUCP (Católica)</span>
@@ -249,7 +249,7 @@
 
                     <div class="univ-card">
                         <div class="univ-logo-box">
-                            <img src="{{ asset('images/unu.png') }}" alt="UNU" class="logo-unu">
+                            <img src="{{ asset('images/Unu-Next-Level.png') }}" alt="UNU" class="logo-unu">
                         </div>
                         <span class="univ-pre-text">Preparación</span>
                         <h3 class="univ-title">UNU</h3>
@@ -257,7 +257,7 @@
 
                     <div class="univ-card">
                         <div class="univ-logo-box">
-                            <img src="{{ asset('images/unia.png') }}" alt="UNIA" class="logo-unia">
+                            <img src="{{ asset('images/Unia-Next-Level.png') }}" alt="UNIA" class="logo-unia">
                         </div>
                         <span class="univ-pre-text">Preparación</span>
                         <h3 class="univ-title">UNIA</h3>
@@ -265,7 +265,7 @@
 
                     <div class="univ-card">
                         <div class="univ-logo-box">
-                            <img src="{{ asset('images/san-marcos.png') }}" alt="San Marcos" class="logo-sanmarcos">
+                            <img src="{{ asset('images/San-Marcos-Next-Level.png') }}" alt="San Marcos" class="logo-sanmarcos">
                         </div>
                         <span class="univ-pre-text">Preparación</span>
                         <h3 class="univ-title">San Marcos</h3>
@@ -273,7 +273,7 @@
 
                     <div class="univ-card">
                         <div class="univ-logo-box">
-                            <img src="{{ asset('images/uni.png') }}" alt="UNI" class="logo-uni">
+                            <img src="{{ asset('images/Uni-Next-Level.png') }}" alt="UNI" class="logo-uni">
                         </div>
                         <span class="univ-pre-text">Preparación</span>
                         <h3 class="univ-title">UNI</h3>
@@ -281,7 +281,7 @@
 
                     <div class="univ-card">
                         <div class="univ-logo-box">
-                            <img src="{{ asset('images/catolica.png') }}" alt="Católica" class="logo-catolica">
+                            <img src="{{ asset('images/Catolica-Next-Level.png') }}" alt="Católica" class="logo-catolica">
                         </div>
                         <span class="univ-pre-text">Preparación</span>
                         <h3 class="univ-title">Católica</h3>
@@ -342,5 +342,6 @@
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
     <script src="{{ asset('js/ciclos.js') }}"></script>
+
 </body>
 </html>

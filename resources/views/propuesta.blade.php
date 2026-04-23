@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -8,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/propuesta.css') }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
 </head>
 
 <body>
@@ -27,7 +28,7 @@
     <nav class="main-nav">
         <div class="nav-container">
             <a href="{{ route('web.inicio') }}" class="nav-brand">
-                <img src="{{ asset('images/logo_letras.png') }}" alt="Next Level" class="nav-logo-full">
+                <img src="{{ asset('images/Logo-Letras-Next-Level.png') }}" alt="Next Level" class="nav-logo-full">
             </a>
 
             <button class="mobile-menu-toggle" id="menuOpen" type="button">
@@ -51,7 +52,7 @@
                     </ul>
                 </li>
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
             </ul>
@@ -76,7 +77,7 @@
                         <span>NIVELES</span> <i class="fa-solid fa-chevron-right"></i>
                     </li>
                     <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                    <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
                 </ul>
@@ -192,5 +193,6 @@
     <script src="{{ asset('js/marquee_principal.js') }}"></script>
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
+
 </body>
 </html>

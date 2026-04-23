@@ -52,7 +52,7 @@ function initMap() {
 function agregarMarcadorColegio() {
 
     const el = document.createElement('div');
-    el.style.backgroundImage = "url('/images/next-level-logo.png')";
+    el.style.backgroundImage = "url('/images/Logo-Next-Level.png')";
     el.style.width = "50px";
     el.style.height = "50px";
     el.style.backgroundSize = "cover";

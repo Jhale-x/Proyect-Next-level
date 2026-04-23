@@ -83,7 +83,7 @@
 .rocket-brand {
     width: 540px;
     position: absolute;
-    left: 21px;
+    left: 55px;
     top: 85px;
     z-index: 5;
     animation: floatRocket 4s ease-in-out infinite;

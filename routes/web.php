@@ -6,6 +6,8 @@ Route::get('/', function () {
     return view('web_principal');
 })->name('web.inicio');
 
+/*
+
 Route::get('/intranet', function () {
     return view('intranet');
 })->name('portal');
@@ -17,6 +19,8 @@ Route::get('/login-colegio', function () {
 Route::get('/login-academia', function () {
     return view('login_academia');
 })->name('login.academia');
+
+*/
 
 Route::get('/propuesta-educativa', function () {
     return view('propuesta');
@@ -59,6 +63,8 @@ Route::get('/pagos', function (){
     return view('pagos');
 })->name('pagos');
 
+/*
+
 Route::get('matricula', function (){
     return view('matricula');
 })->name('matricula');
@@ -66,6 +72,8 @@ Route::get('matricula', function (){
 Route::get('matricula-formulario', function (){
     return view('matricula_formulario');
 })->name('matricula-formulario');
+
+*/
 
 Route::get('/ciclos', function (){
     return view('ciclos');

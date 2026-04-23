@@ -29,7 +29,7 @@
     <nav class="main-nav">
         <div class="nav-container">
             <a href="{{ route('web.inicio') }}" class="nav-brand">
-                <img src="{{ asset('images/logo_letras.png') }}" alt="Next Level" class="nav-logo-full">
+                <img src="{{ asset('images/Logo-Letras-Next-Level.png') }}" alt="Next Level" class="nav-logo-full">
             </a>
 
             <button class="mobile-menu-toggle" id="menuOpen" type="button">
@@ -53,7 +53,7 @@
                     </ul>
                 </li>
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
             </ul>
@@ -78,7 +78,7 @@
                         <span>NIVELES</span> <i class="fa-solid fa-chevron-right"></i>
                     </li>
                     <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                    <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
                 </ul>
@@ -105,18 +105,7 @@
     <main>
 
     <section class="hero-sobre">
-        <div class="hero-overlay">
-            <div class="hero-content">
-                <span class="section-tag">FORMACIÓN INTEGRAL</span>
-                <h1>QUÉ OFRECEMOS</h1>
-                <div class="hero-line"></div>
-                <p>
-                    Actividades educativas, deportivas y formativas para el desarrollo completo de nuestros
-                    estudiantes.
-                </p>
-            </div>
-        </div>
-        <img src="{{ asset('images/imagen10.jpg') }}" alt="Fondo" class="hero-bg-img">
+        <img src="{{ asset('images/Ofrecemos-Next-Level.jpeg') }}" alt="Fondo" class="hero-bg-img">
     </section>
 
     <section class="actividades-section-clean">
@@ -439,7 +428,6 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="{{ asset('js/marquee_principal.js') }}"></script>
     <script src="{{ asset('js/nav-scroll.js') }}"></script>

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
 </head>
 
 <body>
@@ -27,7 +27,7 @@
     <nav class="main-nav">
         <div class="nav-container">
             <a href="{{ route('web.inicio') }}" class="nav-brand">
-                <img src="{{ asset('images/logo_letras.png') }}" alt="Next Level" class="nav-logo-full">
+                <img src="{{ asset('images/Logo-Letras-Next-Level.png') }}" alt="Next Level" class="nav-logo-full">
             </a>
 
             <button class="mobile-menu-toggle" id="menuOpen" type="button">
@@ -51,7 +51,7 @@
                     </ul>
                 </li>
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
             </ul>
@@ -76,7 +76,7 @@
                         <span>NIVELES</span> <i class="fa-solid fa-chevron-right"></i>
                     </li>
                     <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                    <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
                 </ul>
@@ -104,43 +104,19 @@
     <section class="hero-full-width">
         <div class="hero-slide active">
             <div class="hero-main-content">
-                <img src="{{ asset('images/imagen10.jpg') }}" alt="Next Level Educación" class="main-image">
-                <div class="diagonal-white">
-                    <h1>LLEVAMOS TU POTENCIAL AL SIGUIENTE NIVEL.</h1>
-                    <p>Desarrollando mentes curiosas y futuros brillantes desde la etapa temprana.</p>
-                </div>
-                <div class="diagonal-blue">
-                    <h2>PROYECCIÓN SUPERIOR: EL FUTURO SE CONTRUYE AQUÍ.</h2>
-                    <p>Fomentamos el aprendizaje y la superación constante en cada etapa.</p>
-                </div>
+                <img src="{{ asset('images/Inicio-Portada-3-Next-Level.jpeg') }}" alt="Next Level Educación" class="main-image">
             </div>
         </div>
 
         <div class="hero-slide">
             <div class="hero-main-content">
-                <img src="{{ asset('images/imagen10.jpg') }}" alt="Innovación" class="main-image">
-                <div class="diagonal-white">
-                    <h1>DONDE EL APRENDIZAJE NO TIENE LÍMITES.</h1>
-                    <p>Aprendizaje basado en retos con impacto en el mundo real.</p>
-                </div>
-                <div class="diagonal-blue">
-                    <h2>INNOVACIÓN CONSTANTE: PREPARADOS PARA EL MAÑANA.</h2>
-                    <p>Potenciamos tus habilidades para dominar cualquier reto profesional</p>
-                </div>
+                <img src="{{ asset('images/Inicio-Portada-2-Next-Level.jpeg') }}" alt="Innovación" class="main-image">
             </div>
         </div>
 
         <div class="hero-slide">
             <div class="hero-main-content">
-                <img src="{{ asset('images/imagen10.jpg') }}" alt="Valores" class="main-image">
-                <div class="diagonal-white">
-                    <h1>FORMACIÓN EN VALORES Y ÉTICA.</h1>
-                    <p>Creamos ciudadanos responsables, empáticos y comprometidos con su sociedad.</p>
-                </div>
-                <div class="diagonal-blue">
-                    <h2>MENTALIDAD GANADORA: FORJANDO LÍDERES REALES.</h2>
-                    <p>Nuestro enfoque integral garantiza un crecimiento tanto profesional como personal.</p>
-                </div>
+                <img src="{{ asset('images/Inicio-Portada-1-Next-Level.jpeg') }}" alt="Valores" class="main-image">
             </div>
         </div>
     </section>
@@ -150,7 +126,7 @@
             <div class="welcome-grid reorder-mobile">
                 <div class="welcome-image-side">
                     <div class="image-frame">
-                        <img src="{{ asset('images/imagen10.jpg') }}" alt="Educación Next Level">
+                        <img src="{{ asset('images/Talento-Next-Level.jpeg') }}" alt="Educación Next Level">
                     </div>
                     <div class="experience-badge">
                         <span class="number">2026</span>
@@ -205,7 +181,7 @@
                 <div class="pathway-visuals">
                     <div class="cards-wrapper">
                         <div class="path-card path-card-top">
-                            <img src="{{ asset('images/imagen10.jpg') }}" alt="Colegio">
+                            <img src="{{ asset('images/Colegio-Next-Level.jpeg') }}" alt="Colegio">
                             <div class="path-card-overlay">
                                 <h3>COLEGIO</h3>
                                 <p>FORMATO NIÑOS UNIVERSITARIOS</p>
@@ -213,7 +189,7 @@
                         </div>
 
                         <div class="path-card path-card-bottom">
-                            <img src="{{ asset('images/imagen10.jpg') }}" alt="Academia">
+                            <img src="{{ asset('images/Academia-Next-Level.jpeg') }}" alt="Academia">
                             <div class="path-card-overlay">
                                 <h3>ACADEMIA</h3>
                                 <p>RUMBO A LA UNIVERSIDAD</p>
@@ -227,37 +203,7 @@
     </section>
 
     <section class="valores-modern-section">
-        <div class="valores-overlay">
-            <div class="valores-container">
-                <h2 class="section-title-light">NUESTROS VALORES</h2>
-
-                <div class="valores-grid-custom">
-                    <div class="valor-item">
-                        <div class="icon-circle">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                        </div>
-                        <h3>EXCELENCIA ACADÉMICA</h3>
-                        <p>Compromiso con la calidad educativa y el desarrollo integral de nuestros estudiantes</p>
-                    </div>
-
-                    <div class="valor-item">
-                        <div class="icon-circle">
-                            <i class="fa-solid fa-lightbulb"></i>
-                        </div>
-                        <h3>INNOVACIÓNn</h3>
-                        <p>Métodos educativos modernos y tecnología de vanguardia para el aprendizaje</p>
-                    </div>
-
-                    <div class="valor-item">
-                        <div class="icon-circle">
-                            <i class="fa-solid fa-hand-holding-heart"></i>
-                        </div>
-                        <h3>VALORES HUMANOS</h3>
-                        <p>Formación en ética, respeto y responsabilidad social</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="valores-overlay"></div>
     </section>
 
 
@@ -455,6 +401,6 @@
     <script src="{{ asset('js/carrusel-pilares.js') }}"></script>
     <script src="{{ asset('js/carrusel-alumnos.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
-</body>
 
+</body>
 </html>

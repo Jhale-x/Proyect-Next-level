@@ -1,3 +1,5 @@
+/*
+
 document.addEventListener('DOMContentLoaded', () => {
     const enrollmentForm = document.querySelector('.enrollment-form');
     const verifyBtn = document.querySelector('.btn-verify');
@@ -30,3 +32,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 }
 });
+
+*/

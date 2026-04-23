@@ -1,3 +1,5 @@
+/*
+
 document.addEventListener('DOMContentLoaded', function () {
     const passwordInput = document.getElementById('passwordInput') || document.getElementById('passwordInputCol');
     const togglePassword = document.getElementById('togglePassword') || document.getElementById('togglePasswordCol');
@@ -59,3 +61,5 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+*/

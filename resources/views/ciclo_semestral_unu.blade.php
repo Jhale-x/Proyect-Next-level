@@ -1,3 +1,5 @@
+{{--
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -9,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/ciclo_semestral_unu.css') }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
 </head>
 
 <body>
@@ -28,7 +30,7 @@
     <nav class="main-nav">
         <div class="nav-container">
             <a href="{{ route('web.inicio') }}" class="nav-brand">
-                <img src="{{ asset('images/logo_letras.png') }}" alt="Next Level" class="nav-logo-full">
+                <img src="{{ asset('images/Logo-Letras-Next-Level.png') }}" alt="Next Level" class="nav-logo-full">
             </a>
 
             <button class="mobile-menu-toggle" id="menuOpen" type="button">
@@ -52,7 +54,7 @@
                     </ul>
                 </li>
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
             </ul>
@@ -77,7 +79,7 @@
                         <span>NIVELES</span> <i class="fa-solid fa-chevron-right"></i>
                     </li>
                     <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                    <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
                 </ul>
@@ -252,5 +254,6 @@
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
 
 </body>
-
 </html>
+
+--}}

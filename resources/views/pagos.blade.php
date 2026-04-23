@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/pagos.css') }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
     <nav class="main-nav">
         <div class="nav-container">
             <a href="{{ route('web.inicio') }}" class="nav-brand">
-                <img src="{{ asset('images/logo_letras.png') }}" alt="Next Level" class="nav-logo-full">
+                <img src="{{ asset('images/Logo-Letras-Next-Level.png') }}" alt="Next Level" class="nav-logo-full">
             </a>
 
             <button class="mobile-menu-toggle" id="menuOpen" type="button">
@@ -52,7 +52,7 @@
                     </ul>
                 </li>
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
             </ul>
@@ -77,7 +77,7 @@
                         <span>NIVELES</span> <i class="fa-solid fa-chevron-right"></i>
                     </li>
                     <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                    <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
                 </ul>
@@ -103,15 +103,7 @@
 
     <main>
         <section class="hero-sobre">
-            <div class="hero-overlay">
-                <div class="hero-content">
-                    <span class="section-tag">PAGOS EN LÍNEA</span>
-                    <h1>GUÍA DE PAGOS</h1>
-                    <div class="hero-line"></div>
-                    <p>Gestiona tus pensiones y servicios académicos de forma rápida, segura y sin salir de casa.</p>
-                </div>
-            </div>
-            <img src="{{ asset('images/imagen10.jpg') }}" alt="Fondo" class="hero-bg-img">
+            <img src="{{ asset('images/Pagos-Next-Level.jpeg') }}" alt="Fondo" class="hero-bg-img">
         </section>
 
         <section class="pagos-section">
@@ -127,7 +119,7 @@
                 <div class="bancos-grid-minimal">
                     <div class="banco-col">
                         <a href="{{ asset('pdfs/guia-bcp.pdf') }}" target="_blank" class="banco-link">
-                            <img src="{{ asset('images/BCP-NEXTLEVEL.png') }}" alt="BCP" class="logo-filter">
+                            <img src="{{ asset('images/BCP-Next-Level.png') }}" alt="BCP" class="logo-filter">
                         </a>
                     </div>
 
@@ -135,7 +127,7 @@
 
                     <div class="banco-col">
                         <a href="{{ asset('pdfs/guia-yape.pdf') }}" target="_blank" class="banco-link">
-                            <img src="{{ asset('images/YAPE-NEXTLEVEL.png') }}" alt="YAPE" class="logo-filter logo-yape">
+                            <img src="{{ asset('images/Yape-Next-Level.png') }}" alt="YAPE" class="logo-filter logo-yape">
                         </a>
                     </div>
 
@@ -143,7 +135,7 @@
 
                     <div class="banco-col">
                         <a href="{{ asset('pdfs/guia-bbva.pdf') }}" target="_blank" class="banco-link">
-                            <img src="{{ asset('images/BBVA-NEXTLEVEL.png') }}" alt="BBVA" class="logo-filter">
+                            <img src="{{ asset('images/BBVA-Next-Level.png') }}" alt="BBVA" class="logo-filter">
                         </a>
                     </div>
                 </div>
@@ -200,5 +192,6 @@
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
     <script src="{{ asset('js/banco-logo.js') }}"></script>
+
 </body>
 </html>

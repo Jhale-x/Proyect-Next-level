@@ -1,3 +1,5 @@
+{{--
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/matricula_formulario.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
 </head>
 
 <body>
@@ -455,7 +457,7 @@
             <div class="bancos-container">
                 <a href="#" class="banco-item" title="Guía BBVA"><img src="{{ asset('images/BBVA-NEXTLEVEL.png') }}" alt="BBVA"></a>
                 <a href="#" class="banco-item" title="Guía BCP"><img src="{{ asset('images/BCP-NEXTLEVEL.png') }}" alt="BCP"></a>
-                <a href="#" class="banco-item" title="Guía YAPE"><img src="{{ asset('images/YAPE-NEXTLEVEL.png') }}" alt="YAPE"></a>
+                <a href="#" class="banco-item" title="Guía YAPE"><img src="{{ asset('images/Yape-Next-Level.png') }}" alt="YAPE"></a>
             </div>
 
             <div class="recuerda-box">
@@ -535,3 +537,5 @@
 
 </body>
 </html>
+
+--}}

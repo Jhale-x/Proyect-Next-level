@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/ubicacion.css') }}">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
 </head>
 
 <body>
@@ -29,7 +29,7 @@
     <nav class="main-nav">
         <div class="nav-container">
             <a href="{{ route('web.inicio') }}" class="nav-brand">
-                <img src="{{ asset('images/logo_letras.png') }}" alt="Next Level" class="nav-logo-full">
+                <img src="{{ asset('images/Logo-Letras-Next-Level.png') }}" alt="Next Level" class="nav-logo-full">
             </a>
 
             <button class="mobile-menu-toggle" id="menuOpen" type="button">
@@ -53,7 +53,7 @@
                     </ul>
                 </li>
                 <li><a href="{{ route('ubicacion') }}" class="active">UBICACIÓN</a></li>
-                <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
             </ul>
@@ -78,7 +78,7 @@
                         <span>NIVELES</span> <i class="fa-solid fa-chevron-right"></i>
                     </li>
                     <li><a href="{{ route('ubicacion') }}" class="active">UBICACIÓN</a></li>
-                    <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
                 </ul>
@@ -103,17 +103,6 @@
     </div>
 
     <main>
-    <section class="hero-sobre">
-        <div class="hero-overlay">
-            <div class="hero-content">
-                <span class="section-tag">VISÍTANOS</span>
-                <h1>NUESTRA UBICACIÓN</h1>
-                <div class="hero-line"></div>
-                <p>Estamos estratégicamente ubicados para brindar comodidad, seguridad y fácil acceso.</p>
-            </div>
-        </div>
-        <img src="{{ asset('images/imagen10.jpg') }}" alt="Fondo" class="hero-bg-img">
-    </section>
 
     <section class="ubicacion-section">
         <div class="welcome-container">
@@ -197,8 +186,7 @@
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-
     <script src="{{ asset('js/mapa_ruta.js') }}"></script>
-</body>
 
+</body>
 </html>

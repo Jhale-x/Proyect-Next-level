@@ -1,3 +1,5 @@
+/*
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const DB_COLEGIO = {
@@ -2151,3 +2153,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+*/

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/galeria.css') }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
 </head>
 
 <body>
@@ -28,7 +28,7 @@
     <nav class="main-nav">
         <div class="nav-container">
             <a href="{{ route('web.inicio') }}" class="nav-brand">
-                <img src="{{ asset('images/logo_letras.png') }}" alt="Next Level" class="nav-logo-full">
+                <img src="{{ asset('images/Logo-Letras-Next-Level.png') }}" alt="Next Level" class="nav-logo-full">
             </a>
 
             <button class="mobile-menu-toggle" id="menuOpen" type="button">
@@ -52,7 +52,7 @@
                     </ul>
                 </li>
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
             </ul>
@@ -77,7 +77,7 @@
                         <span>NIVELES</span> <i class="fa-solid fa-chevron-right"></i>
                     </li>
                     <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
-                    <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
+                    <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
                 </ul>
@@ -110,29 +110,26 @@
                 <div class="section-line"></div>
             </div>
             <div class="galeria-grid" id="galeriaGrid">
-                <div class="grid-item"><img src="{{ asset('images/g1.jpeg') }}" alt="Galería 1" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g2.jpeg') }}" alt="Galería 2" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g3.jpeg') }}" alt="Galería 3" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g4.jpeg') }}" alt="Galería 4" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g5.jpeg') }}" alt="Galería 5" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g6.jpeg') }}" alt="Galería 6" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g7.jpeg') }}" alt="Galería 7" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g8.jpeg') }}" alt="Galería 8" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g9.jpeg') }}" alt="Galería 9" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g10.jpeg') }}" alt="Galería 10" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g11.jpeg') }}" alt="Galería 11" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g12.jpeg') }}" alt="Galería 12" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g13.jpeg') }}" alt="Galería 13" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g14.jpeg') }}" alt="Galería 14" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g15.jpeg') }}" alt="Galería 15" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g16.jpeg') }}" alt="Galería 16" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g17.jpeg') }}" alt="Galería 17" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g18.jpeg') }}" alt="Galería 18" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g19.jpeg') }}" alt="Galería 19" loading="lazy"></div>
-                <div class="grid-item"><img src="{{ asset('images/g20.jpeg') }}" alt="Galería 20" loading="lazy"></div>
+                @for ($i = 1; $i <= 20; $i++)
+                    <div class="grid-item">
+                        <img src="{{ asset('images/g'.$i.'.jpeg') }}" alt="Galería {{ $i }}" loading="lazy">
+                    </div>
+                @endfor
             </div>
         </div>
     </section>
+
+    <div id="lightboxModal" class="lightbox-modal">
+        <span class="close-lightbox">&times;</span>
+        <a class="lightbox-prev">&#10094;</a>
+        <a class="lightbox-next">&#10095;</a>
+        <div class="lightbox-content">
+            <div class="lightbox-image-container">
+                <img src="" alt="Imagen ampliada" id="lightboxMainImg">
+            </div>
+        </div>
+        <div class="lightbox-counter" id="lightboxCounter">1/20</div>
+    </div>
     </main>
 
     <footer class="footer">
@@ -185,6 +182,6 @@
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
     <script src="{{ asset('js/galeria.js') }}"></script>
     <script src="{{ asset('js/mapa_ruta.js') }}"></script>
-</body>
 
+</body>
 </html>

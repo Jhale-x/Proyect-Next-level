@@ -1,5 +1,8 @@
+{{--
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/web/intranet.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
 </head>
+
 <body>
     <a href="{{ route('web.inicio') }}" class="back-home-btn" title="Volver al Inicio">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,5 +53,8 @@
     <footer class="footer-copyright">
         <p>&copy; 2026 Next Level. Todos los derechos reservados.</p>
     </footer>
+
 </body>
 </html>
+
+--}}
