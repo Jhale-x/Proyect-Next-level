@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/course.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/activity.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin/listados.css') }}">
 </head>
 <body>
     <div class="mobile-header">
@@ -33,7 +34,7 @@
             <nav class="menu">
                 <a href="{{ route('admin.pagina_institucional') }}" class="{{ request()->routeIs('admin.pagina_institucional') ? 'active' : '' }}">
                     <i class="bi bi-house-door"></i>
-                    <span>Pagina Institucional</span>
+                    <span>Página Institucional</span>
                 </a>
 
                 <a href="{{ route('admin.activity') }}" class="{{ request()->routeIs('admin.activity') ? 'active' : '' }}">
@@ -42,38 +43,49 @@
                 </a>
 
                 <div class="sidebar-item">
-                    <a href="{{ route('admin.courses') }}" class="{{ request()->routeIs('admin.courses') || request()->routeIs('admin.eti') ? 'active' : '' }}">
+                    <a href="javascript:void(0)" class="btn-submenu" onclick="toggleSubmenu(event, 'cursos-items')">
                         <i class="bi bi-book"></i>
                         <span>Cursos</span>
+                        <i class="bi bi-chevron-down ms-auto arrow-icon"></i>
                     </a>
-                    <div class="submenu" style="{{ request()->routeIs('admin.courses') || request()->routeIs('admin.eti') ? 'display: flex; flex-direction: column;' : 'display: none;' }}">
-                        <a href="{{ route('admin.courses') }}" class="{{ request()->routeIs('admin.courses') ? 'text-white fw-bold' : '' }}">
+                    <div class="submenu" id="cursos-items" style="display: none;">
+                        <a href="{{ route('admin.courses') }}">
                             <i class="bi bi-collection me-2"></i> Todos los Cursos
                         </a>
-                        <a href="{{ route('admin.eti') }}" class="{{ request()->routeIs('admin.eti') ? 'text-white fw-bold' : '' }}">
+                        <a href="{{ route('admin.eti') }}">
                             <i class="bi bi-cpu me-2"></i> ETI
                         </a>
                     </div>
                 </div>
 
-                <a href="{{ route('admin.users') }}" class="{{ request()->routeIs('admin.users') ? 'active' : '' }}">
-                    <i class="bi bi-people"></i>
-                    <span>Usuarios</span>
-                </a>
+                <div class="sidebar-item">
+                    <a href="javascript:void(0)" class="btn-submenu" onclick="toggleSubmenu(event, 'registro-items')">
+                        <i class="bi bi-person-plus"></i>
+                        <span>Registrar</span>
+                        <i class="bi bi-chevron-down ms-auto arrow-icon"></i>
+                    </a>
+                    <div class="submenu" id="registro-items" style="display: none;">
+                        <a href="{{ route('admin.registro.alumno') }}">
+                            <i class="bi bi-person-workspace me-2"></i> Registrar Alumno
+                        </a>
+                        <a href="{{ route('admin.users') }}">
+                            <i class="bi bi-person-badge me-2"></i> Registrar Personal
+                        </a>
+                    </div>
+                </div>
 
                 <div class="sidebar-item">
-                    <a href="javascript:void(0)" class="btn-submenu {{ request()->is('admin/alumnos*') || request()->is('admin/users*') ? 'active' : '' }}" onclick="toggleSubmenu(event, 'listado-items')">
-                        <i class="bi bi-people-fill"></i>
-                        <span>Listado</span>
-                        <i class="bi bi-chevron-down ms-auto arrow-icon" style="font-size: 0.8rem;"></i>
+                    <a href="javascript:void(0)" class="btn-submenu" onclick="toggleSubmenu(event, 'listado-items')">
+                        <i class="bi bi-list-check"></i>
+                        <span>Listados</span>
+                        <i class="bi bi-chevron-down ms-auto arrow-icon"></i>
                     </a>
-                    
-                    <div class="submenu" id="listado-items" style="{{ request()->is('admin/alumnos*') || request()->is('admin/users*') ? 'display: flex; flex-direction: column;' : 'display: none;' }}">
-                        <a href="{{ route('admin.alumnos.index') }}" class="{{ request()->routeIs('admin.alumnos.index') ? 'text-white fw-bold' : '' }}">
-                            <i class="bi bi-person-workspace me-2"></i> Lista de alumnos
+                    <div class="submenu" id="listado-items" style="display: none;">
+                        <a href="{{ route('admin.listado.alumnos') }}">
+                            <i class="bi bi-person-workspace me-2"></i> Lista de Alumnos
                         </a>
-                        <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.index') ? 'text-white fw-bold' : '' }}">
-                            <i class="bi bi-person-badge me-2"></i> Lista de personal
+                        <a href="{{ route('admin.listado.personal') }}">
+                            <i class="bi bi-person-badge me-2"></i> Lista de Personal
                         </a>
                     </div>
                 </div>
@@ -98,6 +110,11 @@
                     <span>Herramientas</span>
                 </a>
 
+                <a href="{{ route('admin.support') }}" class="{{ request()->routeIs('admin.support') ? 'active' : '' }}">
+                    <i class="bi bi-headset"></i>
+                    <span>Soporte</span>
+                </a>
+
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
@@ -113,11 +130,9 @@
     </div>
 
     <script>
-    // Función para abrir/cerrar submenús al hacer clic
     function toggleSubmenu(event, id) {
         event.preventDefault();
         const submenu = document.getElementById(id);
-        
         if (submenu.style.display === "none" || submenu.style.display === "") {
             submenu.style.display = "flex";
             submenu.style.flexDirection = "column";
@@ -126,13 +141,21 @@
         }
     }
 
-    // Tu función existente para el móvil
     function toggleSidebar() {
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('sidebarOverlay');
         sidebar.classList.toggle('active');
         overlay.classList.toggle('active');
     }
-</script>
+
+    // Cerrar sidebar al hacer clic en un enlace en móvil
+    document.querySelectorAll('.sidebar a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 768) {
+                toggleSidebar();
+            }
+        });
+    });
+    </script>
 </body>
 </html>

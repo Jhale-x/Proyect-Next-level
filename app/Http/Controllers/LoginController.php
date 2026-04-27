@@ -44,9 +44,10 @@ class LoginController extends Controller
     // Login de alumno
     public function loginAlumno(Request $request)
     {
+        // Validación - usando 'password' que viene del formulario
         $request->validate([
             'usuario' => 'required|string',
-            'password' => 'required|string'
+            'password' => 'required|string'  // ← Importante: 'password', no 'contrasena'
         ]);
 
         $alumno = Alumno::where('usuario', $request->usuario)->first();
@@ -55,6 +56,7 @@ class LoginController extends Controller
             return back()->with('error', 'Usuario no encontrado. Verifica tus credenciales.');
         }
 
+        // Verificar contraseña (el campo en BD se llama 'contrasena')
         if (!Hash::check($request->password, $alumno->contrasena)) {
             return back()->with('error', 'Contraseña incorrecta.');
         }

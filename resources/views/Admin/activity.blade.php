@@ -32,40 +32,36 @@
         <div class="timeline-container">
             <div class="timeline">
 
-                @foreach ($activities as $activity)
+                @forelse (($activities ?? []) as $activity)
                     <div class="activity-item">
-
                         <div class="activity-date">
-                            {{ \Carbon\Carbon::parse($activity->fecha_entrega)->diffForHumans() }}
+                            {{ \Carbon\Carbon::parse($activity->fecha_entrega ?? now())->diffForHumans() }}
                         </div>
-
                         <div class="activity-card blue">
-
                             <div class="activity-header">
-                                {{ $activity->materia }}
+                                {{ $activity->materia ?? 'Sin materia' }}
                             </div>
-
                             <div class="activity-title">
-                                Nueva actividad: {{ $activity->actividad }}
+                                Nueva actividad: {{ $activity->actividad ?? 'Sin actividad' }}
                             </div>
-
-                            @if ($activity->descripcion)
+                            @if (!empty($activity->descripcion))
                                 <div class="activity-comment">
                                     {{ $activity->descripcion }}
                                 </div>
                             @endif
-
                             <a href="#" class="btn-grade">
                                 Ver actividad
                             </a>
-
                         </div>
-
                     </div>
-                @endforeach
+                @empty
+                    <div class="alert alert-info text-center py-5">
+                        <i class="bi bi-inbox fs-1"></i>
+                        <p class="mt-2">No hay actividades registradas.</p>
+                    </div>
+                @endforelse
 
             </div>
         </div>
     </div>
-
 @endsection

@@ -31,6 +31,7 @@
         </div>
     @endif
 
+    <!-- ========== FORMULARIO DE ALUMNOS ========== -->
     <div id="form-alumno" class="card shadow-sm border-0 d-none mb-4">
         <div class="card-body p-4">
             <h5 class="mb-4 text-primary fw-bold border-bottom pb-2">Datos Académicos del Alumno</h5>
@@ -46,11 +47,11 @@
                         <input name="apellido" class="form-control" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label class="form-label">DNI (Usuario)</label>
+                        <label class="form-label">DNI</label>
                         <input name="dni" id="dni_al" class="form-control" maxlength="8" required>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <label class="form-label">Fecha Nacimiento (Pass)</label>
+                        <label class="form-label">Fecha Nacimiento</label>
                         <input type="date" name="fecha_nacimiento" id="fecha_al" class="form-control" required>
                     </div>
                 </div>
@@ -58,9 +59,9 @@
                 <div class="row">
                     <div class="col-md-4 mb-3">
                         <label class="form-label">Nivel</label>
-                        <select id="nivel" name="id_nivel" class="form-select" required>
+                        <select id="nivel" name="id_nivel" class="form-select">
                             <option value="">-- Seleccione Nivel --</option>
-                            @foreach ($niveles as $n)
+                            @foreach ($niveles ?? [] as $n)
                                 <option value="{{ $n->id_nivel }}">{{ $n->nivel }}</option>
                             @endforeach
                         </select>
@@ -74,7 +75,7 @@
                     <div class="col-md-4 mb-3 d-none" id="box-seccion">
                         <label class="form-label">Sección</label>
                         <select id="seccion" name="id_seccion" class="form-select">
-                            @foreach ($secciones as $s)
+                            @foreach ($secciones ?? [] as $s)
                                 <option value="{{ $s->id_seccion }}">{{ $s->seccion }}</option>
                             @endforeach
                         </select>
@@ -82,7 +83,7 @@
                     <div class="col-md-4 mb-3 d-none" id="box-facultad">
                         <label class="form-label">Facultad</label>
                         <select id="facultad" name="id_facultad" class="form-select">
-                            @foreach ($facultades as $f)
+                            @foreach ($facultades ?? [] as $f)
                                 <option value="{{ $f->id_facultad }}">{{ $f->facultad }}</option>
                             @endforeach
                         </select>
@@ -96,7 +97,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="small fw-bold">Password Inicial:</label>
-                        <input name="contraseña" id="pass_al" class="form-control bg-white" readonly placeholder="Password automático">
+                        <input name="contrasena" id="pass_al" class="form-control bg-white" readonly placeholder="Password automático">
                     </div>
                 </div>
 
@@ -118,21 +119,34 @@
         </div>
     </div>
 
+    <!-- ========== FORMULARIO DE PERSONAL ========== -->
     <div id="form-personal" class="card shadow-sm border-0 d-none mb-4">
         <div class="card-body p-4">
             <h5 class="mb-4 text-secondary fw-bold border-bottom pb-2">Datos del Personal Institucional</h5>
-            <form action="{{ route('admin.users.store') }}" method="POST">
+            <form method="POST" action="{{ route('admin.users.store') }}">
                 @csrf
                 <div class="row">
-                    <div class="col-md-3 mb-3"><label>Nombre</label><input name="nombre" class="form-control" required></div>
-                    <div class="col-md-3 mb-3"><label>Apellido</label><input name="apellido" class="form-control" required></div>
-                    <div class="col-md-3 mb-3"><label>DNI</label><input name="dni" id="dni_per" class="form-control" maxlength="8" required></div>
-                    <div class="col-md-3 mb-3"><label>Fecha Nacimiento</label><input type="date" name="fecha_nacimiento" id="fecha_per" class="form-control" required></div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input name="nombre" class="form-control" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Apellido</label>
+                        <input name="apellido" class="form-control" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">DNI</label>
+                        <input name="dni" id="dni_per" class="form-control" maxlength="8" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Fecha Nacimiento</label>
+                        <input type="date" name="fecha_nacimiento" id="fecha_per" class="form-control" required>
+                    </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <label>Rol / Cargo</label>
+                        <label class="form-label">Rol / Cargo</label>
                         <select name="rol" id="cargo" class="form-select" required>
                             <option value="administrador">Administrador</option>
                             <option value="docente">Docente</option>
@@ -140,10 +154,10 @@
                         </select>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label>Materia Asignada (Si es Docente)</label>
+                        <label class="form-label">Materia Asignada (Si es Docente)</label>
                         <select name="id_curso" id="id_curso" class="form-select">
                             <option value="">-- Sin materia específica --</option>
-                            @foreach ($cursos as $curso)
+                            @foreach ($cursos ?? [] as $curso)
                                 <option value="{{ $curso->id_curso }}">{{ $curso->materia }}</option>
                             @endforeach
                         </select>
@@ -161,7 +175,7 @@
                     </div>
                 </div>
 
-                <button class="btn btn-secondary btn-lg shadow" type="submit">Guardar Personal</button>
+                <button type="submit" class="btn btn-secondary btn-lg shadow">Guardar Personal</button>
             </form>
         </div>
     </div>
@@ -172,8 +186,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Alternar formularios
     window.mostrarForm = function(tipo) {
-        document.getElementById('form-alumno').classList.toggle('d-none', tipo !== 'alumno');
-        document.getElementById('form-personal').classList.toggle('d-none', tipo !== 'personal');
+        const formAlumno = document.getElementById('form-alumno');
+        const formPersonal = document.getElementById('form-personal');
+        
+        if (tipo === 'alumno') {
+            formAlumno.classList.remove('d-none');
+            formPersonal.classList.add('d-none');
+        } else {
+            formAlumno.classList.add('d-none');
+            formPersonal.classList.remove('d-none');
+        }
     };
 
     // 2. Generador de credenciales (DNI y Fecha)
@@ -183,13 +205,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputUser = document.getElementById(userId);
         const inputPass = document.getElementById(passId);
 
-        if (inputDni) {
+        if (inputDni && inputUser) {
             inputDni.addEventListener('input', () => {
                 inputUser.value = inputDni.value ? inputDni.value + '@NextLevelAcademy.pe' : '';
             });
         }
 
-        if (inputFecha) {
+        if (inputFecha && inputPass) {
             inputFecha.addEventListener('change', () => {
                 if (inputFecha.value) {
                     const [y, m, d] = inputFecha.value.split('-');
@@ -204,46 +226,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 3. Lógica dinámica de Nivel/Grado/Facultad
     const nivel = document.getElementById('nivel');
-    nivel?.addEventListener('change', function() {
-        const val = this.value;
-        const boxes = {
-            grado: document.getElementById('box-grado'),
-            seccion: document.getElementById('box-seccion'),
-            facultad: document.getElementById('box-facultad')
-        };
-        const selectGrado = document.getElementById('grado');
+    if (nivel) {
+        nivel.addEventListener('change', function() {
+            const val = this.value;
+            const boxGrado = document.getElementById('box-grado');
+            const boxSeccion = document.getElementById('box-seccion');
+            const boxFacultad = document.getElementById('box-facultad');
+            const selectGrado = document.getElementById('grado');
 
-        // Reset
-        Object.values(boxes).forEach(b => b.classList.add('d-none'));
-        selectGrado.innerHTML = '<option value="">-- Seleccione Grado --</option>';
-
-        if (val == 1 || val == 2) { // Inicial/Primaria/Secundaria
-            boxes.grado.classList.remove('d-none');
-            boxes.seccion.classList.remove('d-none');
+            // Reset
+            if (boxGrado) boxGrado.classList.add('d-none');
+            if (boxSeccion) boxSeccion.classList.add('d-none');
+            if (boxFacultad) boxFacultad.classList.add('d-none');
             
-            fetch(`/admin/alumnos/grados/por-nivel/${val}`)
-                .then(r => r.json())
-                .then(data => {
-                    data.forEach(g => {
-                        selectGrado.innerHTML += `<option value="${g.id_grado}">${g.grado}</option>`;
-                    });
-                });
-        } else if (val == 3) { // Academia
-            boxes.facultad.classList.remove('d-none');
-        }
-    });
+            if (selectGrado) {
+                selectGrado.innerHTML = '<option value="">-- Seleccione Grado --</option>';
+            }
+
+            if (val == 1 || val == 2) { // Inicial/Primaria/Secundaria
+                if (boxGrado) boxGrado.classList.remove('d-none');
+                if (boxSeccion) boxSeccion.classList.remove('d-none');
+                
+                fetch(`/admin/alumnos/grados/por-nivel/${val}`)
+                    .then(r => r.json())
+                    .then(data => {
+                        if (selectGrado) {
+                            data.forEach(g => {
+                                selectGrado.innerHTML += `<option value="${g.id_grado}">${g.grado}</option>`;
+                            });
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            } else if (val == 3) { // Academia
+                if (boxFacultad) boxFacultad.classList.remove('d-none');
+            }
+        });
+    }
 
     // 4. Checkbox Apoderado
-    document.getElementById('chkApoderado')?.addEventListener('change', function() {
-        document.getElementById('bloque-apoderado').classList.toggle('d-none', !this.checked);
-    });
+    const chkApoderado = document.getElementById('chkApoderado');
+    const bloqueApoderado = document.getElementById('bloque-apoderado');
+    
+    if (chkApoderado && bloqueApoderado) {
+        chkApoderado.addEventListener('change', function() {
+            bloqueApoderado.classList.toggle('d-none', !this.checked);
+        });
+    }
 
     // 5. Validación de materia obligatoria para docentes
     const cargo = document.getElementById('cargo');
     const curso = document.getElementById('id_curso');
-    cargo?.addEventListener('change', () => {
-        curso.required = (cargo.value === 'docente');
-    });
+    
+    if (cargo && curso) {
+        cargo.addEventListener('change', () => {
+            curso.required = (cargo.value === 'docente');
+        });
+    }
 });
 </script>
 @endsection

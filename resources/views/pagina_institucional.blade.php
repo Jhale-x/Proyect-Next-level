@@ -1,53 +1,77 @@
-@extends('layouts.landing')
+<!DOCTYPE html>
+<html lang="es">
 
-@section('title', 'Página Institucional')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Institucional | Next Level</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f4f7fb;
+        }
 
-@section('content')
-    <div class="container mt-5">
-        <h1>Página Institucional</h1>
-        <p>Bienvenido a nuestra institución educativa.</p>
+        .hero {
+            background: linear-gradient(135deg, #0d6efd, #198754);
+            color: #fff;
+            padding: 2.5rem 1rem;
+            border-radius: 14px;
+        }
 
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <h3>Nuestra Misión</h3>
-                <p>Proporcionar educación de calidad con excelencia académica.</p>
-            </div>
-            <div class="col-md-6">
-                <h3>Nuestra Visión</h3>
-                <p>Formar estudiantes íntegros y comprometidos con la sociedad.</p>
-            </div>
+        .anuncio-card {
+            border: 0;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+        }
+
+        .anuncio-img {
+            max-height: 220px;
+            object-fit: cover;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container py-4 py-md-5">
+        <div class="hero mb-4">
+            <h1 class="h3 mb-2">Pagina Institucional</h1>
+            <p class="mb-0">Noticias y comunicados oficiales de Next Level.</p>
         </div>
 
-        <div class="mt-5">
-            <h3>Anuncios Institucionales</h3>
-
-            @if (!isset($anuncios) || $anuncios->isEmpty())
-                <div class="alert alert-info mt-3 mb-0">
-                    No hay anuncios activos por el momento.
-                </div>
-            @else
-                <div class="row mt-3 g-3">
-                    @foreach ($anuncios as $anuncio)
-                        <div class="col-md-6">
-                            <div class="card h-100 shadow-sm">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ $anuncio->titulo }}</h5>
-                                    <p class="text-muted mb-2">
-                                        {{ $anuncio->fecha_publicacion->format('d/m/Y') }}
-                                    </p>
-                                    <p class="card-text mb-0">{{ $anuncio->descripcion }}</p>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            @endif
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">{{ $anuncios->count() }} anuncios publicados</span>
+            <a href="{{ route('portal') }}" class="btn btn-outline-light btn-sm"
+                style="background: rgba(13,110,253,0.95);">
+                Ir a Intranet
+            </a>
         </div>
 
-        @auth('alumno')
-            <div class="mt-4">
-                <a href="{{ route('alumno.dashboard') }}" class="btn btn-primary">Volver a mi panel</a>
-            </div>
-        @endauth
+        @forelse ($anuncios as $anuncio)
+            <article class="card anuncio-card mb-3">
+                @if ($anuncio->imagen)
+                    <img src="{{ asset('storage/' . $anuncio->imagen) }}" alt="Imagen del anuncio"
+                        class="card-img-top anuncio-img">
+                @endif
+
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start gap-3">
+                        <h2 class="h5 mb-1">{{ $anuncio->titulo }}</h2>
+                        <span class="badge bg-success">{{ ucfirst($anuncio->estado) }}</span>
+                    </div>
+
+                    <p class="text-muted small mb-2">
+                        {{ $anuncio->fecha_publicacion?->format('d/m/Y') }}
+                    </p>
+
+                    <p class="mb-0">{{ $anuncio->descripcion }}</p>
+                </div>
+            </article>
+        @empty
+            <div class="alert alert-info">Aun no hay anuncios institucionales publicados.</div>
+        @endforelse
     </div>
-@endsection
+</body>
+
+</html>

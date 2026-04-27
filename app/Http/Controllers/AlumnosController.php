@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Alumno;
-use App\Models\Docente;
-use App\Models\Course;
 
 class AlumnosController extends Controller
 {
+    // ======================================================
+    // MÉTODOS PARA EL PANEL DEL ALUMNO (AUTHENTICATED)
+    // ======================================================
+    
     public function dashboard()
     {
         $alumno = Auth::guard('alumno')->user();
@@ -100,6 +103,184 @@ class AlumnosController extends Controller
         
         return view('Alumno.course_detail', compact('alumno', 'curso'));
     }
+    
+    // ======================================================
+    // MÉTODOS PARA ADMINISTRACIÓN (CRUD DE ALUMNOS)
+    // ======================================================
+    
+    public function index()
+    {
+        $alumnos = Alumno::orderBy('created_at', 'desc')->paginate(15);
+        return view('Admin.alumnos.index', compact('alumnos'));
+    }
+    
+    public function create()
+    {
+        $grados = DB::table('grados')
+            ->select('id_grado', 'grado', 'id_nivel')
+            ->orderBy('grado', 'asc')
+            ->get();
+        
+        $niveles = DB::table('niveles')
+            ->select('id_nivel', 'nivel')
+            ->orderBy('nivel', 'asc')
+            ->get();
+        
+        $secciones = DB::table('secciones')
+            ->select('id_seccion', 'seccion')
+            ->orderBy('seccion', 'asc')
+            ->get();
+        
+        $facultades = DB::table('facultades')
+            ->select('id_facultad', 'facultad')
+            ->orderBy('facultad', 'asc')
+            ->get();
+        
+        $cursos = DB::table('cursos')
+            ->select('id_curso', 'materia')
+            ->orderBy('materia', 'asc')
+            ->get();
+        
+        $salones = DB::table('salones')
+            ->select('salones.id_salon', 'niveles.nivel', 'grados.grado', 'secciones.seccion', 'facultades.facultad')
+            ->leftJoin('niveles', 'salones.id_nivel', '=', 'niveles.id_nivel')
+            ->leftJoin('grados', 'salones.id_grado', '=', 'grados.id_grado')
+            ->leftJoin('secciones', 'salones.id_seccion', '=', 'secciones.id_seccion')
+            ->leftJoin('facultades', 'salones.id_facultad', '=', 'facultades.id_facultad')
+            ->orderBy('grados.grado', 'asc')
+            ->get();
+        
+        return view('Admin.alumnos.create', compact('grados', 'niveles', 'secciones', 'facultades', 'cursos', 'salones'));
+    }
+    
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'dni' => 'nullable|string|max:20|unique:alumnos,dni',
+            'fecha_nacimiento' => 'nullable|date',
+            'usuario' => 'required|string|max:255|unique:alumnos,usuario',
+            'contrasena' => 'required|string|min:6',
+            'id_salon' => 'nullable|exists:salones,id_salon',
+        ]);
+        
+        $validated['contrasena'] = Hash::make($validated['contrasena']);
+        $alumno = Alumno::create($validated);
+        
+        return redirect()->route('admin.alumnos.index')
+            ->with('success', 'Alumno registrado correctamente. ID: ' . $alumno->id_alumno);
+    }
+    
+    public function show($id)
+    {
+        $alumno = Alumno::findOrFail($id);
+        
+        $salonInfo = null;
+        if ($alumno->id_salon) {
+            $salonInfo = DB::table('salones')
+                ->select('salones.*', 'niveles.nivel', 'grados.grado', 'secciones.seccion')
+                ->leftJoin('niveles', 'salones.id_nivel', '=', 'niveles.id_nivel')
+                ->leftJoin('grados', 'salones.id_grado', '=', 'grados.id_grado')
+                ->leftJoin('secciones', 'salones.id_seccion', '=', 'secciones.id_seccion')
+                ->where('salones.id_salon', $alumno->id_salon)
+                ->first();
+        }
+        
+        $cursos = collect();
+        if ($alumno->id_salon) {
+            $cursos = DB::table('docente_curso as dc')
+                ->join('docente_salon as ds', 'dc.id_docente_salon', '=', 'ds.id_docente_salon')
+                ->join('cursos as c', 'dc.id_curso', '=', 'c.id_curso')
+                ->join('users as u', 'ds.id_usuario', '=', 'u.id_usuario')
+                ->where('ds.id_salon', $alumno->id_salon)
+                ->select('c.id_curso', 'c.materia as nombre', 'u.nombre as docente')
+                ->get();
+        }
+        
+        return view('Admin.alumnos.show', compact('alumno', 'cursos', 'salonInfo'));
+    }
+    
+    public function edit($id)
+    {
+        $alumno = Alumno::findOrFail($id);
+        
+        $grados = DB::table('grados')
+            ->select('id_grado', 'grado')
+            ->orderBy('grado', 'asc')
+            ->get();
+        
+        $salones = DB::table('salones')
+            ->select('salones.id_salon', 'grados.grado', 'secciones.seccion')
+            ->leftJoin('grados', 'salones.id_grado', '=', 'grados.id_grado')
+            ->leftJoin('secciones', 'salones.id_seccion', '=', 'secciones.id_seccion')
+            ->get();
+        
+        return view('Admin.alumnos.edit', compact('alumno', 'grados', 'salones'));
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $alumno = Alumno::findOrFail($id);
+        
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido' => 'required|string|max:255',
+            'dni' => 'nullable|string|max:20|unique:alumnos,dni,' . $id . ',id_alumno',
+            'fecha_nacimiento' => 'nullable|date',
+            'usuario' => 'required|string|max:255|unique:alumnos,usuario,' . $id . ',id_alumno',
+            'id_salon' => 'nullable|exists:salones,id_salon',
+        ]);
+        
+        if ($request->filled('contrasena')) {
+            $validated['contrasena'] = Hash::make($request->contrasena);
+        }
+        
+        $alumno->update($validated);
+        
+        return redirect()->route('admin.alumnos.index')
+            ->with('success', 'Alumno actualizado correctamente.');
+    }
+    
+    public function destroy($id)
+    {
+        $alumno = Alumno::findOrFail($id);
+        $nombre = $alumno->nombre . ' ' . $alumno->apellido;
+        $alumno->delete();
+        
+        return redirect()->route('admin.alumnos.index')
+            ->with('success', 'Alumno eliminado correctamente: ' . $nombre);
+    }
+    
+    public function datosFormulario()
+    {
+        $salones = DB::table('salones')
+            ->select('salones.id_salon', 'niveles.nivel', 'grados.grado', 'secciones.seccion')
+            ->leftJoin('niveles', 'salones.id_nivel', '=', 'niveles.id_nivel')
+            ->leftJoin('grados', 'salones.id_grado', '=', 'grados.id_grado')
+            ->leftJoin('secciones', 'salones.id_seccion', '=', 'secciones.id_seccion')
+            ->get();
+        
+        return response()->json([
+            'success' => true,
+            'salones' => $salones
+        ]);
+    }
+    
+    public function getGradosByNivel($id_nivel)
+    {
+        $grados = DB::table('grados')
+            ->where('id_nivel', $id_nivel)
+            ->select('id_grado', 'grado')
+            ->orderBy('grado', 'asc')
+            ->get();
+        
+        return response()->json($grados);
+    }
+    
+    // ======================================================
+    // MÉTODO PRIVADO
+    // ======================================================
     
     private function getCursos($alumno)
     {
