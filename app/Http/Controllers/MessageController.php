@@ -63,45 +63,45 @@ class MessageController extends Controller
 
     public function buscarUsuarios(Request $request)
     {
-        $q = $request->q;
+        $q = $request->q ?? '';
 
+        $cursoSalon = CursoSalon::find($request->id_curso_salon);
 
-        $idSalon = DB::table('curso_salon')
-            ->where('id_curso_salon', $request->id_curso_salon)
-            ->value('id_salon');
+        if (!$cursoSalon) {
+            return response()->json([]);
+        }
 
-        // DOCENTES
-        $docentes = User::where(function ($query) use ($q) {
-            $query->where('nombre', 'like', "%$q%")
-                ->orWhere('apellido', 'like', "%$q%");
-        })
-            ->where('rol', 'docente')
-            ->limit(5)
-            ->get()
-            ->map(fn($u) => [
-                'id' => $u->id_usuario,
-                'name' => $u->nombre . ' ' . $u->apellido,
-                'role' => 'docente'
-            ]);
+        $idSalon = $cursoSalon->id_salon;
 
-        // ALUMNOS
-        $alumnos = Alumno::where(function ($query) use ($q) {
-            $query->whereRaw("LOWER(nombre) LIKE ?", ["%$q%"])
-                ->orWhere('apellido', 'like', "%$q%");
-        })
+        // 🟢 ALUMNOS
+        $alumnos = \App\Models\Alumno::whereRaw("CONCAT(nombre, ' ', apellido) LIKE ?", ["%$q%"])
             ->where('id_salon', $idSalon)
             ->limit(5)
             ->get()
-            ->map(fn($a) => [
-                'id' => $a->id_alumno,
-                'name' => $a->nombre . ' ' . $a->apellido,
-                'role' => 'alumno'
-            ]);
+            ->map(function ($a) {
+                return [
+                    'id' => $a->id_alumno,
+                    'name' => $a->nombre . ' ' . $a->apellido,
+                    'role' => 'alumno'
+                ];
+            });
 
-        // UNIÓN CORRECTA
-        $resultado = collect($docentes)->merge($alumnos)->values();
+        // 🔵 DOCENTES
+        $docentes = \App\Models\User::whereRaw("CONCAT(nombre, ' ', apellido) LIKE ?", ["%$q%"])
+            ->where('rol', 'docente')
+            ->limit(5)
+            ->get()
+            ->map(function ($u) {
+                return [
+                    'id' => $u->id_usuario,
+                    'name' => $u->nombre . ' ' . $u->apellido,
+                    'role' => 'docente'
+                ];
+            });
 
-        return response()->json($resultado);
+        return response()->json(
+            collect($docentes)->merge($alumnos)->values()
+        );
     }
     public function storeAjax(Request $request)
     {

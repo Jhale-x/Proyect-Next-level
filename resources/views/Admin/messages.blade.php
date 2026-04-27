@@ -31,6 +31,20 @@
                 </div>
             </div>
 
+            <div id="vista-bandeja" class="view active">
+                <div class="d-flex justify-content-between mb-3">
+                    <h4>Mensajes</h4>
+                    <button class="btn btn-primary" onclick="irNuevoMensaje()">
+                        ➕ Nuevo mensaje
+                    </button>
+                </div>
+
+                <div id="lista-conversaciones">
+                    <!-- Aquí luego cargas mensajes -->
+                    <p class="text-muted">No hay conversaciones aún</p>
+                </div>
+            </div>
+
             <div id="panelNuevoMensaje">
                 <div class="panel-header">
                     <button class="btn-close-custom" onclick="cerrarPanel()">X</button>
@@ -48,6 +62,7 @@
                             <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
                             <input id="destinatario_msg" type="text" class="form-control"
                                 placeholder="Escriba un miembro o grupo del curso">
+                            <div id="destinatarios_seleccionados" class="mt-2"></div>
                         </div>
                         <div id="resultados_busqueda" class="list-group mt-2"></div>
                     </div>
