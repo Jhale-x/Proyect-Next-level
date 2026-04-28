@@ -6,8 +6,8 @@
 
 <!-- Encabezado -->
 <div class="d-flex align-items-center gap-3 mb-4">
-    <a href="{{ route('tools') }}" class="btn btn-primary">
-        X
+    <a href="{{ route('alumno.tools') }}" class="btn btn-primary">
+        <i class="bi bi-arrow-left"></i> Volver
     </a>
     <h1 class="fw-normal mb-0">DESARROLLADORES</h1>
 </div>
@@ -29,7 +29,7 @@
                 <hr>
                 <div class="d-flex justify-content-between align-items-center">
                     <span class="fw-semibold">📞 945412863</span>
-                    <i class="bi bi-star-fill text-purple fs-5"></i>
+                    <i class="bi bi-star-fill text-warning fs-5"></i>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
                 <hr>
                 <div class="d-flex justify-content-between align-items-center">
                     <span class="fw-semibold">📞 944069117</span>
-                    <i class="bi bi-star-fill text-purple fs-5"></i>
+                    <i class="bi bi-star-fill text-warning fs-5"></i>
                 </div>
             </div>
         </div>
@@ -69,7 +69,7 @@
                 <hr>
                 <div class="d-flex justify-content-between align-items-center">
                     <span class="fw-semibold">📞 985545461</span>
-                    <i class="bi bi-star-fill text-purple fs-5"></i>
+                    <i class="bi bi-star-fill text-warning fs-5"></i>
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
                 <hr>
                 <div class="d-flex justify-content-between align-items-center">
                     <span class="fw-semibold">📞 994278446</span>
-                    <i class="bi bi-star-fill text-purple fs-5"></i>
+                    <i class="bi bi-star-fill text-warning fs-5"></i>
                 </div>
             </div>
         </div>
@@ -109,13 +109,12 @@
                 <hr>
                 <div class="d-flex justify-content-between align-items-center">
                     <span class="fw-semibold">📞 931157445</span>
-                    <i class="bi bi-star-fill text-purple fs-5"></i>
+                    <i class="bi bi-star-fill text-warning fs-5"></i>
                 </div>
             </div>
         </div>
     </div>
 
 </div>
-
 
 @endsection

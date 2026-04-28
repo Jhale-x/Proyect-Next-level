@@ -1,8 +1,6 @@
-@extends('layouts.Alumnoslanding')
+<?php $__env->startSection('title', 'Actividad'); ?>
 
-@section('title', 'Actividad')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <div class="activity-wrapper">
 
@@ -136,4 +134,5 @@
 
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.Alumnoslanding', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\Proyect-Next-level\resources\views/Alumno/activity.blade.php ENDPATH**/ ?>

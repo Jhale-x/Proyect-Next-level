@@ -1,12 +1,12 @@
- @extends('layouts.Alumnoslanding')
+ 
 
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('css/alumno/eti.css') }}">
-@endpush
+<?php $__env->startPush('styles'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('css/alumno/eti.css')); ?>">
+<?php $__env->stopPush(); ?>
 
-@section('title', 'ETI - Next Level')
+<?php $__env->startSection('title', 'ETI - Next Level'); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container-fluid py-4">
     <div class="d-flex align-items-center mb-4 border-bottom pb-3">
         <div class="bg-primary text-white p-2 rounded me-3">
@@ -23,27 +23,28 @@
         <div class="card-body">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h4 class="mb-2">{{ $alumno->nombre }} {{ $alumno->apellido }}</h4>
+                    <h4 class="mb-2"><?php echo e($alumno->nombre); ?> <?php echo e($alumno->apellido); ?></h4>
                     <div class="row">
                         <div class="col-md-4">
                             <small class="text-muted">Nivel</small>
-                            <p class="fw-bold mb-0">{{ $nivel ?? 'No asignado' }}</p>
+                            <p class="fw-bold mb-0"><?php echo e($nivel ?? 'No asignado'); ?></p>
                         </div>
                         <div class="col-md-4">
                             <small class="text-muted">Grado</small>
-                            <p class="fw-bold mb-0">{{ $grado ?? 'No asignado' }}</p>
+                            <p class="fw-bold mb-0"><?php echo e($grado ?? 'No asignado'); ?></p>
                         </div>
                         <div class="col-md-4">
                             <small class="text-muted">Sección</small>
-                            <p class="fw-bold mb-0">{{ $seccion ?? 'No asignado' }}</p>
+                            <p class="fw-bold mb-0"><?php echo e($seccion ?? 'No asignado'); ?></p>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 text-md-end">
                     <div class="bg-white rounded p-3 d-inline-block">
                         <small class="text-muted">Promedio General</small>
-                        <h3 class="mb-0 {{ $promedioGeneral >= 13 ? 'text-success' : 'text-danger' }}">
-                            {{ number_format($promedioGeneral, 1) }}
+                        <h3 class="mb-0 <?php echo e($promedioGeneral >= 13 ? 'text-success' : 'text-danger'); ?>">
+                            <?php echo e(number_format($promedioGeneral, 1)); ?>
+
                         </h3>
                     </div>
                 </div>
@@ -62,14 +63,14 @@
                     <thead class="table-light">
                         <tr class="text-center">
                             <th class="text-start ps-4" style="min-width: 200px;">Evaluación</th>
-                            @for ($i = 1; $i <= 10; $i++)
-                                <th class="border-start">Semana {{ $i }}</th>
-                            @endfor
+                            <?php for($i = 1; $i <= 10; $i++): ?>
+                                <th class="border-start">Semana <?php echo e($i); ?></th>
+                            <?php endfor; ?>
                             <th class="bg-primary text-white">Promedio</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @php
+                        <?php
                             $materias = [
                                 'Matemática',
                                 'Comunicación',
@@ -77,43 +78,45 @@
                                 'Personal Social',
                                 'Inglés'
                             ];
-                        @endphp
+                        ?>
                         
-                        @foreach($materias as $index => $materia)
-                            @php
+                        <?php $__currentLoopData = $materias; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $materia): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php
                                 $notasMateria = $notas[$materia] ?? array_fill(1, 10, null);
                                 $promedioMateria = collect($notasMateria)->filter()->avg();
-                            @endphp
+                            ?>
                             <tr>
-                                <td class="text-start ps-4 fw-bold text-secondary">{{ $materia }}</td>
-                                @for ($semana = 1; $semana <= 10; $semana++)
+                                <td class="text-start ps-4 fw-bold text-secondary"><?php echo e($materia); ?></td>
+                                <?php for($semana = 1; $semana <= 10; $semana++): ?>
                                     <td class="text-center border-start">
-                                        @if(isset($notasMateria[$semana]))
-                                            <span class="badge {{ $notasMateria[$semana] >= 13 ? 'bg-success' : 'bg-danger' }} px-3 py-2">
-                                                {{ $notasMateria[$semana] }}
+                                        <?php if(isset($notasMateria[$semana])): ?>
+                                            <span class="badge <?php echo e($notasMateria[$semana] >= 13 ? 'bg-success' : 'bg-danger'); ?> px-3 py-2">
+                                                <?php echo e($notasMateria[$semana]); ?>
+
                                             </span>
-                                        @else
+                                        <?php else: ?>
                                             <span class="text-muted">--</span>
-                                        @endif
+                                        <?php endif; ?>
                                     </td>
-                                @endfor
+                                <?php endfor; ?>
                                 <td class="text-center fw-bold bg-light">
-                                    @if($promedioMateria)
-                                        <span class="{{ $promedioMateria >= 13 ? 'text-success' : 'text-danger' }}">
-                                            {{ number_format($promedioMateria, 1) }}
+                                    <?php if($promedioMateria): ?>
+                                        <span class="<?php echo e($promedioMateria >= 13 ? 'text-success' : 'text-danger'); ?>">
+                                            <?php echo e(number_format($promedioMateria, 1)); ?>
+
                                         </span>
-                                    @else
+                                    <?php else: ?>
                                         --
-                                    @endif
+                                    <?php endif; ?>
                                 </td>
                             </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                     <tfoot class="table-secondary">
                         <tr>
                             <th class="text-start ps-4">PROMEDIO POR SEMANA</th>
-                            @for ($semana = 1; $semana <= 10; $semana++)
-                                @php
+                            <?php for($semana = 1; $semana <= 10; $semana++): ?>
+                                <?php
                                     $sumaSemana = 0;
                                     $countSemana = 0;
                                     foreach($materias as $materia) {
@@ -123,19 +126,21 @@
                                         }
                                     }
                                     $promedioSemana = $countSemana > 0 ? $sumaSemana / $countSemana : null;
-                                @endphp
+                                ?>
                                 <th class="text-center border-start">
-                                    @if($promedioSemana)
-                                        <span class="{{ $promedioSemana >= 13 ? 'text-success' : 'text-danger' }}">
-                                            {{ number_format($promedioSemana, 1) }}
+                                    <?php if($promedioSemana): ?>
+                                        <span class="<?php echo e($promedioSemana >= 13 ? 'text-success' : 'text-danger'); ?>">
+                                            <?php echo e(number_format($promedioSemana, 1)); ?>
+
                                         </span>
-                                    @else
+                                    <?php else: ?>
                                         --
-                                    @endif
+                                    <?php endif; ?>
                                 </th>
-                            @endfor
+                            <?php endfor; ?>
                             <th class="bg-primary text-white">
-                                {{ number_format($promedioGeneral, 1) }}
+                                <?php echo e(number_format($promedioGeneral, 1)); ?>
+
                             </th>
                         </tr>
                     </tfoot>
@@ -144,4 +149,5 @@
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.Alumnoslanding', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\Proyect-Next-level\resources\views/Alumno/eti.blade.php ENDPATH**/ ?>

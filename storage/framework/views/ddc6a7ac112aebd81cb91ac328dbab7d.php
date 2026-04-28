@@ -1,10 +1,9 @@
-@extends('layouts.Alumnoslanding')
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('css/alumno/Mensajes.css') }}">
-@endpush
-@section('title', 'Mensajes')
+<?php $__env->startPush('styles'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('css/alumno/Mensajes.css')); ?>">
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('title', 'Mensajes'); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container-fluid px-2">
 
     <h4 class="mb-3">✉️ Mensajes por Curso</h4>
@@ -76,4 +75,6 @@
 
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.Alumnoslanding', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\Proyect-Next-level\resources\views/Alumno/messages.blade.php ENDPATH**/ ?>

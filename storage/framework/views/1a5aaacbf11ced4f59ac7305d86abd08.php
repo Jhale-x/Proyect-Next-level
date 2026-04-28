@@ -1,10 +1,9 @@
-@extends('layouts.Alumnoslanding')
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('css/alumno/herramientas.css') }}">
-@endpush
-@section('title', 'Herramientas')
+<?php $__env->startPush('styles'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('css/alumno/herramientas.css')); ?>">
+<?php $__env->stopPush(); ?>
+<?php $__env->startSection('title', 'Herramientas'); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <div class="mb-4">
     <h1 class="fw-normal">Herramientas</h1>
@@ -15,7 +14,7 @@
 
     <!-- Soporte -->
     <div class="col-md-4">
-        <a href="{{ route('alumno.support') }}" class="text-decoration-none text-dark">
+        <a href="<?php echo e(route('alumno.support')); ?>" class="text-decoration-none text-dark">
             <div class="card h-100 text-center shadow-sm border">
                 <div class="card-body d-flex flex-column justify-content-center">
                     <i class="bi bi-rocket-takeoff fs-1 mb-3"></i>
@@ -36,4 +35,5 @@
     </div>
 
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.Alumnoslanding', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\Proyect-Next-level\resources\views/Alumno/tools.blade.php ENDPATH**/ ?>

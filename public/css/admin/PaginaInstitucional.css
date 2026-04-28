@@ -1,26 +1,33 @@
+/* ======================================================
+   ESTILOS PARA ALUMNO - Next Level
+   ====================================================== */
+
 /* 🌐 FONDO Y BASE */
 body {
     font-family: "Inter", sans-serif;
-    background: linear-gradient(135deg, #eef2ff, #fee2e2);
+    background: linear-gradient(135deg, #eef2ff, #e6f0fa);
 }
 
 .page-wrap {
     padding: 1.5rem;
 }
 
-/* HEADER */
-.admin-topbar {
+/* ======================================================
+   HEADER DEL ALUMNO
+   ====================================================== */
+.alumno-topbar {
     background: linear-gradient(135deg, #0a1f44, #2563eb);
     color: #fff;
+    padding: 12px 20px;
 }
 
-.admin-topbar input {
+.alumno-topbar input {
     background: rgba(255, 255, 255, 0.15);
     border: none;
     color: #fff;
 }
 
-.admin-topbar input::placeholder {
+.alumno-topbar input::placeholder {
     color: rgba(255, 255, 255, 0.7);
 }
 
@@ -28,13 +35,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1.5rem;
 }
 
-/* TÍTULOS */
+/* ======================================================
+   TÍTULOS
+   ====================================================== */
 .section-title {
-    font-size: 2.3rem;
+    font-size: 2rem;
     font-weight: 800;
     color: #0a1f44;
+    margin-bottom: 1rem;
 }
 
 .section-title::after {
@@ -47,48 +58,93 @@ body {
     margin-top: 8px;
 }
 
-/* 🎨 COLORES Y BACKGROUNDS */
-.bg-primary {
+.subtitle {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 1.5rem 0 1rem;
+}
+
+.subtitle i {
+    margin-right: 8px;
+    color: #2563eb;
+}
+
+/* ======================================================
+   COLORES Y BACKGROUNDS
+   ====================================================== */
+.bg-primary-alumno {
     background: linear-gradient(135deg, #1e3a8a, #2563eb) !important;
 }
 
-.bg-info {
+.bg-info-alumno {
     background: linear-gradient(135deg, #2563eb, #60a5fa) !important;
 }
 
-.bg-dark {
+.bg-dark-alumno {
     background: linear-gradient(135deg, #0a1f44, #1e293b) !important;
 }
 
-.bg-warning {
+.bg-warning-alumno {
     background: linear-gradient(135deg, #dc2626, #f87171) !important;
 }
 
-.bg-success {
-    background: linear-gradient(135deg, #b91c1c, #ef4444) !important;
+.bg-success-alumno {
+    background: linear-gradient(135deg, #059669, #10b981) !important;
 }
 
-/* 🔥 CARDS Y ESTADÍSTICAS */
+/* ======================================================
+   CARDS DEL ALUMNO
+   ====================================================== */
 .card {
     border-radius: 18px;
     border: none;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
     background: linear-gradient(135deg, #0a1f44, #2563eb) !important;
     color: #fff !important;
     font-weight: 600;
+    border-radius: 18px 18px 0 0 !important;
 }
 
-.custom-header {
-    background: linear-gradient(135deg, #0a1f44, #2563eb);
-    color: #fff;
-    padding: 12px 16px;
-    border-radius: 18px 18px 0 0;
-    font-weight: 600;
+/* Cards de cursos */
+.curso-card {
+    border-radius: 18px;
+    overflow: hidden;
+    transition: 0.3s;
+    cursor: pointer;
 }
 
+.curso-card:hover {
+    transform: translateY(-6px);
+}
+
+.curso-card .card-img-top {
+    height: 140px;
+    object-fit: cover;
+}
+
+/* Cards de anuncios */
+.anuncio-card {
+    transition: 0.25s;
+}
+
+.anuncio-card:hover {
+    background: #fef2f2;
+    border-left: 5px solid #dc2626 !important;
+}
+
+/* ======================================================
+   ESTADÍSTICAS DEL ALUMNO
+   ====================================================== */
 .stats-card {
     border-radius: 18px;
     padding: 20px;
@@ -120,19 +176,14 @@ body {
     border-radius: 12px;
 }
 
-/* 👥 USUARIOS */
-.user-mini-card {
-    background: #fff;
-    border-radius: 14px;
-    padding: 10px;
-    border: 1px solid #eee;
-    transition: 0.25s;
-}
-
-.user-mini-card:hover {
-    transform: translateY(-4px) scale(1.02);
-    background: linear-gradient(135deg, #eff6ff, #fee2e2);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+/* ======================================================
+   AVATAR y USUARIOS
+   ====================================================== */
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .avatar-mini {
@@ -141,72 +192,201 @@ body {
     border-radius: 50%;
 }
 
-/* BARRAS Y FILLS */
-.mini-bar {
-    height: 6px;
+/* ======================================================
+   BARRAS DE PROGRESO
+   ====================================================== */
+.progress-bar-custom {
+    height: 8px;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(0, 0, 0, 0.1);
 }
 
-.mini-fill {
+.progress-fill {
     height: 100%;
     border-radius: 10px;
-    background: linear-gradient(90deg, #dc2626, #2563eb);
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
 }
 
-/* BOTONES */
-.btn-success {
-    background: linear-gradient(135deg, #dc2626, #2563eb);
+/* ======================================================
+   BOTONES
+   ====================================================== */
+.btn-primary-alumno {
+    background: linear-gradient(135deg, #2563eb, #1e3a8a);
     border: none;
     border-radius: 12px;
-    font-weight: 700;
+    font-weight: 600;
+    padding: 10px 20px;
     transition: 0.3s;
+    color: white;
 }
 
-.btn-success:hover {
+.btn-primary-alumno:hover {
     transform: scale(1.05);
+    background: linear-gradient(135deg, #1e3a8a, #2563eb);
 }
 
-.btn-gradient {
-    background: linear-gradient(135deg, #dc2626, #2563eb);
-    color: #fff;
+.btn-outline-alumno {
+    background: transparent;
+    border: 2px solid #2563eb;
     border-radius: 12px;
-    border: none;
+    color: #2563eb;
     font-weight: 600;
     padding: 8px 16px;
     transition: 0.3s;
 }
 
-.btn-gradient:hover {
+.btn-outline-alumno:hover {
+    background: #2563eb;
+    color: white;
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
-/* FORMULARIOS */
-.form-control {
+/* ======================================================
+   FILTROS Y BÚSQUEDA
+   ====================================================== */
+.filtros-card {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.filtros-card .form-control,
+.filtros-card .form-select {
     border-radius: 12px;
-    border: 1px solid #ddd;
+    border: 1px solid #e2e8f0;
     transition: 0.25s;
 }
 
-.form-control:focus {
+.filtros-card .form-control:focus,
+.filtros-card .form-select:focus {
     border-color: #2563eb;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
-/* TABLAS */
-.table thead {
-    background: linear-gradient(135deg, #dc2626, #2563eb);
+/* ======================================================
+   TABLAS
+   ====================================================== */
+.table-custom thead {
+    background: linear-gradient(135deg, #0a1f44, #2563eb);
     color: #fff;
 }
 
-.table tbody tr:hover {
+.table-custom tbody tr:hover {
     background: #fef2f2;
 }
 
-/* RESPONSIVE */
+/* ======================================================
+   CALENDARIO
+   ====================================================== */
+.calendar-event {
+    background: linear-gradient(135deg, #2563eb, #60a5fa);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+}
+
+/* ======================================================
+   MENSAJES
+   ====================================================== */
+.message-item {
+    border-left: 4px solid #2563eb;
+    transition: 0.25s;
+}
+
+.message-item:hover {
+    background: #f8fafc;
+    transform: translateX(5px);
+}
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+@media (max-width: 768px) {
+    .page-wrap {
+        padding: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .stats-card {
+        margin-bottom: 15px;
+    }
+    
+    .curso-card .card-img-top {
+        height: 100px;
+    }
+}
+
 @media (min-width: 768px) {
     .col-md-4 {
-        width: 25%;
+        width: 33.333%;
     }
+}
+
+/* ======================================================
+   ANIMACIONES
+   ====================================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeInUp {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* ======================================================
+   BARRA DE COLOR PARA ANUNCIOS
+   ====================================================== */
+.barra-color {
+    width: 6px;
+    border-radius: 3px;
+}
+
+.barra-color-favorito {
+    background: #f59e0b;
+}
+
+.barra-color-anuncio {
+    background: #2563eb;
+}
+
+.barra-color-examen {
+    background: #dc2626;
+}
+
+/* ======================================================
+   ESTRELLAS DE FAVORITOS
+   ====================================================== */
+.star-favorite {
+    color: #fbbf24;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.star-favorite:hover {
+    transform: scale(1.2);
+}
+
+.star-normal {
+    color: #cbd5e1;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.star-normal:hover {
+    color: #fbbf24;
+    transform: scale(1.1);
 }
