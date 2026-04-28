@@ -139,7 +139,7 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-left">
-                <img src="{{ asset('images/logo_footer.png') }}" alt="Next Level Logo" class="footer-logo-img">
+                <img src="{{ asset('images/Logo-Footer-Next-Level.png') }}" alt="Next Level Logo" class="footer-logo-img">
                 <div class="footer-contact">
                     <p><i class="fa-solid fa-phone"></i> +51 923 317 626</p>
                     <p><i class="fa-solid fa-location-dot"></i> Carretera Federico Basadre Km. 6.5 (Al costado de la UNU)</p>

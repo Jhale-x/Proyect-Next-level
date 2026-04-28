@@ -135,7 +135,7 @@
                                 <div class="help-container">
                                     <i class="fa-solid fa-circle-question" id="helpIcon"></i>
                                     <div class="help-tooltip" id="helpTooltip">
-                                        <img src="{{ asset('images/dni.png') }}" alt="Ejemplo DNI">
+                                        <img src="{{ asset('images/DNI-Next-Level.png') }}" alt="Ejemplo DNI">
                                     </div>
                                 </div>
                             </div>
@@ -186,7 +186,7 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-left">
-                <img src="{{ asset('images/logo_footer.png') }}" alt="Next Level Logo" class="footer-logo-img">
+                <img src="{{ asset('images/Logo-Footer-Next-Level.png') }}" alt="Next Level Logo" class="footer-logo-img">
                 <div class="footer-contact">
                     <p><i class="fa-solid fa-phone"></i> +51 923 317 626</p>
                     <p><i class="fa-solid fa-location-dot"></i> Carretera Federico Basadre Km. 6.5 (Al costado de la UNU)</p>
