@@ -47,7 +47,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-trigger">NIVELES <span class="arrow-icon">&#9662;</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('mantenimiento') }}">Colegio</a></li>
+                        <li><a href="{{ route('colegio') }}">Colegio</a></li>
                         <li><a href="{{ route('academia') }}">Academia</a></li>
                     </ul>
                 </li>
@@ -94,7 +94,7 @@
             <div class="menu-panel" id="submenu-niveles">
                 <button class="back-btn" type="button"><i class="fa-solid fa-chevron-left"></i> REGRESAR</button>
                 <ul class="mobile-nav-list">
-                    <li><a href="{{ route('mantenimiento') }}">Colegio</a></li>
+                    <li><a href="{{ route('colegio') }}">Colegio</a></li>
                     <li><a href="{{ route('academia') }}">Academia</a></li>
                 </ul>
             </div>

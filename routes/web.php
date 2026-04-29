@@ -46,6 +46,10 @@ Route::get('/que-ofrecemos', function () {
     return view('que_ofrecemos');
 })->name('que_ofrecemos');
 
+Route::get('/colegio', function () {
+    return view('colegio');
+})->name('colegio');
+
 
 Route::get('/academia', function () {
     return view('academia');

@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Experiencia | Next Level</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Next Level | Colegio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/web/experiencia.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/colegio.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
 </head>
 
@@ -19,7 +20,7 @@
             <div class="marquee-track" id="marqueeTrack">
                 <div class="marquee-item">
                     ¡Matrícula 2026! &nbsp;&nbsp;&nbsp;&nbsp;
-                    ☀️🏊‍♂️ Inicio de Clases: 4 Marzo &nbsp;&nbsp;&nbsp;&nbsp;
+                    🚀📚 Ciclos Anual / Semestral / Verano &nbsp;&nbsp;&nbsp;&nbsp;
                 </div>
             </div>
         </div>
@@ -47,7 +48,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-trigger">NIVELES <span class="arrow-icon">&#9662;</span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('colegio') }}">Colegio</a></li>
+                        <li><a href="{{ route('colegio') }}" class="active">Colegio</a></li>
                         <li><a href="{{ route('academia') }}">Academia</a></li>
                     </ul>
                 </li>
@@ -102,106 +103,7 @@
     </div>
 
     <main>
-    <header class="exp-hero">
-        <div class="exp-hero-overlay">
-            <div class="exp-hero-content">
-                <span class="welcome-tag">DESCUBRE NUESTRO MUNDO</span>
-                <h1 class="welcome-title-hero">LA EXPERIENCIA NEXT LEVEL</h1>
-                <div class="welcome-line-hero"></div>
-                <p class="welcome-description-hero">
-                    Más que un colegio, somos el espacio donde nace su propósito. Aquí el talento se cultiva con valores para formar a los líderes del mañana.
-                </p>
-            </div>
-        </div>
-        <img src="{{ asset('#') }}" alt="Fondo" class="hero-bg-img">
-    </header>
 
-    <section class="pathway-section">
-        <div class="pathway-container">
-            <h2 class="section-title-dark-centered">AMBIENTES QUE INSPIRAN</h2>
-            <div class="section-line"></div>
-            <div class="exp-cards-grid">
-                <div class="path-card">
-                    <img src="{{ asset('images/imagen10.jpg') }}" alt="Laboratorio">
-                    <div class="path-card-overlay">
-                        <h3>NATACIÓN</h3>
-                        <p>DEPORTE Y FRESCURA TOTAL.</p>
-                    </div>
-                </div>
-                <div class="path-card">
-                    <img src="{{ asset('images/Academia-Next-Level.jpeg') }}" alt="Recreo">
-                    <div class="path-card-overlay">
-                        <h3>DESARROLLO</h3>
-                        <p>TALENTO Y RECREACIÓN FÍSICA.</p>
-                    </div>
-                </div>
-                <div class="path-card">
-                    <img src="{{ asset('images/Futbol-Adutlo-Next-Level.jpeg') }}" alt="Aulas">
-                    <div class="path-card-overlay">
-                        <h3>DEPORTE</h3>
-                        <p>CAMPOS DEPORTIVOS.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="welcome-section">
-        <div class="welcome-container">
-            <div class="welcome-grid">
-                <div class="welcome-text-side">
-                    <h2 class="welcome-title">EL DÍA A DÍA EN NEXT LEVEL</h2>
-                    <div class="welcome-line"></div>
-                    <ul class="welcome-list">
-                        <li><i class="fa-solid fa-bolt"></i> <strong>Mañanas de Retos:</strong> Iniciamos el día resolviendo problemas reales.</li>
-                        <li><i class="fa-solid fa-users"></i> <strong>Talleres de Liderazgo:</strong> Habilidades blandas para el éxito profesional.</li>
-                        <li><i class="fa-solid fa-pen-to-square"></i> <strong>Hábitos de Estudio:</strong> Métodos prácticos para aprender mejor.</li>
-                        <li><i class="fa-solid fa-swimmer"></i> <strong>Deporte Integral:</strong> Natación y desarrollo físico constante.</li>
-                        <li><i class="fa-solid fa-handshake-simple"></i> <strong>Convivencia Activa:</strong> Fomentamos el respeto y el trabajo en equipo diario.</li>
-                        <li><i class="fa-solid fa-palette"></i> <strong>Arte y Cultura:</strong> Espacios para la expresión y creatividad.</li>
-                        <li><i class="fa-solid fa-trophy"></i> <strong>Vida Activa:</strong> Deporte y recreación en nuestras canchas propias.</li>
-                    </ul>
-                </div>
-                <div class="welcome-image-side">
-                    <div class="image-frame">
-                        <img src="{{ asset('images/Computo-Next-Level.png') }}" alt="Vida estudiantil">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="info-organic-section">
-        <div class="exp-blobs-container">
-            <div class="info-blob-card">
-                <div class="blob-content">
-                    <i class="fa-solid fa-shield-halved"></i>
-                    <div class="text-wrapper">
-                        <h3>Cámaras 24/7</h3>
-                        <p>Monitoreo constante en todos los niveles.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="info-blob-card">
-                <div class="blob-content">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                    <div class="text-wrapper">
-                        <h3>Control Digital</h3>
-                        <p>App para padres con asistencia en tiempo real.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="info-blob-card">
-                <div class="blob-content">
-                    <i class="fa-solid fa-location-crosshairs"></i>
-                    <div class="text-wrapper">
-                        <h3>Entorno Seguro</h3>
-                        <p>Ubicación estratégica y control de accesos.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     </main>
 
     <footer class="footer">
@@ -209,7 +111,7 @@
             <div class="footer-left">
                 <img src="{{ asset('images/Logo-Footer-Next-Level.png') }}" alt="Next Level Logo" class="footer-logo-img">
                 <div class="footer-contact">
-                    <p><i class="fa-solid fa-phone"></i> +51 923 317 626</p>
+                    <p><i class="fa-solid fa-phone"></i> 923 317 626</p>
                     <p><i class="fa-solid fa-location-dot"></i> Carretera Federico Basadre Km. 6.5 (Al costado de la UNU)</p>
                     <p><i class="fa-solid fa-envelope"></i> contacto@nextlevel.edu.pe</p>
                 </div>
@@ -252,6 +154,5 @@
     <script src="{{ asset('js/marquee_principal.js') }}"></script>
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
-
 </body>
 </html>
