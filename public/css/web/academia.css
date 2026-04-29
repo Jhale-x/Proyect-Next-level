@@ -489,7 +489,7 @@
 
 @media (max-width: 992px) {
     .hero-sobre {
-        height: 400px;
+        height: 205px;
     }
 
     .academia-intro {
@@ -531,7 +531,7 @@
     }
 
     .title-blue {
-        font-size: 2.4rem !important;
+        font-size: 2rem !important;
         text-align: center;
     }
 
@@ -617,11 +617,6 @@
         line-height: 1.2;
     }
 
-    .section-header-centered h2 {
-        font-size: 2.4rem;
-        padding: 0 20px;
-    }
-
     .academia-propuesta-v2 {
         padding: 50px 0;
         margin-top: 10px;
@@ -669,7 +664,7 @@
     }
 
     .propuesta-content-box h2 {
-        font-size: 2.4rem !important;
+        font-size: 2.1rem !important;
         text-align: center;
     }
 
@@ -719,7 +714,7 @@
     }
 
     .section-header-centered h2 {
-        font-size: 2.1rem;
+        font-size: 2rem;
         padding: 0 15px;
         margin-top: 30px;
     }

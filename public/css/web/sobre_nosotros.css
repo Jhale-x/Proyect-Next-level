@@ -323,7 +323,7 @@
 
 @media (max-width: 992px) {
     .hero-sobre{
-        height: 400px;
+        height: 205px;
     }
 
     .sobre-section {
@@ -337,7 +337,7 @@
     }
 
     .sobre-text h2 {
-        font-size: 32px;
+        font-size: 2.5rem;
         line-height: 1.2;
     }
 
@@ -415,7 +415,7 @@
     }
 
     .metodologia-content-box h2 {
-        font-size: 34px;
+        font-size: 2.5rem;
         line-height: 1.2;
     }
 

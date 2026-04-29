@@ -147,7 +147,11 @@ background:#b0000f;
     }
 
     .ubicacion-info h2 {
-        font-size: 36px;
+        font-size: 2rem;
+    }
+
+    .ubicacion-info p {
+        font-size: 17px;
     }
 
     .section-line {

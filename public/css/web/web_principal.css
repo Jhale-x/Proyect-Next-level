@@ -902,12 +902,6 @@ html, body {
     margin-bottom: 50px;
 }
 
-.section-title-dark {
-    font-size: 60px;
-    font-weight: 800;
-    color: var(--azul-noche);
-}
-
 .alumnos-carrusel-wrapper {
     position: relative;
     max-width: 1400px;
@@ -1104,7 +1098,7 @@ html, body {
         justify-content: space-between !important;
         align-items: center !important;
         width: 100% !important;
-        padding: 10px 15px !important;
+        padding: 3px 15px !important;
         box-sizing: border-box !important;
     }
 
@@ -1120,10 +1114,7 @@ html, body {
     }
 
     .hero-full-width {
-        height: 600px;
-    }
-    .hero-full-width {
-        height: 560px !important;
+        height: 205px !important;
         position: relative;
         display: block;
         overflow: hidden;
@@ -1138,7 +1129,7 @@ html, body {
     .main-image {
         position: absolute;
         top: 0;
-        left: 0;
+        left: 10;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -1191,7 +1182,7 @@ html, body {
         order: 1;
     }
     .welcome-title {
-        font-size: 2.2rem !important;
+        font-size: 2rem !important;
         line-height: 1.1;
         margin: 0;
         width: 100%;
@@ -1264,7 +1255,7 @@ html, body {
         text-align: center;
     }
     .pathway-title {
-        font-size: 2.2rem !important;
+        font-size: 2rem !important;
         line-height: 1.2;
         margin-bottom: 20px;
         color: var(--azul-oscuro);
@@ -1372,7 +1363,7 @@ html, body {
         background-position: center center;
     }
     .valores-overlay {
-        padding: 60px 20px !important;
+        padding: 105px 20px !important;
     }
 
     .doc-nav-btn {
@@ -1503,7 +1494,7 @@ html, body {
     }
 
     .section-title-dark {
-        font-size: 2.2rem !important;
+        font-size: 2rem !important;
         text-align: center;
         font-weight: 800;
         color: var(--azul-noche);

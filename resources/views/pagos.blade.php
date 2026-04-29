@@ -102,9 +102,6 @@
     </div>
 
     <main>
-        <section class="hero-sobre">
-            <img src="{{ asset('images/Pagos-Next-Level.jpeg') }}" alt="Fondo" class="hero-bg-img">
-        </section>
 
         <section class="pagos-section">
             <div class="pagos-container">

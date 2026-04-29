@@ -1,20 +1,3 @@
-.hero-sobre {
-    position: relative;
-    height: 500px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.hero-bg-img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-}
-
 .pagos-section {
     padding: 90px 0;
     background-color: var(--blanco);
@@ -98,9 +81,6 @@
 }
 
 @media (max-width: 992px) {
-    .hero-sobre{
-        height: 400px;
-    }
 
     .pagos-section {
         padding: 60px 0;

@@ -104,10 +104,6 @@
 
     <main>
 
-    <section class="hero-sobre">
-        <img src="{{ asset('images/Ofrecemos-Next-Level.jpeg') }}" alt="Fondo" class="hero-bg-img">
-    </section>
-
     <section class="actividades-section-clean">
         <div class="container-clean">
             <div class="section-header-centered-clean">
@@ -159,7 +155,7 @@
                     <div class="swiper-slide">
                         <div class="deporte-card">
                             <div class="deporte-img">
-                                <img src="{{ asset('images/imagen10.jpg') }}" alt="Fútbol">
+                                <img src="{{ asset('images/Futbol-Next-Level.jpeg') }}" alt="Fútbol">
                             </div>
                             <div class="deporte-content">
                             <h3>FÚTBOL</h3>
@@ -171,7 +167,7 @@
                     <div class="swiper-slide">
                         <div class="deporte-card">
                             <div class="deporte-img">
-                            <img src="{{ asset('images/imagen10.jpg') }}" alt="Vóley">
+                            <img src="{{ asset('images/Voley-Next-Level.jpeg') }}" alt="Vóley">
                             </div>
                             <div class="deporte-content">
                                 <h3>VÓLEY</h3>

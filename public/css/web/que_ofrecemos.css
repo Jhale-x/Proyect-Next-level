@@ -1,22 +1,7 @@
-.hero-sobre {
-    position: relative;
-    height: 490px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-bg-img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-}
-
 .actividades-section-clean {
     padding: 100px 0;
     background-color: var(--blanco);
+    margin-top: -30px;
 }
 
 .section-header-centered-clean h2 {
@@ -618,10 +603,6 @@
 
 @media (max-width: 992px) {
 
-    .hero-sobre{
-        height: 400px;
-    }
-
     .deportivas-section {
         padding: 50px 0 50px;
     }
@@ -638,7 +619,7 @@
     }
 
     .section-header-centered-clean h2 {
-        font-size: 2.8rem !important;
+        font-size: 2.5rem !important;
         line-height: 1.2;
     }
     .section-header-centered-clean p {
@@ -651,7 +632,7 @@
     }
 
     .section-header-centered h2 {
-        font-size: 2.8rem !important;
+        font-size: 2rem !important;
     }
 
     .actividades-grid-clean {
