@@ -102,194 +102,194 @@
     </div>
 
     <main>
-        <section class="hero-sobre">
-            <div class="hero-overlay">
-           <!-- <div class="hero-content">
-                    <span class="section-tag">PREPARACIÓN DE ALTO NIVEL</span>
-                    <h1>NUESTROS CICLOS</h1>
-                    <div class="hero-line"></div>
-                    <p>
-                        Elige tu ciclo de preparación preuniversitaria según tu objetivo.
-                    </p>
-                </div> -->
+    <header class="exp-hero">
+        <div class="exp-hero-overlay">
+            <div class="exp-hero-content">
+                <span class="welcome-tag">PREPARACIÓN DE ALTO NIVEL</span>
+                <h1 class="welcome-title-hero">NUESTROS CICLOS</h1>
+                <div class="welcome-line-hero"></div>
+                <p class="welcome-description-hero">
+                    Elige tu ciclo de preparación preuniversitaria segun tu objetivo.
+                </p>
             </div>
-            <img src="{{ asset('images/imagen10.jpg') }}" alt="Fondo" class="hero-bg-img">
-        </section>
+        </div>
+        <img src="{{ asset('#') }}" alt="Fondo" class="hero-bg-img">
+    </header>
 
-        <section class="ciclos-section">
-            <div class="ciclos-container">
+    <section class="ciclos-section">
+        <div class="ciclos-container">
 
-                <div class="ciclos-header">
-                    <span class="sub-header">PROCESO DE ADMISIÓN 2026</span>
-                    <h2>EXPLORA NUESTROS PROGRAMAS</h2>
-                    <p>Selecciona tu universidad de interés para conocer los ciclos disponibles y potenciar tu preparación.</p>
+            <div class="ciclos-header">
+                <span class="sub-header">PROCESO DE ADMISIÓN 2026</span>
+                <h2>EXPLORA NUESTROS PROGRAMAS</h2>
+                <p>Selecciona tu universidad de interés para conocer los ciclos disponibles y potenciar tu preparación.</p>
+            </div>
+
+            <div class="ciclos-wrapper">
+                <div class="ciclo-acordeon">
+                    <div class="acordeon-header header-unu">
+                        <span>UNU (UCAYALI)</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="acordeon-content">
+                        <a href="{{ url('mantenimiento') }}" class="ciclo-link">
+                        <div class="ciclo-item">
+                            <div class="ciclo-info">
+                                <span class="ciclo-name">Anual UNU</span>
+                                <span class="badge-nuevo">NUEVO</span>
+                            </div>
+                        </div>
+                        </a>
+                        <a href="{{ url('mantenimiento') }}" class="ciclo-link">
+                        <div class="ciclo-item">
+                            <div class="ciclo-info">
+                                <span class="ciclo-name">Semestral UNU</span>
+                                <span class="badge-nuevo">NUEVO</span>
+                            </div>
+                        </div>
+                        </a>
+                        <a href="{{ url('mantenimiento') }}" class="ciclo-link">
+                        <div class="ciclo-item">
+                            <div class="ciclo-info">
+                                <span class="ciclo-name">Verano Pre UNU</span>
+                                <span class="badge-nuevo">NUEVO</span>
+                            </div>
+                        </div>
+                        </a>
+                        <p class="empty-msg">Próximamente más ciclos.</p>
+                    </div>
                 </div>
 
-                <div class="ciclos-wrapper">
-                    <div class="ciclo-acordeon">
-                        <div class="acordeon-header header-unu">
-                            <span>UNU (UCAYALI)</span>
-                            <i class="fa-solid fa-chevron-down"></i>
-                        </div>
-                        <div class="acordeon-content">
-                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
-                            <div class="ciclo-item">
-                                <div class="ciclo-info">
-                                    <span class="ciclo-name">Anual UNU</span>
-                                    <span class="badge-nuevo">NUEVO</span>
-                                </div>
-                            </div>
-                            </a>
-                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
-                            <div class="ciclo-item">
-                                <div class="ciclo-info">
-                                    <span class="ciclo-name">Semestral UNU</span>
-                                    <span class="badge-nuevo">NUEVO</span>
-                                </div>
-                            </div>
-                            </a>
-                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
-                            <div class="ciclo-item">
-                                <div class="ciclo-info">
-                                    <span class="ciclo-name">Verano Pre UNU</span>
-                                    <span class="badge-nuevo">NUEVO</span>
-                                </div>
-                            </div>
-                            </a>
-                            <p class="empty-msg">Próximamente más ciclos.</p>
-                        </div>
+                <div class="ciclo-acordeon">
+                    <div class="acordeon-header header-unia">
+                        <span>UNIA (INTERCULTURAL)</span>
+                        <i class="fa-solid fa-chevron-down"></i>
                     </div>
-
-                    <div class="ciclo-acordeon">
-                        <div class="acordeon-header header-unia">
-                            <span>UNIA (INTERCULTURAL)</span>
-                            <i class="fa-solid fa-chevron-down"></i>
+                    <div class="acordeon-content">
+                        <a href="{{ url('mantenimiento') }}" class="ciclo-link">
+                        <div class="ciclo-item">
+                            <div class="ciclo-info">
+                                <span class="ciclo-name">Anual UNIA</span>
+                                <span class="badge-nuevo">NUEVO</span>
+                            </div>
                         </div>
-                        <div class="acordeon-content">
-                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
-                            <div class="ciclo-item">
-                                <div class="ciclo-info">
-                                    <span class="ciclo-name">Anual UNIA</span>
-                                    <span class="badge-nuevo">NUEVO</span>
-                                </div>
+                        </a>
+                        <a href="{{ url('mantenimiento') }}" class="ciclo-link">
+                        <div class="ciclo-item">
+                            <div class="ciclo-info">
+                                <span class="ciclo-name">Semestral UNIA</span>
+                                <span class="badge-nuevo">NUEVO</span>
                             </div>
-                            </a>
-                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
-                            <div class="ciclo-item">
-                                <div class="ciclo-info">
-                                    <span class="ciclo-name">Semestral UNIA</span>
-                                    <span class="badge-nuevo">NUEVO</span>
-                                </div>
-                            </div>
-                            </a>
-                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
-                            <div class="ciclo-item">
-                                <div class="ciclo-info">
-                                    <span class="ciclo-name">Verano Pre UNIA</span>
-                                    <span class="badge-nuevo">NUEVO</span>
-                                </div>
-                            </div>
-                            </a>
-                            <p class="empty-msg">Próximamente más ciclos.</p>
                         </div>
+                        </a>
+                        <a href="{{ url('mantenimiento') }}" class="ciclo-link">
+                        <div class="ciclo-item">
+                            <div class="ciclo-info">
+                                <span class="ciclo-name">Verano Pre UNIA</span>
+                                <span class="badge-nuevo">NUEVO</span>
+                            </div>
+                        </div>
+                        </a>
+                        <p class="empty-msg">Próximamente más ciclos.</p>
                     </div>
-
-                    <div class="ciclo-acordeon">
-                        <div class="acordeon-header header-otros">
-                            <span>OTRAS UNIVERSIDADES</span>
-                            <i class="fa-solid fa-chevron-down"></i>
-                        </div>
-                        <div class="acordeon-content">
-                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
-                            <div class="ciclo-item">
-                                <div class="ciclo-info">
-                                    <span class="ciclo-name">UNMSM (San Marcos)</span>
-                                    <span class="badge-nuevo">NUEVO</span>
-                                </div>
-                            </div>
-                            </a>
-                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
-                            <div class="ciclo-item">
-                                <div class="ciclo-info">
-                                    <span class="ciclo-name">UNI (Ingeniería)</span>
-                                    <span class="badge-nuevo">NUEVO</span>
-                                </div>
-                            </div>
-                            </a>
-                            <a href="{{ url('mantenimiento') }}" class="ciclo-link">
-                            <div class="ciclo-item">
-                                <div class="ciclo-info">
-                                    <span class="ciclo-name">PUCP (Católica)</span>
-                                    <span class="badge-nuevo">NUEVO</span>
-                                </div>
-                            </div>
-                            </a>
-
-                            <p class="empty-msg">Próximamente más universidades.</p>
-                        </div>
-                    </div>
-
-                    <div class="ciclo-acordeon">
-                        <div class="acordeon-header header-servicios">
-                            <span>OTROS SERVICIOS</span>
-                            <i class="fa-solid fa-chevron-down"></i>
-                        </div>
-                        <div class="acordeon-content">
-                            <p class="empty-msg">Próximamente nuevos servicios.</p>
-                        </div>
-                    </div>
-
                 </div>
-            </div>
-        </section>
 
-        <section class="universidades-section-final">
-            <div class="univ-container-fixed">
-                <div class="univ-grid-wrapper">
-
-                    <div class="univ-card">
-                        <div class="univ-logo-box">
-                            <img src="{{ asset('images/Unu-Next-Level.png') }}" alt="UNU" class="logo-unu">
-                        </div>
-                        <span class="univ-pre-text">Preparación</span>
-                        <h3 class="univ-title">UNU</h3>
+                <div class="ciclo-acordeon">
+                    <div class="acordeon-header header-otros">
+                        <span>OTRAS UNIVERSIDADES</span>
+                        <i class="fa-solid fa-chevron-down"></i>
                     </div>
-
-                    <div class="univ-card">
-                        <div class="univ-logo-box">
-                            <img src="{{ asset('images/Unia-Next-Level.png') }}" alt="UNIA" class="logo-unia">
+                    <div class="acordeon-content">
+                        <a href="{{ url('mantenimiento') }}" class="ciclo-link">
+                        <div class="ciclo-item">
+                            <div class="ciclo-info">
+                                <span class="ciclo-name">UNMSM (San Marcos)</span>
+                                <span class="badge-nuevo">NUEVO</span>
+                            </div>
                         </div>
-                        <span class="univ-pre-text">Preparación</span>
-                        <h3 class="univ-title">UNIA</h3>
-                    </div>
-
-                    <div class="univ-card">
-                        <div class="univ-logo-box">
-                            <img src="{{ asset('images/San-Marcos-Next-Level.png') }}" alt="San Marcos" class="logo-sanmarcos">
+                        </a>
+                        <a href="{{ url('mantenimiento') }}" class="ciclo-link">
+                        <div class="ciclo-item">
+                            <div class="ciclo-info">
+                                <span class="ciclo-name">UNI (Ingeniería)</span>
+                                <span class="badge-nuevo">NUEVO</span>
+                            </div>
                         </div>
-                        <span class="univ-pre-text">Preparación</span>
-                        <h3 class="univ-title">San Marcos</h3>
-                    </div>
-
-                    <div class="univ-card">
-                        <div class="univ-logo-box">
-                            <img src="{{ asset('images/Uni-Next-Level.png') }}" alt="UNI" class="logo-uni">
+                        </a>
+                        <a href="{{ url('mantenimiento') }}" class="ciclo-link">
+                        <div class="ciclo-item">
+                            <div class="ciclo-info">
+                                <span class="ciclo-name">PUCP (Católica)</span>
+                                <span class="badge-nuevo">NUEVO</span>
+                            </div>
                         </div>
-                        <span class="univ-pre-text">Preparación</span>
-                        <h3 class="univ-title">UNI</h3>
-                    </div>
+                        </a>
 
-                    <div class="univ-card">
-                        <div class="univ-logo-box">
-                            <img src="{{ asset('images/Catolica-Next-Level.png') }}" alt="Católica" class="logo-catolica">
-                        </div>
-                        <span class="univ-pre-text">Preparación</span>
-                        <h3 class="univ-title">Católica</h3>
+                        <p class="empty-msg">Próximamente más universidades.</p>
                     </div>
-
                 </div>
+
+                <div class="ciclo-acordeon">
+                    <div class="acordeon-header header-servicios">
+                        <span>OTROS SERVICIOS</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="acordeon-content">
+                        <p class="empty-msg">Próximamente nuevos servicios.</p>
+                    </div>
+                </div>
+
             </div>
-        </section>
+        </div>
+    </section>
+
+    <section class="universidades-section-final">
+        <div class="univ-container-fixed">
+            <div class="univ-grid-wrapper">
+
+                <div class="univ-card">
+                    <div class="univ-logo-box">
+                        <img src="{{ asset('images/Unu-Next-Level.png') }}" alt="UNU" class="logo-unu">
+                    </div>
+                    <span class="univ-pre-text">Preparación</span>
+                    <h3 class="univ-title">UNU</h3>
+                </div>
+
+                <div class="univ-card">
+                    <div class="univ-logo-box">
+                        <img src="{{ asset('images/Unia-Next-Level.png') }}" alt="UNIA" class="logo-unia">
+                    </div>
+                    <span class="univ-pre-text">Preparación</span>
+                    <h3 class="univ-title">UNIA</h3>
+                </div>
+
+                <div class="univ-card">
+                    <div class="univ-logo-box">
+                        <img src="{{ asset('images/San-Marcos-Next-Level.png') }}" alt="San Marcos" class="logo-sanmarcos">
+                    </div>
+                    <span class="univ-pre-text">Preparación</span>
+                    <h3 class="univ-title">San Marcos</h3>
+                </div>
+
+                <div class="univ-card">
+                    <div class="univ-logo-box">
+                        <img src="{{ asset('images/Uni-Next-Level.png') }}" alt="UNI" class="logo-uni">
+                    </div>
+                    <span class="univ-pre-text">Preparación</span>
+                    <h3 class="univ-title">UNI</h3>
+                </div>
+
+                <div class="univ-card">
+                    <div class="univ-logo-box">
+                        <img src="{{ asset('images/Catolica-Next-Level.png') }}" alt="Católica" class="logo-catolica">
+                    </div>
+                    <span class="univ-pre-text">Preparación</span>
+                    <h3 class="univ-title">Católica</h3>
+                </div>
+
+            </div>
+        </div>
+    </section>
 
     </main>
 

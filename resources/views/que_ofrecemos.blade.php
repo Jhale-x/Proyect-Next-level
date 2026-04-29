@@ -104,6 +104,20 @@
 
     <main>
 
+    <header class="exp-hero">
+        <div class="exp-hero-overlay">
+            <div class="exp-hero-content">
+                <span class="welcome-tag">FORMACIÓN INTEGRAL</span>
+                <h1 class="welcome-title-hero">¿QUÉ OFRECEMOS?</h1>
+                <div class="welcome-line-hero"></div>
+                <p class="welcome-description-hero">
+                    Actividades educativas, deportivas y formativas para el desarrollo completo de nuestros estudiantes.
+                </p>
+            </div>
+        </div>
+        <img src="{{ asset('#') }}" alt="Fondo" class="hero-bg-img">
+    </header>
+
     <section class="actividades-section-clean">
         <div class="container-clean">
             <div class="section-header-centered-clean">

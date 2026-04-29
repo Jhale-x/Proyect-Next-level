@@ -1,3 +1,70 @@
+.exp-hero {
+    position: relative;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exp-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--azul-noche) 0%, var(--azul-oscuro) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.hero-bg-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.exp-hero-content {
+    text-align: center;
+    color: var(--blanco);
+    max-width: 800px;
+    padding: 0 25px;
+    z-index: 3;
+}
+
+.welcome-tag {
+    display: inline-block;
+    background: var(--rojo-principal);
+    color: var(--blanco);
+    padding: 5px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.welcome-title-hero {
+    font-size: 3.4rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+}
+
+.welcome-line-hero {
+    width: 90px;
+    height: 6px;
+    background: var(--rojo-principal);
+    margin: 10px auto;
+}
+
+.welcome-description-hero {
+    font-size: 17px;
+    opacity: 0.9;
+}
+
 .actividades-section-clean {
     padding: 100px 0;
     background-color: var(--blanco);
@@ -108,7 +175,7 @@
 
 .deportivas-section {
     padding: 80px 0 80px;
-    background-color: var(--azul-oscuro);
+    background: linear-gradient(135deg, var(--azul-noche) 0%, var(--azul-oscuro) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -346,7 +413,7 @@
 
 .talleres-section {
     padding: 100px 0;
-    background: linear-gradient(135deg, var(--azul-oscuro) 0%, #0a192f 100%);
+    background: linear-gradient(135deg, var(--azul-noche) 0%, var(--azul-oscuro) 100%);
     position: relative;
     overflow: hidden;
 }
@@ -603,6 +670,47 @@
 
 @media (max-width: 992px) {
 
+    .exp-hero {
+        height: 450px;
+        background-position: center;
+    }
+
+    .exp-hero-overlay {
+        padding: 0 20px;
+        background: linear-gradient(135deg, var(--azul-noche) 0%, var(--azul-oscuro) 100%);
+    }
+
+    .exp-hero-content {
+        width: 100%;
+        text-align: center;
+    }
+
+    .welcome-tag {
+        font-size: 10px;
+        padding: 8px 11px;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .welcome-title-hero {
+        font-size: 2.1rem !important;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 20px;
+    }
+
+    .welcome-line-hero {
+        width: 70px;
+        height: 6px;
+        background: var(--rojo-principal);
+        margin: 0 auto 25px auto;
+    }
+
+    .welcome-description-hero {
+        font-size: 17px;
+        opacity: 0.9;
+    }
+
     .deportivas-section {
         padding: 50px 0 50px;
     }
@@ -619,9 +727,10 @@
     }
 
     .section-header-centered-clean h2 {
-        font-size: 2.5rem !important;
+        font-size: 2.1rem !important;
         line-height: 1.2;
     }
+
     .section-header-centered-clean p {
         font-size: 1.2rem;
         max-width: 85%;
@@ -632,7 +741,7 @@
     }
 
     .section-header-centered h2 {
-        font-size: 2rem !important;
+        font-size: 2.1rem !important;
     }
 
     .actividades-grid-clean {
@@ -737,7 +846,7 @@
     }
 
     .talleres-content h2 {
-        font-size: 32px !important;
+        font-size: 2.1rem !important;
         text-align: center;
         width: 100%;
         margin: 0 auto 20px auto;

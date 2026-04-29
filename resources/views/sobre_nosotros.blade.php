@@ -102,102 +102,112 @@
     </div>
 
     <main>
-        <section class="hero-sobre">
-            <img src="{{ asset('images/Nosotros-Next-Level.jpeg') }}" alt="Fondo" class="hero-bg-img">
-        </section>
+    <header class="exp-hero">
+        <div class="exp-hero-overlay">
+            <div class="exp-hero-content">
+                <span class="welcome-tag">INSTITUCIÓN EDUCATIVA</span>
+                <h1 class="welcome-title-hero">SOBRE NOSOTROS</h1>
+                <div class="welcome-line-hero"></div>
+                <p class="welcome-description-hero">
+                    Transformamos la educación en una experiencia de alto impacto, formando estudiantes con mentalidad ganadora y visión global.
+                </p>
+            </div>
+        </div>
+        <img src="{{ asset('#') }}" alt="Fondo" class="hero-bg-img">
+    </header>
 
-        <section class="sobre-section">
-            <div class="container sobre-grid">
-                <div class="sobre-text">
-                    <span class="upper-title">Nuestra Esencia</span>
-                    <h2>NUESTRA IDENTIDAD</h2>
-                    <div class="section-line"></div>
-                    <p class="p-highlight">
-                        En <strong>Next Level</strong>, entendemos que la educación no solo transmite conocimientos, sino que construye carácter, disciplina y liderazgo.
-                    </p>
-                    <p>
-                        Nuestro enfoque integra excelencia académica, tecnología de vanguardia y una sólida formación en valores, preparando a nuestros estudiantes para destacar y competir en un entorno global altamente exigente.
-                    </p>
-                    <div class="sobre-features">
-                        <span><i class="fa-solid fa-check-double"></i> Mentalidad Ganadora</span>
-                        <span><i class="fa-solid fa-check-double"></i> Visión Global</span>
+    <section class="sobre-section">
+        <div class="container sobre-grid">
+            <div class="sobre-text">
+                <span class="upper-title">Nuestra Esencia</span>
+                <h2>NUESTRA IDENTIDAD</h2>
+                <div class="section-line"></div>
+                <p class="p-highlight">
+                    En <strong>Next Level</strong>, entendemos que la educación no solo transmite conocimientos, sino que construye carácter, disciplina y liderazgo.
+                </p>
+                <p>
+                    Nuestro enfoque integra excelencia académica, tecnología de vanguardia y una sólida formación en valores, preparando a nuestros estudiantes para destacar y competir en un entorno global altamente exigente.
+                </p>
+                <div class="sobre-features">
+                    <span><i class="fa-solid fa-check-double"></i> Mentalidad Ganadora</span>
+                    <span><i class="fa-solid fa-check-double"></i> Visión Global</span>
+                </div>
+            </div>
+
+            <div class="sobre-stats">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="stat-info">
+                        <h3>100%</h3>
+                        <span>Educación vanguardista desde el primer día</span>
                     </div>
                 </div>
-
-                <div class="sobre-stats">
-                    <div class="stat-card">
-                        <div class="stat-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                        <div class="stat-info">
-                            <h3>100%</h3>
-                            <span>Educación vanguardista desde el primer día</span>
-                        </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-user-shield"></i></div>
+                    <div class="stat-info">
+                        <h3>24/7</h3>
+                        <span>Seguimiento formativo y disciplinario</span>
                     </div>
-                    <div class="stat-card">
-                        <div class="stat-icon"><i class="fa-solid fa-user-shield"></i></div>
-                        <div class="stat-info">
-                            <h3>24/7</h3>
-                            <span>Seguimiento formativo y disciplinario</span>
-                        </div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-icon"><i class="fa-solid fa-chart-line"></i></div>
-                        <div class="stat-info">
-                            <h3>100%</h3>
-                            <span>Compromiso con el éxito del alumno</span>
-                        </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="stat-info">
+                        <h3>100%</h3>
+                        <span>Compromiso con el éxito del alumno</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="metodologia-section">
-            <div class="container metodologia-grid">
-                <div class="metodologia-img">
-                    <img src="{{ asset('images/Metodología-Next-Level.png') }}" alt="Metodología Next Level">
-                    <div class="img-badge">METODOLOGÍA 360°</div>
-                </div>
-                <div class="metodologia-content-box">
-                    <span class="upper-title">NUESTRA FORMA DE ENSEÑAR</span>
-                    <h2>NUESTRA METODOLOGÍA</h2>
-                    <div class="section-line"></div>
-
-                    <p class="metodologia-intro">
-                        Nuestro modelo garantiza resultados sostenibles mediante el acompañamiento constante y el uso de herramientas de vanguardia.
-                    </p>
-
-                    <ul class="metodologia-list-new">
-                        <li>
-                            <div class="list-icon"><i class="fa-solid fa-brain"></i></div>
-                            <div class="list-text">
-                                <strong>Aprendizaje Basado en Retos</strong>
-                                <span>Enfrentamos a los alumnos a situaciones reales.</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="list-icon"><i class="fa-solid fa-chart-pie"></i></div>
-                            <div class="list-text">
-                                <strong>Evaluación Continua</strong>
-                                <span>Seguimiento personalizado de cada avance.</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="list-icon"><i class="fa-solid fa-microchip"></i></div>
-                            <div class="list-text">
-                                <strong>Integración Tecnológica</strong>
-                                <span>Uso de plataformas digitales en el aula.</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="list-icon"><i class="fa-solid fa-users-gear"></i></div>
-                            <div class="list-text">
-                                <strong>Desarrollo Integral</strong>
-                                <span>Equilibrio entre lo académico y lo humano.</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+    <section class="metodologia-section">
+        <div class="container metodologia-grid">
+            <div class="metodologia-img">
+                <img src="{{ asset('images/Metodología-Next-Level.png') }}" alt="Metodología Next Level">
+                <div class="img-badge">METODOLOGÍA 360°</div>
             </div>
-        </section>
+            <div class="metodologia-content-box">
+                <span class="upper-title">NUESTRA FORMA DE ENSEÑAR</span>
+                <h2>NUESTRA METODOLOGÍA</h2>
+                <div class="section-line"></div>
+
+                <p class="metodologia-intro">
+                    Nuestro modelo garantiza resultados sostenibles mediante el acompañamiento constante y el uso de herramientas de vanguardia.
+                </p>
+
+                <ul class="metodologia-list-new">
+                    <li>
+                        <div class="list-icon"><i class="fa-solid fa-brain"></i></div>
+                        <div class="list-text">
+                            <strong>Aprendizaje Basado en Retos</strong>
+                            <span>Enfrentamos a los alumnos a situaciones reales.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                        <div class="list-text">
+                            <strong>Evaluación Continua</strong>
+                            <span>Seguimiento personalizado de cada avance.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-icon"><i class="fa-solid fa-microchip"></i></div>
+                        <div class="list-text">
+                            <strong>Integración Tecnológica</strong>
+                            <span>Uso de plataformas digitales en el aula.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-icon"><i class="fa-solid fa-users-gear"></i></div>
+                        <div class="list-text">
+                            <strong>Desarrollo Integral</strong>
+                            <span>Equilibrio entre lo académico y lo humano.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
     <section class="mision-vision-section">
     <div class="exp-blobs-container container-blocks">

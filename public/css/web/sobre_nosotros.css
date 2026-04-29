@@ -1,9 +1,19 @@
-.hero-sobre {
+.exp-hero {
     position: relative;
-    height: 550px;
+    height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.exp-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--azul-noche) 0%, var(--azul-oscuro) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
 }
 
 .hero-bg-img {
@@ -12,6 +22,47 @@
     height: 100%;
     object-fit: cover;
     z-index: 1;
+}
+
+.exp-hero-content {
+    text-align: center;
+    color: var(--blanco);
+    max-width: 800px;
+    padding: 0 25px;
+    z-index: 3;
+}
+
+.welcome-tag {
+    display: inline-block;
+    background: var(--rojo-principal);
+    color: var(--blanco);
+    padding: 5px 24px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.welcome-title-hero {
+    font-size: 3.4rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+}
+
+.welcome-line-hero {
+    width: 90px;
+    height: 6px;
+    background: var(--rojo-principal);
+    margin: 10px auto;
+}
+
+.welcome-description-hero {
+    font-size: 17px;
+    opacity: 0.9;
 }
 
 .sobre-section {
@@ -322,8 +373,46 @@
 }
 
 @media (max-width: 992px) {
-    .hero-sobre{
-        height: 205px;
+
+    .exp-hero {
+        height: 450px;
+        background-position: center;
+    }
+
+    .exp-hero-overlay {
+        padding: 0 20px;
+        background: linear-gradient(135deg, var(--azul-noche) 0%, var(--azul-oscuro) 100%);
+    }
+
+    .exp-hero-content {
+        width: 100%;
+        text-align: center;
+    }
+
+    .welcome-tag {
+        font-size: 10px;
+        padding: 8px 11px;
+        display: inline-block;
+        margin-bottom: 12px;
+    }
+
+    .welcome-title-hero {
+        font-size: 2.1rem !important;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 20px;
+    }
+
+    .welcome-line-hero {
+        width: 70px;
+        height: 6px;
+        background: var(--rojo-principal);
+        margin: 0 auto 25px auto;
+    }
+
+    .welcome-description-hero {
+        font-size: 17px;
+        opacity: 0.9;
     }
 
     .sobre-section {
@@ -337,7 +426,7 @@
     }
 
     .sobre-text h2 {
-        font-size: 2.5rem;
+        font-size: 2.1rem;
         line-height: 1.2;
     }
 
@@ -415,7 +504,7 @@
     }
 
     .metodologia-content-box h2 {
-        font-size: 2.5rem;
+        font-size: 2.1rem;
         line-height: 1.2;
     }
 
