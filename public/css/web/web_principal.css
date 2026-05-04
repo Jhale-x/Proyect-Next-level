@@ -633,7 +633,7 @@ html, body {
 }
 
 .welcome-title {
-    font-size: 43px;
+    font-size: 2.7rem;
     color: var(--azul-oscuro);
     font-weight: 800;
     line-height: 1.1;
@@ -715,7 +715,7 @@ html, body {
 
 .pathway-title {
     color: var(--azul-oscuro);
-    font-size: 61px;
+    font-size: 2.7rem;
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 25px;
@@ -879,7 +879,7 @@ html, body {
 }
 
 .section-title-dark {
-    font-size: 60px;
+    font-size: 2.7rem;
     font-weight: 800;
     color: var(--azul-noche);
 }

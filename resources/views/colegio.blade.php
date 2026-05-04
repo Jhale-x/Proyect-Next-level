@@ -104,6 +104,397 @@
 
     <main>
 
+    <header class="exp-hero">
+        <div class="exp-hero-overlay">
+            <div class="exp-hero-content">
+                <span class="welcome-tag">EDUCACIÓN INTEGRAL</span>
+                <h1 class="welcome-title-hero">COLEGIO NEXT LEVEL</h1>
+                <div class="welcome-line-hero"></div>
+                <p class="welcome-description-hero">
+                    Formamos con corazón y futuro, a través de una educación integral, valores humanos
+                    excelencia académica que transforma vidas.
+                </p>
+            </div>
+        </div>
+    </header>
+
+        <section class="filosofia-section">
+            <div class="container">
+                <div class="filosofia-grid">
+                    <div class="filosofia-text" data-aos="fade-right">
+                        <span class="academy-label">NUESTRA ESENCIA</span>
+                        <h2 class="title-blue">MÁS QUE UN COLEGIO,<br>UNA FAMILIA EDUCATIVA</h2>
+                        <div class="separador"></div>
+                        <p>En Colegio Next Level creemos que cada estudiante es único. Por eso, desarrollamos un modelo
+                            pedagógico personalizado que potencia talentos, fomenta el pensamiento crítico y cultiva
+                            valores como la empatía, la responsabilidad y el respeto.</p>
+                        <p>Nuestro enfoque combina innovación tecnológica con tradición humanista, preparando a los
+                            jóvenes para los desafíos globales sin perder su identidad y raíces culturales.</p>
+                        <div class="pillar-list">
+                            <div class="pillar" data-aos="zoom-in" data-aos-delay="100">
+                                <i class="fas fa-brain"></i>
+                                <h4>Innovación</h4>
+                                <p>Tecnología y métodos vanguardistas</p>
+                            </div>
+                            <div class="pillar" data-aos="zoom-in" data-aos-delay="200">
+                                <i class="fas fa-heart"></i>
+                                <h4>Valores</h4>
+                                <p>Formación humana integral</p>
+                            </div>
+                            <div class="pillar" data-aos="zoom-in" data-aos-delay="300">
+                                <i class="fas fa-user-graduate"></i>
+                                <h4>Liderazgo</h4>
+                                <p>Forjando agentes de cambio</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filosofia-img" data-aos="fade-left">
+                        <img src="{{ asset('images/Colegio-Esencia-Next-Level.png') }}" alt="Estudiantes felices">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="nivel-educativo-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="academy-label">NUESTRA OFERTA EDUCATIVA</span>
+                    <h2 class="title-blue">Recorrido Educativo</h2>
+                    <div class="title-line-red"></div>
+                    <p>Acompañamos el crecimiento en cada etapa formativa con excelencia y calidez</p>
+                </div>
+
+                <div class="timeline-educativo">
+                    <div class="timeline-line"></div>
+
+                    <!-- Primaria -->
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-marker">
+                            <div class="marker-dot">
+                                <i class="fas fa-child"></i>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-badge">PRIMARIA</div>
+                            <div class="timeline-header">
+                                <h3>Educación Primaria</h3>
+                                <div class="timeline-grados">1° a 6° grado</div>
+                            </div>
+                            <div class="timeline-desc">
+                                <p>Fortalecimiento de habilidades fundamentales, pensamiento lógico, expresión artística
+                                    y desarrollo de valores. Metodología activa con énfasis en comprensión lectora y
+                                    razonamiento matemático.</p>
+                            </div>
+                            <div class="timeline-features">
+                                <div class="feature-chip"><i class="fas fa-users"></i> Máx. 25 alumnos</div>
+                                <div class="feature-chip"><i class="fas fa-language"></i> Inglés 8h/semana</div>
+                                <div class="feature-chip"><i class="fas fa-palette"></i> Talleres artísticos</div>
+                                <div class="feature-chip"><i class="fas fa-brain"></i> Inteligencias múltiples</div>
+                            </div>
+                            <div class="timeline-footer">
+                                <div class="timeline-horario">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="{{ asset('images/imagen10.jpg') }}" alt="Primaria">
+                            <div class="image-overlay-timeline">
+                                <span><i class="fas fa-camera"></i> Galería</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Secundaria -->
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-marker">
+                            <div class="marker-dot">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-badge">SECUNDARIA</div>
+                            <div class="timeline-header">
+                                <h3>Educación Secundaria</h3>
+                                <div class="timeline-grados">1° a 5° año</div>
+                            </div>
+                            <div class="timeline-desc">
+                                <p>Preparación integral para la vida universitaria y profesional. Desarrollamos
+                                    liderazgo, pensamiento crítico, proyectos de innovación y orientación vocacional con
+                                    altos estándares académicos.</p>
+                            </div>
+                            <div class="timeline-features">
+                                <div class="feature-chip"><i class="fas fa-university"></i> Preuniversitario</div>
+                                <div class="feature-chip"><i class="fas fa-lightbulb"></i> Liderazgo</div>
+                                <div class="feature-chip"><i class="fas fa-microchip"></i> Robótica avanzada</div>
+                                <div class="feature-chip"><i class="fas fa-globe"></i> Intercambios</div>
+                            </div>
+                            <div class="timeline-footer">
+                                <div class="timeline-horario">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timeline-image">
+                            <img src="{{ asset('images/imagen10.jpg') }}" alt="Secundaria">
+                            <div class="image-overlay-timeline">
+                                <span><i class="fas fa-camera"></i> Galería</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="valores-hexagon-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="academy-label">PILARES FUNDAMENTALES</span>
+                    <h2 class="title-blue">Nuestros Valores y Principios</h2>
+                    <div class="title-line-red"></div>
+                    <p>Valores que nos definen y guían nuestra labor educativa diaria</p>
+                </div>
+
+                <div class="hexagon-grid">
+                    <div class="hexagon-wrapper" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="hexagon">
+                            <div class="hexagon-content">
+                                <i class="fas fa-hand-holding-heart"></i>
+                                <h3>Excelencia</h3>
+                                <p>Búsqueda constante de la mejora continua y los más altos estándares educativos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hexagon-wrapper" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="hexagon">
+                            <div class="hexagon-content">
+                                <i class="fas fa-users"></i>
+                                <h3>Respeto</h3>
+                                <p>Cultura de respeto mutuo, inclusión y comprensión hacia las diferencias individuales.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hexagon-wrapper" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="hexagon">
+                            <div class="hexagon-content">
+                                <i class="fas fa-seedling"></i>
+                                <h3>Responsabilidad</h3>
+                                <p>Compromiso con el entorno, cuidado del medio ambiente y el bien común.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hexagon-wrapper" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="hexagon">
+                            <div class="hexagon-content">
+                                <i class="fas fa-lightbulb"></i>
+                                <h3>Creatividad</h3>
+                                <p>Estimulamos el pensamiento original y la resolución creativa de problemas.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hexagon-wrapper" data-aos="zoom-in" data-aos-delay="500">
+                        <div class="hexagon">
+                            <div class="hexagon-content">
+                                <i class="fas fa-handshake"></i>
+                                <h3>Integridad</h3>
+                                <p>Actuamos con honestidad, transparencia y ética en todas nuestras acciones.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hexagon-wrapper" data-aos="zoom-in" data-aos-delay="600">
+                        <div class="hexagon">
+                            <div class="hexagon-content">
+                                <i class="fas fa-heart"></i>
+                                <h3>Empatía</h3>
+                                <p>Comprendemos y nos preocupamos por las necesidades de los demás.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="metodo-floating-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="academy-label">METODOLOGÍA PROPIA</span>
+                    <h2 class="title-white">Método Next Level</span></h2>
+                    <div class="title-line-red"></div><span class="highlight-white">
+                        <p>Un enfoque pedagógico único que combina lo mejor de la educación tradicional con las últimas
+                            innovaciones educativas</p>
+                </div>
+
+                <div class="metodo-floating-grid">
+                    <div class="metodo-floating-card" data-aos="flip-left" data-aos-delay="100">
+                        <div class="card-number">01</div>
+                        <div class="card-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h3>Aprendizaje por Proyectos</h3>
+                        <p>Investigación y solución de problemas reales, desarrollando pensamiento crítico y trabajo
+                            colaborativo desde temprana edad.</p>
+                        <div class="card-hover-effect"></div>
+                    </div>
+                    <div class="metodo-floating-card" data-aos="flip-left" data-aos-delay="200">
+                        <div class="card-number">02</div>
+                        <div class="card-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>Pensamiento Crítico</h3>
+                        <p>Análisis profundo, reflexión y cuestionamiento constante para formar ciudadanos con criterio
+                            propio.</p>
+                        <div class="card-hover-effect"></div>
+                    </div>
+                    <div class="metodo-floating-card" data-aos="flip-left" data-aos-delay="300">
+                        <div class="card-number">03</div>
+                        <div class="card-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3>Tecnología Educativa</h3>
+                        <p>Aulas digitales, realidad aumentada y herramientas innovadoras que potencian el aprendizaje.
+                        </p>
+                        <div class="card-hover-effect"></div>
+                    </div>
+                    <div class="metodo-floating-card" data-aos="flip-left" data-aos-delay="400">
+                        <div class="card-number">04</div>
+                        <div class="card-icon">
+                            <i class="fas fa-hand-peace"></i>
+                        </div>
+                        <h3>Aprendizaje Socioemocional</h3>
+                        <p>Inteligencia emocional, habilidades blandas y formación en valores para la vida.</p>
+                        <div class="card-hover-effect"></div>
+                    </div>
+                    <div class="metodo-floating-card" data-aos="flip-left" data-aos-delay="500">
+                        <div class="card-number">05</div>
+                        <div class="card-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <h3>Inmersión Bilingüe</h3>
+                        <p>Inglés desde inicial con metodología comunicativa y certificaciones internacionales.</p>
+                        <div class="card-hover-effect"></div>
+                    </div>
+                    <div class="metodo-floating-card" data-aos="flip-left" data-aos-delay="600">
+                        <div class="card-number">06</div>
+                        <div class="card-icon">
+                            <i class="fas fa-chalkboard-user"></i>
+                        </div>
+                        <h3>Acompañamiento Personalizado</h3>
+                        <p>Seguimiento individualizado con tutorías y planes de desarrollo personal.</p>
+                        <div class="card-hover-effect"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="academia-propuesta-v2">
+            <div class="container">
+                <div class="propuesta-container-full">
+                    <div class="propuesta-image-side">
+                        <img src="{{ asset('images/imagen10.jpg') }}" alt="Propuesta Next Level">
+                        <div class="propuesta-overlay-badge">
+                            <i class="fa-solid fa-bolt"></i>
+                            <span>EDUCACIÓN INTEGRAL</span>
+                        </div>
+                    </div>
+
+                    <div class="propuesta-content-box">
+                        <span class="label-preu">NUESTRA PROPUESTA</span>
+                        <h2 class="title-blue">EDUCACIÓN PARA LA VIDA</h2>
+                        <div class="separator-line"></div>
+                        <p>
+                            Brindamos el más alto nivel académico y la mejor formación integral,
+                            actualizada a las exigencias del mundo moderno y con sólidos valores humanos.
+                        </p>
+                        <ul class="propuesta-list-modern">
+                            <li><i class="fa-solid fa-circle-check"></i> Formación en valores y liderazgo.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Metodología activa y participativa.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Acompañamiento personalizado y tutorías.</li>
+                        </ul>
+                        <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20información%20sobre%20el%20colegio."
+                            class="btn-propuesta-whatsapp">
+                            <i class="fa-brands fa-whatsapp"></i> ¡AGENDA TU VISITA!
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonios-section">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <span class="academy-label">LO QUE DICEN NUESTRAS FAMILIAS</span>
+                    <h2 class="title-blue">Testimonios de Confianza</h2>
+                    <div class="title-line-red"></div>
+                    <p>La satisfacción de nuestros padres y estudiantes es nuestro mayor orgullo</p>
+                </div>
+
+                <div class="swiper testimonios-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="testimonio-card-solid">
+                                <div class="quote-icon-solid">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>"La formación integral que recibe mi hija en Next Level es excepcional. No solo
+                                    destacan en lo académico, sino que han desarrollado valores sólidos que la
+                                    acompañarán toda la vida."</p>
+                                <div class="rating-solid">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonio-card-solid">
+                                <div class="quote-icon-solid">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>"Los profesores son apasionados y comprometidos. Mi hijo encontró su vocación en
+                                    robótica gracias a los talleres extracurriculares que ofrece Next Level."</p>
+                                <div class="rating-solid">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonio-card-solid">
+                                <div class="quote-icon-solid">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>"La infraestructura y el enfoque bilingüe son increíbles. Mis hijos están felices y
+                                    aprendiendo cada día más. La comunicación con los profesores en Next Level es
+                                    excelente."</p>
+                                <div class="rating-solid">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonio-card-solid">
+                                <div class="quote-icon-solid">
+                                    <i class="fas fa-quote-left"></i>
+                                </div>
+                                <p>"El nivel académico es sobresaliente. Mi hija ingresó a la universidad que quería
+                                    gracias a la preparación que recibió en Next Level. Totalmente recomendado."</p>
+                                <div class="rating-solid">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
@@ -154,5 +545,6 @@
     <script src="{{ asset('js/marquee_principal.js') }}"></script>
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
+    <script src="{{ asset('js/colegio.js') }}"></script>
 </body>
 </html>

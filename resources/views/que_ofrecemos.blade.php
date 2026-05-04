@@ -115,7 +115,6 @@
                 </p>
             </div>
         </div>
-        <img src="{{ asset('#') }}" alt="Fondo" class="hero-bg-img">
     </header>
 
     <section class="actividades-section-clean">
