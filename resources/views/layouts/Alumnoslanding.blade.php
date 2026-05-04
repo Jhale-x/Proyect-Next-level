@@ -9,15 +9,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/alumno/activityAlumno.css') }}"> X
-    <link rel="stylesheet" href="{{ asset('css/alumno/calificaciones.css') }}"> FALTA   
-    <link rel="stylesheet" href="{{ asset('css/alumno/cursos.css') }}"> X
-    <link rel="stylesheet" href="{{ asset('css/alumno/detalle_cursos.css') }}"> X
-    <link rel="sylesheet" href="{{ asset('css/alumno/herramientas.css') }}"> FALTA
-    <link rel="stylesheet" href="{{ asset('css/alumno/layout.css') }}"> X
-    <link rel="sylesheet" href="{{ asset('css/alumno/Mensajes.css') }}"> FALTA
-    <link rel="stylesheet" href="{{ asset('css/alumno/PaginaInstitucional.css') }}"> X
     
+    <!-- Estilos base del layout -->
+    <link rel="stylesheet" href="{{ asset('css/alumno/layout.css') }}">
+    
+    <!-- Stack para estilos específicos de cada vista -->
     @stack('styles')
 </head>
 

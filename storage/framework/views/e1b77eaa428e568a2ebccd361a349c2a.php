@@ -1,3 +1,7 @@
+<?php $__env->startPush('styles'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('css/alumno/cursos.css')); ?>">
+<?php $__env->stopPush(); ?>
+
 <?php $__env->startSection('title', 'Mis Cursos - Next Level'); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -19,10 +23,10 @@
                         <i class="bi bi-book"></i>
                     </div>
                     <div class="course-info">
-                        <h4><?php echo e($curso->nombre); ?></h4>
+                        <h4><?php echo e($curso->nombre ?? $curso->materia ?? 'Curso sin nombre'); ?></h4>
                         <p>Docente: <?php echo e($curso->docente ?? 'No asignado'); ?></p>
                     </div>
-                    <a href="<?php echo e(route('alumno.courses.show', $curso->id_curso)); ?>" class="btn-course">Ver Curso</a>
+                    <a href="<?php echo e(route('alumno.courses.show', $curso->id_curso ?? $curso->id)); ?>" class="btn-course">Ver Curso</a>
                 </div>
             </div>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>

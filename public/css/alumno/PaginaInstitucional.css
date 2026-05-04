@@ -1,212 +1,395 @@
+/* ======================================================
+   PÁGINA INSTITUCIONAL - ALUMNO
+   Colores: #2563eb (azul), #dc2626 (rojo)
+   ====================================================== */
+
 /* 🌐 FONDO Y BASE */
 body {
-    font-family: "Inter", sans-serif;
-    background: linear-gradient(135deg, #eef2ff, #fee2e2);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f0f4ff 0%, #fef2f2 100%);
+    min-height: 100vh;
 }
 
-.page-wrap {
+.contenido-principal {
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* ======================================================
+   TÍTULOS
+   ====================================================== */
+.titulo-seccion {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #0a1f44, #2563eb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.titulo-seccion::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #dc2626, #2563eb);
+    border-radius: 4px;
+}
+
+.seccion-titulo {
+    font-weight: 700;
+    color: #1e293b;
+    position: relative;
+    padding-left: 15px;
+}
+
+.seccion-titulo::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 25px;
+    background: linear-gradient(135deg, #dc2626, #2563eb);
+    border-radius: 5px;
+}
+
+/* ======================================================
+   CARD DE FILTROS
+   ====================================================== */
+.filtros-card {
+    background: white;
+    border-radius: 24px;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.filtros-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15);
+}
+
+.filtros-card .card-body {
     padding: 1.5rem;
 }
 
-/* HEADER */
-.admin-topbar {
-    background: linear-gradient(135deg, #0a1f44, #2563eb);
-    color: #fff;
-}
-
-.admin-topbar input {
-    background: rgba(255, 255, 255, 0.15);
-    border: none;
-    color: #fff;
-}
-
-.admin-topbar input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* TÍTULOS */
-.section-title {
-    font-size: 2.3rem;
-    font-weight: 800;
-    color: #0a1f44;
-}
-
-.section-title::after {
-    content: "";
-    width: 80px;
-    height: 5px;
-    border-radius: 10px;
-    background: linear-gradient(90deg, #dc2626, #2563eb);
-    display: block;
-    margin-top: 8px;
-}
-
-/* 🎨 COLORES Y BACKGROUNDS */
-.bg-primary {
-    background: linear-gradient(135deg, #1e3a8a, #2563eb) !important;
-}
-
-.bg-info {
-    background: linear-gradient(135deg, #2563eb, #60a5fa) !important;
-}
-
-.bg-dark {
-    background: linear-gradient(135deg, #0a1f44, #1e293b) !important;
-}
-
-.bg-warning {
-    background: linear-gradient(135deg, #dc2626, #f87171) !important;
-}
-
-.bg-success {
-    background: linear-gradient(135deg, #b91c1c, #ef4444) !important;
-}
-
-/* 🔥 CARDS Y ESTADÍSTICAS */
-.card {
-    border-radius: 18px;
-    border: none;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-}
-
-.card-header {
-    background: linear-gradient(135deg, #0a1f44, #2563eb) !important;
-    color: #fff !important;
+.filtros-card .form-label {
+    font-size: 0.75rem;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #64748b;
+    margin-bottom: 0.5rem;
 }
 
-.custom-header {
-    background: linear-gradient(135deg, #0a1f44, #2563eb);
-    color: #fff;
-    padding: 12px 16px;
-    border-radius: 18px 18px 0 0;
-    font-weight: 600;
-}
-
-.stats-card {
-    border-radius: 18px;
-    padding: 20px;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-    transition: 0.3s;
-}
-
-.stats-card:hover {
-    transform: translateY(-6px);
-}
-
-.stats-card::before {
-    content: "";
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 50%;
-    top: -50px;
-    right: -50px;
-}
-
-.stats-icon {
-    font-size: 1.7rem;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 10px;
+.filtros-card .form-control,
+.filtros-card .form-select {
     border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    transition: all 0.2s;
 }
 
-/* 👥 USUARIOS */
-.user-mini-card {
-    background: #fff;
-    border-radius: 14px;
-    padding: 10px;
-    border: 1px solid #eee;
-    transition: 0.25s;
-}
-
-.user-mini-card:hover {
-    transform: translateY(-4px) scale(1.02);
-    background: linear-gradient(135deg, #eff6ff, #fee2e2);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
-}
-
-.avatar-mini {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-}
-
-/* BARRAS Y FILLS */
-.mini-bar {
-    height: 6px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.mini-fill {
-    height: 100%;
-    border-radius: 10px;
-    background: linear-gradient(90deg, #dc2626, #2563eb);
-}
-
-/* BOTONES */
-.btn-success {
-    background: linear-gradient(135deg, #dc2626, #2563eb);
-    border: none;
-    border-radius: 12px;
-    font-weight: 700;
-    transition: 0.3s;
-}
-
-.btn-success:hover {
-    transform: scale(1.05);
-}
-
-.btn-gradient {
-    background: linear-gradient(135deg, #dc2626, #2563eb);
-    color: #fff;
-    border-radius: 12px;
-    border: none;
-    font-weight: 600;
-    padding: 8px 16px;
-    transition: 0.3s;
-}
-
-.btn-gradient:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-/* FORMULARIOS */
-.form-control {
-    border-radius: 12px;
-    border: 1px solid #ddd;
-    transition: 0.25s;
-}
-
-.form-control:focus {
+.filtros-card .form-control:focus,
+.filtros-card .form-select:focus {
     border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    outline: none;
 }
 
-/* TABLAS */
-.table thead {
-    background: linear-gradient(135deg, #dc2626, #2563eb);
-    color: #fff;
+.filtros-card .input-group-text {
+    background: white;
+    border-radius: 12px 0 0 12px;
+    border: 1px solid #e2e8f0;
+    border-right: none;
 }
 
-.table tbody tr:hover {
-    background: #fef2f2;
+.filtros-card .form-control.border-start-0 {
+    border-radius: 0 12px 12px 0;
 }
 
-/* RESPONSIVE */
-@media (min-width: 768px) {
-    .col-md-4 {
-        width: 25%;
+/* ======================================================
+   RESULTADOS
+   ====================================================== */
+.resultados-count {
+    font-size: 0.9rem;
+    color: #475569;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #e2e8f0;
+}
+
+.resultados-count strong {
+    color: #2563eb;
+    font-size: 1.1rem;
+}
+
+/* ======================================================
+   CARDS DE ANUNCIOS
+   ====================================================== */
+.anuncio-card {
+    background: white;
+    border-radius: 20px;
+    border: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.anuncio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #2563eb, #dc2626);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.anuncio-card:hover::before {
+    transform: scaleX(1);
+}
+
+.anuncio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.anuncio-card .card-body {
+    padding: 1.2rem;
+}
+
+/* Barra de color lateral */
+.barra-color {
+    width: 6px;
+    border-radius: 6px;
+    transition: width 0.2s ease;
+}
+
+.anuncio-card:hover .barra-color {
+    width: 8px;
+}
+
+/* Badge de estado */
+.badge.bg-success {
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 0.7rem;
+}
+
+/* Enlace más información */
+.anuncio-card a {
+    color: #2563eb;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.anuncio-card a:hover {
+    color: #dc2626;
+}
+
+/* ======================================================
+   CARD FAVORITO (destacado)
+   ====================================================== */
+.favorito-card {
+    background: linear-gradient(135deg, #ffffff 0%, #fffbeb 100%);
+    border-left: 4px solid #f59e0b;
+}
+
+.favorito-card .bi-star-fill {
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.favorito-card .bi-star-fill:hover {
+    transform: scale(1.2);
+}
+
+/* ======================================================
+   ALERTAS
+   ====================================================== */
+.alert-sin-datos {
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    border: none;
+    border-radius: 20px;
+    color: #475569;
+    text-align: center;
+    padding: 2rem;
+}
+
+.alert-sin-datos i {
+    font-size: 2rem;
+    color: #2563eb;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.alert-secondary {
+    background: #f1f5f9;
+    border: none;
+    border-radius: 16px;
+    color: #475569;
+}
+
+/* ======================================================
+   ESTRELLAS
+   ====================================================== */
+.bi-star-fill {
+    color: #fbbf24;
+    filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.3));
+}
+
+.bi-star {
+    color: #cbd5e1;
+    transition: color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.bi-star:hover {
+    color: #fbbf24;
+    transform: scale(1.1);
+}
+
+/* ======================================================
+   ANIMACIONES
+   ====================================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.anuncio-card {
+    animation: slideIn 0.3s ease-out forwards;
+}
+
+.anuncio-card:nth-child(1) { animation-delay: 0.05s; }
+.anuncio-card:nth-child(2) { animation-delay: 0.1s; }
+.anuncio-card:nth-child(3) { animation-delay: 0.15s; }
+.anuncio-card:nth-child(4) { animation-delay: 0.2s; }
+.anuncio-card:nth-child(5) { animation-delay: 0.25s; }
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+@media (max-width: 768px) {
+    .titulo-seccion {
+        font-size: 1.5rem;
+    }
+    
+    .filtros-card .card-body {
+        padding: 1rem;
+    }
+    
+    .filtros-card .col-md-2,
+    .filtros-card .col-md-3,
+    .filtros-card .col-md-4 {
+        margin-bottom: 1rem;
+    }
+    
+    .anuncio-card .card-body {
+        padding: 1rem;
+    }
+    
+    .barra-color {
+        width: 4px;
+    }
+    
+    .badge.bg-success {
+        font-size: 0.6rem;
+        padding: 3px 8px;
+    }
+    
+    .seccion-titulo {
+        font-size: 1.1rem;
+    }
+    
+    .resultados-count {
+        font-size: 0.8rem;
+    }
+}
+
+/* ======================================================
+   SCROLLBAR PERSONALIZADO
+   ====================================================== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #2563eb, #dc2626);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+
+/* ======================================================
+   UTILIDADES ADICIONALES
+   ====================================================== */
+.text-purple {
+    color: #6f42c1;
+}
+
+.bg-gradient-blue-red {
+    background: linear-gradient(135deg, #2563eb, #dc2626);
+}
+
+.shadow-hover {
+    transition: box-shadow 0.3s;
+}
+
+.shadow-hover:hover {
+    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.2);
+}
+
+/* Efecto de carga esqueleto (opcional) */
+.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 8px;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
 }

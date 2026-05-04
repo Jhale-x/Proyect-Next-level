@@ -10,34 +10,41 @@ use Illuminate\Http\Request;
 
 class SeccionController extends Controller
 {
-
     public function storeMultiple(Request $request)
     {
         $request->validate([
-            'secciones.*' => 'required|string|max:255'
+            'secciones' => 'required|string',
         ]);
-
+        
+        // Convertir el textarea a array (uno por línea)
+        $seccionesArray = explode("\n", $request->secciones);
+        
         // Obtener todos los niveles y grados existentes
-        $niveles = Nivel::all();
-        $grado  = Grado::all();
-
         $niveles = Nivel::with('grados')->get();
-
-        foreach ($request->secciones as $nombreSeccion) {
-
-            $seccion = Seccion::create([
-                'seccion' => $nombreSeccion
-            ]);
-
+        
+        foreach ($seccionesArray as $nombreSeccion) {
+            $nombreSeccion = trim($nombreSeccion);
+            if (empty($nombreSeccion)) continue;
+            
+            // Verificar si la sección ya existe
+            $seccionExistente = Seccion::where('seccion', $nombreSeccion)->first();
+            
+            if ($seccionExistente) {
+                $seccion = $seccionExistente;
+            } else {
+                $seccion = Seccion::create([
+                    'seccion' => $nombreSeccion
+                ]);
+            }
+            
+            // Crear salones para cada nivel y grado
             foreach ($niveles as $nivel) {
-
                 foreach ($nivel->grados as $grado) {
-
                     $existe = Salon::where('id_nivel', $nivel->id_nivel)
                         ->where('id_grado', $grado->id_grado)
                         ->where('id_seccion', $seccion->id_seccion)
                         ->exists();
-
+                    
                     if (!$existe) {
                         Salon::create([
                             'id_nivel'   => $nivel->id_nivel,
@@ -49,7 +56,7 @@ class SeccionController extends Controller
                 }
             }
         }
-
-        return back()->with('success', 'Secciones y salones creados automáticamente 🔥');
+        
+        return redirect()->back()->with('success', 'Secciones y salones creados automáticamente 🔥');
     }
 }

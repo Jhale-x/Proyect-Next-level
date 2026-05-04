@@ -1,126 +1,355 @@
 /* ======================================================
-   CALIFICACIONES - ESTILOS
+   CALIFICACIONES - ESTILOS POR BIMESTRES
+   Colores: #2563eb (azul), #dc2626 (rojo)
    ====================================================== */
 
-.qualifications-container {
+.calificaciones-container {
     padding: 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    min-height: calc(100vh - 100px);
 }
 
-h3 {
+/* ======================================================
+   HEADER
+   ====================================================== */
+.calificaciones-header {
+    margin-bottom: 30px;
+}
+
+.calificaciones-header h3 {
     color: #0a1f44;
-    font-weight: 700;
+    font-weight: 800;
+    font-size: 1.8rem;
     position: relative;
     display: inline-block;
-    padding-bottom: 10px;
+    margin-bottom: 0;
 }
 
-h3:after {
+.calificaciones-header h3:after {
     content: '';
     position: absolute;
-    bottom: 0;
+    bottom: -12px;
     left: 0;
     width: 60px;
     height: 4px;
     background: linear-gradient(90deg, #dc2626, #2563eb);
-    border-radius: 2px;
+    border-radius: 4px;
 }
 
-h5.text-primary {
-    color: #2563eb !important;
+.calificaciones-header p {
+    color: #64748b;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+/* ======================================================
+   TABS BIMESTRES
+   ====================================================== */
+.bimestres-tabs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0;
+}
+
+.bimestre-tab {
+    padding: 12px 28px;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
     font-weight: 600;
-    padding-left: 10px;
-    border-left: 4px solid #dc2626;
-}
-
-.card {
-    border-radius: 16px;
+    color: #64748b;
+    cursor: pointer;
     transition: all 0.3s ease;
-    margin-bottom: 16px;
+    position: relative;
+    border-radius: 12px 12px 0 0;
 }
 
-.card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15) !important;
+.bimestre-tab:hover {
+    color: #2563eb;
+    background: rgba(37, 99, 235, 0.05);
 }
 
-.card-header {
+.bimestre-tab.active {
+    color: #2563eb;
     background: white;
-    border-bottom: 1px solid #eef2ff;
-    padding: 12px 16px;
 }
 
-.card-header .text-muted {
+.bimestre-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #2563eb, #dc2626);
+    border-radius: 3px;
+}
+
+.bimestre-tab .bimestre-numero {
     font-size: 0.7rem;
-    color: #64748b !important;
+    display: block;
+    color: #94a3b8;
+    font-weight: 400;
 }
 
-.card-header h6 {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #1e293b;
-    margin-top: 2px;
+.bimestre-tab.active .bimestre-numero {
+    color: #2563eb;
 }
 
-.border-primary {
-    border-top-color: #2563eb !important;
-    border-width: 3px !important;
+/* ======================================================
+   PANELES DE BIMESTRES
+   ====================================================== */
+.bimestre-panel {
+    display: none;
+    animation: fadeIn 0.3s ease;
 }
 
-.border-3 {
-    border-width: 3px !important;
+.bimestre-panel.active {
+    display: block;
 }
 
-.card-body p.fw-bold {
-    color: #1e293b;
-    font-size: 0.8rem;
-    margin-bottom: 8px;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.badge.bg-dark {
-    background: linear-gradient(135deg, #1e293b, #0f172a) !important;
-    font-weight: 600;
-    padding: 5px 10px;
-    border-radius: 20px;
-}
-
-.offcanvas-header {
+/* ======================================================
+   TARJETA DE PROMEDIO DEL BIMESTRE
+   ====================================================== */
+.bimestre-stats {
     background: linear-gradient(135deg, #2563eb, #1e3a8a);
+    border-radius: 20px;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
     color: white;
 }
 
-.offcanvas-header .btn-close {
-    filter: brightness(0) invert(1);
+.bimestre-promedio h4 {
+    font-size: 0.8rem;
+    font-weight: 500;
+    opacity: 0.8;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.offcanvas-title {
+.bimestre-promedio .promedio-valor {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.bimestre-estado {
+    text-align: center;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+}
+
+.estado-badge {
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: block;
+}
+
+.estado-nota {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+/* ======================================================
+   GRID DE CURSOS
+   ====================================================== */
+.cursos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+/* ======================================================
+   TARJETAS DE CURSOS
+   ====================================================== */
+.curso-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.curso-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 35px rgba(37, 99, 235, 0.15);
+}
+
+.curso-header {
+    padding: 18px 20px;
+    background: linear-gradient(135deg, #f8fafc, #ffffff);
+    border-bottom: 1px solid #eef2ff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.curso-info h5 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 5px 0;
+}
+
+.curso-info .curso-codigo {
+    font-size: 0.65rem;
+    color: #94a3b8;
+}
+
+.curso-promedio {
+    text-align: center;
+    min-width: 70px;
+}
+
+.curso-promedio span:first-child {
+    font-size: 0.65rem;
+    color: #64748b;
+    display: block;
+}
+
+.curso-promedio .promedio-numero {
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.promedio-excelente { color: #10b981; }
+.promedio-bueno { color: #3b82f6; }
+.promedio-regular { color: #f59e0b; }
+.promedio-bajo { color: #dc2626; }
+
+/* Cuerpo del curso */
+.curso-body {
+    padding: 18px 20px;
+}
+
+.notas-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.nota-fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.nota-fila:last-child {
+    border-bottom: none;
+}
+
+.nota-nombre {
+    font-size: 0.85rem;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nota-nombre i {
+    font-size: 0.9rem;
+    color: #2563eb;
+}
+
+.nota-valor {
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 4px 12px;
+    border-radius: 30px;
+}
+
+.nota-excelente { background: #10b98120; color: #10b981; }
+.nota-bueno { background: #3b82f620; color: #3b82f6; }
+.nota-regular { background: #f59e0b20; color: #f59e0b; }
+.nota-bajo { background: #dc262620; color: #dc2626; }
+
+/* Footer del curso */
+.curso-footer {
+    padding: 12px 20px;
+    background: #f8fafc;
+    border-top: 1px solid #eef2ff;
+    text-align: right;
+}
+
+.curso-footer .promedio-final {
+    font-size: 0.8rem;
     font-weight: 600;
 }
 
-.offcanvas-body .list-group-item {
-    border-left: 3px solid #2563eb;
-    margin-bottom: 8px;
-    border-radius: 10px;
-    padding: 12px;
-    transition: all 0.2s;
-}
-
-.offcanvas-body .list-group-item:hover {
-    background: #fef2f2;
-    transform: translateX(5px);
-}
-
-.offcanvas-body .badge.bg-primary {
-    background: linear-gradient(135deg, #dc2626, #2563eb) !important;
-    padding: 5px 12px;
-    border-radius: 20px;
-}
-
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
 @media (max-width: 768px) {
-    .qualifications-container {
-        padding: 10px;
+    .calificaciones-container {
+        padding: 15px;
     }
     
-    .card-header h6 {
+    .bimestres-tabs {
+        gap: 8px;
+    }
+    
+    .bimestre-tab {
+        padding: 8px 16px;
         font-size: 0.85rem;
     }
+    
+    .cursos-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .bimestre-stats {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .curso-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .curso-promedio {
+        min-width: auto;
+    }
+}
+
+/* ======================================================
+   SCROLLBAR
+   ====================================================== */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #2563eb, #dc2626);
+    border-radius: 10px;
 }

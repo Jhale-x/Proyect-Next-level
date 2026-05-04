@@ -1,5 +1,9 @@
 @extends('layouts.Alumnoslanding')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/alumno/cursos.css') }}">
+@endpush
+
 @section('title', 'Mis Cursos - Next Level')
 
 @section('content')
@@ -21,10 +25,10 @@
                         <i class="bi bi-book"></i>
                     </div>
                     <div class="course-info">
-                        <h4>{{ $curso->nombre }}</h4>
+                        <h4>{{ $curso->nombre ?? $curso->materia ?? 'Curso sin nombre' }}</h4>
                         <p>Docente: {{ $curso->docente ?? 'No asignado' }}</p>
                     </div>
-                    <a href="{{ route('alumno.courses.show', $curso->id_curso) }}" class="btn-course">Ver Curso</a>
+                    <a href="{{ route('alumno.courses.show', $curso->id_curso ?? $curso->id) }}" class="btn-course">Ver Curso</a>
                 </div>
             </div>
         @empty

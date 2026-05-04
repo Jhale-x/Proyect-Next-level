@@ -89,14 +89,35 @@ Route::prefix('alumno')->middleware(['auth:alumno'])->name('alumno.')->group(fun
 Route::prefix('admin')->middleware(['auth', 'role:administrador'])->name('admin.')->group(function () {
     
     // ========== VISTAS PRINCIPALES ==========
-    Route::view('/dashboard', 'Admin.dashboard')->name('dashboard');
-    Route::view('/courses', 'Admin.courses')->name('courses');
-    Route::view('/eti', 'Admin.eti')->name('eti');
-    Route::view('/organizations', 'Admin.organizations')->name('organizations');
-    Route::view('/calendar', 'Admin.calendar')->name('calendar');
-    Route::view('/tools', 'Admin.tools')->name('tools');
-    Route::view('/qualifications', 'Admin.qualifications')->name('qualifications');
-    Route::view('/support', 'Admin.support')->name('support');
+    Route::get('/dashboard', function() {
+        return view('Admin.dashboard');
+    })->name('dashboard');
+    
+    Route::get('/courses', [CourseController::class, 'index'])->name('courses');
+    
+    Route::get('/eti', function() {
+        return view('Admin.eti');
+    })->name('eti');
+    
+    Route::get('/organizations', function() {
+        return view('Admin.organizations');
+    })->name('organizations');
+    
+    Route::get('/calendar', function() {
+        return view('Admin.calendar');
+    })->name('calendar');
+    
+    Route::get('/tools', function() {
+        return view('Admin.tools');
+    })->name('tools');
+    
+    Route::get('/qualifications', function() {
+        return view('Admin.qualifications');
+    })->name('qualifications');
+    
+    Route::get('/support', function() {
+        return view('Admin.support');
+    })->name('support');
     
     // ========== PÁGINA INSTITUCIONAL ==========
     Route::get('/pagina-institucional', function() {
@@ -173,7 +194,6 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->name('admin.
             ->leftJoin('grados', 'salones.id_grado', '=', 'grados.id_grado')
             ->select('alumnos.*', 'niveles.nivel as nombre_nivel', 'grados.grado as nombre_grado');
         
-        // Filtro por búsqueda
         if (request('search')) {
             $search = request('search');
             $query->where(function($q) use ($search) {
@@ -184,12 +204,10 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->name('admin.
             });
         }
         
-        // Filtro por nivel
         if (request('nivel')) {
             $query->where('salones.id_nivel', request('nivel'));
         }
         
-        // Filtro por grado
         if (request('grado')) {
             $query->where('salones.id_grado', request('grado'));
         }
@@ -207,7 +225,6 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->name('admin.
             ->leftJoin('cursos', 'users.id_curso', '=', 'cursos.id_curso')
             ->select('users.*', 'cursos.materia');
         
-        // Filtro por búsqueda
         if (request('search')) {
             $search = request('search');
             $query->where(function($q) use ($search) {
@@ -218,12 +235,10 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->name('admin.
             });
         }
         
-        // Filtro por rol
         if (request('rol')) {
             $query->where('users.rol', request('rol'));
         }
         
-        // Filtro por materia
         if (request('id_curso')) {
             $query->where('users.id_curso', request('id_curso'));
         }
@@ -237,19 +252,23 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->name('admin.
     // ========== API PARA GRADOS ==========
     Route::get('/alumnos/grados/por-nivel/{id_nivel}', [AlumnosController::class, 'getGradosByNivel']);
     
+    // ========== CRUD DE CURSOS ==========
+    Route::post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
+    Route::put('/courses/{id}', [CourseController::class, 'update'])->name('courses.update');
+    Route::delete('/courses/{id}', [CourseController::class, 'destroy'])->name('courses.destroy');
+    
     // ========== CONFIGURACIONES MÚLTIPLES ==========
     Route::post('/niveles/store-multiple', [NivelController::class, 'storeMultiple'])->name('niveles.storeMultiple');
     Route::post('/grados/store-multiple', [GradoController::class, 'storeMultiple'])->name('grados.storeMultiple');
     Route::post('/secciones/store-multiple', [SeccionController::class, 'storeMultiple'])->name('secciones.storeMultiple');
     Route::post('/facultades/store-multiple', [FacultadController::class, 'storeMultiple'])->name('facultades.storeMultiple');
     
+    // ========== ASIGNAR SALONES ==========
+    Route::post('/courses/asignar-salones', [CourseController::class, 'asignarSalones'])->name('courses.asignarSalones');
+    
     // ========== ACTIVIDADES ==========
     Route::post('/activities/store', [ActivityController::class, 'store'])->name('activities.store');
     Route::post('/activities/asignar', [ActivityController::class, 'asignar'])->name('activities.asignar');
-    
-    // ========== CURSOS ==========
-    Route::post('/courses/store', [CourseController::class, 'store'])->name('courses.store');
-    Route::post('/courses/asignar-salones', [CourseController::class, 'asignarSalones'])->name('courses.asignarSalones');
     
     // ========== CRUD PÁGINA INSTITUCIONAL ==========
     Route::post('/pagina-institucional/store', [Pagina_InstitucionalController::class, 'storeAnuncio'])->name('pagina_institucional.store');

@@ -1,5 +1,9 @@
 @extends('layouts.Alumnoslanding')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/alumno/detalle_cursos.css') }}">
+@endpush
+
 @section('title', $curso->nombre . ' - Next Level')
 
 @section('content')

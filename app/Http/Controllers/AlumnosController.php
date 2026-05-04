@@ -144,7 +144,25 @@ class AlumnosController extends Controller
     public function courses()
     {
         $alumno = Auth::guard('alumno')->user();
-        $cursos = $this->getCursos($alumno);
+        
+        // Obtener los cursos del alumno según su salón
+        $cursos = collect();
+        
+        if ($alumno->id_salon) {
+            $cursos = DB::table('docente_curso as dc')
+                ->join('docente_salon as ds', 'dc.id_docente_salon', '=', 'ds.id_docente_salon')
+                ->join('cursos as c', 'dc.id_curso', '=', 'c.id_curso')
+                ->join('users as u', 'ds.id_usuario', '=', 'u.id_usuario')
+                ->where('ds.id_salon', $alumno->id_salon)
+                ->select(
+                    'c.id_curso as id_curso',
+                    'c.materia as nombre',
+                    'c.materia',
+                    'u.nombre as docente',
+                    'u.apellido as docente_apellido'
+                )
+                ->get();
+        }
         
         return view('Alumno.courses', compact('alumno', 'cursos'));
     }
