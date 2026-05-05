@@ -161,13 +161,11 @@
                     <span class="academy-label">NUESTRA OFERTA EDUCATIVA</span>
                     <h2 class="title-blue">Recorrido Educativo</h2>
                     <div class="title-line-red"></div>
-                    <p>Acompañamos el crecimiento en cada etapa formativa con excelencia y calidez</p>
                 </div>
 
                 <div class="timeline-educativo">
                     <div class="timeline-line"></div>
 
-                    <!-- Primaria -->
                     <div class="timeline-item" data-aos="fade-right">
                         <div class="timeline-marker">
                             <div class="marker-dot">
@@ -198,14 +196,13 @@
                             </div>
                         </div>
                         <div class="timeline-image">
-                            <img src="{{ asset('images/imagen10.jpg') }}" alt="Primaria">
+                            <img src="{{ asset('images/Colegio-Primaria-Next-Level.png') }}" alt="Primaria">
                             <div class="image-overlay-timeline">
-                                <span><i class="fas fa-camera"></i> Galería</span>
+                                <span><a href="{{ route('galeria') }}"><i class="fas fa-camera"></i> Galería</a></span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Secundaria -->
                     <div class="timeline-item" data-aos="fade-left">
                         <div class="timeline-marker">
                             <div class="marker-dot">
@@ -236,9 +233,9 @@
                             </div>
                         </div>
                         <div class="timeline-image">
-                            <img src="{{ asset('images/imagen10.jpg') }}" alt="Secundaria">
+                            <img src="{{ asset('images/Colegio-Next-Level.jpeg') }}" alt="Secundaria">
                             <div class="image-overlay-timeline">
-                                <span><i class="fas fa-camera"></i> Galería</span>
+                                <span><a href="{{ route('galeria') }}"><i class="fas fa-camera"></i> Galería</a></span>
                             </div>
                         </div>
                     </div>
@@ -252,7 +249,6 @@
                     <span class="academy-label">PILARES FUNDAMENTALES</span>
                     <h2 class="title-blue">Nuestros Valores y Principios</h2>
                     <div class="title-line-red"></div>
-                    <p>Valores que nos definen y guían nuestra labor educativa diaria</p>
                 </div>
 
                 <div class="hexagon-grid">
@@ -320,9 +316,7 @@
                 <div class="section-header" data-aos="fade-up">
                     <span class="academy-label">METODOLOGÍA PROPIA</span>
                     <h2 class="title-white">Método Next Level</span></h2>
-                    <div class="title-line-red"></div><span class="highlight-white">
-                        <p>Un enfoque pedagógico único que combina lo mejor de la educación tradicional con las últimas
-                            innovaciones educativas</p>
+                    <div class="title-line-red"></div>
                 </div>
 
                 <div class="metodo-floating-grid">
@@ -391,7 +385,7 @@
             <div class="container">
                 <div class="propuesta-container-full">
                     <div class="propuesta-image-side">
-                        <img src="{{ asset('images/imagen10.jpg') }}" alt="Propuesta Next Level">
+                        <img src="{{ asset('images/Colegio-Propuesta-Next-Level.png') }}" alt="Propuesta Next Level">
                         <div class="propuesta-overlay-badge">
                             <i class="fa-solid fa-bolt"></i>
                             <span>EDUCACIÓN INTEGRAL</span>
@@ -426,7 +420,6 @@
                     <span class="academy-label">LO QUE DICEN NUESTRAS FAMILIAS</span>
                     <h2 class="title-blue">Testimonios de Confianza</h2>
                     <div class="title-line-red"></div>
-                    <p>La satisfacción de nuestros padres y estudiantes es nuestro mayor orgullo</p>
                 </div>
 
                 <div class="swiper testimonios-swiper">
