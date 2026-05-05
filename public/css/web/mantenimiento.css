@@ -1,0 +1,75 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: var(--blanco);
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.message {
+    text-align: center;
+    background: var(--blanco);
+    padding: 48px 72px;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+.icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 24px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.message h1 {
+    font-size: 2.8rem;
+    color: var(--rojo-principal);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+}
+
+.message p {
+    font-size: 1.25rem;
+    color: #576574;
+    margin-bottom: 0;
+}
+
+.ribbon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    background: linear-gradient(90deg, var(--rojo-principal) 0%, var(--rojo-oscuro) 100%);
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
+@media (max-width: 992px) {
+    .message {
+        padding: 30px 25px; /* Reducimos el espacio interno lateral */
+        width: 85%;
+    }
+
+    .message h1 {
+        font-size: 1.3rem; /* Texto un poco más pequeño para que no rompa */
+    }
+
+    .message p {
+        font-size: 0.8rem; /* Párrafo más legible en pantallas pequeñas */
+    }
+
+    .icon {
+        width: 70px;
+        height: 70px;
+    }
+}
