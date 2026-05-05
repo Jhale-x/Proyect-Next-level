@@ -102,6 +102,7 @@
     </div>
 
     <main>
+
     <header class="exp-hero">
         <div class="exp-hero-overlay">
             <div class="exp-hero-content">
@@ -201,6 +202,7 @@
             </div>
         </div>
     </section>
+
     </main>
 
     <footer class="footer">

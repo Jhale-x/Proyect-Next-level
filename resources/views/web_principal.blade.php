@@ -101,6 +101,7 @@
     </div>
 
     <main>
+
     <section class="hero-full-width">
         <div class="hero-slide active">
             <div class="hero-main-content">
@@ -348,6 +349,7 @@
             </div>
         </div>
     </section>
+
     </main>
 
     <footer class="footer">

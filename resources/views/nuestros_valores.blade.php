@@ -103,51 +103,50 @@
 
     <main>
 
-        <section class="values-grid-section">
-            <div class="values-intro">
-                <h2 class="section-title">FORMANDO CON PROPÓSITO</h2>
-                <div class="title-line"></div>
+    <section class="values-grid-section">
+        <div class="values-intro">
+            <h2 class="section-title">FORMANDO CON PROPÓSITO</h2>
+            <div class="title-line"></div>
+        </div>
+        <div class="container cards-grid">
+
+            <div class="card-sobre">
+                <div class="icon-circle"><i class="fa-solid fa-graduation-cap"></i></div>
+                <h3>EXCELENCIA ACADÉMICA</h3>
+                <p>Promovemos altos estándares educativos y mejora continua en cada proceso formativo.</p>
             </div>
-            <div class="container cards-grid">
 
-                <div class="card-sobre">
-                    <div class="icon-circle"><i class="fa-solid fa-graduation-cap"></i></div>
-                    <h3>EXCELENCIA ACADÉMICA</h3>
-                    <p>Promovemos altos estándares educativos y mejora continua en cada proceso formativo.</p>
-                </div>
-
-                <div class="card-sobre">
-                    <div class="icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
-                    <h3>INNOVACIÓN</h3>
-                    <p>Integramos tecnología y metodologías modernas que potencian el aprendizaje significativo.</p>
-                </div>
-
-                <div class="card-sobre">
-                    <div class="icon-circle"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                    <h3>RESPETO</h3>
-                    <p>Fomentamos la empatía, convivencia sana y ética en toda nuestra comunidad educativa.</p>
-                </div>
-
-                <div class="card-sobre">
-                    <div class="icon-circle"><i class="fa-solid fa-scale-balanced"></i></div>
-                    <h3>RESPONSABILIDAD</h3>
-                    <p>Asumimos compromisos académicos y humanos con disciplina y constancia.</p>
-                </div>
-
-                <div class="card-sobre">
-                    <div class="icon-circle"><i class="fa-solid fa-users"></i></div>
-                    <h3>TRABAJO EN EQUIPO</h3>
-                    <p>Creemos en la colaboración como herramienta clave para el crecimiento colectivo.</p>
-                </div>
-
-                <div class="card-sobre">
-                    <div class="icon-circle"><i class="fa-solid fa-trophy"></i></div>
-                    <h3>LIDERAZGO</h3>
-                    <p>Desarrollamos estudiantes capaces de influir, dirigir y transformar su entorno.</p>
-                </div>
-
+            <div class="card-sobre">
+                <div class="icon-circle"><i class="fa-solid fa-lightbulb"></i></div>
+                <h3>INNOVACIÓN</h3>
+                <p>Integramos tecnología y metodologías modernas que potencian el aprendizaje significativo.</p>
             </div>
-        </section>
+
+            <div class="card-sobre">
+                <div class="icon-circle"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                <h3>RESPETO</h3>
+                <p>Fomentamos la empatía, convivencia sana y ética en toda nuestra comunidad educativa.</p>
+            </div>
+
+            <div class="card-sobre">
+                <div class="icon-circle"><i class="fa-solid fa-scale-balanced"></i></div>
+                <h3>RESPONSABILIDAD</h3>
+                <p>Asumimos compromisos académicos y humanos con disciplina y constancia.</p>
+            </div>
+
+            <div class="card-sobre">
+                <div class="icon-circle"><i class="fa-solid fa-users"></i></div>
+                <h3>TRABAJO EN EQUIPO</h3>
+                <p>Creemos en la colaboración como herramienta clave para el crecimiento colectivo.</p>
+            </div>
+
+            <div class="card-sobre">
+                <div class="icon-circle"><i class="fa-solid fa-trophy"></i></div>
+                <h3>LIDERAZGO</h3>
+                <p>Desarrollamos estudiantes capaces de influir, dirigir y transformar su entorno.</p>
+            </div>
+        </div>
+    </section>
     </main>
 
     <footer class="footer">

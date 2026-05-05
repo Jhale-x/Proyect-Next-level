@@ -102,6 +102,7 @@
     </div>
 
     <main>
+
     <header class="propuesta-hero">
         <span class="launch-badge">Inauguración Marzo 2026</span>
         <h1>NUESTRA PROPUESTA EDUCATIVA</h1>
@@ -143,6 +144,7 @@
             </div>
         </div>
     </section>
+
     </main>
 
     <footer class="footer">

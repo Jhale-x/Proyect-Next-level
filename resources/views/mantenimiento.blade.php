@@ -11,6 +11,9 @@
 </head>
 
 <body>
+
+    <main>
+
     <div class="message">
         <div class="ribbon"></div>
         <svg class="icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,5 +25,8 @@
         <p>Estamos trabajando en terminar la página web.<br>¡Muy pronto estará disponible!</p>
     </div>
 
+    </main>
+
 </body>
+
 </html>

@@ -130,6 +130,7 @@
         </div>
         <div class="lightbox-counter" id="lightboxCounter">1/20</div>
     </div>
+
     </main>
 
     <footer class="footer">

@@ -103,41 +103,41 @@
 
     <main>
 
-        <section class="pagos-section">
-            <div class="pagos-container">
-                <div class="pagos-intro">
-                    <h2>SELECCIONA TU ENTIDAD FINANCIERA</h2>
-                    <div class="hero-line"></div>
-                    <p>Haz clic en el logotipo del banco donde deseas realizar
-                        el pago para visualizar la guía detallada en PDF.
-                    </p>
+    <section class="pagos-section">
+        <div class="pagos-container">
+            <div class="pagos-intro">
+                <h2>SELECCIONA TU ENTIDAD FINANCIERA</h2>
+                <div class="hero-line"></div>
+                <p>Haz clic en el logotipo del banco donde deseas realizar
+                    el pago para visualizar la guía detallada en PDF.
+                </p>
+            </div>
+
+            <div class="bancos-grid-minimal">
+                <div class="banco-col">
+                    <a href="{{ asset('pdfs/guia-bcp.pdf') }}" target="_blank" class="banco-link">
+                        <img src="{{ asset('images/BCP-Next-Level.png') }}" alt="BCP" class="logo-filter">
+                    </a>
                 </div>
 
-                <div class="bancos-grid-minimal">
-                    <div class="banco-col">
-                        <a href="{{ asset('pdfs/guia-bcp.pdf') }}" target="_blank" class="banco-link">
-                            <img src="{{ asset('images/BCP-Next-Level.png') }}" alt="BCP" class="logo-filter">
-                        </a>
-                    </div>
+                <div class="vertical-divider"></div>
 
-                    <div class="vertical-divider"></div>
+                <div class="banco-col">
+                    <a href="{{ asset('pdfs/guia-yape.pdf') }}" target="_blank" class="banco-link">
+                        <img src="{{ asset('images/Yape-Next-Level.png') }}" alt="YAPE" class="logo-filter logo-yape">
+                    </a>
+                </div>
 
-                    <div class="banco-col">
-                        <a href="{{ asset('pdfs/guia-yape.pdf') }}" target="_blank" class="banco-link">
-                            <img src="{{ asset('images/Yape-Next-Level.png') }}" alt="YAPE" class="logo-filter logo-yape">
-                        </a>
-                    </div>
+                <div class="vertical-divider"></div>
 
-                    <div class="vertical-divider"></div>
-
-                    <div class="banco-col">
-                        <a href="{{ asset('pdfs/guia-bbva.pdf') }}" target="_blank" class="banco-link">
-                            <img src="{{ asset('images/BBVA-Next-Level.png') }}" alt="BBVA" class="logo-filter">
-                        </a>
-                    </div>
+                <div class="banco-col">
+                    <a href="{{ asset('pdfs/guia-bbva.pdf') }}" target="_blank" class="banco-link">
+                        <img src="{{ asset('images/BBVA-Next-Level.png') }}" alt="BBVA" class="logo-filter">
+                    </a>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
     </main>
 
     <footer class="footer">
