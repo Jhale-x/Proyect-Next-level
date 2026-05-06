@@ -232,7 +232,7 @@
                     <a href="{{ route('mantenimiento') }}">LIBRO RECLAMACIONES</a>
                 </div>
                 <div class="footer-column social-align">
-                    <a href="{{ route('mantenimiento') }}">POLÍTICA COOKIES</a>
+                    <a href="{{ route('politica_cookies') }}">POLÍTICA COOKIES</a>
                     <a href="{{ route('politica_privacidad') }}">POLÍTICA PRIVACIDAD</a>
                     <a href="{{ route('terminos_condiciones') }}">TÉRMINOS Y CONDICIONES</a>
 
