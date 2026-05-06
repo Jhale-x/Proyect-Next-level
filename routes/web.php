@@ -131,6 +131,10 @@ Route::get('/politica-privacidad', function () {
     return view('politica_privacidad');
 })->name('politica_privacidad');
 
+Route::get('/politica-cookies', function () {
+    return view('politica_cookies');
+})->name('politica_cookies');
+
 Route::get('/terminos-condiciones', function () {
     return view('terminos_condiciones');
 })->name('terminos_condiciones');
