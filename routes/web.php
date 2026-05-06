@@ -83,6 +83,8 @@ Route::get('/ciclos', function (){
     return view('ciclos');
 })->name('ciclos');
 
+/*
+
 Route::get('/ciclo-anual-unu', function (){
     return view('ciclo_anual_unu');
 })->name('ciclo_anual_unu');
@@ -119,9 +121,7 @@ Route::get('/ciclos-unmsm', function (){
     return view('ciclos_unmsm');
 })->name('ciclosunmsm');
 
-Route::get('/mantenimiento', function () {
-    return view('mantenimiento');
-})->name('mantenimiento');
+*/
 
 Route::get('/mantenimiento', function () {
     return view('mantenimiento');
