@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             verifyBtn.style.cursor = 'not-allowed';
 
             setTimeout(() => {
-                window.location.href = "/matricula-formulario";
+                window.location.href = "/matricula_formulario";
             }, 1200);
         });
     }

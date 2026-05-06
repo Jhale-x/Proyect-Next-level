@@ -27,7 +27,7 @@
                 <p class="main-description">
                     Accede al portal educativo para estudiantes de nivel escolar. Consulta tus notas, horarios y tareas.
                 </p>
-                <a href="{{ route('login.colegio') }}" class="btn-main">
+                <a href="{{ route('login_colegio') }}" class="btn-main">
                     <span>Ingresar</span>
                 </a>
             </div>
@@ -43,7 +43,7 @@
                 <p class="main-description">
                     Accede al portal para estudiantes preuniversitarios.<br>Accede a tus simulacros, clases y material de estudio.
                 </p>
-                <a href="{{ route('login.academia') }}" class="btn-main">
+                <a href="{{ route('login_academia') }}" class="btn-main">
                     <span>Ingresar</span>
                 </a>
             </div>

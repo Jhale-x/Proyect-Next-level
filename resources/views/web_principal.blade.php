@@ -40,7 +40,7 @@
                     <a href="#" class="dropdown-trigger">NOSOTROS <span class="arrow-icon">&#9662;</span></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('que_ofrecemos') }}">Qué ofrecemos</a></li>
-                        <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
+                        <li><a href="{{ route('sobre_nosotros') }}">Sobre nosotros</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -86,7 +86,7 @@
                 <button class="back-btn" type="button"><i class="fa-solid fa-chevron-left"></i> REGRESAR</button>
                 <ul class="mobile-nav-list">
                     <li><a href="{{ route('que_ofrecemos') }}">Qué ofrecemos</a></li>
-                    <li><a href="{{ route('sobre.nosotros') }}">Sobre nosotros</a></li>
+                    <li><a href="{{ route('sobre_nosotros') }}">Sobre nosotros</a></li>
                 </ul>
             </div>
 
@@ -173,7 +173,7 @@
                         <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20información.%20Me%20interesa:%0A%0A1.%20Matrícula%20Colegio%20%0A2.%20Ciclos%20Academia%20%0A3.%20Agendar%20Visita%20Guiada%0A4.%20Costos%20y%20Pensiones%0A%0APor%20favor,%20bríndeme%20detalles." target="_blank" class="btn-whatsapp-pathway">
                             <i class="fa-brands fa-whatsapp"></i> Chatea con nosotros
                         </a>
-                        <a href="{{ route('propuesta.educativa') }}" class="btn-proposal-pathway">
+                        <a href="{{ route('propuesta_educativa') }}" class="btn-proposal-pathway">
                             <i class="fa-regular fa-square-plus"></i> Ver Propuesta Educativa
                         </a>
                     </div>
@@ -368,8 +368,8 @@
                     <a href="{{ route('ciclos') }}">CICLOS</a>
                     <a href="{{ route('galeria') }}">GALERIA</a>
                     <a href="{{ route('contactenos') }}">CONTÁCTANOS</a>
-                    <a href="{{ route('sobre.nosotros') }}">SOBRE NOSOTROS</a>
-                    <a href="{{ route('nuestros.valores') }}">NUESTROS VALORES</a>
+                    <a href="{{ route('sobre_nosotros') }}">SOBRE NOSOTROS</a>
+                    <a href="{{ route('nuestros_valores') }}">NUESTROS VALORES</a>
                 </div>
                 <div class="footer-column">
                     <a href="{{ route('academia') }}">ACADEMIA</a>

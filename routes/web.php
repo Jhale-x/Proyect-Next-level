@@ -14,17 +14,17 @@ Route::get('/intranet', function () {
 
 Route::get('/login-colegio', function () {
     return view('login_colegio');
-})->name('login.colegio');
+})->name('login_colegio');
 
 Route::get('/login-academia', function () {
     return view('login_academia');
-})->name('login.academia');
+})->name('login_academia');
 
 */
 
 Route::get('/propuesta-educativa', function () {
     return view('propuesta');
-})->name('propuesta.educativa');
+})->name('propuesta_educativa');
 
 Route::get('/experiencia-next-level', function () {
     return view('experiencia');
@@ -36,11 +36,11 @@ Route::get('/ubicacion', function () {
 
 Route::get('/nuestros-valores', function () {
     return view('nuestros_valores');
-})->name('nuestros.valores');
+})->name('nuestros_valores');
 
 Route::get('/sobre-nosotros', function () {
     return view('sobre_nosotros');
-})->name('sobre.nosotros');
+})->name('sobre_nosotros');
 
 Route::get('/que-ofrecemos', function () {
     return view('que_ofrecemos');
@@ -75,7 +75,7 @@ Route::get('matricula', function (){
 
 Route::get('matricula-formulario', function (){
     return view('matricula_formulario');
-})->name('matricula-formulario');
+})->name('matricula_formulario');
 
 */
 
@@ -85,40 +85,52 @@ Route::get('/ciclos', function (){
 
 Route::get('/ciclo-anual-unu', function (){
     return view('ciclo_anual_unu');
-})->name('ciclo-anual-unu');
+})->name('ciclo_anual_unu');
 
 Route::get('/ciclo-anual-unia', function (){
     return view('ciclo_anual_unia');
-})->name('ciclo-anual-unia');
+})->name('ciclo_anual_unia');
 
 Route::get('/ciclo-semestral-unu', function (){
     return view('ciclo_semestral_unu');
-})->name('ciclo-semestral-unu');
+})->name('ciclo_semestral_unu');
 
 Route::get('/ciclo-semestral-unia', function (){
     return view('ciclo_semestral_unia');
-})->name('ciclo-semestral-unia');
+})->name('ciclo_semestral_unia');
 
 Route::get('/ciclo-verano-unu', function (){
     return view('ciclo_verano_unu');
-})->name('ciclo-verano-unu');
+})->name('ciclo_verano_unu');
 
 Route::get('/ciclo-verano-unia', function (){
     return view('ciclo_verano_unia');
-})->name('ciclo-verano-unia');
+})->name('ciclo_verano_unia');
 
 Route::get('/ciclos-pucp', function (){
     return view('ciclos_pucp');
-})->name('ciclos-pucp');
+})->name('ciclos_pucp');
 
 Route::get('/ciclos-uni', function (){
     return view('ciclos_uni');
-})->name('ciclos-uni');
+})->name('ciclos_uni');
 
 Route::get('/ciclos-unmsm', function (){
     return view('ciclos_unmsm');
-})->name('ciclos-unmsm');
+})->name('ciclosunmsm');
 
 Route::get('/mantenimiento', function () {
     return view('mantenimiento');
 })->name('mantenimiento');
+
+Route::get('/mantenimiento', function () {
+    return view('mantenimiento');
+})->name('mantenimiento');
+
+Route::get('/politica-privacidad', function () {
+    return view('politica_privacidad');
+})->name('politica_privacidad');
+
+Route::get('/terminos-condiciones', function () {
+    return view('terminos_condiciones');
+})->name('terminos_condiciones');

@@ -1,0 +1,51 @@
+.terminos-condiciones {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 40px 30px;
+    background: var(--blanco);
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border: 1px solid #e0e0e0;
+    color: #333;
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
+}
+
+.terminos-condiciones h1 {
+    color: var(--azul-oscuro);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.1rem;
+    border-bottom: 3px solid var(--rojo-principal);
+    padding-bottom: 12px;
+}
+
+.terminos-condiciones h2 {
+    color: var(--azul-oscuro);
+    margin: 35px 0 15px;
+    font-size: 1.6rem;
+    border-left: 5px solid var(--rojo-principal);
+    padding-left: 12px;
+}
+
+.terminos-condiciones p, .terminos-condiciones li {
+    margin-bottom: 14px;
+    font-size: 1.05rem;
+}
+
+.terminos-condiciones ul, .terminos-condiciones ol {
+    padding-left: 28px;
+    margin: 15px 0;
+}
+
+.terminos-condiciones strong {
+     color: var(--azul-oscuro);
+}
+
+.terminos-condiciones .final {
+    text-align: center;
+    margin-top: 50px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--azul-oscuro);
+}
