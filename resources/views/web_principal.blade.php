@@ -397,12 +397,26 @@
         </div>
     </footer>
 
+    <div id="cookie-banner" class="cookie-consent-banner">
+        <div class="cookie-content">
+            <p>
+                Utilizamos cookies para mejorar su experiencia. Al continuar navegando, acepta nuestra
+                <a href="{{ route('politica_cookies') }}">Política de Cookies</a> y nuestra
+                <a href="{{ route('politica_privacidad') }}">Política de Privacidad</a>.
+                bajo la Ley N° 29733.
+            </p>
+            <button id="btn-accept-cookies" class="btn-cookie-accept">Aceptar</button>
+        </div>
+    </div>
+
     <script src="{{ asset('js/marquee_principal.js') }}"></script>
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/hero-slider.js') }}"></script>
     <script src="{{ asset('js/carrusel-pilares.js') }}"></script>
     <script src="{{ asset('js/carrusel-alumnos.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
+    <script src="{{ asset('js/web-politicas.js') }}"></script>
+    <script src="{{ asset('js/analytics.js') }}"></script>
 
 </body>
 </html>
