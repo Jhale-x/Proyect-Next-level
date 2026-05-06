@@ -7,7 +7,7 @@
     <title>Política de Privacidad | Next Level</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/terminos_condiciones.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/web/politica_privacidad.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
 </head>
 
 <body>
@@ -37,7 +37,7 @@
         <h1>POLÍTICA DE PRIVACIDAD – NEXT LEVEL SCHOOL</h1>
         <p><strong>Última actualización: febrero 2026</strong></p>
 
-        <p>I.E.P Next Level School (en adelante “la Institución”, “nosotros” o “nuestro”), con domicilio en Carretera Federico Basadre Km. 6 (Al costado de la UNU), Pucallpa, Ucayali, Perú, se compromete a proteger la privacidad y el tratamiento adecuado de los datos personales de nuestros usuarios, estudiantes, apoderados y visitantes del sitio web https://www.nextlevelacademy.pe (o cualquier dominio/subdominio relacionado), así como de quienes contratan nuestros servicios educativos.</p>
+        <p>I.E.P Next Level School (en adelante “la Institución”, “nosotros” o “nuestro”), con domicilio en Carretera Federico Basadre Km. 6 (Al costado de la UNU), Pucallpa, Ucayali, Perú, se compromete a proteger la privacidad y el tratamiento adecuado de los datos personales de nuestros usuarios, estudiantes, apoderados y visitantes del sitio web https://www.nextlevelacademy.edu.pe (o cualquier dominio/subdominio relacionado), así como de quienes contratan nuestros servicios educativos.</p>
 
         <p>Esta Política de Privacidad describe cómo recopilamos, utilizamos, almacenamos, protegemos y, en su caso, compartimos o transferimos los datos personales, en estricto cumplimiento de la Ley N° 29733, Ley de Protección de Datos Personales, su Reglamento aprobado por Decreto Supremo N° 003-2013-JUS (y modificaciones posteriores, incluyendo DS 016-2024-JUS), y demás normativa aplicable en la República del Perú.</p>
 
@@ -47,8 +47,8 @@
         <p>Next Level School es el titular y responsable del tratamiento de los bancos de datos personales que administra.</p>
         <p>Contacto del responsable:</p>
         <ul>
-            <li>Correo electrónico: info@nextlevelacademy.pe</li>
-            <li>WhatsApp: +51 957560781</li>
+            <li>Correo electrónico: contacto@nextlevel.edu.pe</li>
+            <li>WhatsApp: +51 923 317 626</li>
             <li>Dirección: Carretera Federico Basadre Km. 006 (Al costado de la UNU)</li>
         </ul>
 
@@ -104,7 +104,7 @@
             <li>Oposición: oponerse a ciertos tratamientos (ej. marketing).</li>
             <li>Portabilidad y no ser objeto de decisiones automatizadas (según ley).</li>
         </ul>
-        <p>Para ejercer estos derechos, envíe solicitud escrita a info@nextlevelacademy.pe con copia de DNI. Responderemos en máximo 10 días hábiles (prorrogable por 5 más si es complejo).</p>
+        <p>Para ejercer estos derechos, envíe solicitud escrita a contacto@nextlevel.edu.pe con copia de DNI. Responderemos en máximo 10 días hábiles (prorrogable por 5 más si es complejo).</p>
 
         <h2>9. Cookies y Tecnologías Similares</h2>
         <p>Nuestro sitio usa cookies esenciales (para funcionamiento) y analíticas. Puede configurar su navegador para rechazarlas, pero esto puede afectar la experiencia.</p>
@@ -154,20 +154,20 @@
         </ul>
 
         <h3>13.5 Revocación y derechos</h3>
-        <p>El consentimiento para el uso de imágenes es revocable en cualquier momento mediante comunicación escrita o por correo a info@nextlevelacademy.pe. Procederemos a retirar o anonimizar las imágenes publicadas en un plazo razonable (máximo 10 días hábiles). Los apoderados o el menor (si >14 años) podrán ejercer los derechos ARCO (acceso, rectificación, cancelación, oposición) respecto de sus imágenes, conforme a la sección 8 de esta Política.</p>
+        <p>El consentimiento para el uso de imágenes es revocable en cualquier momento mediante comunicación escrita o por correo a contacto@nextlevel.edu.pe. Procederemos a retirar o anonimizar las imágenes publicadas en un plazo razonable (máximo 10 días hábiles). Los apoderados o el menor (si >14 años) podrán ejercer los derechos ARCO (acceso, rectificación, cancelación, oposición) respecto de sus imágenes, conforme a la sección 8 de esta Política.</p>
 
         <h3>13.6 Prohibiciones</h3>
         <p>No recopilaremos ni trataremos imágenes que revelen información innecesaria sobre el grupo familiar del menor sin consentimiento adicional (art. 23 del Reglamento). No compartiremos imágenes con terceros sin base legal o consentimiento expreso.</p>
 
         <h2>14. Contacto</h2>
-        <p>Para consultas, ejercicio de derechos o reclamos:</p>
+        <p>Para consultas o reclamos:</p>
         <ul>
-            <li>Correo: info@nextlevelacademy.pe</li>
-            <li>WhatsApp: +51 957560781</li>
+            <li>Correo: contacto@nextlevel.edu.pe</li>
+            <li>WhatsApp: +51 923 317 626</li>
             <li>Dirección: Carretera Federico Basadre Km. 006 (Al costado de la UNU)</li>
         </ul>
 
-        <p class="final">Al utilizar nuestros servicios, usted y/o su apoderado declaran haber leído, entendido y aceptado esta Política de Privacidad.</p>
+        <p class="final">Al utilizar nuestros servicios, usted y/o su apoderado declaran haber leído, entendido y aceptado nuestra Política de Privacidad.</p>
         <p class="final">Next Level School – Preparándote para el siguiente nivel educativo.</p>
     </section>
 

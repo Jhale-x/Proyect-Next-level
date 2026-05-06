@@ -8,19 +8,37 @@
     <title>Terminos y Condiciones | Next Level</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/web/politica_privacidad.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/terminos_condiciones.css') }}">
 </head>
 
 <body>
     <main>
 
+    <section class="hero-banner">
+        <div class="banner-inner">
+            <div class="banner-title">
+                <h1>TÉRMINOS <br> Y CONDICIONES</h1>
+            </div>
+            <div class="banner-contact">
+                <a href="{{ route('web.inicio') }}" class="btn-banner">
+                <span>INICIO</span>
+            </a>
+                <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20información.%20Me%20interesa:%0A%0A1.%20Matrícula%20Colegio%20%0A2.%20Ciclos%20Academia%20%0A3.%20Agendar%20Visita%20Guiada%0A4.%20Costos%20y%20Pensiones%0A%0APor%20favor,%20bríndeme%20detalles." target="_blank" class="whatsapp-link-wrapper">
+                <div class="whatsapp-badge">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>923 317 626</span>
+                </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <section class="terminos-condiciones">
-        <h1>Términos y Condiciones de Uso – Next Level School</h1>
+        <h1>TÉRMINOS Y CONDICIONES DE USO – NEXT LEVEL SCHOOL</h1>
         <p><strong>Última actualización: febrero 2026</strong></p>
 
         <h2>1. Aceptación de los Términos</h2>
-        <p>Al acceder, navegar o utilizar el sitio web https://www.nextlevelacademy.pe (o cualquier dominio/subdominio relacionado), inscribirse en cursos, clases, talleres o cualquier servicio ofrecido por la I.E.P Next Level School (en adelante “la Institución”, “nosotros” o “nuestro”), usted (el “Usuario”, “Estudiante”, “Apoderado” o “Usted”) acepta quedar vinculado por estos Términos y Condiciones, nuestra Política de Privacidad y cualquier otro documento legal que se incorpore por referencia.</p>
+        <p>Al acceder, navegar o utilizar el sitio web https://www.nextlevelacademy.edu.pe (o cualquier dominio/subdominio relacionado), inscribirse en cursos, clases, talleres o cualquier servicio ofrecido por la I.E.P Next Level School (en adelante “la Institución”, “nosotros” o “nuestro”), usted (el “Usuario”, “Estudiante”, “Apoderado” o “Usted”) acepta quedar vinculado por estos Términos y Condiciones, nuestra Política de Privacidad y cualquier otro documento legal que se incorpore por referencia.</p>
         <p>Si no está de acuerdo con estos términos, por favor no utilice nuestro sitio web ni contrate nuestros servicios.</p>
 
         <h2>2. Descripción de los Servicios</h2>
@@ -104,8 +122,8 @@
         <h2>13. Contacto</h2>
         <p>Para cualquier consulta o notificación:</p>
         <ul>
-            <li>Correo: [info@nextlevelacademy.pe] (cámbialo por el real)</li>
-            <li>WhatsApp: +51 957560781</li>
+            <li>Correo: contacto@nextlevel.edu.pe</li>
+            <li>WhatsApp: +51 923 317 626</li>
             <li>Dirección: Carretera Federico Basadre Km. 006 (Al costado de la UNU)</li>
         </ul>
 

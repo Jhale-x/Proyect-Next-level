@@ -420,8 +420,8 @@
                 </div>
                 <div class="footer-column social-align">
                     <a href="{{ route('mantenimiento') }}">POLÍTICA COOKIES</a>
-                    <a href="{{ route('mantenimiento') }}">POLÍTICA PRIVACIDAD</a>
-                    <a href="{{ route('mantenimiento') }}">TERMINOS Y CONDICIONES</a>
+                    <a href="{{ route('politica_privacidad') }}">POLÍTICA PRIVACIDAD</a>
+                    <a href="{{ route('terminos_condiciones') }}">TÉRMINOS Y CONDICIONES</a>
 
                     <div class="footer-social-icons">
                         <a href="https://www.tiktok.com/@next_level_novus" target="_blank" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
