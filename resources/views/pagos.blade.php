@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagos en Línea | Next Level</title>
+    <meta name="description" content="Realiza tus pagos en línea de forma segura y rápida en Next Level School. Consulta nuestras cuentas bancarias y métodos de pago disponibles.">
+    <meta name="keywords" content="pagos en línea, cuentas bancarias Next Level, mensualidad academia, inscribirse Pucallpa">
+    <meta property="og:title" content="Pagos en Línea | Next Level">
+    <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">

@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestros Valores | Next Level</title>
+    <meta name="description" content="En Next Level School nos guiamos por la excelencia, la ética y el compromiso con el futuro de nuestros estudiantes. Conoce los valores que nos definen.">
+    <meta name="keywords" content="valores institucionales, ética educativa, compromiso académico, excelencia preuniversitaria">
+    <meta property="og:title" content="Nuestros Valores | Next Level">
+    <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">

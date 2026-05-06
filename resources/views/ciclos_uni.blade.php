@@ -7,6 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ciclos UNI | Next Level</title>
+    <meta name="description" content="Domina física, química y matemáticas con nuestro ciclo especializado UNI. La mejor preparación exigente en Pucallpa para ingresar a la ingeniería.">
+    <meta name="keywords" content="ciclo uni, preparación ingeniería, academia uni pucallpa, matemáticas nivel uni, next level uni">
+    <meta property="og:title" content="Ciclo Especializado UNI | Next Level">
+    <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">

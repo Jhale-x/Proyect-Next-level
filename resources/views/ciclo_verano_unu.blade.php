@@ -7,6 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ciclo Verano UNU | Next Level</title>
+    <meta name="description" content="Aprovecha tus vacaciones con el Ciclo Verano UNU. Preparación intensiva para ingresar a la Universidad Nacional de Ucayali. ¡Vacantes limitadas!">
+    <meta name="keywords" content="ciclo verano UNU, academia vacaciones Pucallpa, ingreso UNU 2026, verano next level">
+    <meta property="og:title" content="Ciclo Verano UNU | Next Level">
+    <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">

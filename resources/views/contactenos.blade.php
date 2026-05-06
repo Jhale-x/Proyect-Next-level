@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Contáctanos | Next Level</title>
+    <meta name="description" content="¿Tienes dudas? Contáctanos hoy mismo. Estamos listos para brindarte toda la información sobre nuestros ciclos y procesos de admisión en Pucallpa.">
+    <meta name="keywords" content="contacto Next Level, teléfono academia, informes Pucallpa, correo Next Level School">
+    <meta property="og:title" content="Contáctanos | Next Level">
+    <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">

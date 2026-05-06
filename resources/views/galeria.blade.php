@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Galería | Next Level</title>
+    <meta name="description" content="Explora nuestra galería de fotos y videos. Mira nuestras instalaciones, eventos y la vida estudiantil en Next Level School.">
+    <meta name="keywords" content="fotos academia, infraestructura educativa, eventos Next Level, galería estudiantil">
+    <meta property="og:title" content="Galería de Fotos | Next Level">
+    <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">

@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ubicación | Next Level</title>
+    <meta name="description" content="Visítanos en nuestra sede de Next Level School en Pucallpa. Encuentra nuestra dirección exacta y horarios de atención para informes e inscripciones.">
+    <meta name="keywords" content="dirección Next Level, academia Pucallpa, informes Next Level School, ubicación colegio Pucallpa">
+    <meta property="og:title" content="Ubicación y Contacto | Next Level">
+    <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">

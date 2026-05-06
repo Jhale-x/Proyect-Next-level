@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ciclos | Next Level</title>
+    <meta name="description" content="Conoce nuestros ciclos de preparación especializada: Anual, Semestral y Verano. Diseñados para que logres tu ingreso a las principales universidades.">
+    <meta name="keywords" content="ciclo anual, ciclo semestral, ciclo verano, preparación universidad, academia Pucallpa">
+    <meta property="og:title" content="Ciclos Académicos | Next Level">
+    <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">

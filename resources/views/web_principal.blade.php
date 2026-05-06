@@ -5,6 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Next Level | Colegio y Academia</title>
+    <meta name="description" content="Next Level es un centro educativo integral en Pucallpa que ofrece formación escolar de alto rendimiento y preparación preuniversitaria con metodología innovadora.">
+    <meta name="keywords" content="centro educativo Pucallpa, colegio y academia, Next Level School, educación integral Ucayali, formación académica">
+    <meta name="author" content="Next Level">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Next Level | Centro Educativo Integral">
+    <meta property="og:description" content="Formación escolar de alto rendimiento y preparación preuniversitaria en un solo lugar.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nextlevelschool.edu.pe">
+    <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
+    <meta name="google-site-verification" content="VLPNXG6nXBPOZtZc34wiB-JKSB1ILNwck8r2JEc7TvQ" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">

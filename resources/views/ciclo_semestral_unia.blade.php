@@ -7,6 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ciclo Semestral UNIA | Next Level</title>
+    <meta name="description" content="Ciclo Semestral especializado para postulantes a la UNIA. Asegura tu ingreso con una formación sólida en todas las áreas del examen.">
+    <meta name="keywords" content="semestral UNIA, preparación intercultural, academia unia Pucallpa, éxito admisión unia">
+    <meta property="og:title" content="Ciclo Semestral UNIA | Next Level">
+    <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">

@@ -7,6 +7,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ciclos PUCP | Next Level</title>
+    <meta name="description" content="Prepárate para el éxito en la PUCP. Ciclo enfocado en las áreas de redacción, lectura y matemáticas según el perfil de la Católica.">
+    <meta name="keywords" content="ciclo pucp, preparación católica, admisión pucp pucallpa, academia para la católica">
+    <meta property="og:title" content="Ciclo Especializado PUCP | Next Level">
+    <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">

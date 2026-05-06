@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Next Level | Colegio</title>
+    <meta name="description" content="Next Level School ofrece una educación escolar de alto rendimiento con un enfoque preuniversitario desde los primeros grados. El futuro empieza aquí.">
+    <meta name="keywords" content="colegio Pucallpa, educación secundaria, formación escolar, alto rendimiento académico">
+    <meta property="og:title" content="Educación Escolar | Next Level">
+    <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">

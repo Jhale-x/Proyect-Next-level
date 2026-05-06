@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre Nosotros | Next Level</title>
+    <meta name="description" content="Conoce la historia, misión y visión de Next Level School. Nuestra pasión es la educación y el éxito académico de nuestros estudiantes en Pucallpa.">
+    <meta name="keywords" content="misión Next Level, visión educativa, historia academia, docentes Pucallpa">
+    <meta property="og:title" content="Sobre Nosotros | Next Level">
+    <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">

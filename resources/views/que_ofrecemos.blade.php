@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Qué ofrecemos | Next Level</title>
+    <meta name="description" content="Descubre nuestra propuesta educativa: preparación preuniversitaria, talleres, y asesoría personalizada para alcanzar tus metas académicas.">
+    <meta name="keywords" content="servicios educativos, preparación académica, beneficios Next Level, metodología de estudio">
+    <meta property="og:title" content="¿Qué Ofrecemos? | Next Level">
+    <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
