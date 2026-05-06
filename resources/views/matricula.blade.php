@@ -7,8 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matriculas | Next Level</title>
-    <meta name="description" content="Proceso de matrícula abierto para el ciclo 2026 en Next Level School. Únete a la mejor academia y colegio de Pucallpa. ¡Asegura tu vacante!">
-    <meta name="keywords" content="matrícula 2026, vacantes academia, inscripción colegio, estudiar en Pucallpa">
+    <meta name="robots" content="noindex, nofollow">
     <meta property="og:title" content="Admisión y Matrícula | Next Level">
     <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">

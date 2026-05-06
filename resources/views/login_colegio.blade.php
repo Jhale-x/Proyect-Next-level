@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intranet Colegio | Next Level</title>
+    <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap">
     <link rel="stylesheet" href="{{ asset('css/web/login_colegio.css') }}">
@@ -127,7 +128,7 @@
     </div>
 
     <script src="{{ asset('js/login.js') }}"></script>
-    
+
 </body>
 </html>
 

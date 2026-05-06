@@ -7,8 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matricula Formulario | Next Level</title>
-    <meta name="description" content="Formulario de inscripción en línea para Next Level School. Completa tus datos y asegura tu vacante en nuestros ciclos académicos 2026.">
-    <meta name="robots" content="noindex, follow"> <!-- Evita que el formulario aparezca vacío en resultados de búsqueda, pero permite que Google lo siga -->
+    <meta name="robots" content="noindex, nofollow">
     <meta property="og:title" content="Formulario de Matrícula | Next Level">
     <meta property="og:image" content="{{ asset('images/Logo-Next-Level.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">

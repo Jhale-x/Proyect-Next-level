@@ -1,3 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /mantenimiento
+Disallow: /matricula
+Disallow: /matricula-formulario
+Disallow: /intranet
+Disallow: /login-colegio
+Disallow: /login-academia
+
 Sitemap: https://nextlevelschool.edu.pe/sitemap.xml
