@@ -372,7 +372,7 @@
 .image-overlay-timeline {
     position: absolute;
     inset: 0;
-    background: var(--azul-oscuro);
+    background: rgba(10, 37, 64, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;

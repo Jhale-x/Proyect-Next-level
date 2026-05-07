@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/colegio.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
@@ -109,24 +108,24 @@
 
     <main>
 
-    <header class="exp-hero">
-        <div class="exp-hero-overlay">
-            <div class="exp-hero-content">
-                <span class="welcome-tag">EDUCACIÓN INTEGRAL</span>
-                <h1 class="welcome-title-hero">COLEGIO NEXT LEVEL</h1>
-                <div class="welcome-line-hero"></div>
-                <p class="welcome-description-hero">
-                    Formamos con corazón y futuro, a través de una educación integral, valores humanos
-                    excelencia académica que transforma vidas.
-                </p>
+        <header class="exp-hero">
+            <div class="exp-hero-overlay">
+                <div class="exp-hero-content">
+                    <span class="welcome-tag">EDUCACIÓN INTEGRAL</span>
+                    <h1 class="welcome-title-hero">COLEGIO NEXT LEVEL</h1>
+                    <div class="welcome-line-hero"></div>
+                    <p class="welcome-description-hero">
+                        Formamos con corazón y futuro, a través de una educación integral, valores humanos
+                        excelencia académica que transforma vidas.
+                    </p>
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
         <section class="filosofia-section">
             <div class="container">
                 <div class="filosofia-grid">
-                    <div class="filosofia-text" data-aos="fade-right">
+                    <div class="filosofia-text">
                         <span class="academy-label">NUESTRA ESENCIA</span>
                         <h2 class="title-blue">MÁS QUE UN COLEGIO,<br>UNA FAMILIA EDUCATIVA</h2>
                         <div class="separador"></div>
@@ -136,24 +135,24 @@
                         <p>Nuestro enfoque combina innovación tecnológica con tradición humanista, preparando a los
                             jóvenes para los desafíos globales sin perder su identidad y raíces culturales.</p>
                         <div class="pillar-list">
-                            <div class="pillar" data-aos="zoom-in" data-aos-delay="100">
+                            <div class="pillar">
                                 <i class="fas fa-brain"></i>
                                 <h4>Innovación</h4>
                                 <p>Tecnología y métodos vanguardistas</p>
                             </div>
-                            <div class="pillar" data-aos="zoom-in" data-aos-delay="200">
+                            <div class="pillar">
                                 <i class="fas fa-heart"></i>
                                 <h4>Valores</h4>
                                 <p>Formación humana integral</p>
                             </div>
-                            <div class="pillar" data-aos="zoom-in" data-aos-delay="300">
+                            <div class="pillar">
                                 <i class="fas fa-user-graduate"></i>
                                 <h4>Liderazgo</h4>
                                 <p>Forjando agentes de cambio</p>
                             </div>
                         </div>
                     </div>
-                    <div class="filosofia-img" data-aos="fade-left">
+                    <div class="filosofia-img">
                         <img src="{{ asset('images/Colegio-Esencia-Next-Level.png') }}" alt="Estudiantes felices">
                     </div>
                 </div>
@@ -162,7 +161,7 @@
 
         <section class="nivel-educativo-section">
             <div class="container">
-                <div class="section-header" data-aos="fade-up">
+                <div class="section-header">
                     <span class="academy-label">NUESTRA OFERTA EDUCATIVA</span>
                     <h2 class="title-blue">Recorrido Educativo</h2>
                     <div class="title-line-red"></div>
@@ -171,7 +170,7 @@
                 <div class="timeline-educativo">
                     <div class="timeline-line"></div>
 
-                    <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-item">
                         <div class="timeline-marker">
                             <div class="marker-dot">
                                 <i class="fas fa-child"></i>
@@ -194,11 +193,6 @@
                                 <div class="feature-chip"><i class="fas fa-palette"></i> Talleres artísticos</div>
                                 <div class="feature-chip"><i class="fas fa-brain"></i> Inteligencias múltiples</div>
                             </div>
-                            <div class="timeline-footer">
-                                <div class="timeline-horario">
-
-                                </div>
-                            </div>
                         </div>
                         <div class="timeline-image">
                             <img src="{{ asset('images/Colegio-Primaria-Next-Level.png') }}" alt="Primaria">
@@ -208,7 +202,7 @@
                         </div>
                     </div>
 
-                    <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-item">
                         <div class="timeline-marker">
                             <div class="marker-dot">
                                 <i class="fas fa-user-graduate"></i>
@@ -231,11 +225,6 @@
                                 <div class="feature-chip"><i class="fas fa-microchip"></i> Robótica avanzada</div>
                                 <div class="feature-chip"><i class="fas fa-globe"></i> Intercambios</div>
                             </div>
-                            <div class="timeline-footer">
-                                <div class="timeline-horario">
-
-                                </div>
-                            </div>
                         </div>
                         <div class="timeline-image">
                             <img src="{{ asset('images/Colegio-Next-Level.jpeg') }}" alt="Secundaria">
@@ -250,14 +239,14 @@
 
         <section class="valores-hexagon-section">
             <div class="container">
-                <div class="section-header" data-aos="fade-up">
+                <div class="section-header">
                     <span class="academy-label">PILARES FUNDAMENTALES</span>
                     <h2 class="title-blue">Nuestros Valores y Principios</h2>
                     <div class="title-line-red"></div>
                 </div>
 
                 <div class="hexagon-grid">
-                    <div class="hexagon-wrapper" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="hexagon-wrapper">
                         <div class="hexagon">
                             <div class="hexagon-content">
                                 <i class="fas fa-hand-holding-heart"></i>
@@ -266,17 +255,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hexagon-wrapper" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="hexagon-wrapper">
                         <div class="hexagon">
                             <div class="hexagon-content">
                                 <i class="fas fa-users"></i>
                                 <h3>Respeto</h3>
-                                <p>Cultura de respeto mutuo, inclusión y comprensión hacia las diferencias individuales.
-                                </p>
+                                <p>Cultura de respeto mutuo, inclusión y comprensión hacia las diferencias individuales.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="hexagon-wrapper" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="hexagon-wrapper">
                         <div class="hexagon">
                             <div class="hexagon-content">
                                 <i class="fas fa-seedling"></i>
@@ -285,7 +273,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hexagon-wrapper" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="hexagon-wrapper">
                         <div class="hexagon">
                             <div class="hexagon-content">
                                 <i class="fas fa-lightbulb"></i>
@@ -294,7 +282,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hexagon-wrapper" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="hexagon-wrapper">
                         <div class="hexagon">
                             <div class="hexagon-content">
                                 <i class="fas fa-handshake"></i>
@@ -303,7 +291,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hexagon-wrapper" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="hexagon-wrapper">
                         <div class="hexagon">
                             <div class="hexagon-content">
                                 <i class="fas fa-heart"></i>
@@ -318,14 +306,14 @@
 
         <section class="metodo-floating-section">
             <div class="container">
-                <div class="section-header" data-aos="fade-up">
+                <div class="section-header">
                     <span class="academy-label">METODOLOGÍA PROPIA</span>
-                    <h2 class="title-white">Método Next Level</span></h2>
+                    <h2 class="title-white">Método Next Level</h2>
                     <div class="title-line-red"></div>
                 </div>
 
                 <div class="metodo-floating-grid">
-                    <div class="metodo-floating-card" data-aos="flip-left" data-aos-delay="100">
+                    <div class="metodo-floating-card">
                         <div class="card-number">01</div>
                         <div class="card-icon">
                             <i class="fas fa-microscope"></i>
@@ -335,7 +323,7 @@
                             colaborativo desde temprana edad.</p>
                         <div class="card-hover-effect"></div>
                     </div>
-                    <div class="metodo-floating-card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="metodo-floating-card">
                         <div class="card-number">02</div>
                         <div class="card-icon">
                             <i class="fas fa-brain"></i>
@@ -345,17 +333,16 @@
                             propio.</p>
                         <div class="card-hover-effect"></div>
                     </div>
-                    <div class="metodo-floating-card" data-aos="flip-left" data-aos-delay="300">
+                    <div class="metodo-floating-card">
                         <div class="card-number">03</div>
                         <div class="card-icon">
                             <i class="fas fa-laptop-code"></i>
                         </div>
                         <h3>Tecnología Educativa</h3>
-                        <p>Aulas digitales, realidad aumentada y herramientas innovadoras que potencian el aprendizaje.
-                        </p>
+                        <p>Aulas digitales, realidad aumentada y herramientas innovadoras que potencian el aprendizaje.</p>
                         <div class="card-hover-effect"></div>
                     </div>
-                    <div class="metodo-floating-card" data-aos="flip-left" data-aos-delay="400">
+                    <div class="metodo-floating-card">
                         <div class="card-number">04</div>
                         <div class="card-icon">
                             <i class="fas fa-hand-peace"></i>
@@ -364,7 +351,7 @@
                         <p>Inteligencia emocional, habilidades blandas y formación en valores para la vida.</p>
                         <div class="card-hover-effect"></div>
                     </div>
-                    <div class="metodo-floating-card" data-aos="flip-left" data-aos-delay="500">
+                    <div class="metodo-floating-card">
                         <div class="card-number">05</div>
                         <div class="card-icon">
                             <i class="fas fa-language"></i>
@@ -373,7 +360,7 @@
                         <p>Inglés desde inicial con metodología comunicativa y certificaciones internacionales.</p>
                         <div class="card-hover-effect"></div>
                     </div>
-                    <div class="metodo-floating-card" data-aos="flip-left" data-aos-delay="600">
+                    <div class="metodo-floating-card">
                         <div class="card-number">06</div>
                         <div class="card-icon">
                             <i class="fas fa-chalkboard-user"></i>
@@ -421,7 +408,7 @@
 
         <section class="testimonios-section">
             <div class="container">
-                <div class="section-header" data-aos="fade-up">
+                <div class="section-header">
                     <span class="academy-label">LO QUE DICEN NUESTRAS FAMILIAS</span>
                     <h2 class="title-blue">Testimonios de Confianza</h2>
                     <div class="title-line-red"></div>
@@ -544,7 +531,6 @@
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="{{ asset('js/colegio.js') }}"></script>
 </body>
 </html>

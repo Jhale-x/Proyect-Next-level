@@ -1,9 +1,3 @@
-AOS.init({
-    once: true,
-    offset: 100,
-    duration: 800
-});
-
 const menuOpen = document.getElementById('menuOpen');
 const menuClose = document.getElementById('menuClose');
 const menuOverlay = document.getElementById('menuOverlay');
