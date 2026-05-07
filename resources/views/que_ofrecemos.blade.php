@@ -196,7 +196,7 @@
                     <div class="swiper-slide">
                         <div class="deporte-card">
                             <div class="deporte-img">
-                                <img src="{{ asset('images/imagen10.jpg') }}" alt="Natación">
+                                <img src="{{ asset('images/g20.jpeg') }}" alt="Natación">
                             </div>
                             <div class="deporte-content">
                                 <h3>NATACIÓN</h3>
@@ -208,7 +208,7 @@
                     <div class="swiper-slide">
                         <div class="deporte-card">
                             <div class="deporte-img">
-                            <img src="{{ asset('images/imagen10.jpg') }}" alt="Atletismo">
+                            <img src="{{ asset('images/Academia-Next-Level.jpeg') }}" alt="Atletismo">
                             </div>
                             <div class="deporte-content">
                                 <h3>ATLETISMO</h3>
@@ -220,7 +220,7 @@
                     <div class="swiper-slide">
                         <div class="deporte-card">
                             <div class="deporte-img">
-                                <img src="{{ asset('images/imagen10.jpg') }}" alt="Ajedrez">
+                                <img src="{{ asset('images/Ajedrez.jpg') }}" alt="Ajedrez">
                             </div>
                             <div class="deporte-content">
                                 <h3>AJEDEREZ</h3>
@@ -351,7 +351,7 @@
                 </div>
 
                 <div class="talleres-image">
-                    <img src="{{ asset('images/imagen10.jpg') }}" alt="Talleres Next Level">
+                    <img src="{{ asset('images/Computo-Next-Level.png') }}" alt="Talleres Next Level">
                 </div>
             </div>
         </div>

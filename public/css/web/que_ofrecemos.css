@@ -423,10 +423,9 @@
 
 .talleres-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 70px;
+    grid-template-columns: 0.8fr 1.2fr;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     position: relative;
     z-index: 2;
@@ -509,16 +508,18 @@
 .talleres-image {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    width: 100%;
 }
 
 .talleres-image img {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     border-radius: 40px;
     box-shadow: 0 40px 70px -30px rgba(0, 0, 0, 0.7);
     border: 4px solid rgba(255, 255, 255, 0.2);
     transition: all 0.5s ease;
+    margin-left: 70px;
 }
 
 .talleres-image:hover img {
@@ -838,59 +839,60 @@
     }
 
     .talleres-content h2 {
-        font-size: 2.1rem !important;
+        font-size: 2rem !important;
         text-align: center;
         width: 100%;
         margin: 0 auto 20px auto;
     }
 
     .talleres-content p {
-    text-align: center;
-    max-width: 90%;
-    margin: 0 auto 30px auto;
+        text-align: center;
+        max-width: 90%;
+        margin: 0 auto 30px auto;
+        font-size: 1.1rem !important;
     }
 
     .talleres-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    width: 110%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        width: 110%;
     }
 
     .taller-item {
     width: 90%;
-    max-width: 350px;
-    display: flex;
-    justify-content: flex-start !important;
-    padding: 15px 20px;
-    margin: 0 auto;
+        max-width: 350px;
+        display: flex;
+        justify-content: flex-start !important;
+        padding: 15px 20px;
+        margin: 0 auto;
     }
 
     .taller-item i {
-    min-width: 35px;
-    display: flex;
-    justify-content: center;
-    margin-right: 15px;
-    font-size: 20px;
+        min-width: 35px;
+        display: flex;
+        justify-content: center;
+        margin-right: 15px;
+        font-size: 20px;
     }
 
     .taller-item span {
-    text-align: left;
-    font-size: 0.9rem;
-    flex: 1;
+        text-align: left;
+        font-size: 0.9rem;
+        flex: 1;
     }
 
     .talleres-image {
-    order: -1;
-    width: 110%;
-    display: flex;
-    justify-content: center;
+        width: 100%;
+        justify-content: center;
+        margin-left: 0;
     }
 
     .talleres-image img {
-    max-width: 95%;
-    border-radius: 30px;
+        max-width: 98%;
+        margin-left: 0;
+        border-radius: 30px;
     }
 
     .docencia-grid {
