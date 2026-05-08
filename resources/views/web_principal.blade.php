@@ -425,7 +425,6 @@
     <script src="{{ asset('js/carrusel-pilares.js') }}"></script>
     <script src="{{ asset('js/carrusel-alumnos.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
-    <script src="{{ asset('js/web-politicas.js') }}"></script>
     <script src="{{ asset('js/analytics.js') }}"></script>
 
 </body>

@@ -127,7 +127,7 @@
                 </div>
 
                 <div class="ubicacion-mapa">
-                    <div id="map" data-token="{{ env('MAPBOX_ACCESS_TOKEN') }}"></div>
+                    <div id="map" data-token="{{ config('services.mapbox.token') }}"></div>
 
                     <div id="controlCapas" onclick="toggleCapas()">
                     <img src="https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-74.579721,-8.392177,16/100x100?access_token={{ env('MAPBOX_ACCESS_TOKEN') }}">
