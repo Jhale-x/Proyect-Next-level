@@ -426,6 +426,7 @@
     <script src="{{ asset('js/carrusel-alumnos.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
     <script src="{{ asset('js/analytics.js') }}"></script>
+    <script src="{{ asset('js/web-cookies.js') }}"></script>
 
 </body>
 </html>
