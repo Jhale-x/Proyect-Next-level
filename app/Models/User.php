@@ -46,7 +46,7 @@ class User extends Authenticatable
         )->withPivot('id_curso')->withTimestamps();
     }
 
-    public function setContrasenaAttribute($value): void
+    public function setContrasenaAttribute(?string $value): void
     {
         if ($value === null || $value === '') {
             $this->attributes['contrasena'] = $value;

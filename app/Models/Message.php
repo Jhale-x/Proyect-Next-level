@@ -30,4 +30,11 @@ class Message extends Model
     {
         return $this->belongsTo(Alumno::class, 'id_emisor_alumno', 'id_alumno');
     }
+        public function emisor()
+    {
+        return $this->belongsTo(
+            User::class,
+            'id_emisor'
+        );
+    }
 }

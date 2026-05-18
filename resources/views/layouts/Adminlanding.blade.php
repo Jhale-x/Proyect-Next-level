@@ -67,7 +67,8 @@
                     </div>
                 </div>
 
-                <a href="{{ route('admin.users') }}" class="{{ request()->routeIs('admin.users') ? 'active' : '' }}">
+                <a href="{{ route('admin.users.index') }}"
+                    class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
                     <i class="bi bi-people"></i>
                     <span>Usuarios</span>
                 </a>
@@ -83,14 +84,17 @@
 
                     <div class="submenu" id="listado-items"
                         style="{{ request()->is('admin/alumnos*') || request()->is('admin/users*') ? 'display: flex; flex-direction: column;' : 'display: none;' }}">
+
                         <a href="{{ route('admin.alumnos.index') }}"
-                            class="{{ request()->routeIs('admin.alumnos.index') ? 'text-white fw-bold' : '' }}">
+                            class="{{ request()->routeIs('admin.alumnos.*') ? 'text-white fw-bold' : '' }}">
                             <i class="bi bi-person-workspace me-2"></i> Lista de alumnos
                         </a>
+
                         <a href="{{ route('admin.users.index') }}"
                             class="{{ request()->routeIs('admin.users.index') ? 'text-white fw-bold' : '' }}">
                             <i class="bi bi-person-badge me-2"></i> Lista de personal
                         </a>
+
                     </div>
                 </div>
 

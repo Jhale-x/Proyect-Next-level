@@ -83,7 +83,7 @@ class GradoController extends Controller
         return back()->with('success', 'Grados y salones creados correctamente 🔥');
     }
 
-    public function porNivel($id)
+    public function porNivel(int $id)
     {
         return response()->json(
             \App\Models\Grado::where('id_nivel', $id)->get()

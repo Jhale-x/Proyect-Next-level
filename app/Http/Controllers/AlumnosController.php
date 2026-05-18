@@ -49,7 +49,7 @@ class AlumnosController extends Controller
         return view('Admin.ListadoAlumno', compact('alumnos', 'niveles', 'grados'));
     }
 
-    public function show($id_alumno)
+    public function show(int $id_alumno)
     {
         $alumno = Alumno::with(['salon.nivel', 'salon.grado', 'salon.seccion'])
             ->findOrFail($id_alumno);
@@ -57,7 +57,7 @@ class AlumnosController extends Controller
         return view('Admin.AlumnoDetalle', compact('alumno'));
     }
 
-    public function edit($id_alumno)
+    public function edit(int $id_alumno)
     {
         $alumno = Alumno::with(['salon'])->findOrFail($id_alumno);
         $datos = $this->datosFormulario();
@@ -65,7 +65,7 @@ class AlumnosController extends Controller
         return view('Admin.AlumnoEditar', array_merge($datos, compact('alumno')));
     }
 
-    public function update(Request $request, $id_alumno)
+    public function update(Request $request, int $id_alumno)
     {
         $alumno = Alumno::findOrFail($id_alumno);
 
@@ -113,7 +113,7 @@ class AlumnosController extends Controller
         ];
     }
 
-    public function gradosPorNivel($id_nivel)
+    public function gradosPorNivel(int $id_nivel)
     {
         $grados = Grado::where('id_nivel', $id_nivel)->get();
         return response()->json($grados);

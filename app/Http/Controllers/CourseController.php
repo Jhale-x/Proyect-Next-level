@@ -11,6 +11,7 @@ use App\Models\Course;
 use App\Models\Salon;
 use App\Models\User;
 use App\Models\Nivel;
+use App\Models\CursoSalon;
 use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
@@ -92,7 +93,7 @@ class CourseController extends Controller
         return redirect()->route('admin.courses')->with('success', 'Curso creado correctamente');
     }
 
-    public function docentes($id_curso)
+    public function docentes(int $id_curso)
     {
         $docentes = DB::table('users as u')
             ->leftJoin('docente_salon as ds', 'ds.id_usuario', '=', 'u.id_usuario')
@@ -114,7 +115,7 @@ class CourseController extends Controller
         return response()->json($docentes);
     }
 
-    public function salonesPorDocente($id_usuario)
+    public function salonesPorDocente(int $id_usuario)
     {
         $cursoId = request()->query('id_curso');
 
@@ -161,13 +162,20 @@ class CourseController extends Controller
                         'created_at' => now(),
                     ]
                 );
+                CursoSalon::updateOrCreate(
+                    [
+                        'id_curso' => $cursoId,
+                        'id_salon' => $id_salon,
+                    ],
+                    []
+                );
             }
         });
 
         return redirect()->back()->with('success', 'Salones asignados correctamente ✅');
     }
 
-    public function detalleSalon($idSalon)
+    public function detalleSalon(int $idSalon)
     {
         $alumnos = Alumno::where('id_salon', $idSalon)->get();
 
@@ -212,7 +220,7 @@ class CourseController extends Controller
         ]);
     }
 
-    public function guardarNotasSalon(Request $request, $idSalon)
+    public function guardarNotasSalon(Request $request, int $idSalon)
     {
         $validated = $request->validate([
             'notas' => 'required|array|min:1',

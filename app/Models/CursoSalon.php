@@ -9,8 +9,14 @@ class CursoSalon extends Model
     protected $table = 'curso_salon';
     protected $primaryKey = 'id_curso_salon';
 
-    protected $fillable = ['id_curso', 'id_salon'];
+    public $timestamps = true;
 
+    protected $fillable = [
+        'id_curso',
+        'id_salon'
+    ];
+
+    // 🔹 Relaciones
     public function salon()
     {
         return $this->belongsTo(Salon::class, 'id_salon', 'id_salon');

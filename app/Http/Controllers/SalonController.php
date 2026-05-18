@@ -60,7 +60,7 @@ class SalonController extends Controller
     {
         return view('Admin.salones');
     }
-    public function export($idSalon, $idCurso)
+    public function export(int $idSalon, int $idCurso)
     {
         // build same data as detalleSalon
         $salon = Salon::with(['nivel', 'grado', 'seccion'])->findOrFail($idSalon);
@@ -111,7 +111,7 @@ class SalonController extends Controller
         );
     }
 
-    public function import(Request $request, $idSalon)
+    public function import(Request $request, int $idSalon)
     {
         $request->validate([
             'excel' => 'required|file|mimes:xlsx,xls',

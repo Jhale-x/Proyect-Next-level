@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Notas;
+use App\Models\Nota;
 use Illuminate\Http\Request;
 
 class NotasController extends Controller
@@ -34,7 +34,7 @@ class NotasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Notas $notas)
+    public function show(Nota $nota)
     {
         //
     }
@@ -42,7 +42,7 @@ class NotasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Notas $notas)
+    public function edit(Nota $nota)
     {
         //
     }
@@ -50,7 +50,7 @@ class NotasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Notas $notas)
+    public function update(Request $request, Nota $nota)
     {
         //
     }
@@ -58,7 +58,7 @@ class NotasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Notas $notas)
+    public function destroy(Nota $nota)
     {
         //
     }

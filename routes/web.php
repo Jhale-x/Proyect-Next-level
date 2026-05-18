@@ -50,12 +50,6 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(functi
     Route::put('/pagina-institucional/{id}', [Pagina_InstitucionalController::class, 'updateAnuncio'])->name('admin.pagina_institucional.update');
     Route::delete('/pagina-institucional/{id}', [Pagina_InstitucionalController::class, 'destroyAnuncio'])->name('admin.pagina_institucional.destroy');
 
-    // --- SECCIÓN ETI Y USUARIOS ---
-    // 'admin.users' es la pantalla de gestión de botones
-    Route::get('/gestion-usuarios', [EtisController::class, 'index'])->name('admin.users');
-    // 'admin.eti' es la pantalla de cursos ETI
-    Route::get('/eti', [EtisController::class, 'viewEti'])->name('admin.eti');
-
     // --- ALUMNOS ---
     Route::prefix('alumnos')->group(function () {
         Route::get('/registro', [AlumnosController::class, 'create'])->name('admin.alumnos.create');
@@ -72,13 +66,11 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(functi
 
     // --- PERSONAL (Users) ---
     Route::prefix('users')->group(function () {
-        // Ruta para ver el listado
-        Route::get('/listado', [UsersController::class, 'index'])->name('admin.users.index');
+        Route::get('/', [UsersController::class, 'index'])->name('admin.users.index');
+        Route::get('/listado', [UsersController::class, 'listado'])->name('admin.users.listado');
         Route::get('/detalle/{id_usuario}', [UsersController::class, 'show'])->name('admin.users.show');
         Route::get('/editar/{id_usuario}', [UsersController::class, 'edit'])->name('admin.users.edit');
         Route::put('/{id_usuario}', [UsersController::class, 'update'])->name('admin.users.update');
-
-        // CORRECCIÓN: Agregamos el nombre exacto que pide el error
         Route::post('/', [UsersController::class, 'store'])->name('admin.users.store');
     });
     // --- CURSOS Y SALONES ---
@@ -112,7 +104,8 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(functi
         Route::post('/facultades/multiple', [NivelController::class, 'storeFacultades'])->name('admin.config.facultades.storeMultiple');
     });
 
-    Route::get('/eti', [EtisController::class, 'viewEti'])->name('admin.eti');
+    // --- ETI ---
+    Route::get('/eti', [EtisController::class, 'index'])->name('admin.eti');
     Route::get('/qualifications', [QualificationController::class, 'index'])->name('admin.qualifications');
     Route::get('/qualifications/cursos', [QualificationController::class, 'cursos'])->name('admin.qualifications.cursos');
     Route::get('/qualifications/cursos/{idCurso}/salones', [QualificationController::class, 'salones'])->name('admin.qualifications.salones');
@@ -132,6 +125,10 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(functi
         Route::get('/', [MessageController::class, 'index'])->name('admin.messages');
         Route::get('/get-chat/{id_curso}', [MessageController::class, 'getMessagesByCurso'])->name('admin.messages.getChat');
         Route::get('/curso/{id}/salones', [MessageController::class, 'salonesCurso'])->name('admin.messages.salones');
+        Route::get('/conversaciones/{idSalon}', [MessageController::class, 'conversaciones'])->name('admin.messages.conversaciones');
+
+        Route::get('/admin/messages/chat/{id}',[MessageController::class, 'chat'])->name('admin.messages.chat');
+        Route::post('/admin/messages/responder',[MessageController::class, 'responder'])->name('admin.messages.responder');
 
         Route::post('/store-ajax', [MessageController::class, 'storeAjax'])->name('admin.messages.ajax');
         Route::post('/store-ajax', [MessageController::class, 'storeAjax'])->name('admin.messages.store');

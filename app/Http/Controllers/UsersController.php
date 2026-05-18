@@ -8,61 +8,36 @@ use App\Models\Nivel;
 use App\Models\Grado;
 use App\Models\Seccion;
 use App\Models\Facultad;
-use App\Models\Alumno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
-    // 🟦 DASHBOARD + REGISTRO
-    public function dashboard()
+    // PANEL PRINCIPAL (GESTIÓN)
+    public function index()
     {
-        $totalUsuarios = User::count();
-        $admins = User::where('rol', 'administrador')->count();
-        $docentes = User::where('rol', 'docente')->count();
-        $auxiliares = User::where('rol', 'auxiliar')->count();
-
-        $alumnos = Alumno::count();
-
-        $academia = Alumno::whereHas('salon.nivel', function ($q) {
-            $q->where('nivel', 'like', '%academia%');
-        })->count();
-
-        $colegio = Alumno::whereHas('salon.nivel', function ($q) {
-            $q->whereIn('nivel', ['Inicial', 'Primaria', 'Secundaria']);
-        })->count();
-
-        $usuariosRecientes = User::latest()->take(5)->get();
-
         $cursos = Course::all();
         $niveles = Nivel::all();
         $grados = Grado::all();
         $secciones = Seccion::all();
         $facultades = Facultad::all();
+        $personales = User::all();
 
         return view('Admin.users', compact(
             'cursos',
-            'totalUsuarios',
-            'admins',
-            'docentes',
-            'auxiliares',
-            'usuariosRecientes',
             'niveles',
             'grados',
             'secciones',
             'facultades',
-            'alumnos',
-            'academia',
-            'colegio'
+            'personales'
         ));
     }
 
-    // 🟨 LISTADO CON FILTROS
-    public function index(Request $request)
+    // LISTADO (CON FILTROS)
+    public function listado(Request $request)
     {
         $query = User::with('cursoRelacion');
 
-        // 🔍 búsqueda
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function ($q) use ($search) {
@@ -72,7 +47,6 @@ class UsersController extends Controller
             });
         }
 
-        // 🎭 rol
         if ($request->filled('rol')) {
             $query->where('rol', $request->rol);
         }
@@ -82,14 +56,16 @@ class UsersController extends Controller
         return view('Admin.ListadoPersonal', compact('users'));
     }
 
-    public function show($id_usuario)
+    // DETALLE
+    public function show(int $id_usuario)
     {
         $user = User::with('cursoRelacion')->findOrFail($id_usuario);
 
         return view('Admin.PersonalDetalle', compact('user'));
     }
 
-    public function edit($id_usuario)
+    // EDITAR
+    public function edit(int $id_usuario)
     {
         $user = User::findOrFail($id_usuario);
         $cursos = Course::all();
@@ -97,7 +73,8 @@ class UsersController extends Controller
         return view('Admin.PersonalEditar', compact('user', 'cursos'));
     }
 
-    public function update(Request $request, $id_usuario)
+    // ACTUALIZAR
+    public function update(Request $request, int $id_usuario)
     {
         $user = User::findOrFail($id_usuario);
 
@@ -112,25 +89,27 @@ class UsersController extends Controller
             'id_curso'          => 'nullable|exists:cursos,id_curso|required_if:rol,docente'
         ]);
 
-        $user->id_curso = $request->rol === 'docente' ? $request->id_curso : null;
-        $user->nombre = $request->nombre;
-        $user->apellido = $request->apellido;
-        $user->dni = $request->dni;
-        $user->fecha_nacimiento = $request->fecha_nacimiento;
-        $user->usuario = $request->usuario;
-        $user->rol = $request->rol;
+        $data = [
+            'id_curso'         => $request->rol === 'docente' ? $request->id_curso : null,
+            'nombre'           => $request->nombre,
+            'apellido'         => $request->apellido,
+            'dni'              => $request->dni,
+            'fecha_nacimiento' => $request->fecha_nacimiento,
+            'usuario'          => $request->usuario,
+            'rol'              => $request->rol,
+        ];
 
         if ($request->filled('contrasena')) {
-            $user->contrasena = Hash::make($request->contrasena);
+            $data['contrasena'] = Hash::make($request->contrasena);
         }
 
-        $user->save();
+        $user->update($data);
 
         return redirect()->route('admin.users.show', $user->id_usuario)
             ->with('success', 'Personal actualizado correctamente');
     }
 
-    // 🟩 GUARDAR
+    // GUARDAR
     public function store(Request $request)
     {
         $request->validate([
@@ -144,10 +123,8 @@ class UsersController extends Controller
             'id_curso'          => 'nullable|exists:cursos,id_curso|required_if:rol,docente'
         ]);
 
-        $idCurso = $request->rol === 'docente' ? $request->id_curso : null;
-
-        User::create([
-            'id_curso'         => $idCurso,
+        $user = User::create([
+            'id_curso'         => $request->rol === 'docente' ? $request->id_curso : null,
             'nombre'           => $request->nombre,
             'apellido'         => $request->apellido,
             'dni'              => $request->dni,
@@ -157,7 +134,7 @@ class UsersController extends Controller
             'rol'              => $request->rol,
         ]);
 
-        return redirect()->route('admin.users.dashboard')
+        return redirect()->route('admin.users.show', $user->id_usuario)
             ->with('success', 'Personal creado correctamente');
     }
 }

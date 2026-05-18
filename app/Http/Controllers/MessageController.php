@@ -73,12 +73,23 @@ class MessageController extends Controller
 
         $idSalon = $cursoSalon->id_salon;
 
-        // 🟢 ALUMNOS
-        $alumnos = \App\Models\Alumno::whereRaw("CONCAT(nombre, ' ', apellido) LIKE ?", ["%$q%"])
-            ->where('id_salon', $idSalon)
-            ->limit(5)
+        // =========================================
+        // 🎓 ALUMNOS DEL SALÓN
+        // =========================================
+        $alumnos = Alumno::where('id_salon', $idSalon)
+
+            ->where(function ($query) use ($q) {
+
+                $query->where('nombre', 'like', "%{$q}%")
+                    ->orWhere('apellido', 'like', "%{$q}%");
+            })
+
+            ->limit(10)
+
             ->get()
+
             ->map(function ($a) {
+
                 return [
                     'id' => $a->id_alumno,
                     'name' => $a->nombre . ' ' . $a->apellido,
@@ -86,12 +97,24 @@ class MessageController extends Controller
                 ];
             });
 
-        // 🔵 DOCENTES
-        $docentes = \App\Models\User::whereRaw("CONCAT(nombre, ' ', apellido) LIKE ?", ["%$q%"])
-            ->where('rol', 'docente')
-            ->limit(5)
+
+        // =========================================
+        // 👨‍🏫 DOCENTES
+        // =========================================
+        $docentes = User::where('rol', 'docente')
+
+            ->where(function ($query) use ($q) {
+
+                $query->where('nombre', 'like', "%{$q}%")
+                    ->orWhere('apellido', 'like', "%{$q}%");
+            })
+
+            ->limit(10)
+
             ->get()
+
             ->map(function ($u) {
+
                 return [
                     'id' => $u->id_usuario,
                     'name' => $u->nombre . ' ' . $u->apellido,
@@ -99,8 +122,15 @@ class MessageController extends Controller
                 ];
             });
 
+        // =========================================
+        // 🔥 UNIR TODO
+        // =========================================
         return response()->json(
-            collect($docentes)->merge($alumnos)->values()
+
+            $alumnos
+                ->merge($docentes)
+                ->values()
+
         );
     }
     public function storeAjax(Request $request)
@@ -161,21 +191,43 @@ class MessageController extends Controller
         ]);
     }
 
-    public function salonesCurso($id_curso)
+    public function salonesCurso(int $id_curso)
     {
-        $salones = CursoSalon::with('salon.grado', 'salon.seccion')
+        $salones = CursoSalon::with(['salon.grado', 'salon.seccion'])
             ->where('id_curso', $id_curso)
             ->get()
             ->map(function ($item) {
+
+                $salon = $item->salon;
+
                 return [
                     'id_curso_salon' => $item->id_curso_salon,
                     'salon' => [
-                        'grado' => $item->salon->grado->grado ?? 'N/A',
-                        'seccion' => $item->salon->seccion->seccion ?? 'N/A'
+                        'grado' => optional(optional($salon)->grado)->grado ?? 'N/A',
+                        'seccion' => optional(optional($salon)->seccion)->seccion ?? 'N/A'
                     ]
                 ];
             });
 
         return response()->json($salones);
+    }
+    public function conversaciones(int $idSalon)
+    {
+        $mensajes = Message::where('id_curso_salon', $idSalon)
+            ->latest()
+            ->take(20)
+            ->get();
+
+        return response()->json($mensajes);
+    }
+    public function chat(int $id)
+    {
+        $mensajes = Message::with('emisor')
+            ->where('id_mensaje_padre', $id)
+            ->orWhere('id', $id)
+            ->orderBy('created_at')
+            ->get();
+
+        return response()->json($mensajes);
     }
 }
