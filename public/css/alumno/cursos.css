@@ -1,98 +1,392 @@
 /* ======================================================
-   MIS CURSOS - ESTILOS
+   MIS CURSOS - DISEÑO PROFESIONAL MINIMALISTA
+   Colores: #2563eb (azul), #dc2626 (rojo)
    ====================================================== */
 
-.course-card {
-    background: white;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    text-align: center;
-    height: 100%;
+/* Contenedor principal */
+.cursos-container {
+    padding: 24px 32px;
+    background: #f8fafc;
+    min-height: calc(100vh - 80px);
 }
 
-.course-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.course-icon {
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, #2563eb, #dc2626);
-    border-radius: 50%;
+/* ======================================================
+   HEADER MINIMALISTA
+   ====================================================== */
+.cursos-header {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 15px;
-    transition: transform 0.3s ease;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
-.course-card:hover .course-icon {
-    transform: scale(1.1);
-}
-
-.course-icon i {
-    font-size: 30px;
-    color: white;
-}
-
-.course-info h4 {
-    font-size: 1.1rem;
+.header-title h2 {
+    font-size: 1.5rem;
     font-weight: 600;
-    color: #1e293b;
-    margin-bottom: 5px;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.01em;
 }
 
-.course-info p {
+.header-title p {
     font-size: 0.85rem;
     color: #64748b;
     margin: 0;
 }
 
-.btn-course {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 8px 20px;
-    background: linear-gradient(135deg, #2563eb, #1e3a8a);
-    color: white;
-    border-radius: 25px;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
+.stats-minimal {
+    display: flex;
+    gap: 24px;
+}
+
+.stat-item {
+    text-align: right;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #0f172a;
+    line-height: 1.2;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: #94a3b8;
+    letter-spacing: 0.3px;
+}
+
+/* ======================================================
+   FILTROS MINIMALISTAS
+   ====================================================== */
+.filtros-cursos {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 12px;
+}
+
+.filtro-btn {
+    padding: 6px 16px;
+    background: transparent;
     border: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 20px;
+}
+
+.filtro-btn:hover {
+    color: #2563eb;
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.filtro-btn.active {
+    color: #2563eb;
+    background: rgba(37, 99, 235, 0.1);
+}
+
+/* ======================================================
+   GRID DE CURSOS
+   ====================================================== */
+.cursos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+/* ======================================================
+   TARJETA DE CURSO - ESTILO MINIMALISTA
+   ====================================================== */
+.curso-card {
+    background: white;
+    border-radius: 16px;
+    transition: all 0.2s ease;
+    border: 1px solid #eef2ff;
+    overflow: hidden;
     cursor: pointer;
 }
 
-.btn-course:hover {
-    background: linear-gradient(135deg, #dc2626, #b91c1c);
+.curso-card:hover {
     transform: translateY(-2px);
+    border-color: #2563eb;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Barra superior de color */
+.curso-bar {
+    height: 3px;
+    background: linear-gradient(90deg, #2563eb, #dc2626);
+}
+
+/* Contenido de la tarjeta */
+.curso-content {
+    padding: 20px;
+}
+
+/* Título y código */
+.curso-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.curso-title h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0;
+    letter-spacing: -0.2px;
+}
+
+.curso-code {
+    font-size: 0.65rem;
+    color: #94a3b8;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+/* Docente */
+.curso-teacher {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.teacher-avatar {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #2563eb, #dc2626);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.teacher-name {
+    font-size: 0.75rem;
+    color: #475569;
+}
+
+.teacher-name strong {
+    font-weight: 500;
+    color: #1e293b;
+}
+
+/* Barra de progreso minimalista */
+.progress-section {
+    margin-bottom: 16px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #64748b;
+    margin-bottom: 6px;
+}
+
+.progress-bar {
+    height: 4px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #2563eb, #dc2626);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Próxima actividad minimalista */
+.next-activity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0;
+    border-top: 1px solid #f0f0f0;
+    margin-top: 8px;
+}
+
+.next-icon {
+    font-size: 0.8rem;
+    color: #2563eb;
+}
+
+.next-text {
+    flex: 1;
+}
+
+.next-text span {
+    font-size: 0.65rem;
+    color: #94a3b8;
+    display: block;
+}
+
+.next-text strong {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #334155;
+}
+
+/* Botón minimalista */
+.btn-view {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #475569;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    margin-top: 12px;
+}
+
+.btn-view:hover {
+    background: #2563eb;
+    border-color: #2563eb;
     color: white;
 }
 
-/* Responsive */
+/* Badge de estado minimalista */
+.curso-status {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 0.6rem;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+}
+
+.status-progreso {
+    background: rgba(37, 99, 235, 0.1);
+    color: #2563eb;
+}
+
+.status-completado {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.status-pendiente {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 16px;
+    border: 1px solid #eef2ff;
+    grid-column: 1 / -1;
+}
+
+.empty-state i {
+    font-size: 2.5rem;
+    color: #cbd5e1;
+    margin-bottom: 12px;
+}
+
+.empty-state h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+.empty-state p {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
 @media (max-width: 768px) {
-    .course-card {
-        padding: 15px;
+    .cursos-container {
+        padding: 16px;
     }
     
-    .course-icon {
-        width: 55px;
-        height: 55px;
+    .cursos-header {
+        flex-direction: column;
+        align-items: flex-start;
     }
     
-    .course-icon i {
-        font-size: 24px;
+    .stats-minimal {
+        width: 100%;
+        justify-content: space-between;
     }
     
-    .course-info h4 {
-        font-size: 0.95rem;
+    .stat-item {
+        text-align: left;
     }
     
-    .btn-course {
-        padding: 6px 15px;
-        font-size: 0.75rem;
+    .cursos-grid {
+        grid-template-columns: 1fr;
     }
+    
+    .curso-content {
+        padding: 16px;
+    }
+}
+
+/* ======================================================
+   ANIMACIÓN SUTIL
+   ====================================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.curso-card {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* ======================================================
+   SCROLLBAR
+   ====================================================== */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
 }

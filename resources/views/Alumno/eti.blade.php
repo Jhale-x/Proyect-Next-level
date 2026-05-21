@@ -13,7 +13,7 @@
             <i class="bi bi-cpu-fill fs-3"></i>
         </div>
         <div>
-            <h2 class="fw-bold m-0" style="color: #0a1f44;">Módulo ETI</h2>
+            <h2 class="fw-bold m-0" style="color: #0a1f44;">Módulo ETAS</h2>
             <p class="text-muted m-0">Evaluación Tecnológica Integral</p>
         </div>
     </div>

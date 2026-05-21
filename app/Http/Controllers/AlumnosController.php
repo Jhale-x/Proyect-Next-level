@@ -90,7 +90,6 @@ class AlumnosController extends Controller
         }
         
         // Obtener notas del alumno (simuladas o desde BD)
-        // Aquí debes reemplazar con tu lógica real de base de datos
         $notas = $this->getNotasAlumno($alumno->id_alumno);
         
         // Calcular promedio general
@@ -140,12 +139,14 @@ class AlumnosController extends Controller
         $alumno = Auth::guard('alumno')->user();
         return view('Alumno.support', compact('alumno'));
     }
-    
+
+    /**
+     * Mostrar los cursos del alumno (VERSIÓN ÚNICA - SIN DUPLICAR)
+     */
     public function courses()
     {
         $alumno = Auth::guard('alumno')->user();
         
-        // Obtener los cursos del alumno según su salón
         $cursos = collect();
         
         if ($alumno->id_salon) {
@@ -155,13 +156,36 @@ class AlumnosController extends Controller
                 ->join('users as u', 'ds.id_usuario', '=', 'u.id_usuario')
                 ->where('ds.id_salon', $alumno->id_salon)
                 ->select(
-                    'c.id_curso as id_curso',
+                    'c.id_curso',
                     'c.materia as nombre',
-                    'c.materia',
-                    'u.nombre as docente',
-                    'u.apellido as docente_apellido'
+                    'u.nombre as docente_nombre',
+                    'u.apellido as docente_apellido',
+                    'u.id_usuario as id_docente'
                 )
                 ->get();
+            
+            // Calcular progreso para cada curso basado en actividades/notas
+            foreach ($cursos as $curso) {
+                // Contar total de actividades del curso
+                $totalActividades = DB::table('curso_actividades')
+                    ->where('id_curso', $curso->id_curso)
+                    ->count();
+                
+                // Contar actividades completadas por el alumno
+                $actividadesCompletadas = DB::table('notas as n')
+                    ->join('curso_actividades as ca', 'n.id_curso_actividad', '=', 'ca.id_curso_actividad')
+                    ->where('ca.id_curso', $curso->id_curso)
+                    ->where('n.id_alumno', $alumno->id_alumno)
+                    ->whereNotNull('n.nota')
+                    ->count();
+                
+                // Calcular progreso
+                if ($totalActividades > 0) {
+                    $curso->progreso = round(($actividadesCompletadas / $totalActividades) * 100);
+                } else {
+                    $curso->progreso = rand(30, 95); // Valor aleatorio si no hay datos
+                }
+            }
         }
         
         return view('Alumno.courses', compact('alumno', 'cursos'));

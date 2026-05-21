@@ -17,13 +17,12 @@ class LoginController extends Controller
         return view('intranet');
     }
     
-    // Mostrar formulario de login para familia/apoderados (también usado para alumnos)
+    // Mostrar formulario de login para familia/apoderados
     public function showColegio()
     {
         return view('auth.login_colegio');
     }
     
-    // Mostrar formulario de login para academia
     public function showAcademia()
     {
         return view('auth.login_academia');
@@ -35,19 +34,17 @@ class LoginController extends Controller
         return view('auth.login_user');
     }
 
-    // Mostrar formulario de login para alumnos (método separado si lo prefieres)
     public function showAlumnoLogin()
     {
-        return view('auth.login_colegio'); // Reutiliza la misma vista
+        return view('auth.login_colegio');
     }
 
     // Login de alumno
     public function loginAlumno(Request $request)
     {
-        // Validación - usando 'password' que viene del formulario
         $request->validate([
             'usuario' => 'required|string',
-            'password' => 'required|string'  // ← Importante: 'password', no 'contrasena'
+            'password' => 'required|string'
         ]);
 
         $alumno = Alumno::where('usuario', $request->usuario)->first();
@@ -56,7 +53,6 @@ class LoginController extends Controller
             return back()->with('error', 'Usuario no encontrado. Verifica tus credenciales.');
         }
 
-        // Verificar contraseña (el campo en BD se llama 'contrasena')
         if (!Hash::check($request->password, $alumno->contrasena)) {
             return back()->with('error', 'Contraseña incorrecta.');
         }
@@ -92,42 +88,59 @@ class LoginController extends Controller
     // Login para usuarios (admin, docente, auxiliar)
     public function loginUser(Request $request)
     {
+        // Validar
         $request->validate([
             'usuario' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'rol_esperado' => 'required|in:administrador,docente,auxiliar'
         ]);
 
+        // Buscar usuario
         $user = User::where('usuario', $request->usuario)->first();
 
         if (!$user) {
-            return back()->with('error', 'Datos incorrectos');
+            return back()->with('error', '❌ Usuario no encontrado.');
         }
 
-        $valid = Hash::check($request->password, $user->contrasena);
-
-        if (!$valid && $user->contrasena === $request->password) {
-            $valid = true;
-            $user->contrasena = Hash::make($request->password);
-            $user->save();
+        // *** NUEVA LÓGICA: El panel de docente acepta docente y auxiliar ***
+        if ($request->rol_esperado === 'docente') {
+            // Permitir solo docente o auxiliar (NO administrador)
+            if ($user->rol !== 'docente' && $user->rol !== 'auxiliar') {
+                return back()->with('error', '❌ Esta cuenta no es de docente ni auxiliar.');
+            }
+        } 
+        // Panel de administrador: SOLO administrador
+        elseif ($request->rol_esperado === 'administrador') {
+            if ($user->rol !== 'administrador') {
+                return back()->with('error', '❌ Esta cuenta no es de administrador.');
+            }
+        }
+        // Panel de auxiliar: SOLO auxiliar (si decides mantenerlo separado)
+        elseif ($request->rol_esperado === 'auxiliar') {
+            if ($user->rol !== 'auxiliar') {
+                return back()->with('error', '❌ Esta cuenta no es de auxiliar.');
+            }
         }
 
-        if (!$valid) {
-            return back()->with('error', 'Datos incorrectos');
+        // Verificar contraseña
+        if (!Hash::check($request->password, $user->contrasena)) {
+            return back()->with('error', '❌ Contraseña incorrecta.');
         }
 
+        // Iniciar sesión
         Auth::login($user);
         $request->session()->regenerate();
 
-        $rol = strtolower($user->rol);
-        if ($rol === 'administrador') {
-            return redirect('/admin/pagina-institucional');
-        } elseif ($rol === 'docente') {
+        // Redirigir según el rol REAL del usuario
+        if ($user->rol === 'administrador') {
+            return redirect()->route('admin.pagina_institucional');
+        } elseif ($user->rol === 'docente') {
             return redirect()->route('docente.pagina_institucional');
-        } elseif ($rol === 'auxiliar') {
-            return redirect()->route('auxiliar.dashboard');
+        } elseif ($user->rol === 'auxiliar') {
+            return redirect()->route('auxiliar.pagina_institucional');
         }
 
-        return back()->with('error', 'Rol desconocido');
+        return back()->with('error', 'Rol no reconocido.');
     }
 
     // Logout general

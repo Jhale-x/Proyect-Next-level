@@ -46,4 +46,14 @@ class Alumno extends Authenticatable
     {
         return $this->belongsTo(Apoderado::class, 'id_apoderado', 'id_apoderado');
     }
+    public function promediosETI()
+    {
+        return $this->hasMany(PromedioETI::class, 'id_alumno');
+    }
+    
+    public function promedioETIByCurso($cursoId)
+    {
+        return $this->hasOne(PromedioETI::class, 'id_alumno')
+                    ->where('id_curso', $cursoId);
+    }
 }

@@ -19,6 +19,8 @@ class Pagina_InstitucionalController extends Controller
                 return redirect()->route('docente.pagina_institucional');
             } elseif ($rol === 'administrador') {
                 return redirect()->route('admin.pagina_institucional');
+            } elseif ($rol === 'auxiliar') {
+                return redirect()->route('auxiliar.pagina_institucional');
             }
         }
         return view('pagina_institucional');
@@ -31,6 +33,16 @@ class Pagina_InstitucionalController extends Controller
             ->get();
 
         return view('Docentes.pagina_institucional', compact('anuncios'));
+    }
+
+    // ========== MÉTODO PARA AUXILIAR (AGREGADO) ==========
+    public function auxiliarIndex()
+    {
+        $anuncios = Anuncio::where('estado', 'activo')
+            ->orderBy('fecha_publicacion', 'desc')
+            ->get();
+
+        return view('auxiliar.pagina_institucional', compact('anuncios'));
     }
 
     public function adminIndex()

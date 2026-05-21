@@ -77,7 +77,7 @@
 
                 <a href="{{ route('alumno.eti') }}" class="{{ request()->routeIs('alumno.eti') ? 'active' : '' }}">
                     <i class="bi bi-cpu"></i>
-                    <span>ETI</span>
+                    <span>ETAS</span>
                 </a>
 
                 <form id="logout-form" action="{{ route('logout.alumno') }}" method="POST" style="display: none;">

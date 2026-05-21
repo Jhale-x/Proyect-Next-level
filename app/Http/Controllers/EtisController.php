@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Nivel;
 use App\Models\Seccion;
 use App\Models\Facultad;
-use App\Models\Course; // Asegúrate de que el modelo se llame así
+use App\Models\Course; 
 use App\Models\User;
 
 class EtisController extends Controller

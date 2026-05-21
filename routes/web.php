@@ -12,7 +12,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\SuportController;
 use App\Http\Controllers\QualificationController;
 use App\Http\Controllers\ToolController;
-use App\Http\Controllers\EtisController;
+use App\Http\Controllers\EtiController;
 use App\Http\Controllers\SalonController;
 use App\Http\Controllers\NivelController;
 use App\Http\Controllers\GradoController;
@@ -170,7 +170,7 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->name('admin.
         return view('Admin.users', compact('niveles', 'secciones', 'facultades', 'cursos'));
     })->name('users');
     
-    // ========== REGISTRO DE ALUMNOS (vista) ==========
+    // ========== REGistro DE ALUMNOS (vista) ==========
     Route::get('/registro-alumno', function() {
         $niveles = DB::table('niveles')->get();
         $secciones = DB::table('secciones')->get();
@@ -279,22 +279,33 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->name('admin.
 // ======================================================
 // RUTAS DEL DOCENTE
 // ======================================================
-Route::prefix('docente')->middleware(['auth', 'role:docente'])->name('docente.')->group(function () {
-    Route::view('/dashboard', 'Docentes.dashboard')->name('dashboard');
-    Route::get('/pagina-institucional', [Pagina_InstitucionalController::class, 'docenteIndex'])->name('pagina_institucional');
-    Route::get('/courses', [CourseController::class, 'index'])->name('courses');
-    Route::get('/activity', [ActivityController::class, 'index'])->name('activity');
-    Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
-    Route::get('/messages', [MessageController::class, 'index'])->name('messages');
-    Route::get('/tools', [ToolController::class, 'index'])->name('tools');
-    Route::get('/qualifications', [QualificationController::class, 'index'])->name('qualifications');
-});
-
+Route::middleware(['auth', 'role:docente'])->group(function () {
+    Route::prefix('docente')->name('docente.')->group(function () {
+        Route::view('/dashboard', 'Docentes.dashboard')->name('dashboard');
+        Route::get('/pagina-institucional', [Pagina_InstitucionalController::class, 'docenteIndex'])->name('pagina_institucional');
+        Route::get('/courses', [CourseController::class, 'index'])->name('courses');
+        Route::get('/activity', [ActivityController::class, 'index'])->name('activity');
+        Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
+        Route::get('/messages', [MessageController::class, 'index'])->name('messages');
+        Route::get('/tools', [ToolController::class, 'index'])->name('tools');
+        Route::get('/qualifications', [QualificationController::class, 'index'])->name('qualifications');
+    });
+}); // Cierre del grupo Docente
 // ======================================================
 // RUTAS DEL AUXILIAR
 // ======================================================
-Route::prefix('auxiliar')->middleware(['auth', 'role:auxiliar'])->name('auxiliar.')->group(function () {
-    Route::view('/dashboard', 'auxiliar.dashboard')->name('dashboard');
-    Route::get('/support', [SuportController::class, 'index'])->name('support');
-    Route::get('/tools', [ToolController::class, 'index'])->name('tools');
+Route::middleware(['auth', 'role:auxiliar'])->group(function () {
+    Route::prefix('auxiliar')->name('auxiliar.')->group(function () {
+        Route::get('/institucional', [SuportController::class, 'auxiliarIndex'])->name('pagina_institucional');
+        Route::get('/eti', [EtiController::class, 'etiIndex'])->name('eti');
+        Route::get('/eta', [EtiController::class, 'etaIndex'])->name('eta');
+        
+        // Rutas para ETA
+        Route::get('/eta/grados/{id_nivel}', [EtiController::class, 'getGradosByNivel']);
+        Route::post('/eta/alumnos', [EtiController::class, 'getAlumnos']);
+        Route::post('/eta/guardar-promedio', [EtiController::class, 'guardarPromedio']);
+        Route::post('/eta/guardar-multiples-promedios', [EtiController::class, 'guardarMultiplesPromedios']);
+        Route::get('/eta/promedios', [EtiController::class, 'getPromedios']);
+        Route::get('/eta/exportar', [EtiController::class, 'exportarPromedios']);
+    });
 });
