@@ -105,7 +105,7 @@ class LoginController extends Controller
 
         $rol = strtolower($user->rol);
         if ($rol === 'administrador') {
-            return redirect('/admin/pagina-institucional');
+            return redirect('/admin/dashboard');
         } elseif ($rol === 'docente') {
             return redirect()->route('docente.pagina_institucional');
         } elseif ($rol === 'auxiliar') {

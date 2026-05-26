@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'Next Level')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @php($landingCssVersion = filemtime(public_path('css/landing.css')))
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -13,7 +14,6 @@
     <link rel="stylesheet" href="{{ asset('css/messages.css') }}">
     @stack('styles')
 </head>
-
 <body>
     <div class="mobile-header">
         <div class="d-flex align-items-center gap-2">
@@ -34,6 +34,12 @@
                 <span>Next Level</span>
             </div>
 
+            <nav class="menu">
+                <a href="{{ route('admin.dashboard') }}"
+                    class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                    <i class="bi bi-speedometer2"></i>
+                    <span>Dashboard</span>
+                </a>
             <nav class="menu">
                 <a href="{{ route('admin.pagina_institucional') }}"
                     class="{{ request()->routeIs('admin.pagina_institucional') ? 'active' : '' }}">

@@ -261,7 +261,7 @@
                 if (!dni || !fecha || !user || !pass) return;
 
                 dni.addEventListener('input', () => {
-                    user.value = dni.value + '@nextlevel.edu.pe';
+                    user.value = dni.value + '@nextlevel.Academy.pe';
                 });
 
                 fecha.addEventListener('change', () => {

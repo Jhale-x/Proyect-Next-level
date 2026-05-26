@@ -95,6 +95,86 @@ class Pagina_InstitucionalController extends Controller
         ]);
     }
 
+    public function adminDashboard()
+    {
+        $totalUsuariosSistema = User::count();
+        $totalAlumnos = Alumno::count();
+        $totalUsuarios = $totalUsuariosSistema + $totalAlumnos;
+
+        $admins = User::where('rol', 'administrador')->count();
+        $docentes = User::where('rol', 'docente')->count();
+        $auxiliares = User::where('rol', 'auxiliar')->count();
+
+        $usuariosRecientes = User::orderBy('created_at', 'desc')->take(5)->get();
+
+        $academia = DB::table('alumnos')
+            ->join('salones', 'alumnos.id_salon', '=', 'salones.id_salon')
+            ->join('niveles', 'salones.id_nivel', '=', 'niveles.id_nivel')
+            ->whereRaw('LOWER(niveles.nivel) LIKE ?', ['%academia%'])
+            ->count();
+
+        $colegio = DB::table('alumnos')
+            ->join('salones', 'alumnos.id_salon', '=', 'salones.id_salon')
+            ->join('niveles', 'salones.id_nivel', '=', 'niveles.id_nivel')
+            ->whereIn(DB::raw('LOWER(niveles.nivel)'), ['inicial', 'primaria', 'secundaria'])
+            ->count();
+
+        $cursosCount = DB::table('cursos')->count();
+
+        $cursosActivosCount = DB::table('cursos as c')
+            ->join('curso_salon as cs', 'c.id_curso', '=', 'cs.id_curso')
+            ->distinct('c.id_curso')
+            ->count('c.id_curso');
+
+        $mensajesCount = DB::table('messages')->count();
+
+        $recentUsersCount = User::where('created_at', '>=', now()->subDays(30))->count()
+            + Alumno::where('created_at', '>=', now()->subDays(30))->count();
+
+        $activeUsersPercent = $totalUsuarios > 0
+            ? round(($recentUsersCount * 100) / $totalUsuarios)
+            : 0;
+
+        $actividadReciente = DB::table('curso_actividades as ca')
+            ->join('actividades as a', 'ca.id_actividad', '=', 'a.id_actividad')
+            ->join('cursos as c', 'ca.id_curso', '=', 'c.id_curso')
+            ->select(
+                'a.actividad as titulo',
+                'a.descripcion',
+                'c.materia as curso',
+                'ca.fecha_entrega',
+                'ca.created_at'
+            )
+            ->orderBy('ca.created_at', 'desc')
+            ->limit(3)
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'titulo' => $item->titulo,
+                    'descripcion' => $item->descripcion ?: "Curso: {$item->curso}",
+                    'curso' => $item->curso,
+                    'fecha_entrega' => $item->fecha_entrega,
+                    'creado' => \Carbon\Carbon::parse($item->created_at)->diffForHumans(),
+                ];
+            });
+
+        return view('Admin.dashboard', [
+            'totalUsuarios' => $totalUsuarios,
+            'admins' => $admins,
+            'docentes' => $docentes,
+            'auxiliares' => $auxiliares,
+            'alumnos' => $totalAlumnos,
+            'academia' => $academia,
+            'colegio' => $colegio,
+            'usuariosRecientes' => $usuariosRecientes,
+            'cursos' => $cursosCount,
+            'cursosActivos' => $cursosActivosCount,
+            'mensajes' => $mensajesCount,
+            'usuariosActivosPercent' => $activeUsersPercent,
+            'actividadReciente' => $actividadReciente,
+        ]);
+    }
+
     public function alumnoIndex()
     {
         $anuncios = $this->anunciosPublicadosQuery()
@@ -132,7 +212,7 @@ class Pagina_InstitucionalController extends Controller
             ->with('success', 'Anuncio publicado correctamente.');
     }
 
-    public function destroyAnuncio($id)
+    public function destroyAnuncio(int $id)
     {
         $anuncio = Anuncio::findOrFail($id);
 
@@ -146,7 +226,7 @@ class Pagina_InstitucionalController extends Controller
             ->with('success', 'Anuncio eliminado correctamente.');
     }
 
-    public function updateAnuncio(Request $request, $id)
+    public function updateAnuncio(Request $request, int $id)
     {
         $anuncio = Anuncio::findOrFail($id);
 

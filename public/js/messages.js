@@ -223,6 +223,12 @@ function abrirConversacion(idMensaje) {
 
     mensajeActual = idMensaje;
 
+    document.getElementById('lista-conversaciones')
+        .classList.add('d-none');
+
+    document.getElementById('btnVolverConversaciones')
+        .classList.remove('d-none');
+
     const chatBox =
         document.getElementById('chat-conversacion');
 
@@ -259,6 +265,7 @@ function abrirConversacion(idMensaje) {
                 data.forEach(msg => {
 
                     const propio =
+                        msg.emisor_tipo === window.userTipo &&
                         msg.id_emisor == window.userId;
 
                     html += `
@@ -276,7 +283,7 @@ function abrirConversacion(idMensaje) {
                             style="max-width: 70%;">
 
                                 <div class="fw-bold small mb-1">
-                                    ${msg.emisor?.name ?? 'Usuario'}
+                                    ${msg.emisor?.name ?? 'Desconocido'}
                                 </div>
 
                                 <div>
@@ -284,9 +291,7 @@ function abrirConversacion(idMensaje) {
                                 </div>
 
                             </div>
-
-                        </div>
-                    `;
+                        </div>`;
                 });
             }
 
@@ -349,6 +354,21 @@ function responderMensaje() {
         })
 
         .catch(err => console.error(err));
+}
+
+function volverConversaciones() {
+
+    // 🔥 MOSTRAR LISTA
+    document.getElementById('lista-conversaciones')
+        .classList.remove('d-none');
+
+    // 🔥 OCULTAR CHAT
+    document.getElementById('chat-conversacion')
+        .classList.add('d-none');
+
+    // 🔥 OCULTAR BOTON
+    document.getElementById('btnVolverConversaciones')
+        .classList.add('d-none');
 }
 
 
@@ -423,11 +443,8 @@ function cargarUsuarios(query) {
 function renderResultados(data) {
 
     resultadosBusqueda.innerHTML = `
-        <div class="resultado-item px-3 py-2 fw-bold"
-            onclick="seleccionarGrupo()">
-
+        <div class="resultado-item px-3 py-2 fw-bold" onclick="seleccionarGrupo()">
             📢 Todo el salón
-
         </div>
     `;
 
@@ -444,31 +461,20 @@ function renderResultados(data) {
                 : '🎓';
 
         resultadosBusqueda.innerHTML += `
-
-            <div class="resultado-item d-flex align-items-center px-3 py-2"
-                onclick="seleccionarAlumno(
-                    ${user.id},
-                    '${user.name.replace(/'/g, "\\'")}'
-                )">
-
+            <div class="resultado-item d-flex align-items-center px-3 py-2" onclick="seleccionarAlumno(${user.id}, '${user.name.replace(/'/g, "\\'")}')">
                 <div class="me-3">
                     <div class="avatar-circle">
                         ${icono}
                     </div>
                 </div>
-
                 <div>
-
                     <div class="fw-semibold">
                         ${user.name}
                     </div>
-
                     <small class="text-muted">
                         ${rol}
                     </small>
-
                 </div>
-
             </div>
         `;
     });
@@ -525,24 +531,14 @@ function renderDestinatarios() {
 
         contenedor.innerHTML += `
             <span class="chip">
-
                 ${user.nombre}
-
-                <span class="chip-close"
-                    onclick="eliminarDestinatario(${user.id})">
-
-                    ×
-
-                </span>
-
+                <span class="chip-close" onclick="eliminarDestinatario(${user.id})">×</span>
             </span>
         `;
     });
 }
 
 
-// ===============================
-// 🔥 14. ELIMINAR DESTINATARIO
 // ===============================
 function eliminarDestinatario(id) {
 

@@ -73,6 +73,9 @@
 
                     <!-- 📌 TITULO -->
                     <h4 id="titulo-chat-msg" class="mb-3"></h4>
+                    <button id="btnVolverConversaciones" class="btn btn-light mb-3 d-none" onclick="volverConversaciones()">
+                        ← Conversaciones
+                    </button>
 
                     <!-- 📦 LISTA DE CONVERSACIONES -->
                     <div id="lista-conversaciones" class="conversation-list"></div>
@@ -233,8 +236,8 @@
             "{{ route('admin.buscar.usuarios') }}";
     </script>
     <script>
-        window.userId =
-            {{ auth()->id() }};
+        window.userId = {{ auth()->id() }};
+        window.userTipo = '{{ Auth::guard('alumno')->check() ? 'alumno' : 'user' }}';
     </script>
     <script src="{{ asset('js/messages.js') }}"></script>
 @endpush

@@ -41,7 +41,7 @@ Route::prefix('auth')->group(function () {
 // --- ADMINISTRACIÓN ---
 Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(function () {
 
-    Route::get('/dashboard', fn() => view('Admin.dashboard'))->name('admin.dashboard');
+    Route::get('/dashboard', [Pagina_InstitucionalController::class, 'adminDashboard'])->name('admin.dashboard');
     Route::get('/buscar-alumnos', [MessageController::class, 'buscarAlumnos'])->name('admin.messages.search');
 
     // Gestión Institucional
@@ -127,8 +127,11 @@ Route::prefix('admin')->middleware(['auth', 'role:administrador'])->group(functi
         Route::get('/curso/{id}/salones', [MessageController::class, 'salonesCurso'])->name('admin.messages.salones');
         Route::get('/conversaciones/{idSalon}', [MessageController::class, 'conversaciones'])->name('admin.messages.conversaciones');
 
-        Route::get('/admin/messages/chat/{id}',[MessageController::class, 'chat'])->name('admin.messages.chat');
-        Route::post('/admin/messages/responder',[MessageController::class, 'responder'])->name('admin.messages.responder');
+        Route::get('/chat/{id}', [MessageController::class, 'chat'])
+            ->name('admin.messages.chat');
+
+        Route::post('/responder', [MessageController::class, 'responder'])
+            ->name('admin.messages.responder');
 
         Route::post('/store-ajax', [MessageController::class, 'storeAjax'])->name('admin.messages.ajax');
         Route::post('/store-ajax', [MessageController::class, 'storeAjax'])->name('admin.messages.store');

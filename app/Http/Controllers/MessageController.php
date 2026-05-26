@@ -191,6 +191,54 @@ class MessageController extends Controller
         ]);
     }
 
+    public function responder(Request $request)
+    {
+        $validated = $request->validate([
+            'id_mensaje' => ['required', 'integer', 'exists:messages,id'],
+            'contenido'  => ['required', 'string', 'max:2000'],
+        ]);
+
+        $mensajePadre = Message::find($validated['id_mensaje']);
+
+        if (!$mensajePadre) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Mensaje no encontrado.'
+            ], 404);
+        }
+
+        $esAlumno = Auth::guard('alumno')->check();
+        $miId = $esAlumno ? Auth::guard('alumno')->id() : Auth::id();
+
+        if (!$miId) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Usuario no autenticado.'
+            ], 401);
+        }
+
+        $mensajeData = [
+            'id_emisor' => $miId,
+            'emisor_tipo' => $esAlumno ? 'alumno' : 'user',
+            'id_emisor_usuario' => $esAlumno ? null : $miId,
+            'id_emisor_alumno' => $esAlumno ? $miId : null,
+            'id_curso' => $mensajePadre->id_curso,
+            'id_curso_salon' => $mensajePadre->id_curso_salon,
+            'contenido' => $validated['contenido'],
+        ];
+
+        $mensaje = Message::create($mensajeData);
+
+        return response()->json([
+            'status' => 'success',
+            'data' => [
+                'contenido' => $mensaje->contenido,
+                'fecha' => $mensaje->created_at->format('H:i'),
+                'es_mio' => true,
+            ],
+        ]);
+    }
+
     public function salonesCurso(int $id_curso)
     {
         $salones = CursoSalon::with(['salon.grado', 'salon.seccion'])
@@ -222,11 +270,36 @@ class MessageController extends Controller
     }
     public function chat(int $id)
     {
-        $mensajes = Message::with('emisor')
-            ->where('id_mensaje_padre', $id)
-            ->orWhere('id', $id)
+        $mensaje = Message::find($id);
+
+        if (!$mensaje) {
+            return response()->json([]);
+        }
+
+        $mensajes = Message::with(['emisorUsuario', 'emisorAlumno'])
+            ->where('id_curso_salon', $mensaje->id_curso_salon)
             ->orderBy('created_at')
-            ->get();
+            ->get()
+            ->map(function ($m) {
+                $emisorId = $m->emisor_tipo === 'alumno'
+                    ? $m->id_emisor_alumno
+                    : $m->id_emisor_usuario;
+
+                $emisorNombre = $m->emisor_tipo === 'alumno'
+                    ? trim((optional($m->emisorAlumno)->nombre ?? '') . ' ' . (optional($m->emisorAlumno)->apellido ?? ''))
+                    : trim((optional($m->emisorUsuario)->nombre ?? '') . ' ' . (optional($m->emisorUsuario)->apellido ?? ''));
+
+                return [
+                    'id' => $m->id,
+                    'contenido' => $m->contenido,
+                    'fecha' => $m->created_at->format('H:i'),
+                    'emisor' => [
+                        'name' => $emisorNombre ?: 'Desconocido',
+                    ],
+                    'emisor_tipo' => $m->emisor_tipo,
+                    'id_emisor' => $emisorId,
+                ];
+            });
 
         return response()->json($mensajes);
     }

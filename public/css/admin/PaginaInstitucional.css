@@ -1,11 +1,10 @@
-/* 🌐 FONDO Y BASE */
+/* =========================
+   🌐 PAGINA INSTITUCIONAL
+========================= */
+
 body {
     font-family: "Inter", sans-serif;
     background: linear-gradient(135deg, #eef2ff, #fee2e2);
-}
-
-.page-wrap {
-    padding: 1.5rem;
 }
 
 /* HEADER */
@@ -24,13 +23,7 @@ body {
     color: rgba(255, 255, 255, 0.7);
 }
 
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* TÍTULOS */
+/* TITULOS */
 .section-title {
     font-size: 2.3rem;
     font-weight: 800;
@@ -47,28 +40,7 @@ body {
     margin-top: 8px;
 }
 
-/* 🎨 COLORES Y BACKGROUNDS */
-.bg-primary {
-    background: linear-gradient(135deg, #1e3a8a, #2563eb) !important;
-}
-
-.bg-info {
-    background: linear-gradient(135deg, #2563eb, #60a5fa) !important;
-}
-
-.bg-dark {
-    background: linear-gradient(135deg, #0a1f44, #1e293b) !important;
-}
-
-.bg-warning {
-    background: linear-gradient(135deg, #dc2626, #f87171) !important;
-}
-
-.bg-success {
-    background: linear-gradient(135deg, #b91c1c, #ef4444) !important;
-}
-
-/* 🔥 CARDS Y ESTADÍSTICAS */
+/* CARDS */
 .card {
     border-radius: 18px;
     border: none;
@@ -76,104 +48,19 @@ body {
 }
 
 .card-header {
-    background: linear-gradient(135deg, #0a1f44, #2563eb) !important;
-    color: #fff !important;
-    font-weight: 600;
-}
-
-.custom-header {
     background: linear-gradient(135deg, #0a1f44, #2563eb);
-    color: #fff;
-    padding: 12px 16px;
-    border-radius: 18px 18px 0 0;
+    color: white;
     font-weight: 600;
-}
-
-.stats-card {
-    border-radius: 18px;
-    padding: 20px;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-    transition: 0.3s;
-}
-
-.stats-card:hover {
-    transform: translateY(-6px);
-}
-
-.stats-card::before {
-    content: "";
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 50%;
-    top: -50px;
-    right: -50px;
-}
-
-.stats-icon {
-    font-size: 1.7rem;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 10px;
-    border-radius: 12px;
-}
-
-/* 👥 USUARIOS */
-.user-mini-card {
-    background: #fff;
-    border-radius: 14px;
-    padding: 10px;
-    border: 1px solid #eee;
-    transition: 0.25s;
-}
-
-.user-mini-card:hover {
-    transform: translateY(-4px) scale(1.02);
-    background: linear-gradient(135deg, #eff6ff, #fee2e2);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
-}
-
-.avatar-mini {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-}
-
-/* BARRAS Y FILLS */
-.mini-bar {
-    height: 6px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.25);
-}
-
-.mini-fill {
-    height: 100%;
-    border-radius: 10px;
-    background: linear-gradient(90deg, #dc2626, #2563eb);
+    border-radius: 18px 18px 0 0 !important;
 }
 
 /* BOTONES */
-.btn-success {
-    background: linear-gradient(135deg, #dc2626, #2563eb);
-    border: none;
-    border-radius: 12px;
-    font-weight: 700;
-    transition: 0.3s;
-}
-
-.btn-success:hover {
-    transform: scale(1.05);
-}
-
 .btn-gradient {
     background: linear-gradient(135deg, #dc2626, #2563eb);
     color: #fff;
-    border-radius: 12px;
     border: none;
+    border-radius: 12px;
     font-weight: 600;
-    padding: 8px 16px;
     transition: 0.3s;
 }
 
@@ -186,27 +73,19 @@ body {
 .form-control {
     border-radius: 12px;
     border: 1px solid #ddd;
-    transition: 0.25s;
 }
 
 .form-control:focus {
     border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .2);
 }
 
 /* TABLAS */
 .table thead {
     background: linear-gradient(135deg, #dc2626, #2563eb);
-    color: #fff;
+    color: white;
 }
 
 .table tbody tr:hover {
     background: #fef2f2;
-}
-
-/* RESPONSIVE */
-@media (min-width: 768px) {
-    .col-md-4 {
-        width: 25%;
-    }
 }
