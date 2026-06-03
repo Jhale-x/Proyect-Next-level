@@ -1,4 +1,4 @@
-// Buscador dinámico de Alumnos
+// Buscador dinÃ¡mico de Alumnos
 document.getElementById('searchAlumno')?.addEventListener('keyup', function() {
     let filter = this.value.toLowerCase();
     let rows = document.querySelectorAll('.alumno-row');
@@ -12,7 +12,7 @@ document.getElementById('searchAlumno')?.addEventListener('keyup', function() {
 // Filtro de Curso para Personal
 function filterByCurso(curso) {
     let rows = document.querySelectorAll('.personal-row');
-    
+
     rows.forEach(row => {
         if (curso === 'todos') {
             row.style.display = '';
@@ -23,7 +23,7 @@ function filterByCurso(curso) {
     });
 }
 
-// Buscador dinámico de Personal
+// Buscador dinÃ¡mico de Personal
 document.getElementById('searchPersonal')?.addEventListener('keyup', function() {
     let filter = this.value.toLowerCase();
     let rows = document.querySelectorAll('.personal-row');

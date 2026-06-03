@@ -186,6 +186,10 @@
 
 @endsection
 
+@push('scripts')
+    <script src="{{ asset('js/admin/course.js') }}"></script>
+@endpush
+
 @push('modals')
     <!-- MODAL REGISTRO NIVELES -->
     <div class="modal fade" id="modalNivel" tabindex="-1" aria-hidden="true">
@@ -196,7 +200,7 @@
                     @csrf
 
                     <div class="modal-header">
-                        <h5 class="modal-title">Registrar Niveles</h5>0
+                        <h5 class="modal-title">Registrar Niveles</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
 
@@ -296,28 +300,28 @@
         </div>
     </div>
     <script type="text/template" id="template-grado">
-    <div class="bloque-grado border p-3 mb-3 rounded bg-light">
+        <div class="bloque-grado border p-3 mb-3 rounded bg-light">
 
-        <label class="form-label">Nivel</label>
-        <select class="form-control mb-2 select-nivel" name="grados[][id_nivel]">
-            <option value="">Seleccione un nivel</option>
-            @foreach ($niveles ?? [] as $nivel)
-                <option value="{{ $nivel->id_nivel }}">
-                    {{ $nivel->nivel }}
-                </option>
-            @endforeach
-        </select>
+            <label class="form-label">Nivel</label>
+            <select class="form-control mb-2 select-nivel" name="grados[][id_nivel]">
+                <option value="">Seleccione un nivel</option>
+                @foreach ($niveles ?? [] as $nivel)
+                    <option value="{{ $nivel->id_nivel }}">
+                        {{ $nivel->nivel }}
+                    </option>
+                @endforeach
+            </select>
 
-        <label class="form-label">Nombre del Grado</label>
-        <input type="text" class="form-control mb-2 input-grado"
-               name="grados[][grado]" placeholder="Ej: Primero, Segundo, etc" required>
+            <label class="form-label">Nombre del Grado</label>
+            <input type="text" class="form-control mb-2 input-grado"
+                name="grados[][grado]" placeholder="Ej: Primero, Segundo, etc" required>
 
-        <button type="button" class="btn btn-danger btn-eliminar w-100">
-            Eliminar
-        </button>
+            <button type="button" class="btn btn-danger btn-eliminar w-100">
+                Eliminar
+            </button>
 
-    </div>
-</script>
+        </div>
+    </script>
     <!-- MODAL REGISTRO FACULTADES -->
     <div class="modal fade" id="modalFacultad" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
@@ -351,18 +355,18 @@
         </div>
     </div>
     <script type="text/template" id="template-facultad">
-    <div class="bloque-facultad border p-3 mb-3 rounded bg-light">
+        <div class="bloque-facultad border p-3 mb-3 rounded bg-light">
 
-        <label class="form-label">Nombre de la Facultad</label>
-        <input type="text" class="form-control mb-2 input-facultad"
-               name="facultades[]" placeholder="Ej: Ingeniería, Medicina" required>
+            <label class="form-label">Nombre de la Facultad</label>
+            <input type="text" class="form-control mb-2 input-facultad"
+                name="facultades[]" placeholder="Ej: Ingeniería, Medicina" required>
 
-        <button type="button" class="btn btn-danger btn-eliminar-facultad w-100">
-            Eliminar
-        </button>
+            <button type="button" class="btn btn-danger btn-eliminar-facultad w-100">
+                Eliminar
+            </button>
 
-    </div>
-</script>
+        </div>
+    </script>
     <!-- ================= MODAL REGISTRO ACTIVIDAD ================= -->
     <div class="modal fade" id="modalActividad">
         <div class="modal-dialog">
@@ -490,16 +494,16 @@
                         <input type="hidden" name="id_curso" id="salones_asignar_curso_id">
 
                         <div class="mb-3">
-                            <span class="text-muted">Curso seleccionado: <strong id="salones_modal_curso_name">ninguno</strong></span>
+                            <span class="text-muted">Curso seleccionado: <strong
+                                    id="salones_modal_curso_name">ninguno</strong></span>
                         </div>
-
                         <h6>Primaria</h6>
                         <div class="row g-2 mb-3">
                             @foreach ($salonesPrimaria ?? [] as $salon)
                                 <div class="col-md-3">
                                     <label class="card p-2 salon-card">
                                         <input type="checkbox" name="salones[]" value="{{ $salon->id_salon }}">
-                                        {{ $salon->grado->grado }} - {{ $salon->seccion->seccion }}
+                                        {{ $salon->grado?->grado }} - {{ $salon->seccion?->seccion }}
                                     </label>
                                 </div>
                             @endforeach
@@ -511,11 +515,24 @@
                                 <div class="col-md-3">
                                     <label class="card p-2 salon-card">
                                         <input type="checkbox" name="salones[]" value="{{ $salon->id_salon }}">
-                                        {{ $salon->grado->grado }} - {{ $salon->seccion->seccion }}
+                                        {{ $salon->grado?->grado }} - {{ $salon->seccion?->seccion }}
                                     </label>
                                 </div>
                             @endforeach
                         </div>
+
+                        <h6>Facultades</h6>
+                        <div class="row g-2">
+                            @foreach ($facultadesAcademia ?? [] as $salon)
+                                <div class="col-md-3">
+                                    <label class="card p-2 salon-card">
+                                        <input type="checkbox" name="salones[]" value="{{ $salon->id_salon }}">
+                                        {{ $salon->facultad?->facultad }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+
                     </div>
 
                     <div class="modal-footer">
@@ -527,7 +544,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modalEditarFecha" tabindex="-1" aria-labelledby="modalEditarFechaLabel" aria-hidden="true">
+    <div class="modal fade" id="modalEditarFecha" tabindex="-1" aria-labelledby="modalEditarFechaLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -539,17 +557,21 @@
 
                     <div class="mb-3">
                         <label for="edit_nombre_actividad" class="form-label">Actividad</label>
-                        <input type="text" id="edit_nombre_actividad" name="nombre_actividad" class="form-control" readonly>
+                        <input type="text" id="edit_nombre_actividad" name="nombre_actividad" class="form-control"
+                            readonly>
                     </div>
 
                     <div class="mb-3">
                         <label for="edit_porcentaje" class="form-label">Porcentaje</label>
-                        <input type="number" id="edit_porcentaje" name="porcentaje" class="form-control input-porcentaje" data-id="" min="0" max="100" step="1">
+                        <input type="number" id="edit_porcentaje" name="porcentaje"
+                            class="form-control input-porcentaje" data-id="" min="0" max="100"
+                            step="1">
                     </div>
 
                     <div class="mb-3">
                         <label for="edit_fecha_entrega" class="form-label">Fecha de entrega</label>
-                        <input type="date" id="edit_fecha_entrega" name="fecha_entrega" class="form-control" required>
+                        <input type="date" id="edit_fecha_entrega" name="fecha_entrega" class="form-control"
+                            required>
                     </div>
 
                     <div class="mb-3">

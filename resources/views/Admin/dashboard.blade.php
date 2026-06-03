@@ -170,53 +170,5 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
-
-                <div class="col-12">
-
-                    <div class="card chart-card">
-
-                        <div class="card-header d-flex justify-content-between align-items-center">
-
-                            <span class="chart-title">
-                                Estadísticas Generales
-                            </span>
-
-                            <div class="d-flex gap-2">
-
-                                <span class="badge bg-primary">
-                                    Usuarios
-                                </span>
-
-                                <span class="badge bg-danger">
-                                    Sistema
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                        <div class="card-body">
-
-                            <div class="chart-container">
-                                <canvas id="estadisticasChart"></canvas>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-        <script>
-            const alumnosCount = {{ $alumnos ?? 0 }};
-            const docentesCount = {{ $docentes ?? 0 }};
-            const adminsCount = {{ $admins ?? 0 }};
-            const auxiliaresCount = {{ $auxiliares ?? 0 }};
-            const cursosCount = {{ $cursos ?? 0 }};
-        </script>
     @endsection

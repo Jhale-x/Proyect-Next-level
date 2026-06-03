@@ -21,7 +21,8 @@ class Alumno extends Authenticatable
         'dni',
         'fecha_nacimiento',
         'usuario',
-        'contrasena'
+        'contrasena',
+        'qr'
     ];
 
     protected $hidden = [
@@ -52,7 +53,7 @@ class Alumno extends Authenticatable
         return $this->belongsTo(Apoderado::class, 'id_apoderado', 'id_apoderado');
     }
 
-    public function setContrasenaAttribute($value): void
+    public function setContrasenaAttribute(string|null $value): void
     {
         if ($value === null || $value === '') {
             $this->attributes['contrasena'] = $value;
@@ -62,5 +63,9 @@ class Alumno extends Authenticatable
         $this->attributes['contrasena'] = password_get_info($value)['algo']
             ? $value
             : Hash::make($value);
+    }
+    public function alumnos()
+    {
+        return $this->hasMany(Alumno::class, 'id_apoderado', 'id_apoderado');
     }
 }

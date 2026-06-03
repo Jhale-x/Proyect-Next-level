@@ -11,11 +11,12 @@ class ActivityController extends Controller
 {
     public function index()
     {
-        $activities = DB::table('curso_actividades as ca')
+        $qb = DB::table('curso_actividades as ca')
             ->join('actividades as a', 'a.id_actividad', '=', 'ca.id_actividad')
             ->join('cursos as c', 'c.id_curso', '=', 'ca.id_curso')
             ->leftJoin('curso_salon as cs', 'cs.id_curso', '=', 'c.id_curso')
             ->leftJoin('salones as s', 's.id_salon', '=', 'cs.id_salon')
+            ->leftJoin('alumnos as al', 'al.id_salon', '=', 's.id_salon')
             ->leftJoin('niveles as n', 'n.id_nivel', '=', 's.id_nivel')
             ->leftJoin('grados as g', 'g.id_grado', '=', 's.id_grado')
             ->leftJoin('secciones as sec', 'sec.id_seccion', '=', 's.id_seccion')
@@ -32,25 +33,76 @@ class ActivityController extends Controller
                 DB::raw("COALESCE(CONCAT(n.nivel, ' - ', g.grado, ' ', sec.seccion), 'Sin salon asignado') as salon_nombre")
             )
             ->orderBy('c.materia')
-            ->orderBy('ca.fecha_entrega', 'desc')
-            ->get();
+            ->orderBy('ca.fecha_entrega', 'desc');
 
-        // Compatibilidad: algunas vistas usan $activities y otras $actividades.
-        $actividades = $activities;
-        $activitiesBySalon = collect($activities ?? [])->groupBy('materia');
+        // APODERADO
+        if (Auth::guard('apoderado')->check()) {
 
+            $apoderado = Auth::guard('apoderado')->user();
 
+            $alumnosIds = $apoderado->alumnos->pluck('id_alumno');
+
+            $qb->whereIn('al.id_alumno', $alumnosIds);
+
+            $activities = $qb->get();
+            $activitiesBySalon = collect($activities)->groupBy('salon_nombre');
+
+            return view('Apoderado.activity', compact('activities', 'activitiesBySalon'));
+        }
+
+        // ALUMNO
         if (Auth::guard('alumno')->check()) {
+            $alumno = Auth::guard('alumno')->user();
+
+            if ($alumno && $alumno->id_salon) {
+                $qb->where('s.id_salon', $alumno->id_salon);
+            }
+
+            $activities = $qb->get();
+            $actividades = $activities;
+            $activitiesBySalon = collect($activities)->groupBy('salon_nombre');
+
             return view('Alumno.activity', compact('activities', 'actividades', 'activitiesBySalon'));
         }
 
-        $user = Auth::user();
+        // ADMIN
+        if (Auth::check() && Auth::user()->rol === 'administrador') {
 
-        if ($user && $user->rol === 'administrador') {
+            $activities = $qb->get();
+            $actividades = $activities;
+            $activitiesBySalon = collect($activities)->groupBy('salon_nombre');
+
             return view('Admin.activity', compact('activities', 'actividades', 'activitiesBySalon'));
         }
 
-        return view('Docentes.activity', compact('activities', 'actividades', 'activitiesBySalon'));
+        // DOCENTE
+        if (Auth::check() && Auth::user()->rol === 'docente') {
+
+            $docente = Auth::user();
+
+            $cursosDocente = DB::table('docente_salon')
+                ->where('id_usuario', $docente->id_usuario)
+                ->pluck('id_curso');
+
+            $activities = $qb
+                ->whereIn('ca.id_curso', $cursosDocente)
+                ->get();
+
+            $activitiesBySalon = collect($activities)->groupBy('salon_nombre');
+
+            return view('Docentes.activity', compact('activities', 'activitiesBySalon'));
+        }
+
+        // AUXILIAR
+        if (Auth::check() && Auth::user()->rol === 'auxiliar') {
+
+            $activities = $qb->get();
+            $activitiesBySalon = collect($activities)->groupBy('salon_nombre');
+
+            return view('Auxiliar.activity', compact('activities', 'activitiesBySalon'));
+        }
+
+        abort(403);
     }
 
     public function store(Request $request)
@@ -113,7 +165,6 @@ class ActivityController extends Controller
                 }
 
                 $porcentajeFinal = $porcentajeInput;
-
             } else {
                 // 🟢 MODO AUTOMÁTICO
                 $nuevoTotal = $cantidad + 1;
@@ -174,7 +225,7 @@ class ActivityController extends Controller
         return back()->with('success', 'Actividad asignada correctamente 🔥');
     }
 
-    public function updateFecha(Request $request, $id)
+    public function updateFecha(Request $request, int $id)
     {
         $request->validate([
             'fecha_entrega' => 'required|date',

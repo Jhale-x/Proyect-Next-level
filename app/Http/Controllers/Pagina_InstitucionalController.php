@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Anuncio;
 use App\Models\Alumno;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,8 @@ class Pagina_InstitucionalController extends Controller
                 return redirect()->route('docente.pagina_institucional');
             } elseif ($rol === 'administrador') {
                 return redirect()->route('admin.pagina_institucional');
+            } elseif ($rol === 'auxiliar') {
+                return redirect()->route('auxiliar.pagina_institucional');
             }
         }
 
@@ -41,6 +44,60 @@ class Pagina_InstitucionalController extends Controller
             ->get();
 
         return view('Docentes.pagina_institucional', compact('anuncios'));
+    }
+
+    public function docenteDashboard()
+    {
+        $user = Auth::user();
+
+        $cursoIds = DB::table('docente_salon')
+            ->where('id_usuario', $user->id_usuario)
+            ->distinct()
+            ->pluck('id_curso');
+
+        $cursosAsignados = Course::whereIn('id_curso', $cursoIds)->get();
+        $cantidadCursos = $cursosAsignados->count();
+
+        $cantidadSalones = DB::table('docente_salon')
+            ->where('id_usuario', $user->id_usuario)
+            ->distinct()
+            ->count('id_salon');
+
+        $cantidadAlumnos = DB::table('alumnos')
+            ->join('docente_salon', 'alumnos.id_salon', '=', 'docente_salon.id_salon')
+            ->where('docente_salon.id_usuario', $user->id_usuario)
+            ->distinct()
+            ->count('alumnos.id_alumno');
+
+        $cantidadActividades = DB::table('curso_actividades')
+            ->whereIn('id_curso', $cursoIds)
+            ->count();
+
+        $cantidadMensajes = DB::table('messages')
+            ->where(function ($query) use ($user) {
+                $query->where('id_emisor_usuario', $user->id_usuario)
+                    ->orWhere('id_receptor_usuario', $user->id_usuario);
+            })
+            ->count();
+
+        $ultimasActividades = DB::table('curso_actividades as ca')
+            ->join('actividades as a', 'ca.id_actividad', '=', 'a.id_actividad')
+            ->join('cursos as c', 'ca.id_curso', '=', 'c.id_curso')
+            ->whereIn('ca.id_curso', $cursoIds)
+            ->select('a.actividad', 'c.materia', 'ca.fecha_entrega', 'ca.created_at')
+            ->orderBy('ca.created_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        return view('Docentes.dashboard', compact(
+            'cantidadCursos',
+            'cantidadSalones',
+            'cantidadAlumnos',
+            'cantidadActividades',
+            'cantidadMensajes',
+            'ultimasActividades',
+            'cursosAsignados'
+        ));
     }
 
     public function adminIndex()
@@ -174,6 +231,14 @@ class Pagina_InstitucionalController extends Controller
             'actividadReciente' => $actividadReciente,
         ]);
     }
+    public function auxiliarIndex()
+    {
+        $anuncios = $this->anunciosPublicadosQuery()
+            ->orderBy('fecha_publicacion', 'desc')
+            ->get();
+
+        return view('auxiliar.pagina_institucional', compact('anuncios'));
+    }
 
     public function alumnoIndex()
     {
@@ -181,7 +246,68 @@ class Pagina_InstitucionalController extends Controller
             ->orderBy('fecha_publicacion', 'desc')
             ->get();
 
-        return view('Alumno.pagina_institucional', compact('anuncios'));
+        $actividades = collect();
+
+        if (Auth::guard('alumno')->check()) {
+            $alumno = Auth::guard('alumno')->user();
+            $cursoIds = DB::table('curso_salon')
+                ->where('id_salon', $alumno->id_salon)
+                ->pluck('id_curso');
+
+            if ($cursoIds->isNotEmpty()) {
+                $actividades = DB::table('curso_actividades as ca')
+                    ->join('actividades as a', 'a.id_actividad', '=', 'ca.id_actividad')
+                    ->join('cursos as c', 'c.id_curso', '=', 'ca.id_curso')
+                    ->whereIn('ca.id_curso', $cursoIds)
+                    ->select(
+                        'ca.id_curso_actividad',
+                        'a.actividad as titulo',
+                        'a.descripcion',
+                        'ca.fecha_entrega',
+                        'ca.hora_entrega',
+                        DB::raw("c.materia as curso")
+                    )
+                    ->orderBy('ca.fecha_entrega', 'desc')
+                    ->get();
+            }
+        }
+
+        return view('Alumno.pagina_institucional', compact('anuncios', 'actividades'));
+    }
+
+    public function apoderadoIndex()
+    {
+        $anuncios = $this->anunciosPublicadosQuery()
+            ->orderBy('fecha_publicacion', 'desc')
+            ->get();
+
+        $actividades = collect();
+
+        if (Auth::guard('alumno')->check()) {
+            $alumno = Auth::guard('alumno')->user();
+            $cursoIds = DB::table('curso_salon')
+                ->where('id_salon', $alumno->id_salon)
+                ->pluck('id_curso');
+
+            if ($cursoIds->isNotEmpty()) {
+                $actividades = DB::table('curso_actividades as ca')
+                    ->join('actividades as a', 'a.id_actividad', '=', 'ca.id_actividad')
+                    ->join('cursos as c', 'c.id_curso', '=', 'ca.id_curso')
+                    ->whereIn('ca.id_curso', $cursoIds)
+                    ->select(
+                        'ca.id_curso_actividad',
+                        'a.actividad as titulo',
+                        'a.descripcion',
+                        'ca.fecha_entrega',
+                        'ca.hora_entrega',
+                        DB::raw("c.materia as curso")
+                    )
+                    ->orderBy('ca.fecha_entrega', 'desc')
+                    ->get();
+            }
+        }
+
+        return view('Apoderado.pagina_institucional', compact('anuncios', 'actividades'));
     }
 
     public function storeAnuncio(Request $request)

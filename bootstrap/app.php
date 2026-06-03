@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\Role;
+use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -15,6 +16,27 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'role' => Role::class,
         ]);
+
+        // 🔥 AQUÍ ESTÁ LA CLAVE
+        $middleware->redirectGuestsTo(function (Request $request) {
+            if ($request->is('apoderado/*')) {
+                return route('login.familia');
+            }
+
+            if ($request->is('alumno/*')) {
+                return route('login.alumno');
+            }
+
+            if ($request->is('docente/*')) {
+                return route('login.user');
+            }
+
+            if ($request->is('auxiliar/*')) {
+                return route('login.user');
+            }
+
+            return route('login.user');
+        });
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

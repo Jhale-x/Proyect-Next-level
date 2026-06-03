@@ -1,0 +1,260 @@
+/* =========================================
+   🌎 PAGE
+========================================= */
+
+.institutional-page {
+    padding: 30px;
+    min-height: 100vh;
+    background:
+        linear-gradient(135deg, #eff6ff 0%, #f8fafc 40%, #fef2f2 100%);
+}
+
+/* =========================================
+   🔥 HEADER
+========================================= */
+
+.institutional-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 35px;
+}
+
+.institutional-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 6px;
+}
+
+.institutional-subtitle {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+.header-badge {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, .25);
+}
+
+/* =========================================
+   📦 CONTENEDOR
+========================================= */
+
+.announcements-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* =========================================
+   📢 CARD
+========================================= */
+
+.announcement-card {
+    width: 100%;
+    background: white;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, .06);
+
+    transition: all .3s ease;
+}
+
+.announcement-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 20px 45px rgba(37, 99, 235, .12);
+}
+
+/* =========================================
+   🖼 IMAGE
+========================================= */
+
+.announcement-image {
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+    background: #e2e8f0;
+}
+
+.announcement-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+
+.announcement-card:hover .announcement-image img {
+    transform: scale(1.03);
+}
+
+/* =========================================
+   📝 BODY
+========================================= */
+
+.announcement-body {
+    padding: 30px;
+}
+
+/* =========================================
+   📌 TOP
+========================================= */
+
+.announcement-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.announcement-status {
+    background: #dbeafe;
+    color: #2563eb;
+    padding: 8px 16px;
+    border-radius: 40px;
+    font-size: .85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.announcement-date {
+    color: #64748b;
+    font-size: .9rem;
+}
+
+/* =========================================
+   📰 TITULO
+========================================= */
+
+.announcement-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 18px;
+    line-height: 1.2;
+}
+
+/* =========================================
+   📄 DESCRIPCION
+========================================= */
+
+.announcement-description {
+    color: #475569;
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 24px;
+}
+
+/* =========================================
+   📚 CONTENIDO
+========================================= */
+
+.announcement-content {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 24px;
+    color: #334155;
+    line-height: 2;
+    font-size: 1rem;
+    white-space: pre-line;
+}
+
+/* =========================================
+   ❌ EMPTY
+========================================= */
+
+.empty-announcements {
+    width: 100%;
+    background: white;
+    border-radius: 30px;
+    padding: 70px 30px;
+    text-align: center;
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, .05);
+}
+
+.empty-announcements i {
+    font-size: 5rem;
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+.empty-announcements h3 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+.empty-announcements p {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+/* =========================================
+   📱 RESPONSIVE
+========================================= */
+
+@media (max-width: 992px) {
+
+    .announcement-image {
+        height: 320px;
+    }
+
+    .announcement-title {
+        font-size: 1.6rem;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .institutional-page {
+        padding: 15px;
+    }
+
+    .institutional-title {
+        font-size: 2rem;
+    }
+
+    .announcement-image {
+        height: 240px;
+    }
+
+    .announcement-body {
+        padding: 22px;
+    }
+
+    .announcement-title {
+        font-size: 1.4rem;
+    }
+
+    .announcement-description {
+        font-size: .95rem;
+    }
+
+    .announcement-content {
+        font-size: .95rem;
+    }
+
+    .header-badge {
+        width: 100%;
+        justify-content: center;
+    }
+
+}

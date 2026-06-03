@@ -149,9 +149,9 @@
                 <div class="card p-3 mb-3">
                     <p class="section-title">Cuenta</p>
                     <div class="row g-3">
-                        <div class="col-md-6"><input id="user_al" name="usuario" class="form-control bg-light" readonly>
+                        <div class="col-md-6"><input id="user_al" name="usuario" class="form-control bg-light" >
                         </div>
-                        <div class="col-md-6"><input id="pass_al" name="contraseña" class="form-control bg-light"
+                        <div class="col-md-6"><input id="pass_al" name="contrasena" class="form-control bg-light"
                                 readonly></div>
                     </div>
                 </div>
@@ -202,6 +202,7 @@
                             <select name="rol" id="cargo" class="form-select">
                                 <option value="administrador">Administrador</option>
                                 <option value="docente">Docente</option>
+                                <option value="auxiliar">Auxiliar</option>
                             </select>
                         </div>
 
@@ -214,7 +215,7 @@
                             </select>
                         </div>
 
-                        <div class="col-md-2"><input id="user_per" name="usuario" class="form-control" readonly></div>
+                        <div class="col-md-2"><input id="user_per" name="usuario" class="form-control" ></div>
                         <div class="col-md-2"><input id="pass_per" name="contrasena" class="form-control" readonly>
                         </div>
                     </div>
@@ -228,6 +229,7 @@
 
     {{-- JS ORIGINAL (NO TOCADO) --}}
     <script>
+        let modalidad = 'colegio';
         document.addEventListener('DOMContentLoaded', () => {
             const formAlumno = document.getElementById('form-alumno');
             const formPersonal = document.getElementById('form-personal');
@@ -241,6 +243,23 @@
             const boxFacultad = document.getElementById('box-facultad');
             const chkApoderado = document.getElementById('chkApoderado');
             const bloqueApoderado = document.getElementById('bloque-apoderado');
+
+            document.getElementById('frmAlumno').addEventListener('submit', function() {
+
+                const grado = document.getElementById('grado');
+                const seccion = document.getElementById('seccion');
+                const facultad = document.getElementById('facultad');
+
+                if (modalidad === 'academia') {
+
+                    if (grado) grado.value = '';
+                    if (seccion) seccion.value = '';
+
+                } else {
+
+                    if (facultad) facultad.value = '';
+                }
+            });
 
             const tabHandler = (showForm, hideForm, activeTab, inactiveTab) => {
                 showForm.classList.remove('d-none');
@@ -260,9 +279,9 @@
 
                 if (!dni || !fecha || !user || !pass) return;
 
-                dni.addEventListener('input', () => {
-                    user.value = dni.value + '@nextlevel.Academy.pe';
-                });
+                // dni.addEventListener('input', () => {
+                //     user.value = dni.value + '@nextlevel.Academy.pe';
+                // });
 
                 fecha.addEventListener('change', () => {
                     if (!fecha.value) {
@@ -283,17 +302,23 @@
             };
 
             function calcularProgreso() {
+
                 const campos = ['nombre_al', 'apellido_al', 'dni_al', 'fecha_al', 'nivel'];
 
-                if (isVisible(boxGrado)) campos.push('grado');
-                if (isVisible(boxSeccion)) campos.push('seccion');
-                if (isVisible(boxFacultad)) campos.push('facultad');
+                if (modalidad === 'colegio') {
+                    campos.push('grado', 'seccion');
+                }
+
+                if (modalidad === 'academia') {
+                    campos.push('facultad');
+                }
 
                 if (chkApoderado && chkApoderado.checked) {
                     campos.push('apoderado_nombre', 'apoderado_apellido', 'apoderado_dni');
                 }
 
                 let llenos = 0;
+
                 campos.forEach(id => {
                     const el = document.getElementById(id);
                     if (el && el.value.trim() !== '') {
@@ -301,16 +326,13 @@
                     }
                 });
 
-                const porcentaje = campos.length === 0 ? 0 : Math.round((llenos / campos.length) * 100);
+                const porcentaje = Math.round((llenos / campos.length) * 100);
 
-                const pct = document.getElementById('pct-alumno');
-                const bar = document.getElementById('bar-alumno');
-                const btn = document.getElementById('btnAlumno');
-
-                if (pct) pct.innerText = porcentaje + '%';
-                if (bar) bar.style.width = porcentaje + '%';
-                if (btn) btn.disabled = porcentaje < 100;
+                document.getElementById('pct-alumno').innerText = porcentaje + '%';
+                document.getElementById('bar-alumno').style.width = porcentaje + '%';
+                document.getElementById('btnAlumno').disabled = porcentaje < 100;
             }
+
 
             const campos = ['nombre_al', 'apellido_al', 'dni_al', 'fecha_al', 'nivel', 'grado', 'seccion',
                 'facultad', 'apoderado_nombre', 'apoderado_apellido', 'apoderado_dni'
@@ -335,23 +357,46 @@
 
             if (nivel) {
                 nivel.addEventListener('change', function() {
-                    if (this.value !== '') {
-                        if (boxGrado) boxGrado.classList.remove('d-none');
 
-                        if (this.value == 1 || this.value == 2) {
+                    const idNivel = this.value;
+
+                    modalidad = (idNivel == 1 || idNivel == 2) ? 'colegio' : 'academia';
+
+                    // =========================
+                    // GRADO SOLO COLEGIO
+                    // =========================
+                    if (boxGrado) {
+                        if (modalidad === 'colegio' && idNivel !== '') {
+                            boxGrado.classList.remove('d-none');
+                        } else {
+                            boxGrado.classList.add('d-none');
+                        }
+                    }
+
+                    // =========================
+                    // SECCIÓN / FACULTAD
+                    // =========================
+                    if (idNivel !== '') {
+
+                        if (modalidad === 'colegio') {
+
                             if (boxSeccion) boxSeccion.classList.remove('d-none');
                             if (boxFacultad) boxFacultad.classList.add('d-none');
+
                         } else {
+
                             if (boxSeccion) boxSeccion.classList.add('d-none');
                             if (boxFacultad) boxFacultad.classList.remove('d-none');
                         }
+
                     } else {
-                        if (boxGrado) boxGrado.classList.add('d-none');
                         if (boxSeccion) boxSeccion.classList.add('d-none');
                         if (boxFacultad) boxFacultad.classList.add('d-none');
                     }
 
-                    const idNivel = this.value;
+                    // =========================
+                    // LIMPIAR GRADO
+                    // =========================
                     const grado = document.getElementById('grado');
                     if (grado) {
                         grado.innerHTML = '<option value="">Grado</option>';
@@ -361,13 +406,16 @@
                         fetch(`/admin/grados/${idNivel}`)
                             .then(res => res.json())
                             .then(data => {
+
                                 data.forEach(g => {
                                     grado.innerHTML +=
                                         `<option value="${g.id_grado}">${g.grado}</option>`;
                                 });
+
                                 calcularProgreso();
                             })
                             .catch(() => calcularProgreso());
+
                     } else {
                         calcularProgreso();
                     }

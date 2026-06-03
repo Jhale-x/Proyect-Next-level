@@ -3,22 +3,20 @@
 @section('title', 'Organizaciones')
 
 @section('content')
-
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="fw-normal">Organizaciones</h1>
-
-        <a href="#" class="text-decoration-none text-dark d-flex align-items-center gap-2">
-            <i class="bi bi-building fs-5"></i>
-            <span>Catálogo de organizaciones</span>
-        </a>
+        <div>
+            <h1 class="fw-normal">Organizaciones</h1>
+            <p class="text-muted mb-0">Listado de organizaciones registradas en el sistema.</p>
+        </div>
+        <span class="badge bg-primary">{{ $organizaciones->count() }}
+            organizacione{{ $organizaciones->count() === 1 ? '' : 's' }}</span>
     </div>
 
     <hr>
 
     <!-- Filtros -->
     <div class="row align-items-end g-3 mb-5">
-        <!-- Buscar -->
         <div class="col-md-4">
             <label for="buscador_org" class="form-label fw-semibold">Buscador</label>
             <div class="input-group">
@@ -29,16 +27,14 @@
             </div>
         </div>
 
-        <!-- Filtros -->
         <div class="col-md-3">
             <label for="filtro_org" class="form-label fw-semibold">Filtros</label>
             <select id="filtro_org" class="form-select">
                 <option>Docentes y auxiliares</option>
-                <option div="">General</option>
+                <option>General</option>
             </select>
         </div>
 
-        <!-- Paginación -->
         <div class="col-auto">
             <label for="paginacion_org" class="form-label fw-semibold">Página</label>
             <div class="input-group">
@@ -50,13 +46,26 @@
                 <span class="input-group-text bg-white">elementos por página</span>
             </div>
         </div>
-
     </div>
 
-    <!-- Estado vacío -->
-    <div class="text-center text-muted mt-5">
-        <p class="fs-6">
-            No hay listado
-        </p>
-    </div>
+    @if ($organizaciones->isEmpty())
+        <div class="text-center text-muted mt-5">
+            <p class="fs-6">No hay organizaciones registradas.</p>
+        </div>
+    @else
+        <div class="row g-4">
+            @foreach ($organizaciones as $organizacion)
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <h5 class="card-title mb-1">{{ $organizacion->nombre ?? 'Organización' }}</h5>
+                            <p class="text-muted small mb-3">
+                                {{ $organizacion->descripcion ?? 'Sin descripción disponible.' }}</p>
+                            <p class="mb-0"><strong>ID:</strong> {{ $organizacion->id ?? '-' }}</p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    @endif
 @endsection

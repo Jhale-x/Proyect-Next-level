@@ -57,8 +57,7 @@
                                 {{ $user->cursoRelacion->materia ?? '-' }}
                             </td>
                             <td class="align-middle text-info" style="border: none;">
-                                {{ $user->usuario }}@NextLevelAcademy.pe
-                            </td>
+                                {{ $user->usuario }}</td>
                             <td class="align-middle text-center" style="border: none;">
                                 <a href="{{ route('admin.users.show', $user->id_usuario) }}"
                                     class="btn btn-sm btn-outline-info"

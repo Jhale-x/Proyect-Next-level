@@ -12,75 +12,114 @@ use App\Models\Salon;
 use App\Models\User;
 use App\Models\Nivel;
 use App\Models\CursoSalon;
+use App\Models\Apoderado;
+use App\Models\Facultad;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
+    // =====================
+    // 👨‍💼 ADMIN
+    // =====================
     public function index()
     {
-        $cursos = Course::all();
-        $salonesPrimaria = Salon::with(['nivel', 'grado', 'seccion', 'facultad'])
-            ->where('id_nivel', 1)
-            ->get();
-        $salonesSecundaria = Salon::with(['nivel', 'grado', 'seccion', 'facultad'])
-            ->where('id_nivel', 2)
-            ->get();
-        $users = User::all();
         $cursos = Course::all();
         $salones = Salon::all();
         $users = User::all();
         $niveles = Nivel::all();
         $actividades = Activity::all();
 
-        $cursosResumen = DB::table('cursos as c')
-            ->leftJoin('docente_salon as ds', 'ds.id_curso', '=', 'c.id_curso')
-            ->leftJoin('users as u', function ($join) {
-                $join->on('u.id_usuario', '=', 'ds.id_usuario')
-                    ->where('u.rol', '=', 'docente');
+        $salonesPrimaria = Salon::with(['grado', 'seccion', 'nivel'])
+            ->whereHas('nivel', function ($q) {
+                $q->where('nivel', 'Primaria');
             })
-            ->leftJoin('curso_salon as cs', 'cs.id_curso', '=', 'c.id_curso')
-            ->leftJoin('salones as s', 's.id_salon', '=', 'cs.id_salon')
-            ->leftJoin('niveles as n', 'n.id_nivel', '=', 's.id_nivel')
-            ->leftJoin('grados as g', 'g.id_grado', '=', 's.id_grado')
-            ->leftJoin('alumnos as a', 'a.id_salon', '=', 's.id_salon')
-            ->select(
-                'c.id_curso',
-                'c.materia',
-                DB::raw("COALESCE(MAX(CONCAT(u.nombre, ' ', u.apellido)), 'Sin docente') as docente_nombre"),
-                DB::raw('COUNT(DISTINCT u.id_usuario) as total_docentes'),
-                DB::raw("GROUP_CONCAT(DISTINCT CONCAT(u.nombre, ' ', u.apellido) ORDER BY u.nombre, u.apellido SEPARATOR ', ') as docentes_nombres"),
-                DB::raw('COUNT(DISTINCT a.id_alumno) as total_alumnos'),
-                DB::raw('COUNT(DISTINCT cs.id_salon) as total_salones'),
-                DB::raw("COALESCE(GROUP_CONCAT(DISTINCT n.nivel ORDER BY n.nivel SEPARATOR ', '), 'Sin nivel') as niveles"),
-                DB::raw("COALESCE(GROUP_CONCAT(DISTINCT g.grado ORDER BY g.grado SEPARATOR ', '), 'Sin grado') as grados")
-            )
-            ->groupBy('c.id_curso', 'c.materia')
-            ->orderBy('c.materia')
-            ->get()
-            ->map(function ($curso) {
-                $curso->estado = (int) $curso->total_salones > 0 ? 'activo' : 'inactivo';
-                return $curso;
-            });
+            ->get();
 
-        $statsCursos = [
-            'total' => $cursosResumen->count(),
-            'activos' => $cursosResumen->where('estado', 'activo')->count(),
-            'inactivos' => $cursosResumen->where('estado', 'inactivo')->count(),
-            'alumnos' => (int) $cursosResumen->sum('total_alumnos'),
-        ];
+        $salonesSecundaria = Salon::with(['grado', 'seccion', 'nivel'])
+            ->whereHas('nivel', function ($q) {
+                $q->where('nivel', 'Secundaria');
+            })
+            ->get();
+
+        $facultadesAcademia =  Salon::with(['facultad', 'nivel'])
+            ->whereHas('nivel', function ($q) {
+                $q->where('nivel', 'academia');
+            })
+            ->get();
 
         return view('Admin.courses', compact(
             'cursos',
-            'cursosResumen',
-            'statsCursos',
             'salones',
             'users',
             'niveles',
             'actividades',
             'salonesPrimaria',
             'salonesSecundaria',
+            'facultadesAcademia'
         ));
     }
+
+    // =====================
+    // 👨‍🏫 DOCENTE (ARREGLADO)
+    // =====================
+    public function docenteIndex()
+    {
+        $user = Auth::user();
+
+        $cursos = DB::table('docente_salon as ds')
+            ->join('cursos as c', 'c.id_curso', '=', 'ds.id_curso')
+            ->where('ds.id_usuario', $user->id_usuario)
+            ->groupBy('c.id_curso', 'c.materia', 'c.created_at', 'c.updated_at')
+            ->select('c.*')
+            ->get();
+
+        return view('Docentes.courses', compact(
+            'cursos',
+        ));
+    }
+
+
+    // =====================
+    // 👨‍🎓 ALUMNO
+    // =====================
+    public function alumnoIndex()
+    {
+        $alumno = Auth::guard('alumno')->user();
+
+        $cursos = DB::table('cursos as c')
+            ->join('curso_salon as cs', 'cs.id_curso', '=', 'c.id_curso')
+            ->where('cs.id_salon', $alumno->id_salon)
+            ->select('c.*')
+            ->get();
+
+        return view('Alumno.courses', compact(
+            'cursos'
+        ));
+    }
+
+    // =====================
+    // 👨‍🎓 APODERADO
+    // =====================
+    public function apoderadoIndex()
+    {
+        $apoderado = auth('apoderado')->user();
+
+        $apoderado = Apoderado::with('alumnos')->find($apoderado->id_apoderado);
+
+        $idSalones = $apoderado->alumnos->pluck('id_salon')->unique();
+
+        $cursos = CursoSalon::with('curso')
+            ->whereIn('id_salon', $idSalones)
+            ->get()
+            ->pluck('curso')
+            ->unique('id_curso')
+            ->values();
+
+        return view('Apoderado.courses', compact('cursos'));
+    }
+
+
 
     public function store(Request $request)
     {
@@ -95,26 +134,19 @@ class CourseController extends Controller
 
     public function docentes(int $id_curso)
     {
-        $docentes = DB::table('users as u')
-            ->leftJoin('docente_salon as ds', 'ds.id_usuario', '=', 'u.id_usuario')
-            ->leftJoin('curso_salon as cs', 'cs.id_salon', '=', 'ds.id_salon')
-            ->where('u.rol', 'docente')
-            ->where(function ($query) use ($id_curso) {
-                $query->where('u.id_curso', $id_curso)
-                    ->orWhere('ds.id_curso', $id_curso)
-                    ->orWhere('cs.id_curso', $id_curso);
-            })
+        $docentes = DB::table('users')
+            ->where('id_curso', $id_curso)
+            ->whereIn('rol', ['docente', 'auxiliar'])
             ->select(
-                'u.id_usuario as id',
-                DB::raw("CONCAT(u.nombre, ' ', u.apellido) as nombre")
+                'id_usuario as id',
+                DB::raw("CONCAT(nombre, ' ', apellido) as nombre"),
+                'rol'
             )
-            ->distinct()
             ->orderBy('nombre')
             ->get();
 
         return response()->json($docentes);
     }
-
     public function salonesPorDocente(int $id_usuario)
     {
         $cursoId = request()->query('id_curso');
@@ -122,17 +154,19 @@ class CourseController extends Controller
         $salones = DB::table('docente_salon')
             ->join('salones', 'docente_salon.id_salon', '=', 'salones.id_salon')
             ->join('niveles', 'salones.id_nivel', '=', 'niveles.id_nivel')
-            ->join('grados', 'salones.id_grado', '=', 'grados.id_grado')
-            ->join('secciones', 'salones.id_seccion', '=', 'secciones.id_seccion')
+            ->leftJoin('grados', 'salones.id_grado', '=', 'grados.id_grado')
+            ->leftJoin('secciones', 'salones.id_seccion', '=', 'secciones.id_seccion')
+            ->leftJoin('facultades', 'salones.id_facultad', '=', 'facultades.id_facultad')
             ->where('docente_salon.id_usuario', $id_usuario)
-            ->when($cursoId, fn($query) => $query->where('docente_salon.id_curso', $cursoId))
             ->select(
                 'salones.id_salon as id',
                 'niveles.nivel',
                 'grados.grado',
-                'secciones.seccion'
+                'secciones.seccion',
+                'facultades.facultad'
             )
             ->get();
+
         return response()->json($salones);
     }
 
@@ -218,6 +252,88 @@ class CourseController extends Controller
             'actividades' => $actividades,
             'notas' => $notas
         ]);
+    }
+
+    // =====================
+    // 👨‍🎓 DETALLE CURSO ALUMNO
+    // =====================
+    public function detalleAlumno(int $idCurso)
+    {
+        $alumno = Auth::guard('alumno')->user();
+
+        $actividades = DB::table('curso_actividades as ca')
+            ->join('actividades as a', 'a.id_actividad', '=', 'ca.id_actividad')
+            ->leftJoin('notas as n', function ($join) use ($alumno) {
+                $join->on('n.id_curso_actividad', '=', 'ca.id_curso_actividad')
+                    ->where('n.id_alumno', '=', $alumno->id_alumno);
+            })
+            ->where('ca.id_curso', $idCurso)
+            ->select(
+                'a.actividad',
+                'ca.fecha_entrega',
+                'ca.hora_entrega',
+                'n.nota'
+            )
+            ->orderBy('ca.fecha_entrega')
+            ->get();
+
+        return response()->json([
+            'actividades' => $actividades
+        ]);
+    }
+
+    // =====================
+    // 👨‍🎓 DETALLE CURSO APODERADO
+    // =====================
+    public function detalleApoderado(int $idCurso)
+    {
+        $apoderado = Auth::guard('apoderado')->user();
+
+        $alumnosIds = $apoderado->alumnos->pluck('id_alumno');
+
+        $actividades = DB::table('curso_actividades as ca')
+            ->join('actividades as a', 'a.id_actividad', '=', 'ca.id_actividad')
+            ->leftJoin('notas as n', function ($join) use ($alumnosIds) {
+                $join->on('n.id_curso_actividad', '=', 'ca.id_curso_actividad')
+                    ->whereIn('n.id_alumno', $alumnosIds);
+            })
+            ->where('ca.id_curso', $idCurso)
+            ->select(
+                'a.actividad',
+                'ca.fecha_entrega',
+                'ca.hora_entrega',
+                'n.nota'
+            )
+            ->orderBy('ca.fecha_entrega')
+            ->get();
+
+        return response()->json([
+            'actividades' => $actividades
+        ]);
+    }
+
+    public function salonesPorCursoDocente(int $id_curso)
+    {
+        $user = Auth::user();
+
+        $salones = DB::table('docente_salon')
+            ->join('salones', 'docente_salon.id_salon', '=', 'salones.id_salon')
+            ->join('niveles', 'salones.id_nivel', '=', 'niveles.id_nivel')
+            ->leftJoin('grados', 'salones.id_grado', '=', 'grados.id_grado')
+            ->leftJoin('secciones', 'salones.id_seccion', '=', 'secciones.id_seccion')
+            ->leftJoin('facultades', 'salones.id_facultad', '=', 'facultades.id_facultad')
+            ->where('docente_salon.id_usuario', $user->id_usuario)
+            ->where('docente_salon.id_curso', $id_curso)
+            ->select(
+                'salones.id_salon as id',
+                'niveles.nivel',
+                'grados.grado',
+                'secciones.seccion',
+                'facultades.facultad'
+            )
+            ->get();
+
+        return response()->json($salones);
     }
 
     public function guardarNotasSalon(Request $request, int $idSalon)

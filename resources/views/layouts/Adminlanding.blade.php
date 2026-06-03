@@ -11,9 +11,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/course.css') }}">
     <link rel="stylesheet" href="{{ asset('css/landing.css') . '?v=' . $landingCssVersion }}">
-    <link rel="stylesheet" href="{{ asset('css/messages.css') }}">
     @stack('styles')
 </head>
+
 <body>
     <div class="mobile-header">
         <div class="d-flex align-items-center gap-2">
@@ -40,94 +40,95 @@
                     <i class="bi bi-speedometer2"></i>
                     <span>Dashboard</span>
                 </a>
-            <nav class="menu">
-                <a href="{{ route('admin.pagina_institucional') }}"
-                    class="{{ request()->routeIs('admin.pagina_institucional') ? 'active' : '' }}">
-                    <i class="bi bi-house-door"></i>
-                    <span>Pagina Institucional</span>
-                </a>
-
-                <a href="{{ route('admin.activity') }}"
-                    class="{{ request()->routeIs('admin.activity') ? 'active' : '' }}">
-                    @php($landingCssVersion = filemtime(public_path('css/landing.css')))
-                    <i class="bi bi-activity"></i>
-                    <span>Actividad</span>
-                </a>
-                <link rel="stylesheet" href="{{ asset('css/landing.css') . '?v=' . $landingCssVersion }}">
-                <div class="sidebar-item">
-                    <a href="{{ route('admin.courses') }}"
-                        class="{{ request()->routeIs('admin.courses') || request()->routeIs('admin.eti') ? 'active' : '' }}">
-                        <i class="bi bi-book"></i>
-                        <span>Cursos</span>
+                <nav class="menu">
+                    <a href="{{ route('admin.pagina_institucional') }}"
+                        class="{{ request()->routeIs('admin.pagina_institucional') ? 'active' : '' }}">
+                        <i class="bi bi-house-door"></i>
+                        <span>Pagina Institucional</span>
                     </a>
-                    <div class="submenu"
-                        style="{{ request()->routeIs('admin.courses') || request()->routeIs('admin.eti') ? 'display: flex; flex-direction: column;' : 'display: none;' }}">
+
+                    <a href="{{ route('admin.activity') }}"
+                        class="{{ request()->routeIs('admin.activity') ? 'active' : '' }}">
+                        <i class="bi bi-activity"></i>
+                        <span>Actividad</span>
+                    </a>
+                    <link rel="stylesheet" href="{{ asset('css/landing.css') . '?v=' . $landingCssVersion }}">
+                    <div class="sidebar-item">
                         <a href="{{ route('admin.courses') }}"
-                            class="{{ request()->routeIs('admin.courses') ? 'text-white fw-bold' : '' }}">
-                            <i class="bi bi-collection me-2"></i> Todos los Cursos
+                            class="{{ request()->routeIs('admin.courses') || request()->routeIs('admin.eti') ? 'active' : '' }}">
+                            <i class="bi bi-book"></i>
+                            <span>Cursos</span>
                         </a>
-                        <a href="{{ route('admin.eti') }}"
-                            class="{{ request()->routeIs('admin.eti') ? 'text-white fw-bold' : '' }}">
-                            <i class="bi bi-cpu me-2"></i> ETI
-                        </a>
+                        <div class="submenu"
+                            style="{{ request()->routeIs('admin.courses') || request()->routeIs('admin.eti') ? 'display: flex; flex-direction: column;' : 'display: none;' }}">
+                            <a href="{{ route('admin.courses') }}"
+                                class="{{ request()->routeIs('admin.courses') ? 'text-white fw-bold' : '' }}">
+                                <i class="bi bi-collection me-2"></i> Todos los Cursos
+                            </a>
+                            <a href="{{ route('admin.eti') }}"
+                                class="{{ request()->routeIs('admin.eti') ? 'text-white fw-bold' : '' }}">
+                                <i class="bi bi-cpu me-2"></i> ETA
+                            </a>
+                        </div>
                     </div>
-                </div>
 
-                <a href="{{ route('admin.users.index') }}"
-                    class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                    <i class="bi bi-people"></i>
-                    <span>Usuarios</span>
-                </a>
-
-                <div class="sidebar-item">
-                    <a href="javascript:void(0)"
-                        class="btn-submenu {{ request()->is('admin/alumnos*') || request()->is('admin/users*') ? 'active' : '' }}"
-                        onclick="toggleSubmenu(event, 'listado-items')">
-                        <i class="bi bi-people-fill"></i>
-                        <span>Listado</span>
-                        <i class="bi bi-chevron-down ms-auto arrow-icon" style="font-size: 0.8rem;"></i>
+                    <a href="{{ route('admin.users.index') }}"
+                        class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                        <i class="bi bi-people"></i>
+                        <span>Usuarios</span>
                     </a>
 
-                    <div class="submenu" id="listado-items"
-                        style="{{ request()->is('admin/alumnos*') || request()->is('admin/users*') ? 'display: flex; flex-direction: column;' : 'display: none;' }}">
-
-                        <a href="{{ route('admin.alumnos.index') }}"
-                            class="{{ request()->routeIs('admin.alumnos.*') ? 'text-white fw-bold' : '' }}">
-                            <i class="bi bi-person-workspace me-2"></i> Lista de alumnos
+                    <div class="sidebar-item">
+                        <a href="javascript:void(0)"
+                            class="btn-submenu {{ request()->is('admin/alumnos*') || request()->is('admin/users*') ? 'active' : '' }}"
+                            onclick="toggleSubmenu(event, 'listado-items')">
+                            <i class="bi bi-people-fill"></i>
+                            <span>Listado</span>
+                            <i class="bi bi-chevron-down ms-auto arrow-icon" style="font-size: 0.8rem;"></i>
                         </a>
 
-                        <a href="{{ route('admin.users.index') }}"
-                            class="{{ request()->routeIs('admin.users.index') ? 'text-white fw-bold' : '' }}">
-                            <i class="bi bi-person-badge me-2"></i> Lista de personal
-                        </a>
+                        <div class="submenu" id="listado-items"
+                            style="{{ request()->is('admin/alumnos*') || request()->is('admin/users*') ? 'display: flex; flex-direction: column;' : 'display: none;' }}">
 
+                            <a href="{{ route('admin.alumnos.index') }}"
+                                class="{{ request()->routeIs('admin.alumnos.*') ? 'text-white fw-bold' : '' }}">
+                                <i class="bi bi-person-workspace me-2"></i> Lista de alumnos
+                            </a>
+
+                            <a href="{{ route('admin.users.listado') }}"
+                                class="{{ request()->routeIs('admin.users.listado') ? 'text-white fw-bold' : '' }}">
+                                <i class="bi bi-person-badge me-2"></i> Lista de personal
+                            </a>
+
+                        </div>
                     </div>
-                </div>
 
-                <a href="{{ route('admin.calendar') }}"
-                    class="{{ request()->routeIs('admin.calendar') ? 'active' : '' }}">
-                    <i class="bi bi-calendar-event"></i>
-                    <span>Calendario</span>
-                </a>
+                    <a href="{{ route('admin.calendar') }}"
+                        class="{{ request()->routeIs('admin.calendar') ? 'active' : '' }}">
+                        <i class="bi bi-calendar-event"></i>
+                        <span>Calendario</span>
+                    </a>
 
-                <a href="{{ route('admin.messages') }}"
-                    class="{{ request()->routeIs('admin.messages') ? 'active' : '' }}">
-                    <i class="bi bi-envelope"></i>
-                    <span>Mensajes</span>
-                </a>
+                    <a href="{{ route('admin.messages') }}"
+                        class="{{ request()->routeIs('admin.messages') ? 'active' : '' }}">
+                        <i class="bi bi-envelope"></i>
+                        <span>Mensajes</span>
+                    </a>
 
-                <a href="{{ route('admin.tools') }}" class="{{ request()->routeIs('admin.tools') ? 'active' : '' }}">
-                    <i class="bi bi-tools"></i>
-                    <span>Herramientas</span>
-                </a>
+                    <a href="{{ route('admin.tools') }}"
+                        class="{{ request()->routeIs('admin.tools') ? 'active' : '' }}">
+                        <i class="bi bi-tools"></i>
+                        <span>Herramientas</span>
+                    </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
-                </a>
-            </nav>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    <a href="#"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+                    </a>
+                </nav>
         </aside>
 
         <main class="main-content" id="mainContent">
@@ -179,7 +180,7 @@
 
     @stack('modals')
     @vite(['resources/js/app.js'])
-    <script src="{{ asset('js/course.js') }}"></script>
+
     @stack('scripts')
     <script>
         // Función para abrir/cerrar submenús al hacer clic

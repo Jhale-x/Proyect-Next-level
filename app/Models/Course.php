@@ -10,6 +10,11 @@ class Course extends Model
     protected $primaryKey = 'id_curso';
 
     protected $fillable = [
-        'materia'
+        'materia',
+        'descripcion',
+        'id_grado',
+        'id_salon'
     ];
+
+    public $timestamps = false;
 }

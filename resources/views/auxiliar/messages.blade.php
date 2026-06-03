@@ -1,88 +1,119 @@
 @extends('layouts.Auxiliarlanding')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/auxiliar/messages.css') }}">
+@endpush
+
 @section('title', 'Mensajes')
 
 @section('content')
-    <div class="container-fluid mt-3">
-        <div class="main-chat-viewport shadow-sm rounded">
 
-            <div class="course-list-wrapper">
-                <h3 class="mb-4" style="font-family: serif;">Mensajes</h3>
+    <div class="messages-container">
 
-                @php $colores = ['#ff6b00', '#e91e63', '#4caf50', '#9c27b0', '#03a9f4']; @endphp
+        {{-- HEADER --}}
+        <div class="messages-header">
+            <h4>Mensajes</h4>
+            <p>Gestión de conversaciones del sistema</p>
+        </div>
 
-                @foreach ($cursos as $index => $curso)
-                    <div class="course-item" style="border-left-color: {{ $colores[$index % count($colores)] }};">
-                        <div class="course-info">
-                            <span class="id-label">ID: 202610-{{ $curso->materia }}-{{ $curso->id_curso }}</span>
-                            <span class="materia-name">{{ $curso->materia }}</span>
+        {{-- CURSOS --}}
+        <div class="conversations-grid">
+
+            @foreach ($cursos as $curso)
+                <div class="conversation-card"
+                    onclick="AuxiliarMessages.abrirCurso({{ $curso->id_curso }}, '{{ $curso->materia }}')">
+
+                    <div class="conversation-header">
+                        <div>
+                            <h6>{{ $curso->materia }}</h6>
+                            <span class="course-code">CURSO-{{ $curso->id_curso }}</span>
                         </div>
-                        <button class="btn btn-link text-muted text-decoration-none small"
-                            onclick="abrirNuevoMensaje('{{ $curso->materia }}', {{ $curso->id_curso }})">
-                            <i class="bi bi-envelope"></i> Nuevo mensaje
-                        </button>
-                    </div>
-                @endforeach
-            </div>
 
-            <div id="panelNuevoMensaje">
-                <div class="panel-header">
-                    <button class="btn-close-custom" onclick="cerrarPanel()">X</button>
-                    <div>
-                        <small class="text-muted text-uppercase d-block" id="displayMateria"
-                            style="font-size: 0.65rem;"></small>
-                        <h4 class="mb-0">Nuevo mensaje</h4>
+                        <div>📘</div>
                     </div>
+
+                    <div class="conversation-body">
+                        <p class="text-muted">Ver conversaciones</p>
+                    </div>
+
                 </div>
-
-                <div class="panel-body text-center">
-                    <div class="w-100 text-start mb-4" style="max-width: 700px;">
-                        <label for="destinatario_msg" class="small fw-bold">Hasta:</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
-                            <input id="destinatario_msg" type="text" class="form-control"
-                                placeholder="Escriba un miembro o grupo del curso">
-                        </div>
-                        <div id="resultados_busqueda" class="list-group mt-1"></div>
-                        <div class="mt-2">
-                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="seleccionarGrupo()">
-                                👥 Enviar a todo el salón
-                            </button>
-                        </div>
-                    </div>
-
-                    <img src="https://cdn-icons-png.flaticon.com/512/2665/2665038.png" class="mailbox-img">
-                    <h5 class="fw-bold">Comenzar un nuevo mensaje</h5>
-                    <p class="text-muted small">Seleccione un destinatario para comenzar.</p>
-                </div>
-
-                <div class="panel-footer">
-                    <input type="hidden" id="current_id_curso">
-                    <div id="mensajeEstado" class="text-success small fw-bold" style="display:none;margin-bottom:12px">
-                    </div>
-                    <div class="border p-2 bg-white rounded">
-                        <textarea id="mensaje_contenido" class="form-control border-0" rows="3" placeholder="Escribe un mensaje"></textarea>
-                    </div>
-                    <div class="text-end mt-3">
-                        <button class="btn btn-primary px-4"
-                            onclick="enviarAccion('{{ route('auxiliar.messages.store') }}', '{{ csrf_token() }}')">
-                            <i class="bi bi-send"></i> Enviar
-                        </button>
-                    </div>
-                </div>
-            </div>
+            @endforeach
 
         </div>
+
     </div>
+
+    {{-- ========================= --}}
+    {{-- PANEL INBOX (SALONES Y CONVERSACIONES) --}}
+    {{-- ========================= --}}
+    <div id="inboxModal" class="chat-panel">
+
+        <div class="chat-header">
+            <h6 id="chatTitle">Conversaciones</h6>
+            <button onclick="AuxiliarMessages.closeInbox()">✖</button>
+        </div>
+
+        <div class="chat-body" id="inboxList">
+            <div class="empty">Cargando...</div>
+        </div>
+
+        <div class="chat-float-button">
+            <button onclick="AuxiliarMessages.nuevaConversacion()">
+                ➕ Nueva conversación
+            </button>
+        </div>
+
+    </div>
+
+    {{-- ========================= --}}
+    {{-- MODAL: SELECCIONAR USUARIO --}}
+    {{-- ========================= --}}
+    <div id="selectUserModal">
+
+        <div class="chat-header">
+            <h6>Seleccionar Usuario</h6>
+            <button onclick="AuxiliarMessages.closeSelectUser()">✖</button>
+        </div>
+
+        {{-- BUSCADOR --}}
+        <div class="search-box" style="padding: 15px; border-bottom: 1px solid #ddd;">
+            <input type="text" id="searchUserInput" placeholder="🔍 Buscar usuario..."
+                onkeyup="AuxiliarMessages.buscarUsuario()"
+                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+        </div>
+
+        {{-- LISTA DE USUARIOS --}}
+        <div class="chat-body" id="usersList" style="overflow-y: auto;">
+            <div class="empty">Cargando usuarios...</div>
+        </div>
+
+    </div>
+
+    {{-- ========================= --}}
+    {{-- CHAT --}}
+    {{-- ========================= --}}
+    <div id="chatModal">
+
+        <div class="chat-header">
+            <h6 id="chatUserTitle">Chat</h6>
+            <button onclick="AuxiliarMessages.closeChat()">✖</button>
+        </div>
+
+        <div class="chat-body chat-messages" id="chatMessages"></div>
+
+        <div class="chat-footer">
+            <input type="text" id="chatInput" placeholder="Escribe un mensaje...">
+            <button onclick="AuxiliarMessages.sendMessage()">➤</button>
+        </div>
+
+    </div>
+
+    <script>
+        window.csrfToken = "{{ csrf_token() }}";
+    </script>
+
 @endsection
 
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('css/messages.css') }}">
-@endpush
-
 @push('scripts')
-    <script>
-        window.buscarAlumnosUrl = '{{ route('auxiliar.messages.search') }}';
-    </script>
-    <script src="{{ asset('js/messages.js') }}"></script>
+    <script src="{{ asset('js/auxiliar/messages.js') }}"></script>
 @endpush

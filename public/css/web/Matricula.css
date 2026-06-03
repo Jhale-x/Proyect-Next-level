@@ -1,0 +1,355 @@
+.banner {
+    height: 600px;
+    background-image: url('../../images/imagen10.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    color: var(--blanco);
+}
+
+.banner-container {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1px 0;
+}
+
+.enrollment-card {
+    background: var(--blanco);
+    padding: 30px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.enrollment-form select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: var(--azul-oscuro) !important;
+    font-weight: 10;
+    background-color: var(--blanco);
+    padding-right: 40px !important;
+}
+
+.select-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.custom-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #576574;
+    font-size: 0.9rem;
+    right: 20px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.enrollment-form select option {
+    background-color: var(--blanco);
+    color: #576574;
+    font-weight: 600;
+}
+
+.enrollment-form select,
+.enrollment-form input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #576574;
+    background: var(--blanco);
+    color: #576574;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px var(--blanco) inset !important;
+    -webkit-text-fill-color: #576574 !important;
+}
+
+.enrollment-form input:focus,
+.enrollment-form select:focus {
+    border-color: #576574 !important;
+    outline: none;
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--rojo-principal);
+}
+
+.btn-verify {
+    width: 100%;
+    background: var(--rojo-principal);
+    color: var(--blanco);
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.btn-verify:hover {
+    background: var(--rojo-principal);
+}
+
+.hero-enrollment {
+    padding: 60px 20px;
+    background-color: var(--blanco);
+    display: flex;
+    justify-content: center;
+}
+
+.hero-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.hero-title {
+    color: var(--azul-oscuro);
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.hero-description, .hero-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #576574;
+    margin-bottom: 15px;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 25px 0;
+}
+
+.benefits-list li {
+    align-items: center;
+    color: #576574;
+    display: flex;
+    font-size: 17px;
+    font-weight: 600;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.benefits-list i {
+    color: var(--rojo-principal);
+    font-size: 20px;
+}
+
+.btn-enroll {
+    align-items: center;
+    background-color: var(--rojo-principal);
+    border-radius: 12px;
+    color: var(--blanco);
+    display: flex;
+    font-size: 17px;
+    font-weight: 700;
+    gap: 12px;
+    padding: 18px 59px;
+    text-decoration: none;
+    transition: 0.3s;
+    width: fit-content;
+}
+
+.btn-enroll:hover {
+    box-shadow: 0 10px 20px rgba(184, 92, 92, 0.3);
+    transform: translateY(-3px);
+}
+
+.hero-video {
+    flex: 1;
+    min-width: 300px;
+    margin-top: 12px;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.help-container {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+#helpIcon {
+    color: var(--rojo-principal);
+    cursor: help;
+    font-size: 1.1rem;
+    margin: 0;
+    right: 5px;
+}
+
+.help-tooltip {
+    display: none;
+    position: absolute;
+    bottom: 155%;
+    right: 0;
+    width: 150px;
+    background: var(--blanco);
+    color: var(--blanco);
+    padding: 1px;
+    border-radius: 10px;
+    z-index: 100;
+    text-align: center;
+    border: 1px solid var(--blanco);
+    pointer-events: none;
+}
+
+.enrollment-card h3 {
+    color: var(--azul-oscuro);
+    font-size: 1.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: 25px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.help-tooltip img {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+
+.help-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: 5px;
+    border-width: 8px;
+    border-style: solid;
+    border-color: var(--blanco) transparent;
+}
+
+.enrollment-form select:hover {
+    cursor: pointer;
+}
+
+@media (max-width: 992px) {
+
+    .banner {
+        height: 350px;
+        background-image: url('../../images/imagen10.jpg');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .banner-container {
+        background-color: var(--blanco);
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 0 20px 50px 20px;
+        margin-top: 315px;
+    }
+
+    .enrollment-card {
+        margin-top: 120px;
+        position: relative;
+        z-index: 10;
+        max-width: 360px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+        margin-top: 350px;
+        gap: 30px;
+    }
+
+    .hero-content {
+        min-width: 100%;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .benefits-list {
+        display: inline-block;
+        text-align: left;
+    }
+
+    .btn-enroll {
+        margin: 0 auto;
+    }
+
+    .hero-video {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .video-wrapper {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+}

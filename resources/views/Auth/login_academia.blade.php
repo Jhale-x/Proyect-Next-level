@@ -25,13 +25,13 @@
 
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-12 italic">¡Bienvenida Familia!</h2>
 
-                <form class="space-y-8 text-left" method="POST" action="#">
+                <form class="space-y-8 text-left" method="POST" action="{{ route('login.familia') }}">
                     @csrf
                     <div class="space-y-4">
-                        <label for="documento_familia_ac"
+                        <label for="documento_familia"
                             class="block text-slate-800 text-base font-extrabold uppercase ml-2 tracking-widest">Nro.
                             de documento</label>
-                        <input id="documento_familia_ac" type="text" name="documento" placeholder="Ej: 70001234"
+                        <input id="documento_familia" type="text" name="documento" placeholder="Ej: 70001234"
                             required
                             class="w-full bg-slate-50 border-2 border-slate-200 rounded-[2rem] py-7 px-10 outline-none focus:border-custom-red transition-all text-2xl shadow-sm">
                     </div>
@@ -101,21 +101,31 @@
 
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-12 italic">¡Bienvenido Alumno!</h2>
 
-                <form class="space-y-8 text-left" method="POST" action="#">
+                <form class="space-y-8 text-left" method="POST" action="{{ route('login.alumno') }}">
                     @csrf
+                    @if (session('error'))
+                        <div class="mb-4 text-red-600 font-semibold">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    @if ($errors->has('usuario'))
+                        <div class="mb-4 text-red-600 font-semibold">
+                            {{ $errors->first('usuario') }}
+                        </div>
+                    @endif
                     <div class="space-y-4">
-                        <label for="alumno_id_input"
+                        <label for="usuario_alumno"
                             class="block text-slate-800 text-base font-extrabold uppercase ml-2 tracking-widest">ID
                             Alumno</label>
-                        <input id="alumno_id_input" type="text" name="alumno_id" placeholder="Ej: 0020261234"
-                            required
+                        <input id="usuario_alumno" type="text" name="usuario" placeholder="Ej: 0020261234" required
                             class="w-full bg-slate-50 border-2 border-slate-200 rounded-[2rem] py-7 px-10 outline-none focus:border-custom-red transition-all text-2xl shadow-sm">
                     </div>
                     <div class="space-y-4">
                         <label for="passwordInput"
                             class="block text-slate-800 text-base font-extrabold uppercase ml-2 tracking-widest">Contraseña</label>
                         <div class="relative flex items-center">
-                            <input id="passwordInput" type="password" name="password" placeholder="••••••••" required
+                            <input id="passwordInput" type="password" name="password" placeholder="••••••••"
+                                required
                                 class="w-full bg-slate-50 border-2 border-slate-200 rounded-[2rem] py-7 px-10 pr-24 outline-none focus:border-custom-red transition-all text-2xl shadow-sm">
                             <button id="togglePassword" type="button"
                                 class="absolute right-8 text-slate-400 hover:text-custom-red">

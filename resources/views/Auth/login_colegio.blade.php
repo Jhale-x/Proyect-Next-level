@@ -118,7 +118,7 @@
                     <div class="space-y-4">
                         <label for="usuario_alumno"
                             class="block text-slate-800 text-base font-extrabold uppercase ml-2 tracking-widest">ID
-                            DEL USUARIO</label>
+                            DEL ALUMNO</label>
                         <input id="usuario_alumno" type="text" name="usuario" placeholder="Ej: 0020261234" required
                             class="w-full bg-slate-50 border-2 border-slate-200 rounded-[2rem] py-7 px-10 outline-none focus:border-custom-blue transition-all text-2xl shadow-sm">
                     </div>

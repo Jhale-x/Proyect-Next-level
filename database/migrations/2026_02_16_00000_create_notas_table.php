@@ -26,7 +26,7 @@ return new class extends Migration
             $table->decimal('nota', 5, 2)->default(0);
 
             $table->timestamps();
-            
+
             $table->unique([
                 'id_alumno',
                 'id_curso_actividad'

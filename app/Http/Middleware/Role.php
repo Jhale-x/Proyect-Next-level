@@ -9,23 +9,31 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Role
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
-     * @param  string $role
-     */
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        // 1. Verificar si el usuario está autenticado
         if (!Auth::check()) {
-            return redirect()->route('portal');
+            return redirect()->route('login.user')->with('error', 'Debes iniciar sesión.');
         }
 
-        // 2. Comparación INSENSIBLE a mayúsculas/minúsculas
-        // Esto evita que 'Docente' y 'docente' se consideren diferentes
-        if (strtolower(Auth::user()->rol) !== strtolower($role)) {
-            abort(403, 'No tienes permiso para acceder a este recurso.');
+        $userRol = strtolower(trim(Auth::user()->rol));
+        $roleExpected = strtolower(trim($role));
+
+        // Si la ruta requiere rol 'docente', permitir también 'auxiliar'
+        if ($roleExpected === 'docente' && ($userRol === 'docente' || $userRol === 'auxiliar')) {
+            return $next($request);
+        }
+
+        // Comparación normal para otros roles
+        if ($userRol !== $roleExpected) {
+            // Redirigir según el rol real
+            if ($userRol === 'administrador') {
+                return redirect()->route('admin.pagina_institucional');
+            } elseif ($userRol === 'docente') {
+                return redirect()->route('docente.pagina_institucional');
+            } elseif ($userRol === 'auxiliar') {
+                return redirect()->route('auxiliar.dashboard');
+            }
+            abort(403, 'No tienes permiso.');
         }
 
         return $next($request);

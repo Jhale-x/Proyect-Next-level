@@ -48,7 +48,7 @@
                     </ul>
                 </li>
                 <li><a href="#">UBICACIÓN</a></li>
-                <li><a href="#">MATRICULAS</a></li>
+                <li><a href="{{ route('matricula') }}">MATRICULAS</a></li>
                 <li><a href="#">CONCURSOS</a></li>
                 <li><a href="{{ route('portal') }}">INTRANET</a></li>
             </ul>
@@ -368,7 +368,7 @@
                     <a href="#">NIVELES</a>
                     <a href="#">ACADEMIA</a>
                     <a href="#">PAGOS EN LÍNEA</a>
-                    <a href="#">MATRICULA 2026</a>
+                    <a href="{{ route('matricula') }}">MATRICULA 2026</a>
                     <a href="#">HORARIO DE CLASE</a>
                 </div>
                 <div class="footer-column social-align">

@@ -13,7 +13,7 @@
 
         <!-- Soporte -->
         <div class="col-md-4">
-            <a href="{{ route('alumno.support') }}" class="text-decoration-none text-dark">
+            <a href="{{ route('alumno.suport') }}" class="text-decoration-none text-dark">
                 <div class="card h-100 text-center shadow-sm border">
                     <div class="card-body d-flex flex-column justify-content-center">
                         <i class="bi bi-rocket-takeoff fs-1 mb-3"></i>

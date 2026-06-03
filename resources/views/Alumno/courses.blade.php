@@ -1,196 +1,143 @@
 @extends('layouts.Alumnoslanding')
 
+@section('title', 'Mis Cursos')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/alumno/cursos.css') }}">
+@endpush
+
 @section('content')
+
     <div class="container py-4">
 
-        <div class="d-flex flex-wrap gap-2 mb-4">
-            <h3 class="fw-bold me-auto">📚 Cursos</h3>
-
-            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalCurso">
-                ➕ Registrar Curso
-            </button>
-
-
-        </div>
+        <h3 class="fw-bold mb-4">
+            📚 Mis Cursos
+        </h3>
 
         @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
         @endif
 
-        <!-- ================= VISTA CURSOS ================= -->
-        <div id="vista-materias">
-            <div class="row g-3">
-                @foreach ($cursos as $curso)
+        <!-- CURSOS -->
+        <div id="vista-cursos">
+
+            <div class="row g-4">
+
+                @forelse($cursos as $curso)
                     <div class="col-md-4 col-lg-3">
-                        <div class="course-card" onclick="abrirMateria('{{ $curso->materia }}', {{ $curso->id_curso }})">
+
+                        <div class="course-card" onclick='abrirCurso({{ $curso->id_curso }}, @json($curso->materia))'>
+
                             <div class="course-bar"></div>
-                            <div class="p-3">
-                                <h6 class="fw-bold">{{ $curso->materia }}</h6>
+
+                            <div class="course-content">
+
+                                <h5 class="course-title">
+                                    {{ $curso->materia }}
+                                </h5>
+
+                                <p class="course-subtitle">
+                                    Ver actividades y notas
+                                </p>
+
                             </div>
+
                         </div>
+
                     </div>
-                @endforeach
+
+                @empty
+
+                    <div class="col-12">
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">
+                                📚
+                            </div>
+
+                            <h4>No tienes cursos asignados</h4>
+
+                            <p>Cuando tus docentes asignen cursos aparecerán aquí.</p>
+
+                        </div>
+
+                    </div>
+                @endforelse
+
             </div>
 
         </div>
 
-        <!-- ================= VISTA DOCENTES ================= -->
-        <div id="vista-docentes" class="d-none animate__animated animate__fadeIn">
-
-            <a href="javascript:void(0)" class="btn-back" onclick="volverMaterias()">← Volver</a>
-
-            <div id="banner-materia" class="course-header-banner shadow-sm">
-                <h1 id="titulo-materia" class="display-5 fw-bold mb-0"></h1>
-            </div>
-
-            <!-- 🔥 BOTÓN SOLO CUANDO ESTÁS DENTRO DEL CURSO -->
-            <div class="d-flex gap-2 mb-3">
-                <span class="badge text-bg-secondary p-2">Solo lectura: los alumnos no pueden registrar ni asignar
-                    actividades.</span>
-
-            </div>
-
-
-            <div class="row g-4 mt-4" id="lista-docentes-materia"></div>
-
-        </div>
-
-
-        <!-- ================= VISTA SALONES DOCENTE ================= -->
-        <div id="vista-salones-docente" class="d-none">
-            <a class="btn-back" onclick="volverDocentes()">← Volver</a>
-
-            <div id="banner-docente" class="course-header-banner">
-                <h1 id="titulo-docente"></h1>
-            </div>
-
-            <button class="btn btn-primary btn-sm mb-3" data-bs-toggle="modal" data-bs-target="#modalAsignarSalones">
-                ➕ Asignar Salón
-            </button>
-
-            <div class="row g-4" id="lista-salones-docente"></div>
-        </div>
-        <!-- ================= VISTA DETALLE SALON ================= -->
+        <!-- DETALLE CURSO -->
         <div id="vista-detalle" class="d-none">
 
-            <div class="card shadow-sm border-0 rounded-3">
-                <div class="card-body p-0">
+            <button class="btn-back mb-3" onclick="volverCursos()">
+                ← Volver a cursos
+            </button>
+
+            <div class="course-header-banner">
+
+                <h2 id="titulo-curso"></h2>
+
+                <p class="mb-0">
+                    Actividades registradas y calificaciones
+                </p>
+
+            </div>
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body">
 
                     <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0">
 
-                            <thead class="table-light">
-                                <tr id="cabecera-actividades">
-                                    <th class="fw-bold">Alumno</th>
-                                    <!-- actividades dinámicas -->
-                                    <th class="text-center fw-bold">PROM</th>
+                        <table class="table align-middle">
+
+                            <thead>
+                                <tr>
+                                    <th>Actividad</th>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                    <th>Nota</th>
                                 </tr>
                             </thead>
 
-                            <tbody id="tabla-alumnos">
+                            <tbody id="tabla-actividades">
+
                                 <tr>
-                                    <td colspan="99" class="text-center text-muted py-4">
-                                        Selecciona un salón
+                                    <td colspan="4" class="text-center text-muted">
+                                        Selecciona un curso
                                     </td>
                                 </tr>
+
                             </tbody>
 
                         </table>
+
+                    </div>
+
+                    <div class="promedio-box">
+
+                        <span>Promedio General:</span>
+
+                        <span id="promedio-general">
+                            -
+                        </span>
+
                     </div>
 
                 </div>
-            </div>
 
-            <div class="mt-3 text-end">
-                <button class="btn btn-secondary" onclick="cerrarRegistroExcel()">Cerrar</button>
-                <button class="btn btn-success">Guardar</button>
             </div>
 
         </div>
 
-
-        <!-- ===== ALUMNO ===== -->
-        <!--
-                                <div class="card shadow-sm border-0">
-                                    <div class="card-body">
-
-                                        <h4 class="fw-bold mb-3">Mi Reporte de Calificaciones</h4>
-
-                                        <div class="row g-3">
-                                            <div class="col-md-4">
-                                                <div class="p-3 border rounded text-center">
-                                                    <h6>Promedio General</h6>
-                                                    <h1 class="display-4 text-primary">A</h1>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-8">
-                                                <h6>Actividades</h6>
-                                                <ul class="list-group">
-                                                    <li class="list-group-item">Tarea: 16</li>
-                                                    <li class="list-group-item">Exposición: 18</li>
-                                                    <li class="list-group-item">Examen: 15</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>-->
-
     </div>
 
-
-    </div>
-    <!-- Alumno: sin modales de registrar/asignar actividades por permisos de rol. -->
-
-
-    <!-- ================= MODAL ASIGNAR SALONES ================= -->
-    <div class="modal fade" id="modalAsignarSalones">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <h5>Asignar Salones al Docente</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <form action="{{ route('admin.courses.asignarSalones') }}" method="POST">
-                    @csrf
-
-                    <div class="modal-body">
-                        <input type="hidden" name="docente_id" id="docente_id">
-
-                        <h6>Primaria</h6>
-                        <div class="row g-2 mb-3">
-                            @foreach ($salonesPrimaria as $salon)
-                                <div class="col-md-3">
-                                    <label class="card p-2 salon-card">
-                                        <input type="checkbox" name="salones[]" value="{{ $salon->id_salon }}">
-                                        {{ $salon->grado->grado }} - {{ $salon->seccion->seccion }}
-                                    </label>
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <h6>Secundaria</h6>
-                        <div class="row g-2">
-                            @foreach ($salonesSecundaria as $salon)
-                                <div class="col-md-3">
-                                    <label class="card p-2 salon-card">
-                                        <input type="checkbox" name="salones[]" value="{{ $salon->id_salon }}">
-                                        {{ $salon->grado->grado }} - {{ $salon->seccion->seccion }}
-                                    </label>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button class="btn btn-success">Guardar asignación</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-    </div>
 @endsection
+@push('scripts')
+    <script src="{{ asset('js/alumno/cursos.js') }}"></script>
+@endpush

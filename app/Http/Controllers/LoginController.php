@@ -27,6 +27,10 @@ class LoginController extends Controller
     {
         return view('auth.login_user');
     }
+    public function showApoderado()
+    {
+        return view('auth.login_colegio');
+    }
 
     // ==========================================
     // LOGIN ALUMNOS (COLEGIO / ACADEMIA)
@@ -46,12 +50,12 @@ class LoginController extends Controller
             return back()->with('error', 'Datos incorrectos: El usuario no existe.');
         }
 
-        // 1. Verificamos si la contraseña coincide usando Hash
-        // Nota: Se usa 'contrasena' sin Ñ porque así sale en tu captura de phpMyAdmin
+        // 1. Verificamos si la contraseÃ±a coincide usando Hash
+        // Nota: Se usa 'contrasena' sin Ã‘ porque asÃ­ sale en tu captura de phpMyAdmin
         $valid = Hash::check($request->password, $alumno->contrasena);
 
         // 2. SOPORTE PARA TEXTO PLANO
-        // Si el hash falla, probamos comparación directa (por si editaste la BD a mano)
+        // Si el hash falla, probamos comparaciÃ³n directa (por si editaste la BD a mano)
         if (!$valid && $alumno->contrasena === $request->password) {
             $valid = true;
             // Aprovechamos para encriptarla correctamente ahora mismo
@@ -60,14 +64,14 @@ class LoginController extends Controller
         }
 
         if (!$valid) {
-            return back()->with('error', 'Datos incorrectos: Contraseña no válida.');
+            return back()->with('error', 'Datos incorrectos: ContraseÃ±a no vÃ¡lida.');
         }
 
-        // Autenticamos en el guard específico de alumno
+        // Autenticamos en el guard especÃ­fico de alumno
         Auth::guard('alumno')->login($alumno);
         $request->session()->regenerate();
 
-        // REDIRECCIÓN: Eliminada la lógica de 'tipo' porque la columna no existe en tu BD
+        // REDIRECCIÃ“N: Eliminada la lÃ³gica de 'tipo' porque la columna no existe en tu BD
         return redirect()->route('alumno.pagina_institucional');
     }
 
@@ -109,7 +113,7 @@ class LoginController extends Controller
         } elseif ($rol === 'docente') {
             return redirect()->route('docente.pagina_institucional');
         } elseif ($rol === 'auxiliar') {
-            return redirect()->route('auxiliar.dashboard');
+            return redirect()->route('auxiliar.pagina_institucional');
         }
 
         return back()->with('error', 'Rol desconocido');
@@ -126,18 +130,16 @@ class LoginController extends Controller
         ]);
 
         $apoderado = Apoderado::where('dni', $request->documento)->first();
-        if ($apoderado) {
-            session(['apoderado_id' => $apoderado->id_apoderado]);
-            return redirect('/courses');
+
+        if (!$apoderado) {
+            return back()->withErrors(['documento' => 'Documento no encontrado']);
         }
 
-        $user = User::where('dni', $request->documento)->first();
-        if ($user) {
-            session(['user_id' => $user->id_usuario]);
-            return redirect('/courses');
-        }
+        Auth::guard('apoderado')->login($apoderado);
 
-        return back()->withErrors(['documento' => 'Documento no encontrado']);
+        $request->session()->regenerate();
+
+        return redirect()->route('apoderado.pagina_institucional');
     }
 
     // ==========================================
@@ -145,16 +147,16 @@ class LoginController extends Controller
     // ==========================================
 
     public function logout(Request $request)
-{
-    // 1. Cerramos sesión en todos los guards
-    Auth::guard('web')->logout();
-    Auth::guard('alumno')->logout();
+    {
+        // 1. Cerramos sesiÃ³n en todos los guards
+        Auth::guard('web')->logout();
+        Auth::guard('alumno')->logout();
 
-    // 2. Limpiamos la sesión y el token CSRF
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
+        // 2. Limpiamos la sesiÃ³n y el token CSRF
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-    // 3. REDIRECCIÓN AL PORTAL (La vista de los hexágonos)
-    return redirect()->route('login.user'); 
-}
+        // 3. REDIRECCIÃ“N AL PORTAL (La vista de los hexÃ¡gonos)
+        return redirect()->route('portal');
+    }
 }

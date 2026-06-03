@@ -6,10 +6,10 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app.css', 
-                'resources/js/app.js', 
+                'resources/css/app.css',
+                'resources/js/app.js',
                 'resources/js/gestionAcademica.js',
-                'resources/css/disenoCursos.css' // <-- Actualizado sin ñ
+                'resources/css/disenoCursos.css' // <-- Actualizado sin Ã±
             ],
             refresh: true,
         }),

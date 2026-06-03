@@ -1,0 +1,272 @@
+/* =========================
+   🌎 PAGE
+========================= */
+
+.institutional-page {
+    padding: 2rem;
+    min-height: 100vh;
+    background:
+        linear-gradient(135deg, #eef2ff, #f8fafc);
+}
+
+/* =========================
+   🔥 HEADER
+========================= */
+
+.institutional-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.institutional-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.institutional-subtitle {
+    color: #64748b;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.header-badge {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+    padding: 14px 22px;
+    border-radius: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, .25);
+}
+
+/* =========================
+   📦 GRID
+========================= */
+
+.announcements-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 100%;
+}
+
+/* =========================
+   📢 CARD
+========================= */
+
+.announcement-card {
+    background: white;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, .06);
+    transition: .35s ease;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 700px;
+    border: 1px solid #e2e8f0;
+}
+
+.announcement-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 20px 45px rgba(37, 99, 235, .12);
+}
+
+/* =========================
+   🖼 IMAGE
+========================= */
+
+.announcement-image {
+    width: 100%;
+    height: 480px;
+    overflow: hidden;
+    background: #e2e8f0;
+}
+
+.announcement-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+
+.announcement-card:hover .announcement-image img {
+    transform: scale(1.03);
+}
+
+/* =========================
+   📝 BODY
+========================= */
+
+.announcement-body {
+    padding: 2.2rem 2.5rem;
+    flex: 1;
+}
+
+/* =========================
+   🏷 TOP
+========================= */
+
+.announcement-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.announcement-status {
+    background: #dbeafe;
+    color: #2563eb;
+    padding: 8px 14px;
+    border-radius: 40px;
+    font-size: .82rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.announcement-top small {
+    color: #64748b;
+    font-size: .92rem;
+    font-weight: 500;
+}
+
+/* =========================
+   📌 TITLE
+========================= */
+
+.announcement-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 18px;
+    line-height: 1.3;
+}
+
+/* =========================
+   📄 DESCRIPTION
+========================= */
+
+.announcement-description {
+    color: #475569;
+    margin-bottom: 1.8rem;
+    line-height: 1.9;
+    font-size: 1.08rem;
+}
+
+/* =========================
+   📚 CONTENT
+========================= */
+
+.announcement-content {
+    padding-top: 1.6rem;
+    border-top: 1px solid #e2e8f0;
+    color: #334155;
+    line-height: 2;
+    font-size: 1rem;
+}
+
+/* =========================
+   ❌ EMPTY
+========================= */
+
+.empty-announcements {
+    width: 100%;
+    background: white;
+    border-radius: 28px;
+    padding: 5rem 2rem;
+    text-align: center;
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, .05);
+}
+
+.empty-announcements i {
+    font-size: 5rem;
+    color: #94a3b8;
+    margin-bottom: 1.5rem;
+}
+
+.empty-announcements h3 {
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+}
+
+.empty-announcements p {
+    color: #64748b;
+    font-size: 1rem;
+}
+
+/* =========================
+   📱 RESPONSIVE
+========================= */
+
+@media(max-width:992px) {
+
+    .announcement-image {
+        height: 350px;
+    }
+
+    .announcement-title {
+        font-size: 1.7rem;
+    }
+
+}
+
+@media(max-width:768px) {
+
+    .institutional-page {
+        padding: 1rem;
+    }
+
+    .institutional-title {
+        font-size: 2rem;
+    }
+
+    .institutional-header {
+        align-items: flex-start;
+    }
+
+    .announcement-card {
+        min-height: auto;
+    }
+
+    .announcement-image {
+        height: 240px;
+    }
+
+    .announcement-body {
+        padding: 1.5rem;
+    }
+
+    .announcement-title {
+        font-size: 1.4rem;
+    }
+
+    .announcement-description {
+        font-size: .95rem;
+        line-height: 1.7;
+    }
+
+    .announcement-content {
+        font-size: .92rem;
+        line-height: 1.8;
+    }
+
+}

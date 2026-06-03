@@ -22,37 +22,76 @@ class SalonController extends Controller
 {
     public function crearCompleto(Request $request)
     {
+        dd($request->all());
+
         $request->validate([
             'nivel'     => 'required',
-            'grado'     => 'required',
-            'seccion'   => 'required',
-            'facultad'  => 'required',
+            'grado'     => 'nullable',
+            'seccion'   => 'nullable',
+            'facultad'  => 'nullable',
         ]);
 
-        // Crear cada uno
-        $nivel = Nivel::create([
+        // =========================
+        // NIVEL
+        // =========================
+        $nivel = Nivel::firstOrCreate([
             'nivel' => $request->nivel
         ]);
 
-        $grado = Grado::create([
-            'grado' => $request->grado
-        ]);
+        // =========================
+        // GRADO
+        // =========================
+        $grado = null;
 
-        $seccion = Seccion::create([
-            'seccion' => $request->seccion
-        ]);
+        if ($request->filled('grado')) {
+            $grado = Grado::firstOrCreate([
+                'grado' => $request->grado,
+                'id_nivel' => $nivel->id_nivel
+            ]);
+        }
 
-        $facultad = Facultad::create([
-            'facultad' => $request->facultad
-        ]);
+        // =========================
+        // SECCIÓN
+        // =========================
+        $seccion = null;
 
-        // Crear salón automáticamente
-        Salon::create([
-            'id_nivel'     => $nivel->id_nivel,
-            'id_grado'     => $grado->id_grado,
-            'id_seccion'   => $seccion->id_seccion,
-            'id_facultad'  => $facultad->id_facultad,
-        ]);
+        if ($request->filled('seccion')) {
+            $seccion = Seccion::firstOrCreate([
+                'seccion' => $request->seccion
+            ]);
+        }
+
+        // =========================
+        // FACULTAD
+        // =========================
+        $facultad = null;
+
+        if ($request->filled('facultad')) {
+            $facultad = Facultad::firstOrCreate([
+                'facultad' => $request->facultad
+            ]);
+        }
+
+        // =========================
+        // BUSCAR SALÓN (IMPORTANTE)
+        // =========================
+        $salon = Salon::where('id_nivel', $nivel->id_nivel)
+            ->where('id_grado', $grado?->id_grado)
+            ->where('id_seccion', $seccion?->id_seccion)
+            ->where('id_facultad', $facultad?->id_facultad)
+            ->first();
+
+        // =========================
+        // CREAR SI NO EXISTE
+        // =========================
+        if (!$salon) {
+            $salon = Salon::create([
+                'id_nivel'    => $nivel->id_nivel,
+                'id_grado'    => $grado?->id_grado,
+                'id_seccion'  => $seccion?->id_seccion,
+                'id_facultad' => $facultad?->id_facultad,
+            ]);
+        }
 
         return back()->with('success', 'Salón creado correctamente 🔥');
     }

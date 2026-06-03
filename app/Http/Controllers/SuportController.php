@@ -10,6 +10,9 @@ class SuportController extends Controller
 {
     public function index()
     {
+        if (Auth::guard('apoderado')->check()) {
+            return view('Apoderado.suport');
+        }
         if (Auth::guard('alumno')->check()) {
             return view('Alumno.suport');
         }
@@ -25,9 +28,9 @@ class SuportController extends Controller
         }
 
         if ($user && $user->rol === 'auxiliar') {
-            return view('auxiliar.soporte');
+            return view('Auxiliar.suport');
         }
 
-        return view('soporte');
+        return view('suport');
     }
 }

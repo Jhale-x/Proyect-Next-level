@@ -21,21 +21,6 @@ class Salon extends Model
         'id_facultad'
     ];
 
-    protected static function booted(): void
-    {
-        static::saving(function (Salon $salon) {
-            if (!$salon->id_grado) {
-                return;
-            }
-
-            $grado = Grado::find($salon->id_grado);
-
-            if ($grado) {
-                $salon->id_nivel = $grado->id_nivel;
-            }
-        });
-    }
-
     public function nivel()
     {
         return $this->belongsTo(Nivel::class, 'id_nivel', 'id_nivel');
