@@ -417,5 +417,6 @@
     <script src="{{ asset('js/cookie-banner.js') }}"></script>
 
     <x-cookie-banner />
+
 </body>
 </html>
