@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/ubicacion.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/cookies_principal.css') }}">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
 </head>
@@ -59,7 +60,7 @@
                 <li><a href="{{ route('ubicacion') }}" class="active">UBICACIÓN</a></li>
                 <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
-                <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
+                <li><a href="https://intranet.nextlevelschool.edu.pe" target="_blank" rel="noopener noreferrer">INTRANET</a></li>
             </ul>
         </div>
     </nav>
@@ -84,7 +85,7 @@
                     <li><a href="{{ route('ubicacion') }}" class="active">UBICACIÓN</a></li>
                     <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
-                    <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
+                    <li><a href="https://intranet.nextlevelschool.edu.pe" target="_blank" rel="noopener noreferrer">INTRANET</a></li>
                 </ul>
             </div>
 
@@ -130,7 +131,7 @@
                     <div id="map" data-token="{{ config('services.mapbox.token') }}"></div>
 
                     <div id="controlCapas" onclick="toggleCapas()">
-                    <img src="https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-74.579721,-8.392177,16/100x100?access_token={{ env('MAPBOX_ACCESS_TOKEN') }}">
+                    <img id="miniMapa" src="https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-74.579858,-8.392186,16/100x100?access_token={{ config('services.mapbox.token') }}" alt="Miniatura">
                     <span>Cambiar mapa</span>
                     </div>
 
@@ -175,7 +176,7 @@
                     <div class="footer-social-icons">
                         <a href="https://www.tiktok.com/@next_level_novus" target="_blank" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
                         <a href="https://www.instagram.com/next_level_novus/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20información.%20Me%20interesa:%0A%0A1.%20Matrícula%20Colegio%20%0A2.%20Ciclos%20Academia%20%0A3.%20Agendar%20Visita%20Guiada%0A4.%20Costos%20y%20Pensiones%0A%0APor%20favor,%20bríndeme%20detalles." target="_blank" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20más%20información." target="_blank" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
                         <a href="https://www.facebook.com/profile.php?id=61581492196914" target="_blank" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
                     </div>
                 </div>
@@ -192,6 +193,9 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
     <script src="{{ asset('js/mapa_ruta.js') }}"></script>
+    <script src="{{ asset('js/cookie-banner.js') }}"></script>
+
+    <x-cookie-banner />
 
 </body>
 </html>

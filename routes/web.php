@@ -1,26 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReclamacionController;
 
 Route::get('/', function () {
     return view('web_principal');
 })->name('web.inicio');
-
-/*
-
-Route::get('/intranet', function () {
-    return view('intranet');
-})->name('portal');
-
-Route::get('/login-colegio', function () {
-    return view('login_colegio');
-})->name('login_colegio');
-
-Route::get('/login-academia', function () {
-    return view('login_academia');
-})->name('login_academia');
-
-*/
 
 Route::get('/propuesta-educativa', function () {
     return view('propuesta');
@@ -138,3 +123,11 @@ Route::get('/politica-cookies', function () {
 Route::get('/terminos-condiciones', function () {
     return view('terminos_condiciones');
 })->name('terminos_condiciones');
+
+/*
+
+Route::get('/libro-reclamaciones', [ReclamacionController::class, 'index'])->name('reclamaciones.index');
+
+Route::post('/libro-reclamaciones', [ReclamacionController::class, 'store'])->name('reclamaciones.store');
+
+*/

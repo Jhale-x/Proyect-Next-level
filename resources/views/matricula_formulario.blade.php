@@ -29,7 +29,7 @@
                 <a href="{{ route('web.inicio') }}" class="btn-banner">
                 <span>INICIO</span>
             </a>
-                <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20información.%20Me%20interesa:%0A%0A1.%20Matrícula%20Colegio%20%0A2.%20Ciclos%20Academia%20%0A3.%20Agendar%20Visita%20Guiada%0A4.%20Costos%20y%20Pensiones%0A%0APor%20favor,%20bríndeme%20detalles." target="_blank" class="whatsapp-link-wrapper">
+                <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20más%20información." target="_blank" class="whatsapp-link-wrapper">
                 <div class="whatsapp-badge">
                     <i class="fa-brands fa-whatsapp"></i>
                     <span>923 317 626</span>
@@ -490,7 +490,7 @@
         </div>
 
         <div id="step4-navigation-actions" class="step2-navigation-actions hidden-section">
-            <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20información.%20Me%20interesa:%0A%0A1.%20Matrícula%20Colegio%20%0A2.%20Ciclos%20Academia%20%0A3.%20Agendar%20Visita%20Guiada%0A4.%20Costos%20y%20Pensiones%0A%0APor%20favor,%20bríndeme%20detalles." target="_blank" class="btn-premium-next-step2 btn-whatsapp-final">
+            <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20más%20información." target="_blank" class="btn-premium-next-step2 btn-whatsapp-final">
                 <i class="fa-brands fa-whatsapp"></i> ¡CONTÁCTANOS!
             </a>
             <a href="{{ route('web.inicio') }}" class="btn-premium-next-step2">

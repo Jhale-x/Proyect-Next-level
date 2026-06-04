@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/nuestros_valores.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/cookies_principal.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
 </head>
 
@@ -58,7 +59,7 @@
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
                 <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
-                <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
+                <li><a href="https://intranet.nextlevelschool.edu.pe" target="_blank" rel="noopener noreferrer">INTRANET</a></li>
             </ul>
         </div>
     </nav>
@@ -83,7 +84,7 @@
                     <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
                     <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
-                    <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
+                    <li><a href="https://intranet.nextlevelschool.edu.pe" target="_blank" rel="noopener noreferrer">INTRANET</a></li>
                 </ul>
             </div>
 
@@ -188,7 +189,7 @@
                     <div class="footer-social-icons">
                         <a href="https://www.tiktok.com/@next_level_novus" target="_blank" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
                         <a href="https://www.instagram.com/next_level_novus/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20información.%20Me%20interesa:%0A%0A1.%20Matrícula%20Colegio%20%0A2.%20Ciclos%20Academia%20%0A3.%20Agendar%20Visita%20Guiada%0A4.%20Costos%20y%20Pensiones%0A%0APor%20favor,%20bríndeme%20detalles." target="_blank" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20más%20información." target="_blank" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
                         <a href="https://www.facebook.com/profile.php?id=61581492196914" target="_blank" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
                     </div>
                 </div>
@@ -202,6 +203,9 @@
     <script src="{{ asset('js/marquee_principal.js') }}"></script>
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
+    <script src="{{ asset('js/cookie-banner.js') }}"></script>
+
+    <x-cookie-banner />
 
 </body>
 </html>

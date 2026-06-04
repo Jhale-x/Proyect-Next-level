@@ -8,6 +8,7 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="stylesheet" href="{{ asset('css/web/mantenimiento.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
 
 </head>
 
@@ -15,15 +16,18 @@
 
     <main>
 
-    <div class="message">
-        <div class="ribbon"></div>
-        <svg class="icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="32" cy="32" r="30" stroke="#db0808" stroke-width="4" fill="#fef9c3" />
-            <path d="M32 18v16" stroke="#db0808" stroke-width="4" stroke-linecap="round" />
-            <circle cx="32" cy="44" r="3" fill="#db0808" />
-        </svg>
-        <h1>PÁGINA EN DESARROLLO</h1>
-        <p>Estamos trabajando en terminar la página web.<br>¡Muy pronto estará disponible!</p>
+    <div class="mantenimiento-wrapper">
+        <div class="col-mascota">
+            <img src="{{ asset('images/Mascota-Eclectus-Next-Level.png') }}" alt="Mascota Next Level">
+        </div>
+
+        <div class="col-texto">
+            <div class="nube-dialogo">
+                <h1>Página en desarrollo</h1>
+                <p>Estamos realizando actualizaciones para brindarte una mejor experiencia.</p>
+                <span><i>¡</i> Pronto estará disponible <i>!</i></span>
+            </div>
+        </div>
     </div>
 
     </main>

@@ -28,7 +28,7 @@
                 <a href="{{ route('web.inicio') }}" class="btn-banner">
                 <span>INICIO</span>
             </a>
-                <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20información.%20Me%20interesa:%0A%0A1.%20Matrícula%20Colegio%20%0A2.%20Ciclos%20Academia%20%0A3.%20Agendar%20Visita%20Guiada%0A4.%20Costos%20y%20Pensiones%0A%0APor%20favor,%20bríndeme%20detalles." target="_blank" class="whatsapp-link-wrapper">
+                <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20más%20información." target="_blank" class="whatsapp-link-wrapper">
                 <div class="whatsapp-badge">
                     <i class="fa-brands fa-whatsapp"></i>
                     <span>923 317 626</span>
@@ -40,7 +40,7 @@
 
     <section class="terminos-condiciones">
         <h1>POLÍTICA DE COOKIES – NEXT LEVEL SCHOOL</h1>
-        <p><strong>Última actualización: mayo 2026</strong></p>
+        <p><strong>Última actualización: junio 2026</strong></p>
 
         <p>I.E.P Next Level School (en adelante “la Institución”, “nosotros” o “nuestro”), a través de su portal académico
             https://www.nextlevelacademy.edu.pe, utiliza cookies y tecnologías similares para garantizar el correcto
@@ -61,7 +61,7 @@
         <ul>
             <li><strong>Cookies Técnicas (Estrictamente Necesarias):</strong> Son esenciales para permitirle navegar por nuestro
                 sitio y utilizar sus funciones, como acceder a áreas seguras o la Intranet. Sin estas cookies, los servicios de
-                matrícula y acceso al aula virtual no podrían funcionar correctamente.</li>
+                matrícula y acceso a la plataforma virtual no podrían funcionar correctamente.</li>
             <li><strong>Cookies de Funcionalidad:</strong> Permiten que nuestro sitio recuerde las opciones que usted elija para
                 ofrecerle una experiencia más personalizada. Por ejemplo, permiten mostrar los mapas de nuestras sedes o reproducir
                 los videos de nuestras clases y eventos escolares de forma integrada.</li>

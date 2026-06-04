@@ -13,9 +13,8 @@
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/propuesta.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/cookies_principal.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
-
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body>
@@ -60,7 +59,7 @@
                 <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
                 <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                 <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
-                <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
+                <li><a href="https://intranet.nextlevelschool.edu.pe" target="_blank" rel="noopener noreferrer">INTRANET</a></li>
             </ul>
         </div>
     </nav>
@@ -85,7 +84,7 @@
                     <li><a href="{{ route('ubicacion') }}">UBICACIÓN</a></li>
                     <li><a href="{{ route('mantenimiento') }}">MATRICULAS</a></li>
                     <li><a href="{{ route('mantenimiento') }}">CONCURSOS</a></li>
-                    <li><a href="{{ route('mantenimiento') }}">INTRANET</a></li>
+                    <li><a href="https://intranet.nextlevelschool.edu.pe" target="_blank" rel="noopener noreferrer">INTRANET</a></li>
                 </ul>
             </div>
 
@@ -110,40 +109,40 @@
     <main>
 
     <header class="propuesta-hero">
-        <span class="launch-badge" data-aos="fade-down">Inauguración Marzo 2026</span>
-        <h1 data-aos="fade-up">NUESTRA PROPUESTA EDUCATIVA</h1>
-        <div class="propuesta-line" data-aos="zoom-in"></div>
-        <p data-aos="fade-up" data-aos-delay="200">En Next Level, nos enfocamos en una formación cercana y de calidad para Pucallpa. Creemos que la base del éxito está en el esfuerzo compartido, el respeto y una enseñanza práctica que prepare a nuestros alumnos para la vida real.</p>
+        <span class="launch-badge">Inauguración Marzo 2026</span>
+        <h1>NUESTRA PROPUESTA EDUCATIVA</h1>
+        <div class="propuesta-line"></div>
+        <p>En Next Level, nos enfocamos en una formación cercana y de calidad para Pucallpa. Creemos que la base del éxito está en el esfuerzo compartido, el respeto y una enseñanza práctica que prepare a nuestros alumnos para la vida real.</p>
     </header>
 
     <section class="propuesta-main">
         <div class="modern-grid">
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-card">
                 <div class="icon-wrapper color-1"><i class="fa-solid fa-person-walking"></i></div>
                 <h3>Metodología Activa</h3>
                 <p>Aprendizaje basado en la participación directa. Nuestros alumnos aprenden haciendo y resolviendo retos prácticos.</p>
             </div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-card">
                 <div class="icon-wrapper color-2"><i class="fa-solid fa-users-rectangle"></i></div>
                 <h3>Enseñanza Cercana</h3>
                 <p>Garantizamos grupos reducidos que permiten conocer a cada estudiante y acompañar su progreso de forma personalizada.</p>
             </div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-card">
                 <div class="icon-wrapper color-3"><i class="fa-solid fa-hand-holding-heart"></i></div>
                 <h3>Formación en Valores</h3>
                 <p>Priorizamos la ética, la disciplina y el respeto mutuo para formar ciudadanos responsables y empáticos.</p>
             </div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="feature-card">
                 <div class="icon-wrapper color-4"><i class="fa-solid fa-brain"></i></div>
                 <h3>Mentalidad Ganadora</h3>
                 <p>Fomentamos la autoconfianza y perseverancia, enseñando a gestionar emociones para superar cualquier desafío.</p>
             </div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="feature-card">
                 <div class="icon-wrapper color-5"><i class="fa-solid fa-book-open"></i></div>
                 <h3>Material Didáctico</h3>
                 <p>Contamos con guías y recursos de estudio diseñados para facilitar la comprensión de cada materia.</p>
             </div>
-            <div class="feature-card" data-aos="fade-up" data-aos-delay="600">
+            <div class="feature-card">
                 <div class="icon-wrapper color-6"><i class="fa-solid fa-chalkboard-user"></i></div>
                 <h3>Docentes Motivadores</h3>
                 <p>Nuestro equipo está comprometido con inspirar el deseo de aprender y superar metas académicas.</p>
@@ -187,7 +186,7 @@
                     <div class="footer-social-icons">
                         <a href="https://www.tiktok.com/@next_level_novus" target="_blank" class="social-icon"><i class="fa-brands fa-tiktok"></i></a>
                         <a href="https://www.instagram.com/next_level_novus/" target="_blank" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20información.%20Me%20interesa:%0A%0A1.%20Matrícula%20Colegio%20%0A2.%20Ciclos%20Academia%20%0A3.%20Agendar%20Visita%20Guiada%0A4.%20Costos%20y%20Pensiones%0A%0APor%20favor,%20bríndeme%20detalles." target="_blank" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20más%20información." target="_blank" class="social-icon"><i class="fa-brands fa-whatsapp"></i></a>
                         <a href="https://www.facebook.com/profile.php?id=61581492196914" target="_blank" class="social-icon"><i class="fa-brands fa-facebook-f"></i></a>
                     </div>
                 </div>
@@ -201,16 +200,9 @@
     <script src="{{ asset('js/marquee_principal.js') }}"></script>
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
+    <script src="{{ asset('js/cookie-banner.js') }}"></script>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <script>
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 100
-        });
-    </script>
+    <x-cookie-banner />
 
 </body>
 </html>

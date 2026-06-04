@@ -42,13 +42,11 @@ function initMap() {
     });
 
     map.on('style.load', () => {
-        if (map.loaded()) {
             agregarMarcadorColegio();
             if (usuarioGlobal) {
                 agregarMarcadorUsuario(usuarioGlobal);
                 dibujarRuta(usuarioGlobal, colegio);
             }
-        }
     });
 }
 
@@ -57,7 +55,11 @@ function agregarMarcadorColegio() {
     el.style.backgroundImage = "url('/images/Logo-Next-Level.png')";
     el.style.width = "50px";
     el.style.height = "50px";
+
+    el.style.backgroundPosition = "center"; // Centra la imagen horizontal y verticalmente
+    el.style.backgroundRepeat = "no-repeat"; // Evita que la imagen se duplique si es chica
     el.style.backgroundSize = "cover";
+
     el.style.borderRadius = "50%";
     el.style.border = "2px solid white";
     el.style.boxShadow = "0px 0px 10px rgba(0,0,0,0.3)";
@@ -88,10 +90,11 @@ function dibujarRuta(origen, destino) {
 
             const route = data.routes[0].geometry;
 
-            // Limpiar ruta previa si existe
-            if (map.getSource(routeLayerId)) {
-                map.removeLayer(routeLayerId);
-                map.removeSource(routeLayerId);
+            try {
+                if (map.getLayer(routeLayerId)) map.removeLayer(routeLayerId);
+                if (map.getSource(routeLayerId)) map.removeSource(routeLayerId);
+            } catch (error) {
+                console.log("Recreando capas de ruta tras cambio de estilo.");
             }
 
             map.addSource(routeLayerId, {
@@ -113,7 +116,6 @@ function dibujarRuta(origen, destino) {
                 }
             });
 
-            // Ajustar cámara para ver ambos puntos
             const bounds = new mapboxgl.LngLatBounds(origen, origen).extend(destino);
             map.fitBounds(bounds, { padding: 80, duration: 1000 });
         })
@@ -134,11 +136,25 @@ function comoLlegar() {
 }
 
 function toggleCapas() {
+    const imgMiniatura = document.getElementById('miniMapa');
+    const token = mapboxgl.accessToken;
+
+    const coords = "-74.579858,-8.392186,16/100x100";
+
     if (esSatelite) {
         map.setStyle('mapbox://styles/mapbox/satellite-streets-v12');
+
+        if (imgMiniatura) {
+            imgMiniatura.src = `https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/${coords}?access_token=${token}`;
+        }
     } else {
         map.setStyle('mapbox://styles/mapbox/streets-v11');
+
+        if (imgMiniatura) {
+            imgMiniatura.src = `https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/${coords}?access_token=${token}`;
+        }
     }
+
     esSatelite = !esSatelite;
 }
 

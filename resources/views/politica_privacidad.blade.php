@@ -28,7 +28,7 @@
                 <a href="{{ route('web.inicio') }}" class="btn-banner">
                 <span>INICIO</span>
             </a>
-                <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20información.%20Me%20interesa:%0A%0A1.%20Matrícula%20Colegio%20%0A2.%20Ciclos%20Academia%20%0A3.%20Agendar%20Visita%20Guiada%0A4.%20Costos%20y%20Pensiones%0A%0APor%20favor,%20bríndeme%20detalles." target="_blank" class="whatsapp-link-wrapper">
+                <a href="https://wa.me/51923317625?text=Hola%20Next%20Level,%20deseo%20más%20información." target="_blank" class="whatsapp-link-wrapper">
                 <div class="whatsapp-badge">
                     <i class="fa-brands fa-whatsapp"></i>
                     <span>923 317 626</span>
@@ -40,13 +40,12 @@
 
     <section class="terminos-condiciones">
         <h1>POLÍTICA DE PRIVACIDAD – NEXT LEVEL SCHOOL</h1>
-        <p><strong>Última actualización: mayo 2026</strong></p>
+        <p><strong>Última actualización: junio 2026</strong></p>
 
         <p>I.E.P Next Level School (en adelante “la Institución”, “nosotros” o “nuestro”), con domicilio en Carretera Federico
-            Basadre Km. 6 (Al costado de la UNU), Pucallpa, Ucayali, Perú, se compromete a proteger la privacidad y el tratamiento
+            Basadre Km. 6 (Al costado de la UNU, Pucallpa, Ucayali, Perú), se compromete a proteger la privacidad y el tratamiento
             adecuado de los datos personales de nuestros usuarios, estudiantes, apoderados y visitantes del sitio web
-            https://www.nextlevelacademy.edu.pe (o cualquier dominio/subdominio relacionado), así como de quienes contratan
-            nuestros servicios educativos.</p>
+            https://www.nextlevelschool.edu.pe/, así como de quienes contratan nuestros servicios educativos.</p>
 
         <p>Esta Política de Privacidad describe cómo recopilamos, utilizamos, almacenamos, protegemos y, en su caso, compartimos o
             transferimos los datos personales, en estricto cumplimiento de la Ley N° 29733, Ley de Protección de Datos Personales,
@@ -80,7 +79,7 @@
             <li>Datos de pago: información bancaria o de transacción (Yape/Plin, transferencia, etc.), sin almacenar datos
                 completos de tarjetas.</li>
             <li>Datos de conexión y uso: IP, tipo de dispositivo, navegador, cookies (ver sección de cookies más abajo), registros
-                de acceso al aula virtual.</li>
+                de acceso al plataforma virtual.</li>
             <li>Datos sensibles (solo en casos excepcionales y con consentimiento expreso): estado de salud relevante para
                 emergencias en clases presenciales, o datos biométricos si se implementara control de asistencia (no aplicable
                 actualmente).</li>
@@ -92,8 +91,8 @@
         <ul>
             <li>Gestionar la inscripción, matrícula, cobro y prestación de servicios educativos.</li>
             <li>Comunicar horarios, materiales, evaluaciones, resultados, avisos importantes o cambios en los servicios (vía
-                correo, WhatsApp, aula virtual).</li>
-            <li>Proporcionar acceso personalizado al aula virtual y materiales educativos.</li>
+                correo, WhatsApp, plataforma virtual).</li>
+            <li>Proporcionar acceso personalizado a la plataforma virtual y materiales educativos.</li>
             <li>Cumplir obligaciones legales (emisión de comprobantes de pago, reportes a autoridades educativas si aplica).</li>
             <li>Mejorar nuestros servicios, estadísticas internas y calidad educativa (sin identificar personalmente).</li>
             <li>Enviar información promocional o invitaciones a nuevos talleres/cursos (solo con consentimiento previo).</li>
@@ -123,8 +122,8 @@
 
         <h2>7. Medidas de Seguridad</h2>
         <p>Adoptamos medidas técnicas, organizativas y legales razonables para proteger los datos contra acceso no autorizado,
-            pérdida, alteración o destrucción (incluyendo cifrado donde aplica, control de accesos, backups, firewalls). El aula
-            virtual y materiales son de acceso personal e intransferible (ver cláusula 8 de los Términos y Condiciones).</p>
+            pérdida, alteración o destrucción (incluyendo cifrado donde aplica, control de accesos, backups, firewalls). La
+            plataforma virtual y materiales son de acceso personal e intransferible (ver cláusula 8 de los Términos y Condiciones).</p>
 
         <h2>8. Derechos de los Titulares (ARCO y otros)</h2>
         <p>Usted tiene derecho a:</p>
@@ -164,7 +163,7 @@
             promocionales legítimos, tales como:</p>
         <ul>
             <li>Mostrar actividades académicas, talleres, simulacros, logros educativos o eventos institucionales.</li>
-            <li>Publicar en la página web oficial, aula virtual, redes sociales de la institución (con acceso controlado o público
+            <li>Publicar en la página web oficial, plataforma virtual, redes sociales de la institución (con acceso controlado o público
                 según el caso), materiales impresos o digitales promocionales, boletines internos o testimonios educativos.</li>
         </ul>
         <p>No utilizaremos las imágenes para fines comerciales directos (publicidad pagada, venta de productos) ni para
