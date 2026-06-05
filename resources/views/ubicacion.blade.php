@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/marquee_principal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/ubicacion.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/mapbox-gl.css') }}">
     <link rel="stylesheet" href="{{ asset('css/web/cookies_principal.css') }}">
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="{{ asset('images/Logo-Next-Level.png') }}">
@@ -191,7 +192,8 @@
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-    <script src="{{ asset('js/mapa_ruta.js') }}" defer></script>
+    <script src="{{ asset('js/mapbox-gl.js') }}"></script>
+    <script src="{{ asset('js/mapa_ruta.js') }}"></script>
     <script src="{{ asset('js/cookie-banner.js') }}"></script>
 
     <x-cookie-banner />
