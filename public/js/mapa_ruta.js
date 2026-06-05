@@ -56,8 +56,8 @@ function agregarMarcadorColegio() {
     el.style.width = "50px";
     el.style.height = "50px";
 
-    el.style.backgroundPosition = "center"; // Centra la imagen horizontal y verticalmente
-    el.style.backgroundRepeat = "no-repeat"; // Evita que la imagen se duplique si es chica
+    el.style.backgroundPosition = "center";
+    el.style.backgroundRepeat = "no-repeat";
     el.style.backgroundSize = "cover";
 
     el.style.borderRadius = "50%";

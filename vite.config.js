@@ -6,7 +6,9 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/web_principal.css'
+                'public/css/web_principal.css',
+                'public/css/cookies_principal.css',
+                'public/js/cookie-banner.js',
             ],
             refresh: true,
         }),

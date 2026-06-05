@@ -190,9 +190,8 @@
     <script src="{{ asset('js/marquee_principal.js') }}"></script>
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
-    <script src="{{ asset('js/mapa_ruta.js') }}"></script>
+    <script src="{{ asset('js/mapa_ruta.js') }}" defer></script>
     <script src="{{ asset('js/cookie-banner.js') }}"></script>
 
     <x-cookie-banner />
