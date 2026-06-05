@@ -26,7 +26,10 @@ use App\Http\Controllers\MatriculaController;
 
 
 // --- RUTAS PÚBLICAS ---
-Route::get('/', [Web_Principal::class, 'index'])->name('web_principal');
+Route::get('/', function () {
+    return redirect()->route('portal');
+});
+Route::get('/web', [Web_Principal::class, 'index'])->name('web_principal');
 Route::get('/propuesta-educativa', [Web_Principal::class, 'propuestaEducativa'])->name('propuesta_educativa');
 Route::get('/pagina_institucional', [Pagina_InstitucionalController::class, 'index'])->name('pagina_institucional');
 Route::get('/matricula', [MatriculaController::class, 'index'])->name('matricula');

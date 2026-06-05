@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intranet Docentes - Acceso Unificado</title>
+
     <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css']); ?>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="<?php echo e(asset('css/login_colegio.css')); ?>">
@@ -13,11 +14,15 @@
 <body class="overflow-x-hidden md:overflow-hidden">
 
     <div class="main-sliding-container active" id="mainContainer">
+
+        <!-- SIDE FORM -->
         <div class="form-side student-side">
-            <div class="absolute top-12 left-12 container-back-btn">
+
+            <!-- BACK BUTTON -->
+            <div class="absolute top-6 left-6">
                 <a href="<?php echo e(route('portal')); ?>"
-                    class="inline-block btn-custom-effect rounded-2xl p-4 shadow-custom-blue">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none"
+                    class="btn-custom-effect rounded-2xl p-3 shadow-custom-blue inline-flex items-center justify-center">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <path d="M7 8L3 12M3 12L7 16M3 12H17" stroke="white" stroke-width="2.5" stroke-linecap="round"
                             stroke-linejoin="round" />
@@ -28,26 +33,34 @@
                 </a>
             </div>
 
+            <!-- CONTENT -->
             <div class="max-w-xl w-full mx-auto text-center student-content-wrapper">
-                <div class="mb-14">
-                    <p class="text-custom-blue italic text-lg md:text-xl font-bold tracking-[0.4em] uppercase mb-4">
-                        Intranet</p>
-                    <h1
-                        class="text-6xl md:text-9xl font-black text-custom-blue tracking-tighter uppercase leading-none">
-                        Docentes</h1>
+
+                <!-- HEADER -->
+                <div class="mb-12">
+                    <p class="text-custom-blue italic text-lg font-bold tracking-[0.35em] uppercase mb-3">
+                        Intranet
+                    </p>
+
+                    <h1 class="text-6xl md:text-8xl font-black text-custom-blue uppercase leading-none">
+                        Docentes
+                    </h1>
                 </div>
 
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-12 italic">¡Bienvenidos Docentes!</h2>
+                <h2 class="text-2xl font-semibold text-slate-700 mb-10">
+                    Bienvenido al portal docente
+                </h2>
 
-                
+                <!-- ERRORS -->
                 <?php if(session('error')): ?>
-                    <div class="mb-4 text-red-600 font-semibold">
+                    <div class="mb-5 text-red-600 font-semibold">
                         <?php echo e(session('error')); ?>
 
                     </div>
                 <?php endif; ?>
+
                 <?php if($errors->any()): ?>
-                    <div class="mb-4 text-red-600">
+                    <div class="mb-5 text-red-600 text-sm">
                         <ul class="list-disc list-inside">
                             <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $err): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <li><?php echo e($err); ?></li>
@@ -56,55 +69,56 @@
                     </div>
                 <?php endif; ?>
 
-                <form class="space-y-8 text-left" method="POST" action="<?php echo e(route('login.user')); ?>">
+                <!-- FORM -->
+                <form method="POST" action="<?php echo e(route('login.user')); ?>" class="space-y-8 text-left">
                     <?php echo csrf_field(); ?>
-                    <div class="space-y-4">
-                        <label for="usuario"
-                            class="block text-slate-800 text-base font-extrabold uppercase ml-2 tracking-widest">ID
-                            DEL USUARIO</label>
-                        <input type="text" id="usuario" name="usuario" placeholder="Ej: 0020261234" required
-                            class="w-full bg-slate-50 border-2 border-slate-200 rounded-[2rem] py-7 px-10 outline-none focus:border-custom-blue transition-all text-2xl shadow-sm">
+
+                    <!-- USER -->
+                    <div>
+                        <label class="block text-sm font-bold uppercase tracking-widest ml-2 mb-2">
+                            ID del usuario
+                        </label>
+
+                        <input type="text" name="usuario" placeholder="Ej: 0020261234" required
+                            class="w-full bg-slate-50 border-2 border-slate-200 rounded-[2rem]
+                           py-5 px-8 text-lg outline-none focus:border-custom-blue transition">
                     </div>
-                    <div class="space-y-4">
-                        <label for="passwordInput"
-                            class="block text-slate-800 text-base font-extrabold uppercase ml-2 tracking-widest">Contraseña</label>
-                        <div class="relative flex items-center">
+
+                    <!-- PASSWORD -->
+                    <div>
+                        <label class="block text-sm font-bold uppercase tracking-widest ml-2 mb-2">
+                            Contraseña
+                        </label>
+
+                        <div class="relative">
                             <input id="passwordInput" type="password" name="password" placeholder="••••••••" required
-                                class="w-full bg-slate-50 border-2 border-slate-200 rounded-[2rem] py-7 px-10 pr-24 outline-none focus:border-custom-blue transition-all text-2xl shadow-sm">
+                                class="w-full bg-slate-50 border-2 border-slate-200 rounded-[2rem]
+                               py-5 px-8 pr-14 text-lg outline-none focus:border-custom-blue transition">
+
                             <button id="togglePassword" type="button"
-                                class="absolute right-8 text-slate-400 hover:text-custom-blue">
-                                <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" class="hidden" width="36"
-                                    height="36" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                    fill="none">
-                                    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
-                                    <path
-                                        d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6">
-                                    </path>
-                                </svg>
-                                <svg id="eyeClosed" xmlns="http://www.w3.org/2000/svg" width="36" height="36"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none">
-                                    <path d="M10.584 10.587a2 2 0 0 0 2.828 2.83"></path>
-                                    <path
-                                        d="M9.363 5.365a9.466 9.466 0 0 1 2.637 -.365c4 0 7.333 2.333 10 7c-.778 1.361 -1.612 2.524 -2.503 3.488m-2.14 1.861a9.41 9.41 0 0 1 -5.357 1.651c-4 0 -7.333 -2.333 -10 -7c1.369 -2.395 2.913 -4.175 4.632 -5.341">
-                                    </path>
-                                    <path d="M3 3l18 18"></path>
-                                </svg>
+                                class="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400">
+                                👁
                             </button>
                         </div>
                     </div>
+
+                    <!-- BUTTON -->
                     <button type="submit"
-                        class="w-full btn-custom-effect text-white font-black py-8 rounded-[2rem] shadow-custom-blue text-3xl uppercase tracking-widest mt-6">
-                        <span>Ingresar</span>
+                        class="w-full btn-custom-effect text-white font-black py-6 rounded-[2rem]
+                        text-xl uppercase tracking-widest shadow-custom-blue">
+                        Ingresar
                     </button>
                 </form>
 
-                <div class="mt-8">
-                    <a href="#"
-                        class="text-xl font-bold text-slate-400 hover:text-custom-blue transition-colors">¿Olvidaste tu
-                        contraseña?</a>
+                <!-- FORGOT -->
+                <div class="mt-6 text-center">
+                    <a href="#" class="text-slate-400 font-semibold hover:text-custom-blue transition">
+                        ¿Olvidaste tu contraseña?
+                    </a>
                 </div>
 
-                <div class="social-icons-wrapper !mt-8">
+                <!-- SOCIAL -->
+                <div class="social-icons-wrapper mt-8">
                     <a href="https://www.tiktok.com/@next_level_novus" class="social-btn"><i
                             class="fab fa-tiktok"></i></a>
                     <a href="https://www.instagram.com/next_level_novus/" class="social-btn"><i
@@ -114,18 +128,18 @@
                             class="fab fa-facebook"></i></a>
                 </div>
 
-                <div class="mt-6 flex flex-col items-center">
-                    <div
-                        class="text-slate-400 text-[11px] font-bold uppercase tracking-widest flex items-center gap-3 footer-links">
-                        <a href="#" class="hover:text-custom-blue underline transition-colors">Términos y
-                            condiciones</a>
-                        <span class="text-slate-300">/</span>
-                        <a href="#" class="hover:text-custom-blue underline transition-colors">Política de
-                            protección de datos personales</a>
+                <!-- FOOTER -->
+                <div class="mt-8 text-center text-[11px] text-slate-400 space-y-3">
+
+                    <div class="flex justify-center gap-3">
+                        <a href="#" class="hover:text-custom-blue transition">Términos</a>
+                        <span>/</span>
+                        <a href="#" class="hover:text-custom-blue transition">Privacidad</a>
                     </div>
-                    <p class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em] mt-4"> © 2026 Next Level.
-                        Todos los derechos reservados.</p>
+
+                    <p>© 2026 Next Level. Todos los derechos reservados.</p>
                 </div>
+
             </div>
         </div>
     </div>
