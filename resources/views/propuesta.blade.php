@@ -145,7 +145,7 @@
             <div class="footer-left">
                 <img src="{{ asset('images/logo_footer.png') }}" alt="Next Level Logo" class="footer-logo-img">
                 <div class="footer-contact">
-                    <p><i class="fa-solid fa-phone"></i> 923 317 626</p>
+                    <p><i class="fa-solid fa-phone"></i> 923 317 625</p>
                     <p><i class="fa-solid fa-location-dot"></i> Carretera Federico Basadre Km. 6 (Al costado de la UNU)</p>
                     <p><i class="fa-solid fa-envelope"></i> contacto@nextlevel.edu.pe</p>
                 </div>

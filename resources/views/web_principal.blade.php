@@ -117,7 +117,7 @@
                     </ul>
 
                     <div class="pathway-actions">
-                        <a href="https://wa.me/51923317626" target="_blank" class="btn-whatsapp-pathway">
+                        <a href="https://wa.me/51923317625" target="_blank" class="btn-whatsapp-pathway">
                             <i class="fa-brands fa-whatsapp"></i> Chatea con nosotros
                         </a>
                         <a href="{{ route('propuesta_educativa') }}" class="btn-proposal-pathway">
@@ -349,7 +349,7 @@
             <div class="footer-left">
                 <img src="{{ asset('images/logo_footer.png') }}" alt="Next Level Logo" class="footer-logo-img">
                 <div class="footer-contact">
-                    <p><i class="fa-solid fa-phone"></i> 923 317 626</p>
+                    <p><i class="fa-solid fa-phone"></i> 923 317 625</p>
                     <p><i class="fa-solid fa-location-dot"></i> Carretera Federico Basadre Km. 6 (Al costado de la UNU)
                     </p>
                     <p><i class="fa-solid fa-envelope"></i> contacto@nextlevel.edu.pe</p>
