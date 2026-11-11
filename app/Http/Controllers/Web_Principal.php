@@ -10,4 +10,9 @@ class Web_Principal extends Controller
     {
         return view('web_principal');
     }
+
+    public function propuestaEducativa()
+    {
+        return view('propuesta');
+    }
 }

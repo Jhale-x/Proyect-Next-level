@@ -1,0 +1,38 @@
+/* Página de accesos (reemplaza al portal de la intranet). Usa las variables --mt-* de matricula-base.css */
+.ac-body { background: var(--mt-bg); min-height: 100vh; margin: 0; }
+
+.ac-top { background: var(--mt-navy-900); color: var(--mt-white); }
+.ac-top__inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 68px; }
+.ac-brand { display: flex; align-items: center; gap: 10px; color: inherit; text-decoration: none; font-weight: 800; font-size: 1.1rem; }
+.ac-brand img { width: 40px; height: 40px; object-fit: contain; background: var(--mt-white); border-radius: 50%; padding: 3px; }
+.ac-back { color: rgba(255, 255, 255, .85); text-decoration: none; font-weight: 600; font-size: .92rem; }
+.ac-back:hover { color: var(--mt-white); }
+
+.ac-main { padding-top: 48px; padding-bottom: 56px; }
+.ac-main h1 { margin: 0 0 6px; font-size: 2rem; font-weight: 800; color: var(--mt-ink); }
+.ac-lead { margin: 0 0 28px; }
+
+.ac-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.ac-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 28px;
+    background: var(--mt-white);
+    border: 1px solid var(--mt-line);
+    border-radius: var(--mt-radius);
+    box-shadow: var(--mt-shadow);
+}
+.ac-card h2 { margin: 6px 0 0; font-size: 1.25rem; font-weight: 800; color: var(--mt-ink); }
+.ac-card p { margin: 0; line-height: 1.6; }
+.ac-icon { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 14px; background: var(--mt-red-50); color: var(--mt-red); font-size: 1.4rem; }
+.ac-icon.is-navy { background: #E8EEF8; color: var(--mt-navy); }
+.ac-note { padding: 10px 12px; border-radius: var(--mt-radius-sm); background: var(--mt-amber-50); font-size: .9rem; }
+.ac-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 8px; }
+
+@media (max-width: 760px) {
+    .ac-grid { grid-template-columns: 1fr; }
+    .ac-main { padding-top: 32px; }
+    .ac-main h1 { font-size: 1.6rem; }
+    .ac-back span { display: none; }
+}

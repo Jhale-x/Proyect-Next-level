@@ -75,11 +75,17 @@
 
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-12 italic">¡Bienvenido Alumno!</h2>
 
-                <form class="space-y-8 text-left" method="POST" action="#">
+                @if (session('error'))
+                    <div class="mb-6 rounded-2xl border border-red-200 bg-red-50 px-6 py-4 text-left text-red-700">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                <form class="space-y-8 text-left" method="POST" action="{{ route('login.alumno.post') }}">
                     @csrf
                     <div class="space-y-4">
-                        <label class="block text-slate-800 text-base font-extrabold uppercase ml-2 tracking-widest">ID Alumno</label>
-                        <input type="text" name="alumno_id" placeholder="Ej: 0020261234" required
+                        <label class="block text-slate-800 text-base font-extrabold uppercase ml-2 tracking-widest">Usuario (DNI)</label>
+                        <input type="text" name="usuario" placeholder="Ej: 70001234" value="{{ old('usuario') }}" required
                                class="w-full bg-slate-50 border-2 border-slate-200 rounded-[2rem] py-7 px-10 outline-none focus:border-custom-red transition-all text-2xl shadow-sm">
                     </div>
                     <div class="space-y-4">

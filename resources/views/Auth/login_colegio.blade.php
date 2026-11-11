@@ -116,7 +116,7 @@
                     <div class="space-y-4">
                         <label class="block text-slate-800 text-base font-extrabold uppercase ml-2 tracking-widest">ID
                             DEL USUARIO</label>
-                        <input type="text" name="usuario" placeholder="Ej: 0020261234" required
+                        <input type="text" name="usuario" placeholder="Ej: 70001234" value="{{ old('usuario') }}" required
                             class="w-full bg-slate-50 border-2 border-slate-200 rounded-[2rem] py-7 px-10 outline-none focus:border-custom-blue transition-all text-2xl shadow-sm">
                     </div>
                     <div class="space-y-4">
