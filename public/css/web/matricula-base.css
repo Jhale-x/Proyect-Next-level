@@ -1,0 +1,191 @@
+/* ======================================================
+   MATRÍCULA — BASE COMPARTIDA (portada + formulario)
+   Prefijo .mt- para no chocar con los estilos del sitio.
+   ====================================================== */
+:root {
+    --mt-navy: #0B2C5C;
+    --mt-navy-900: #061A3A;
+    --mt-navy-700: #14428A;
+    --mt-red: #E63946;
+    --mt-red-700: #C1121F;
+    --mt-red-50: #FDECEE;
+    --mt-green: #15803D;
+    --mt-green-50: #ECFDF3;
+    --mt-amber-50: #FFF8E6;
+    --mt-ink: #0F172A;
+    --mt-text: #334155;
+    --mt-muted: #64748B;
+    --mt-line: #E2E8F0;
+    --mt-bg: #F4F6FB;
+    --mt-white: #FFFFFF;
+    --mt-radius: 16px;
+    --mt-radius-sm: 10px;
+    --mt-shadow: 0 1px 2px rgba(15, 23, 42, .06), 0 8px 24px rgba(15, 23, 42, .08);
+    --mt-shadow-lg: 0 24px 60px rgba(6, 26, 58, .25);
+    --mt-font: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.mt-page {
+    font-family: var(--mt-font);
+    color: var(--mt-text);
+    background: var(--mt-white);
+    -webkit-font-smoothing: antialiased;
+}
+
+.mt-page *, .mt-page *::before, .mt-page *::after { box-sizing: border-box; }
+
+.mt-container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.mt-muted { color: var(--mt-muted); }
+
+/* ---------- Botones ---------- */
+.mt-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 12px 22px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    font: 700 0.95rem/1.2 var(--mt-font);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .2s, color .2s, border-color .2s, transform .1s, box-shadow .2s;
+}
+.mt-btn:active { transform: translateY(1px); }
+.mt-btn:disabled { opacity: .55; cursor: not-allowed; }
+.mt-btn:focus-visible { outline: 3px solid rgba(230, 57, 70, .35); outline-offset: 2px; }
+.mt-btn--block { width: 100%; }
+.mt-btn--primary { background: var(--mt-red); color: #fff; box-shadow: 0 6px 16px rgba(230, 57, 70, .3); }
+.mt-btn--primary:hover:not(:disabled) { background: var(--mt-red-700); }
+.mt-btn--navy { background: var(--mt-navy); color: #fff; }
+.mt-btn--navy:hover:not(:disabled) { background: var(--mt-navy-700); }
+.mt-btn--outline { background: transparent; color: var(--mt-navy); border-color: var(--mt-navy); }
+.mt-btn--outline:hover { background: var(--mt-navy); color: #fff; }
+.mt-btn--ghost { background: #F1F5F9; color: var(--mt-navy); }
+.mt-btn--ghost:hover { background: #E2E8F0; }
+.mt-btn--whatsapp { background: #25D366; color: #fff; }
+.mt-btn--whatsapp:hover { background: #1DA851; }
+
+/* ---------- Campos ---------- */
+.mt-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.mt-field > label, .mt-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--mt-ink);
+}
+.mt-field .mt-optional { font-weight: 500; color: var(--mt-muted); font-size: .78rem; }
+
+.mt-page input[type="text"], .mt-page input[type="email"], .mt-page input[type="tel"],
+.mt-page input[type="date"], .mt-page select {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1.5px solid var(--mt-line);
+    border-radius: 12px;
+    background: #fff;
+    font: 500 1rem var(--mt-font);
+    color: var(--mt-ink);
+    transition: border-color .2s, box-shadow .2s;
+    appearance: none;
+}
+.mt-page select {
+    padding-right: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+}
+.mt-page input:focus, .mt-page select:focus {
+    outline: none;
+    border-color: var(--mt-navy);
+    box-shadow: 0 0 0 4px rgba(11, 44, 92, .12);
+}
+.mt-page input:disabled, .mt-page select:disabled { background: #F8FAFC; color: #94A3B8; cursor: not-allowed; }
+.mt-page input[readonly] { background: #F8FAFC; }
+.mt-page .is-invalid { border-color: var(--mt-red) !important; box-shadow: 0 0 0 4px rgba(230, 57, 70, .12) !important; }
+.mt-error-text { color: var(--mt-red-700); font-size: .8rem; font-weight: 600; }
+
+/* ---------- Tarjetas y avisos ---------- */
+.mt-card {
+    background: var(--mt-white);
+    border: 1px solid var(--mt-line);
+    border-radius: var(--mt-radius);
+    box-shadow: var(--mt-shadow);
+    padding: 24px;
+}
+
+.mt-alert {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: .9rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+.mt-alert--error { background: var(--mt-red-50); color: var(--mt-red-700); }
+.mt-alert--success { background: var(--mt-green-50); color: var(--mt-green); }
+.mt-alert--info { background: #EFF6FF; color: var(--mt-navy-700); }
+
+.mt-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    background: var(--mt-red);
+    color: #fff;
+}
+
+.mt-kicker {
+    display: inline-block;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--mt-red);
+    margin-bottom: 8px;
+}
+
+.mt-note {
+    display: flex;
+    gap: 10px;
+    padding: 12px 14px;
+    background: var(--mt-amber-50);
+    border-radius: 12px;
+    font-size: .88rem;
+    line-height: 1.5;
+}
+.mt-note i { color: #B45309; margin-top: 3px; }
+
+.mt-copy {
+    border: 0;
+    background: transparent;
+    color: var(--mt-navy-700);
+    font: 700 .78rem var(--mt-font);
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+.mt-copy:hover { background: #EEF2FF; }
+
+[hidden] { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+    .mt-page * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}

@@ -2,58 +2,45 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class Alumno extends Authenticatable
+class Alumno extends Model
 {
-    use HasFactory, Notifiable;
-
     protected $table = 'alumnos';
     protected $primaryKey = 'id_alumno';
-    
+    public $timestamps = true;
+
     protected $fillable = [
         'id_apoderado',
-        'id_salon',
         'nombre',
         'apellido',
         'dni',
+        'email',
+        'telefono',
+        'genero',
         'fecha_nacimiento',
         'usuario',
         'contrasena',
-        'qr',
     ];
-    
-    protected $hidden = [
-        'contrasena',
+
+    protected $hidden = ['contrasena'];
+
+    protected $casts = [
+        'fecha_nacimiento' => 'date',
     ];
-    
-    // Para que Auth use el campo correcto
-    public function getAuthPassword()
-    {
-        return $this->contrasena;
-    }
-    
-    // Relación con salón
-    public function salon()
-    {
-        return $this->belongsTo(Salon::class, 'id_salon', 'id_salon');
-    }
-    
-    // Relación con apoderado
+
     public function apoderado()
     {
         return $this->belongsTo(Apoderado::class, 'id_apoderado', 'id_apoderado');
     }
-    public function promediosETI()
+
+    public function matriculas()
     {
-        return $this->hasMany(PromedioETI::class, 'id_alumno');
+        return $this->hasMany(Matricula::class, 'id_alumno', 'id_alumno');
     }
-    
-    public function promedioETIByCurso($cursoId)
+
+    public function getNombreCompletoAttribute()
     {
-        return $this->hasOne(PromedioETI::class, 'id_alumno')
-                    ->where('id_curso', $cursoId);
+        return trim($this->nombre . ' ' . $this->apellido);
     }
 }

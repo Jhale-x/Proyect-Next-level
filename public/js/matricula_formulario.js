@@ -1,747 +1,527 @@
 // ======================================================
-// API HELPER FUNCTIONS
+// FORMULARIO DE MATRÍCULA (4 pasos)
+// El servidor calcula el monto y vuelve a validar todo.
 // ======================================================
-const API = {
-    base: '/api/matricula',
-    
-    async get(endpoint, params = {}) {
-        const url = new URL(this.base + endpoint, window.location.origin);
-        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-        
-        try {
-            const response = await fetch(url, {
-                headers: {
-                    'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
+(function () {
+    const CFG = window.MATRICULA || {};
+    const form = document.getElementById('mfForm');
+    if (!form) return;
+
+    const $ = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+    const campo = (name) => form.elements[name];
+    const valor = (name) => {
+        const el = campo(name);
+        if (!el) return '';
+        return (el instanceof RadioNodeList ? el.value : el.value || '').trim();
+    };
+    const soles = (n) => 'S/ ' + Number(n || 0).toFixed(2);
+    const textoSelect = (id) => {
+        const s = document.getElementById(id);
+        return s && s.value ? s.options[s.selectedIndex].text : '';
+    };
+    const fechaDMY = (iso) => iso ? iso.split('-').reverse().join('/') : '—';
+    const edad = (iso) => {
+        if (!iso) return null;
+        const n = new Date(iso + 'T00:00:00'), h = new Date();
+        let e = h.getFullYear() - n.getFullYear();
+        const m = h.getMonth() - n.getMonth();
+        if (m < 0 || (m === 0 && h.getDate() < n.getDate())) e--;
+        return e;
+    };
+
+    let pasoActual = 1;
+    let pasoMaximo = 1;
+    let ciclo = null;
+    let pedidoCiclos = 0;
+
+    const FILTROS = {
+        academia: ['id_sede', 'id_entorno', 'id_universidad', 'id_tipo_ciclo', 'id_turno'],
+        colegio: ['id_sede', 'id_entorno', 'id_nivel', 'grado', 'seccion', 'id_turno'],
+    };
+
+    // ======================================================
+    // NAVEGACIÓN
+    // ======================================================
+    function irA(paso) {
+        if (paso > pasoActual) {
+            for (let p = pasoActual; p < paso; p++) {
+                const error = validarPaso(p);
+                if (error) {
+                    avisar(error.mensaje, error.campo);
+                    return;
                 }
-            });
-            
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            return await response.json();
-        } catch (error) {
-            console.error(`Error en GET ${endpoint}:`, error);
-            return [];
+            }
         }
-    },
-    
-    async post(endpoint, data) {
+        if (paso === 3) armarRevision();
+
+        pasoActual = paso;
+        pasoMaximo = Math.max(pasoMaximo, paso);
+        $$('.mf-step').forEach(s => { s.hidden = Number(s.dataset.step) !== paso; });
+        $$('#mfStepper li').forEach(li => {
+            const n = Number(li.dataset.step);
+            li.classList.toggle('is-active', n === paso);
+            li.classList.toggle('is-done', n < paso && paso < 4);
+        });
+        $('#mfLayout').classList.toggle('is-final', paso === 4);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    form.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-ir]');
+        if (btn) irA(Number(btn.dataset.ir));
+    });
+    $('#mfStepper').addEventListener('click', (e) => {
+        const li = e.target.closest('li.is-done');
+        if (li) irA(Number(li.dataset.step));
+    });
+
+    function avisar(mensaje, el) {
+        if (el) {
+            const objetivo = el.closest('.mf-pills') || el;
+            objetivo.classList.add('is-invalid');
+            (el.focus ? el : objetivo).focus?.();
+            objetivo.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        alert(mensaje);
+    }
+
+    form.addEventListener('input', (e) => e.target.classList.remove('is-invalid'));
+    form.addEventListener('change', (e) => {
+        e.target.classList.remove('is-invalid');
+        e.target.closest('.mf-pills')?.classList.remove('is-invalid');
+    });
+
+    // ======================================================
+    // PASO 1: PROGRAMA
+    // ======================================================
+    $$('input[name="modalidad"]').forEach(r => r.addEventListener('change', () => {
+        const modalidad = valor('modalidad');
+        $('#mfPrograma').hidden = false;
+        $$('[data-solo]').forEach(el => {
+            const visible = el.dataset.solo === modalidad;
+            el.hidden = !visible;
+            const sel = $('select', el);
+            if (sel) sel.required = visible;
+        });
+
+        // Paso 2 según modalidad
+        $('#mfMayorEdad').hidden = modalidad !== 'academia';
+        if (modalidad === 'colegio') campo('es_mayor').value = 'no';
+        $('#celularOpcional').hidden = modalidad === 'academia';
+        campo('alumno_celular').required = modalidad === 'academia';
+        actualizarApoderado();
+
+        cargarCiclos();
+        actualizarResumen();
+    }));
+
+    ['id_sede', 'id_entorno', 'id_universidad', 'id_tipo_ciclo', 'grado', 'seccion', 'id_turno']
+        .forEach(id => document.getElementById(id).addEventListener('change', () => { cargarCiclos(); actualizarResumen(); }));
+
+    document.getElementById('id_nivel').addEventListener('change', async function () {
+        const grado = document.getElementById('grado');
+        grado.disabled = true;
+        grado.innerHTML = '<option value="">Cargando...</option>';
+        cargarCiclos();
+        actualizarResumen();
+        if (!this.value) {
+            grado.innerHTML = '<option value="">Primero elige el nivel</option>';
+            return;
+        }
         try {
-            const response = await fetch(this.base + endpoint, {
+            const grados = await fetch(`/api/matricula/grados/${encodeURIComponent(this.value)}`, { headers: { Accept: 'application/json' } }).then(r => r.json());
+            grado.innerHTML = '<option value="">Selecciona</option>';
+            grados.forEach(g => grado.add(new Option(g.nombre, g.id)));
+            grado.disabled = false;
+        } catch {
+            grado.innerHTML = '<option value="">No se pudo cargar</option>';
+        }
+    });
+
+    async function cargarCiclos() {
+        const cont = $('#mfCiclos');
+        const modalidad = valor('modalidad');
+        ciclo = null;
+        actualizarResumen();
+        if (!modalidad) return;
+
+        const faltan = FILTROS[modalidad].filter(f => !valor(f));
+        if (faltan.length) {
+            cont.innerHTML = '<p class="mf-empty"><i class="fa-regular fa-calendar"></i> Completa las opciones de arriba para ver los ciclos y sus precios.</p>';
+            return;
+        }
+
+        const params = new URLSearchParams({ modalidad });
+        FILTROS[modalidad].filter(f => f.startsWith('id_')).forEach(f => params.set(f, valor(f)));
+
+        const pedido = ++pedidoCiclos;
+        cont.innerHTML = '<p class="mf-empty"><i class="fa-solid fa-spinner fa-spin"></i> Buscando ciclos disponibles...</p>';
+
+        try {
+            const ciclos = await fetch(`/api/matricula/ciclos?${params}`, { headers: { Accept: 'application/json' } }).then(r => r.json());
+            if (pedido !== pedidoCiclos) return; // llegó una respuesta más nueva
+
+            if (!Array.isArray(ciclos) || !ciclos.length) {
+                cont.innerHTML = '<p class="mf-empty"><i class="fa-regular fa-face-frown"></i> No hay ciclos disponibles para esta combinación. Prueba con otro turno o tipo de ciclo.</p>';
+                return;
+            }
+
+            cont.innerHTML = '';
+            const tpl = $('#tplCiclo');
+            ciclos.forEach(c => {
+                const nodo = tpl.content.cloneNode(true);
+                const radio = $('input', nodo);
+                radio.value = c.id;
+                $('.mf-ciclo__nombre', nodo).textContent = c.nombre;
+                $('.mf-ciclo__fechas', nodo).textContent = `${c.fecha_inicio} – ${c.fecha_fin}`;
+                $('.mf-ciclo__antes', nodo).textContent = soles(c.importe);
+                $('.mf-ciclo__total', nodo).textContent = soles(c.monto);
+                radio.addEventListener('change', () => { ciclo = c; actualizarResumen(); });
+                cont.appendChild(nodo);
+            });
+            if (ciclos.length === 1) {
+                $('input', cont).checked = true;
+                ciclo = ciclos[0];
+                actualizarResumen();
+            }
+        } catch {
+            if (pedido === pedidoCiclos) cont.innerHTML = '<p class="mf-empty">No pudimos cargar los ciclos. Inténtalo nuevamente.</p>';
+        }
+    }
+
+    // ======================================================
+    // PASO 2: DATOS
+    // ======================================================
+    const PREFIJO = { estudiante: 'alumno', apoderado: 'apoderado' };
+    const CAMPOS_VERIFICADOS = { nombres: 'nombres', ape_paterno: 'apellido_paterno', ape_materno: 'apellido_materno' };
+
+    /** Coloca los datos del DNI verificado en el estudiante o en el apoderado. */
+    function aplicarVerificado() {
+        const quien = valor('verificado_es') || 'estudiante';
+        const v = CFG.verificado || {};
+        Object.values(PREFIJO).forEach(pre => {
+            const esVerificado = PREFIJO[quien] === pre;
+            Object.entries(CAMPOS_VERIFICADOS).forEach(([c, k]) => {
+                const el = campo(`${pre}_${c}`);
+                if (esVerificado) el.value = titulo(v[k] || '');
+                else if (el.readOnly) el.value = '';
+                el.readOnly = esVerificado;
+            });
+            const dni = campo(`${pre}_dni`);
+            if (esVerificado) dni.value = v.dni || '';
+            else if (dni.readOnly) dni.value = '';
+            dni.readOnly = esVerificado;
+        });
+    }
+
+    function titulo(t) {
+        return t.toLowerCase().replace(/(^|\s)\S/g, s => s.toUpperCase());
+    }
+
+    function requiereApoderado() {
+        return valor('modalidad') === 'colegio' || valor('es_mayor') !== 'si';
+    }
+
+    function actualizarApoderado() {
+        const requiere = requiereApoderado();
+        const bloque = $('#mfApoderado');
+        bloque.hidden = !requiere;
+        $$('input', bloque).forEach(i => { i.disabled = !requiere; });
+
+        // Sin apoderado, el DNI verificado solo puede ser del estudiante.
+        const opApoderado = $('input[name="verificado_es"][value="apoderado"]');
+        opApoderado.disabled = !requiere;
+        opApoderado.closest('label').hidden = !requiere;
+        if (!requiere && valor('verificado_es') === 'apoderado') {
+            $('input[name="verificado_es"][value="estudiante"]').checked = true;
+            aplicarVerificado();
+        }
+    }
+
+    $$('input[name="verificado_es"]').forEach(r => r.addEventListener('change', aplicarVerificado));
+    $$('input[name="es_mayor"]').forEach(r => r.addEventListener('change', actualizarApoderado));
+
+    $$('[data-patron]').forEach(el => el.addEventListener('input', () => {
+        el.value = el.value.replace(/\D/g, '').slice(0, el.maxLength);
+    }));
+
+    // ======================================================
+    // VALIDACIÓN POR PASO
+    // ======================================================
+    function validarPaso(paso) {
+        if (paso === 1) {
+            const modalidad = valor('modalidad');
+            if (!modalidad) return { mensaje: 'Elige si deseas matricularte en Colegio o Academia.' };
+            for (const f of FILTROS[modalidad]) {
+                if (!valor(f)) return { mensaje: 'Completa todas las opciones del programa.', campo: document.getElementById(f) };
+            }
+            if (!ciclo) return { mensaje: 'Elige uno de los ciclos disponibles.', campo: $('#mfCiclos') };
+            return null;
+        }
+
+        if (paso === 2) {
+            const visibles = $$('input[required]', $('.mf-step[data-step="2"]')).filter(i => !i.disabled && !i.closest('[hidden]'));
+            for (const i of visibles) {
+                if (i.type === 'radio') {
+                    if (!form.querySelector(`input[name="${i.name}"]:checked`)) return { mensaje: 'Selecciona el género del estudiante.', campo: i };
+                    continue;
+                }
+                if (!i.value.trim()) return { mensaje: `Completa el campo "${etiqueta(i)}".`, campo: i };
+                if (i.type === 'email' && !i.checkValidity()) return { mensaje: 'Ingresa un correo electrónico válido.', campo: i };
+                if (i.dataset.patron === 'dni' && !/^\d{8}$/.test(i.value)) return { mensaje: 'El DNI debe tener 8 dígitos.', campo: i };
+                if (i.dataset.patron === 'celular' && !/^9\d{8}$/.test(i.value)) return { mensaje: 'El celular debe tener 9 dígitos y empezar con 9.', campo: i };
+            }
+            const cel = campo('alumno_celular');
+            if (cel.value && !/^9\d{8}$/.test(cel.value)) return { mensaje: 'El celular debe tener 9 dígitos y empezar con 9.', campo: cel };
+
+            const e = edad(valor('alumno_fecha_nac'));
+            if (e === null || e < 2 || e > 80) return { mensaje: 'Revisa la fecha de nacimiento del estudiante.', campo: campo('alumno_fecha_nac') };
+            if (valor('modalidad') === 'academia' && valor('es_mayor') === 'si' && e < 18) {
+                return { mensaje: 'Según la fecha de nacimiento el postulante es menor de edad: registra los datos del apoderado.', campo: $('#mfMayorEdad input') };
+            }
+
+            if (requiereApoderado()) {
+                if (valor('apoderado_dni') === valor('alumno_dni')) return { mensaje: 'El DNI del apoderado debe ser distinto al del estudiante.', campo: campo('apoderado_dni') };
+                const ea = edad(valor('apoderado_fecha_nac'));
+                if (ea === null || ea < 18) return { mensaje: 'Revisa la fecha de nacimiento del apoderado (debe ser mayor de edad).', campo: campo('apoderado_fecha_nac') };
+            }
+            return null;
+        }
+        return null;
+    }
+
+    function etiqueta(input) {
+        return (form.querySelector(`label[for="${input.id}"]`)?.childNodes[0]?.textContent || input.name).trim();
+    }
+
+    // ======================================================
+    // RESUMEN LATERAL Y REVISIÓN
+    // ======================================================
+    function programaTexto() {
+        const m = valor('modalidad');
+        if (m === 'academia') return [textoSelect('id_universidad'), textoSelect('id_tipo_ciclo').split(' · ')[0]].filter(Boolean).join(' · ');
+        if (m === 'colegio') return [textoSelect('id_nivel'), textoSelect('grado'), textoSelect('seccion')].filter(Boolean).join(' · ');
+        return '';
+    }
+
+    function actualizarResumen() {
+        const m = valor('modalidad');
+        $('#sumModalidad').textContent = m ? (m === 'colegio' ? 'Colegio' : 'Academia') : '—';
+        $('#sumPrograma').textContent = programaTexto() || '—';
+        $('#sumCiclo').textContent = ciclo ? ciclo.nombre : '—';
+        $('#sumTurno').textContent = textoSelect('id_turno').split(' · ')[0] || '—';
+        $('#sumDinero').hidden = !ciclo;
+        $('#mfSummary').classList.toggle('has-ciclo', !!ciclo);
+        if (ciclo) {
+            $('#sumImporte').textContent = soles(ciclo.importe);
+            $('#sumDescuento').textContent = '− ' + soles(ciclo.descuento);
+            $('#sumTotal').textContent = soles(ciclo.monto);
+        }
+    }
+
+    function llenarLista(dl, filas) {
+        dl.innerHTML = '';
+        filas.filter(([, v]) => v).forEach(([k, v]) => {
+            const div = document.createElement('div');
+            const dt = document.createElement('dt'); dt.textContent = k;
+            const dd = document.createElement('dd'); dd.textContent = v;
+            div.append(dt, dd);
+            dl.appendChild(div);
+        });
+    }
+
+    function armarRevision() {
+        $('#mfErrores').hidden = true;
+        llenarLista($('#revPrograma'), [
+            ['Modalidad', valor('modalidad') === 'colegio' ? 'Colegio' : 'Academia'],
+            ['Programa', programaTexto()],
+            ['Ciclo', ciclo?.nombre],
+            ['Fechas', ciclo ? `${ciclo.fecha_inicio} – ${ciclo.fecha_fin}` : ''],
+            ['Sede / Entorno', `${textoSelect('id_sede')} · ${textoSelect('id_entorno')}`],
+            ['Turno', textoSelect('id_turno')],
+            ['Total a pagar', ciclo ? `${soles(ciclo.monto)} (incluye 5% de descuento)` : ''],
+        ]);
+        llenarLista($('#revEstudiante'), [
+            ['Nombre completo', `${valor('alumno_nombres')} ${valor('alumno_ape_paterno')} ${valor('alumno_ape_materno')}`],
+            ['DNI', valor('alumno_dni')],
+            ['Nacimiento', fechaDMY(valor('alumno_fecha_nac'))],
+            ['Género', valor('alumno_genero') === 'M' ? 'Masculino' : 'Femenino'],
+            ['Correo', valor('alumno_email')],
+            ['Celular', valor('alumno_celular') || 'No registrado'],
+        ]);
+        const conApo = requiereApoderado();
+        $('#revApoderadoBlock').hidden = !conApo;
+        if (conApo) {
+            llenarLista($('#revApoderado'), [
+                ['Nombre completo', `${valor('apoderado_nombres')} ${valor('apoderado_ape_paterno')} ${valor('apoderado_ape_materno')}`],
+                ['DNI', valor('apoderado_dni')],
+                ['Nacimiento', fechaDMY(valor('apoderado_fecha_nac'))],
+                ['Celular', valor('apoderado_celular')],
+                ['Correo', valor('apoderado_email')],
+            ]);
+        }
+        validarChecks();
+    }
+
+    const checks = ['terminos_aceptados', 'politicas_aceptadas'].map(id => document.getElementById(id));
+    function validarChecks() {
+        $('#mfConfirmar').disabled = !checks.every(c => c.checked);
+    }
+    checks.forEach(c => c.addEventListener('change', validarChecks));
+
+    // ======================================================
+    // ENVÍO
+    // ======================================================
+    let enviando = false;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (enviando || pasoActual !== 3) return;
+
+        const btn = $('#mfConfirmar');
+        const errores = $('#mfErrores');
+        enviando = true;
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Registrando...';
+        errores.hidden = true;
+
+        const conApo = requiereApoderado();
+        const datos = {
+            modalidad: valor('modalidad'),
+            id_ciclo: ciclo.id,
+            es_mayor: valor('modalidad') === 'academia' ? valor('es_mayor') : 'no',
+            grado: valor('grado') || null,
+            seccion: valor('seccion') || null,
+            terminos_aceptados: 1,
+            politicas_aceptadas: 1,
+        };
+        ['nombres', 'ape_paterno', 'ape_materno', 'dni', 'email', 'genero', 'fecha_nac', 'celular']
+            .forEach(c => { datos[`alumno_${c}`] = valor(`alumno_${c}`) || null; });
+        if (conApo) {
+            ['nombres', 'ape_paterno', 'ape_materno', 'dni', 'email', 'celular', 'fecha_nac']
+                .forEach(c => { datos[`apoderado_${c}`] = valor(`apoderado_${c}`) || null; });
+        }
+
+        try {
+            const res = await fetch(CFG.rutaGuardar, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-CSRF-TOKEN': window.CSRF_TOKEN || document.querySelector('meta[name="csrf-token"]')?.content || '',
-                    'X-Requested-With': 'XMLHttpRequest'
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || '',
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(datos),
             });
-            return await response.json();
-        } catch (error) {
-            console.error('Error en POST:', error);
-            return { success: false, error: error.message };
-        }
-    }
-};
+            const r = await res.json().catch(() => ({}));
 
-// ======================================================
-// FUNCIONES PARA CARGAR DATOS DESDE LA BD
-// ======================================================
-
-async function cargarSelect(selectId, endpoint, textoDefault) {
-    const select = document.getElementById(selectId);
-    if (!select) return;
-    
-    select.disabled = true;
-    select.innerHTML = `<option value="" disabled selected hidden>Cargando ${textoDefault}...</option>`;
-    
-    const datos = await API.get(endpoint);
-    
-    select.innerHTML = `<option value="" disabled selected hidden>Seleccionar ${textoDefault}</option>`;
-    
-    if (datos && datos.length > 0) {
-        datos.forEach(item => {
-            const option = document.createElement('option');
-            option.value = item.id;
-            let texto = item.nombre;
-            if (item.hora_texto) texto += ` (${item.hora_texto})`;
-            option.textContent = texto;
-            select.appendChild(option);
-        });
-        select.disabled = false;
-        console.log(`✅ ${textoDefault} cargados: ${datos.length} opciones`);
-    } else {
-        console.warn(`⚠️ No se recibieron ${textoDefault}`);
-        select.disabled = false;
-    }
-}
-
-// Cargar ciclos de academia
-async function cargarCiclosAcademia() {
-    const container = document.getElementById('ciclos-container-academia');
-    if (!container) return;
-    
-    const sede = document.getElementById('sedeacademiaSelector')?.value;
-    const entorno = document.getElementById('entornoacademiaSelector')?.value;
-    const universidad = document.getElementById('universidadSelector')?.value;
-    const tipoCiclo = document.getElementById('tipoCicloSelector')?.value;
-    const turno = document.getElementById('turnoAcademiaSelector')?.value;
-    
-    console.log('Filtros para ciclos:', { sede, entorno, universidad, tipoCiclo, turno });
-    
-    if (!sede || !entorno || !universidad || !tipoCiclo || !turno) {
-        console.log('Faltan filtros para cargar ciclos');
-        return;
-    }
-    
-    const filtros = {
-        modalidad: 'academia',
-        id_sede: sede,
-        id_entorno: entorno,
-        id_universidad: universidad,
-        id_tipo_ciclo: tipoCiclo,
-        id_turno: turno
-    };
-    
-    container.innerHTML = '<div class="loading">Cargando ciclos...</div>';
-    container.classList.remove('hidden-section');
-    
-    const ciclos = await API.get('/ciclos', filtros);
-    
-    container.innerHTML = '';
-    
-    if (ciclos && ciclos.length > 0) {
-        const template = document.getElementById('template-ciclo');
-        ciclos.forEach(ciclo => {
-            const clone = template.content.cloneNode(true);
-            const radio = clone.querySelector('.ciclo-radio');
-            radio.value = ciclo.id;
-            radio.name = 'ciclo_op';
-            clone.querySelector('.nombre-ciclo').textContent = ciclo.nombre;
-            clone.querySelector('.fechas-ciclo').textContent = `${ciclo.fecha_inicio} - ${ciclo.fecha_fin}`;
-            container.appendChild(clone);
-        });
-        console.log(`✅ Ciclos cargados: ${ciclos.length} opciones`);
-    } else {
-        container.innerHTML = '<div class="no-data">No hay ciclos disponibles</div>';
-    }
-}
-
-// ======================================================
-// INICIALIZAR ACADEMIA - CADENA DE SELECTS
-// ======================================================
-function inicializarAcademia() {
-    console.log('🎓 Inicializando Academia...');
-    
-    const sedeSelect = document.getElementById('sedeacademiaSelector');
-    const entornoSelect = document.getElementById('entornoacademiaSelector');
-    const universidadSelect = document.getElementById('universidadSelector');
-    const tipoSelect = document.getElementById('tipoCicloSelector');
-    const turnoSelect = document.getElementById('turnoAcademiaSelector');
-    const ciclosContainer = document.getElementById('ciclos-container-academia');
-    
-    sedeSelect.disabled = false;
-    entornoSelect.disabled = true;
-    universidadSelect.disabled = true;
-    tipoSelect.disabled = true;
-    turnoSelect.disabled = true;
-    if (ciclosContainer) ciclosContainer.classList.add('hidden-section');
-    
-    cargarSelect('sedeacademiaSelector', '/sedes', 'Sede');
-    
-    sedeSelect.addEventListener('change', async function() {
-        if (this.value && this.value !== "") {
-            entornoSelect.disabled = true;
-            universidadSelect.disabled = true;
-            tipoSelect.disabled = true;
-            turnoSelect.disabled = true;
-            if (ciclosContainer) ciclosContainer.classList.add('hidden-section');
-            
-            entornoSelect.innerHTML = '<option value="" disabled selected hidden>Seleccionar Entorno</option>';
-            universidadSelect.innerHTML = '<option value="" disabled selected hidden>Universidad Objetivo</option>';
-            tipoSelect.innerHTML = '<option value="" disabled selected hidden>Tipo de Ciclo</option>';
-            turnoSelect.innerHTML = '<option value="" disabled selected hidden>Turno de Estudio</option>';
-            
-            await cargarSelect('entornoacademiaSelector', '/entornos', 'Entorno');
-            entornoSelect.disabled = false;
-        }
-    });
-    
-    entornoSelect.addEventListener('change', async function() {
-        if (this.value && this.value !== "") {
-            universidadSelect.disabled = true;
-            tipoSelect.disabled = true;
-            turnoSelect.disabled = true;
-            if (ciclosContainer) ciclosContainer.classList.add('hidden-section');
-            
-            tipoSelect.innerHTML = '<option value="" disabled selected hidden>Tipo de Ciclo</option>';
-            turnoSelect.innerHTML = '<option value="" disabled selected hidden>Turno de Estudio</option>';
-            
-            await cargarSelect('universidadSelector', '/universidades', 'Universidad');
-            universidadSelect.disabled = false;
-        }
-    });
-    
-    universidadSelect.addEventListener('change', async function() {
-        if (this.value && this.value !== "") {
-            tipoSelect.disabled = true;
-            turnoSelect.disabled = true;
-            if (ciclosContainer) ciclosContainer.classList.add('hidden-section');
-            
-            turnoSelect.innerHTML = '<option value="" disabled selected hidden>Turno de Estudio</option>';
-            
-            await cargarSelect('tipoCicloSelector', '/tipos-ciclo', 'Tipo de Ciclo');
-            tipoSelect.disabled = false;
-        }
-    });
-    
-    tipoSelect.addEventListener('change', async function() {
-        if (this.value && this.value !== "") {
-            turnoSelect.disabled = true;
-            if (ciclosContainer) ciclosContainer.classList.add('hidden-section');
-            
-            await cargarSelect('turnoAcademiaSelector', '/turnos', 'Turno');
-            turnoSelect.disabled = false;
-        }
-    });
-    
-    turnoSelect.addEventListener('change', function() {
-        if (this.value && this.value !== "") {
-            cargarCiclosAcademia();
-        }
-    });
-}
-
-// ======================================================
-// CARGAR CUOTAS AL SELECCIONAR CICLO
-// ======================================================
-async function cargarCuotas(cicloId) {
-    const modalidad = document.getElementById('modalidadSelector')?.value;
-    const bodyTarget = modalidad === 'colegio'
-        ? document.getElementById('cronograma-body-colegio')
-        : document.getElementById('cronograma-body');
-    const container = modalidad === 'colegio'
-        ? document.getElementById('cronograma-container-colegio')
-        : document.getElementById('cronograma-container');
-    
-    if (!bodyTarget) return;
-    
-    bodyTarget.innerHTML = '<tr><td colspan="5">Cargando cuotas...</td></tr>';
-    if (container) container.classList.remove('hidden-section');
-    
-    const cuotas = await API.get(`/cuotas/${cicloId}`);
-    
-    bodyTarget.innerHTML = '';
-    const template = document.getElementById('template-fila-cronograma');
-    let total = 0;
-    
-    if (cuotas && cuotas.length > 0) {
-        cuotas.forEach(cuota => {
-            const clone = template.content.cloneNode(true);
-            clone.querySelector('.col-cuota').textContent = cuota.nombre;
-            clone.querySelector('.col-vencimiento').textContent = cuota.fecha_vencimiento;
-            clone.querySelector('.col-importe').textContent = cuota.monto.toFixed(2);
-            clone.querySelector('.col-descuento').textContent = '0.00';
-            clone.querySelector('.col-total').textContent = cuota.monto.toFixed(2);
-            bodyTarget.appendChild(clone);
-            total += cuota.monto;
-        });
-    } else {
-        bodyTarget.innerHTML = '<tr><td colspan="5">No hay cuotas disponibles</td></tr>';
-    }
-    
-    const totalSpan = modalidad === 'colegio'
-        ? document.getElementById('cronograma-total-general-colegio')
-        : document.getElementById('cronograma-total-general');
-    
-    if (totalSpan) totalSpan.textContent = total.toFixed(2);
-}
-
-// ======================================================
-// ACTUALIZAR TOTAL CON DESCUENTO
-// ======================================================
-function actualizarTotalConDescuento() {
-    const modalidad = document.getElementById('modalidadSelector')?.value;
-    const bodyTarget = modalidad === 'colegio'
-        ? document.getElementById('cronograma-body-colegio')
-        : document.getElementById('cronograma-body');
-    
-    const celdasImporte = bodyTarget.querySelectorAll('.col-importe');
-    let totalOriginal = 0;
-    celdasImporte.forEach(celda => {
-        totalOriginal += parseFloat(celda.textContent) || 0;
-    });
-    
-    const totalSpan = modalidad === 'colegio'
-        ? document.getElementById('cronograma-total-general-colegio')
-        : document.getElementById('cronograma-total-general');
-    
-    const radioPago = document.querySelector(`input[name="${modalidad === 'colegio' ? 'p_col' : 'p'}"]:checked`);
-    
-    if (radioPago && radioPago.value === 'co') {
-        const descuento = totalOriginal * 0.05;
-        const neto = totalOriginal - descuento;
-        if (totalSpan) totalSpan.textContent = neto.toFixed(2);
-    } else {
-        if (totalSpan) totalSpan.textContent = totalOriginal.toFixed(2);
-    }
-}
-
-// ======================================================
-// ACTUALIZAR RESUMEN (Paso 2 → Paso 3)
-// ======================================================
-function actualizarResumen() {
-    const modalidad = document.getElementById('modalidadSelector').value;
-    const cicloRadio = document.querySelector('input[name="ciclo_op"]:checked');
-    const fechasCiclo = cicloRadio?.closest('.ciclo-card')?.querySelector('.fechas-ciclo')?.textContent || "";
-    
-    document.getElementById('res-modalidad').textContent = modalidad.toUpperCase();
-    
-    if (modalidad === 'colegio') {
-        const gradoTexto = document.getElementById('grado_escolar')?.options[document.getElementById('grado_escolar').selectedIndex]?.text || '';
-        const seccionTexto = document.getElementById('seccion_escolar')?.options[document.getElementById('seccion_escolar').selectedIndex]?.text || '';
-        const eleccionTexto = document.getElementById('nivel_escolar')?.options[document.getElementById('nivel_escolar').selectedIndex]?.text || '';
-
-        document.getElementById('res-eleccion').textContent = eleccionTexto.toUpperCase();
-        document.getElementById('res-ciclo').textContent = `${gradoTexto.toUpperCase()} - ${seccionTexto.toUpperCase()}`;
-        document.getElementById('res-turno').textContent = `${document.getElementById('turno_escolar')?.value.toUpperCase()} | ${fechasCiclo}`;
-        document.getElementById('res-sede').textContent = document.getElementById('sedecolegioSelector')?.value.toUpperCase() || '';
-        document.getElementById('res-entorno').textContent = document.getElementById('entornocolegioSelector')?.value.toUpperCase() || '';
-
-        document.getElementById('res-alumno-full').textContent = `${document.querySelector('input[name="col_nombres"]')?.value || ''} ${document.querySelector('input[name="col_ape_paterno"]')?.value || ''} ${document.querySelector('input[name="col_ape_materno"]')?.value || ''}`.toUpperCase();
-        document.getElementById('res-alumno-dni').textContent = document.querySelector('input[name="col_dni"]')?.value || '';
-        document.getElementById('res-alumno-email').textContent = (document.querySelector('input[name="col_email"]')?.value || '').toUpperCase();
-        document.getElementById('res-alumno-celular').textContent = "NO REGISTRADO";
-        document.getElementById('res-alumno-extra').textContent = `${document.querySelector('select[name="col_genero"]')?.value || ''} | NAC: ${document.querySelector('input[name="col_fecha_nac"]')?.value || ''}`.toUpperCase();
-
-        document.getElementById('res-apo-nombre').textContent = `${document.querySelector('input[name="apo_nombres"]')?.value || ''} ${document.querySelector('input[name="apo_ape_paterno"]')?.value || ''}`.toUpperCase();
-        document.getElementById('res-apo-dni').textContent = document.querySelector('input[name="apo_dni"]')?.value || '';
-        document.getElementById('res-apo-cel').textContent = document.querySelector('input[name="apo_celular"]')?.value || '';
-        document.getElementById('res-apo-nac').textContent = document.querySelector('input[name="apo_fecha_nac"]')?.value || '';
-        if (document.getElementById('res-card-apoderado')) {
-            document.getElementById('res-card-apoderado').style.display = 'block';
-        }
-    } else {
-        const eleccionAcaTexto = document.getElementById('universidadSelector')?.options[document.getElementById('universidadSelector').selectedIndex]?.text || '';
-        const cicloTxt = cicloRadio?.closest('.ciclo-card')?.querySelector('.nombre-ciclo')?.textContent || "-";
-
-        document.getElementById('res-eleccion').textContent = eleccionAcaTexto.toUpperCase();
-        document.getElementById('res-ciclo').textContent = cicloTxt.toUpperCase();
-        document.getElementById('res-turno').textContent = `${document.getElementById('turnoAcademiaSelector')?.value.toUpperCase()} | ${fechasCiclo}`;
-        document.getElementById('res-sede').textContent = document.getElementById('sedeacademiaSelector')?.value.toUpperCase() || '';
-        document.getElementById('res-entorno').textContent = document.getElementById('entornoacademiaSelector')?.value.toUpperCase() || '';
-
-        document.getElementById('res-alumno-full').textContent = `${document.querySelector('input[name="aca_nombres"]')?.value || ''} ${document.querySelector('input[name="aca_ape_paterno"]')?.value || ''} ${document.querySelector('input[name="aca_ape_materno"]')?.value || ''}`.toUpperCase();
-        document.getElementById('res-alumno-dni').textContent = document.querySelector('input[name="aca_dni"]')?.value || '';
-        document.getElementById('res-alumno-email').textContent = (document.querySelector('input[name="aca_email"]')?.value || '').toUpperCase();
-        document.getElementById('res-alumno-celular').textContent = document.querySelector('input[name="aca_celular"]')?.value || '';
-        document.getElementById('res-alumno-extra').textContent = `${document.querySelector('select[name="aca_genero"]')?.value || ''} | NAC: ${document.querySelector('input[name="aca_fecha_nac"]')?.value || ''}`.toUpperCase();
-
-        const esMayor = document.querySelector('input[name="es_mayor"]:checked')?.value === 'si';
-        if (esMayor) {
-            if (document.getElementById('res-card-apoderado')) {
-                document.getElementById('res-card-apoderado').style.display = 'none';
-            }
-        } else {
-            if (document.getElementById('res-card-apoderado')) {
-                document.getElementById('res-apo-nombre').textContent = `${document.querySelector('input[name="aca_apo_nombres"]')?.value || ''} ${document.querySelector('input[name="aca_apo_ape_paterno"]')?.value || ''}`.toUpperCase();
-                document.getElementById('res-apo-dni').textContent = document.querySelector('input[name="aca_apo_dni"]')?.value || '';
-                document.getElementById('res-apo-cel').textContent = document.querySelector('input[name="aca_apo_celular"]')?.value || '';
-                document.getElementById('res-apo-nac').textContent = document.querySelector('input[name="aca_apo_fecha_nac"]')?.value || '';
-                document.getElementById('res-card-apoderado').style.display = 'block';
-            }
-        }
-    }
-    
-    const tablaOrigen = modalidad === 'colegio' 
-        ? document.getElementById('cronograma-body-colegio')
-        : document.getElementById('cronograma-body');
-    const resCronogramaBody = document.getElementById('res-cronograma-body-final');
-    const templateFilaRes = document.getElementById('template-fila-resumen');
-    
-    if (resCronogramaBody && tablaOrigen) {
-        while (resCronogramaBody.firstChild) resCronogramaBody.removeChild(resCronogramaBody.firstChild);
-        tablaOrigen.querySelectorAll('tr').forEach(filaOriginal => {
-            const instancia = templateFilaRes.content.cloneNode(true);
-            instancia.querySelector('.res-col-cuota').textContent = filaOriginal.querySelector('.col-cuota')?.textContent || '';
-            instancia.querySelector('.res-col-vencimiento').textContent = filaOriginal.querySelector('.col-vencimiento')?.textContent || '';
-            instancia.querySelector('.res-col-descuento').textContent = "S/ " + (filaOriginal.querySelector('.col-descuento')?.textContent || '0');
-            instancia.querySelector('.res-col-total').textContent = "S/ " + (filaOriginal.querySelector('.col-total')?.textContent || '0');
-            resCronogramaBody.appendChild(instancia);
-        });
-    }
-    
-    const totalGeneral = modalidad === 'colegio' 
-        ? document.getElementById('cronograma-total-general-colegio')?.textContent 
-        : document.getElementById('cronograma-total-general')?.textContent;
-    
-    if (document.getElementById('res-pago-total')) {
-        document.getElementById('res-pago-total').textContent = totalGeneral || '0';
-    }
-}
-
-// ======================================================
-// GUARDAR MATRÍCULA Y AVANZAR AL PASO 4
-// ======================================================
-async function guardarMatricula() {
-    const modalidad = document.getElementById('modalidadSelector').value;
-    const cicloRadio = document.querySelector('input[name="ciclo_op"]:checked');
-    
-    if (!cicloRadio) {
-        alert('Seleccione un ciclo');
-        return false;
-    }
-    
-    if (!document.getElementById('check-terminos')?.checked || !document.getElementById('check-politicas')?.checked) {
-        alert('Debe aceptar los términos y condiciones');
-        return false;
-    }
-    
-    let datos = {
-        modalidad: modalidad,
-        id_ciclo: cicloRadio.value,
-        modalidad_pago: document.querySelector(`input[name="${modalidad === 'colegio' ? 'p_col' : 'p'}"]:checked`)?.value || 'c',
-        monto_total: parseFloat(document.getElementById(modalidad === 'colegio' ? 'cronograma-total-general-colegio' : 'cronograma-total-general')?.textContent || 0),
-        terminos_aceptados: 1,
-        politicas_aceptadas: 1,
-        es_mayor: document.querySelector('input[name="es_mayor"]:checked')?.value || 'no'
-    };
-    
-    if (modalidad === 'colegio') {
-        datos.alumno_nombres = document.querySelector('input[name="col_nombres"]')?.value;
-        datos.alumno_ape_paterno = document.querySelector('input[name="col_ape_paterno"]')?.value;
-        datos.alumno_ape_materno = document.querySelector('input[name="col_ape_materno"]')?.value;
-        datos.alumno_dni = document.querySelector('input[name="col_dni"]')?.value;
-        datos.alumno_email = document.querySelector('input[name="col_email"]')?.value;
-        datos.alumno_genero = document.querySelector('select[name="col_genero"]')?.value;
-        datos.alumno_fecha_nac = document.querySelector('input[name="col_fecha_nac"]')?.value;
-        datos.alumno_celular = document.querySelector('input[name="col_celular"]')?.value;
-        
-        datos.apoderado_nombres = document.querySelector('input[name="apo_nombres"]')?.value;
-        datos.apoderado_ape_paterno = document.querySelector('input[name="apo_ape_paterno"]')?.value;
-        datos.apoderado_ape_materno = document.querySelector('input[name="apo_ape_materno"]')?.value;
-        datos.apoderado_dni = document.querySelector('input[name="apo_dni"]')?.value;
-        datos.apoderado_email = document.querySelector('input[name="apo_email"]')?.value;
-        datos.apoderado_celular = document.querySelector('input[name="apo_celular"]')?.value;
-        datos.apoderado_fecha_nac = document.querySelector('input[name="apo_fecha_nac"]')?.value;
-    } else {
-        datos.alumno_nombres = document.querySelector('input[name="aca_nombres"]')?.value;
-        datos.alumno_ape_paterno = document.querySelector('input[name="aca_ape_paterno"]')?.value;
-        datos.alumno_ape_materno = document.querySelector('input[name="aca_ape_materno"]')?.value;
-        datos.alumno_dni = document.querySelector('input[name="aca_dni"]')?.value;
-        datos.alumno_email = document.querySelector('input[name="aca_email"]')?.value;
-        datos.alumno_genero = document.querySelector('select[name="aca_genero"]')?.value;
-        datos.alumno_fecha_nac = document.querySelector('input[name="aca_fecha_nac"]')?.value;
-        datos.alumno_celular = document.querySelector('input[name="aca_celular"]')?.value;
-        
-        datos.apoderado_nombres = document.querySelector('input[name="aca_apo_nombres"]')?.value;
-        datos.apoderado_ape_paterno = document.querySelector('input[name="aca_apo_ape_paterno"]')?.value;
-        datos.apoderado_ape_materno = document.querySelector('input[name="aca_apo_ape_materno"]')?.value;
-        datos.apoderado_dni = document.querySelector('input[name="aca_apo_dni"]')?.value;
-        datos.apoderado_email = document.querySelector('input[name="aca_apo_email"]')?.value;
-        datos.apoderado_celular = document.querySelector('input[name="aca_apo_celular"]')?.value;
-        datos.apoderado_fecha_nac = document.querySelector('input[name="aca_apo_fecha_nac"]')?.value;
-    }
-    
-    try {
-        const response = await API.post('/guardar', datos);
-        
-        if (response.success) {
-            // Mostrar el código generado en el paso 4
-            document.getElementById('codigo-generado').textContent = response.codigo;
-            
-            // Copiar datos al paso 4
-            document.getElementById('final-modalidad').textContent = document.getElementById('res-modalidad')?.textContent || '';
-            document.getElementById('final-eleccion').textContent = document.getElementById('res-eleccion')?.textContent || '';
-            document.getElementById('final-ciclo').textContent = document.getElementById('res-ciclo')?.textContent || '';
-            document.getElementById('final-sede').textContent = document.getElementById('res-sede')?.textContent || '';
-            document.getElementById('final-entorno').textContent = document.getElementById('res-entorno')?.textContent || '';
-            document.getElementById('final-turno').textContent = document.getElementById('res-turno')?.textContent || '';
-            
-            // ==== AVANZAR AL PASO 4 (FINAL) ====
-            // Ocultar paso 3
-            const step3Resumen = document.getElementById('step-3-resumen');
-            if (step3Resumen) step3Resumen.classList.add('hidden-section');
-            
-            // Mostrar paso 4
-            const step4Final = document.getElementById('step-4-final');
-            if (step4Final) step4Final.classList.remove('hidden-section');
-            
-            // Ocultar botones de navegación del paso 2
-            const navStep2 = document.getElementById('nav-step-2');
-            if (navStep2) navStep2.classList.add('hidden-section');
-            
-            // Mostrar botones del paso 4
-            const step4Nav = document.getElementById('step4-navigation-actions');
-            if (step4Nav) step4Nav.classList.remove('hidden-section');
-            
-            // Actualizar indicadores
-            const step3Indicator = document.getElementById('step-3-indicator');
-            const step4Indicator = document.getElementById('step-4-indicator');
-            if (step3Indicator) step3Indicator.classList.remove('active');
-            if (step4Indicator) step4Indicator.classList.add('active');
-            
-            // Scroll al inicio
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            
-            return true;
-        } else {
-            alert(response.message || response.error || 'Error al guardar');
-            return false;
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('Error al procesar la matrícula');
-        return false;
-    }
-}
-
-// ======================================================
-// INICIALIZACIÓN PRINCIPAL
-// ======================================================
-function inicializarSistema() {
-    console.log('🚀 Inicializando sistema...');
-    
-    const modalidadSelect = document.getElementById('modalidadSelector');
-    if (modalidadSelect) {
-        modalidadSelect.addEventListener('change', function() {
-            const modalidad = this.value;
-            console.log('Modalidad seleccionada:', modalidad);
-            
-            const sectionColegio = document.getElementById('section-colegio');
-            const sectionAcademia = document.getElementById('section-academia');
-            const footerActions = document.getElementById('footer-actions');
-            
-            if (sectionColegio) sectionColegio.classList.add('hidden-section');
-            if (sectionAcademia) sectionAcademia.classList.add('hidden-section');
-            if (footerActions) footerActions.classList.add('hidden-section');
-            
-            if (modalidad === 'colegio') {
-                if (sectionColegio) sectionColegio.classList.remove('hidden-section');
-                if (footerActions) footerActions.classList.remove('hidden-section');
-                console.log('🏫 Modulo Colegio seleccionado');
-            } else if (modalidad === 'academia') {
-                if (sectionAcademia) sectionAcademia.classList.remove('hidden-section');
-                if (footerActions) footerActions.classList.remove('hidden-section');
-                console.log('🎓 Modulo Academia seleccionado');
-                inicializarAcademia();
-            }
-        });
-    }
-}
-
-// ======================================================
-// BOTÓN DE NAVEGACIÓN - PASO 1 A PASO 2
-// ======================================================
-function inicializarBotonContinuar() {
-    const btnContinuar = document.querySelector('.btn-premium-next');
-    if (btnContinuar) {
-        const nuevoBtn = btnContinuar.cloneNode(true);
-        btnContinuar.parentNode.replaceChild(nuevoBtn, btnContinuar);
-        
-        nuevoBtn.addEventListener('click', function() {
-            const modalidad = document.getElementById('modalidadSelector')?.value;
-            if (!modalidad) {
-                alert('Seleccione una modalidad');
+            if (res.ok && r.success) {
+                mostrarFinal(r);
                 return;
             }
-            
-            document.getElementById('welcome-card')?.classList.add('hidden-section');
-            document.getElementById('section-colegio')?.classList.add('hidden-section');
-            document.getElementById('section-academia')?.classList.add('hidden-section');
-            document.getElementById('footer-actions')?.classList.add('hidden-section');
-            
-            const navStep2 = document.getElementById('nav-step-2');
-            if (navStep2) {
-                navStep2.classList.remove('hidden-section');
-                navStep2.classList.add('step2-active');
+            if (r.redirect) {
+                alert(r.error || 'Tu sesión expiró.');
+                window.location.href = r.redirect;
+                return;
             }
-            
-            if (modalidad === 'colegio') {
-                document.getElementById('step-2-colegio')?.classList.remove('hidden-section');
-            } else {
-                document.getElementById('step-2-academia')?.classList.remove('hidden-section');
+            const lista = r.errors ? Object.values(r.errors).flat()
+                : [res.status === 419 ? 'Tu sesión expiró. Recarga la página.' : (r.error || r.message || 'No se pudo registrar la matrícula.')];
+            errores.innerHTML = '';
+            const icono = document.createElement('i');
+            icono.className = 'fa-solid fa-circle-exclamation';
+            const ul = document.createElement('div');
+            lista.forEach(t => { const p = document.createElement('div'); p.textContent = t; ul.appendChild(p); });
+            errores.append(icono, ul);
+            errores.hidden = false;
+            errores.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch {
+            alert('No se pudo conectar con el servidor. Inténtalo nuevamente.');
+        } finally {
+            enviando = false;
+            if (pasoActual === 3) {
+                btn.innerHTML = 'Confirmar matrícula <i class="fa-solid fa-check"></i>';
+                validarChecks();
             }
-            
-            document.getElementById('step-1-indicator')?.classList.remove('active');
-            document.getElementById('step-2-indicator')?.classList.add('active');
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        console.log('✅ Botón Continuar inicializado');
-    }
-}
+        }
+    });
 
-// ======================================================
-// BOTÓN DE NAVEGACIÓN - PASO 2 A PASO 3
-// ======================================================
-function inicializarBotonPaso2() {
-    const btnPaso2 = document.getElementById('btn-finalizar-matricula');
-    
-    if (btnPaso2) {
-        const nuevoBtn = btnPaso2.cloneNode(true);
-        btnPaso2.parentNode.replaceChild(nuevoBtn, btnPaso2);
-        
-        nuevoBtn.addEventListener('click', async function() {
-            console.log('Botón paso 2 clickeado');
-            
-            const step3Resumen = document.getElementById('step-3-resumen');
-            
-            if (step3Resumen && !step3Resumen.classList.contains('hidden-section')) {
-                nuevoBtn.disabled = true;
-                nuevoBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> PROCESANDO...';
-                
-                const exito = await guardarMatricula();
-                
-                if (!exito) {
-                    nuevoBtn.disabled = false;
-                    nuevoBtn.innerHTML = 'MATRICULARSE <i class="fa-solid fa-check"></i>';
-                }
-                return;
-            }
-            
-            const cicloRadio = document.querySelector('input[name="ciclo_op"]:checked');
-            if (!cicloRadio) {
-                alert('Debe seleccionar un ciclo');
-                return;
-            }
-            
-            const modalidad = document.getElementById('modalidadSelector').value;
-            const container = modalidad === 'colegio' 
-                ? document.getElementById('step-2-colegio')
-                : document.getElementById('step-2-academia');
-            
-            let esValido = true;
-            container.querySelectorAll('input[required], select[required]').forEach(input => {
-                if (!input.closest('.hidden-section') && (!input.value || !input.value.trim())) {
-                    esValido = false;
-                }
+    function mostrarFinal(r) {
+        $('#finCodigo').textContent = r.codigo;
+        $('#finMonto').textContent = Number(r.monto_total).toFixed(2);
+        $('#finExpira').textContent = r.fecha_expiracion;
+        $('#finEmail').textContent = r.email || 'tu correo';
+        $('#finWhatsapp').href = `https://wa.me/${CFG.whatsapp}?text=${encodeURIComponent(`Hola Next Level, adjunto el comprobante de pago de mi matrícula ${r.codigo}.`)}`;
+        irA(4);
+        // Matrícula enviada: los pasos anteriores quedan completos y ya no se pueden reabrir.
+        $$('#mfStepper li').forEach(li => {
+            li.classList.toggle('is-done', Number(li.dataset.step) < 4);
+            li.style.pointerEvents = 'none';
+        });
+        prepararPagoEnLinea(r);
+    }
+
+    // Pago en línea con Culqi (solo si está configurado: window.PagoCulqi)
+    function prepararPagoEnLinea(r) {
+        if (!window.PagoCulqi) return;
+        const btn = $('#finPagar');
+        const msg = $('#finPagoMsg');
+        $('#finOnline').hidden = false;
+        $('#finOr').hidden = false;
+        $('#finPrueba').hidden = !window.PagoCulqi.modoPrueba;
+        $('#finPagarMonto').textContent = Number(r.monto_total).toFixed(2);
+
+        const avisar = (texto, error) => {
+            msg.textContent = texto;
+            msg.classList.toggle('is-error', !!error);
+            msg.hidden = false;
+        };
+
+        btn.addEventListener('click', () => {
+            msg.hidden = true;
+            window.PagoCulqi.pagar({
+                codigo: r.codigo,
+                monto: r.monto_total,
+                onExito: (res) => {
+                    $('#finTitulo').textContent = '¡Pago aprobado!';
+                    $('#finSubtitulo').textContent = 'Tu matrícula quedó confirmada. Este es tu código:';
+                    $('.mf-due').hidden = true;
+                    $('#finManual').hidden = true;
+                    $('#finOr').hidden = true;
+                    $('#finPasos').hidden = true;
+                    $('#finWhatsapp').hidden = true;
+                    btn.hidden = true;
+                    $('#finOnline h3').innerHTML = '<i class="fa-solid fa-circle-check"></i> Bienvenido(a) a Next Level';
+                    $('#finOnline .mf-online__info p').textContent = 'Tu usuario es tu DNI y tu contraseña es tu fecha de nacimiento (ddmmaaaa).';
+                    $('#finPrueba').hidden = true;
+                    avisar(res.mensaje, false);
+                },
+                onError: (texto) => avisar(texto, true),
             });
-            
-            if (modalidad === 'academia') {
-                const esMayorChecked = document.querySelector('input[name="es_mayor"]:checked');
-                if (!esMayorChecked) {
-                    esValido = false;
-                }
-            }
-            
-            if (!esValido) {
-                alert('Complete todos los campos requeridos');
-                return;
-            }
-            
-            actualizarResumen();
-            
-            nuevoBtn.innerHTML = 'MATRICULARSE <i class="fa-solid fa-check"></i>';
-            
-            document.getElementById('step-2-colegio')?.classList.add('hidden-section');
-            document.getElementById('step-2-academia')?.classList.add('hidden-section');
-            if (step3Resumen) step3Resumen.classList.remove('hidden-section');
-            
-            document.getElementById('step-2-indicator')?.classList.remove('active');
-            document.getElementById('step-3-indicator')?.classList.add('active');
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-        console.log('✅ Botón paso 2 inicializado');
-    } else {
-        console.error('❌ No se encontró el botón #btn-finalizar-matricula');
     }
-}
 
-// ======================================================
-// BOTÓN REGRESAR
-// ======================================================
-function inicializarBotonRegresar() {
-    const btnRegresar = document.querySelector('.btn-premium-prev');
-    if (btnRegresar) {
-        const nuevoBtn = btnRegresar.cloneNode(true);
-        btnRegresar.parentNode.replaceChild(nuevoBtn, btnRegresar);
-        
-        nuevoBtn.addEventListener('click', function() {
-            const step3Resumen = document.getElementById('step-3-resumen');
-            const navStep2 = document.getElementById('nav-step-2');
-            const btnPaso2 = document.getElementById('btn-finalizar-matricula');
-            
-            if (step3Resumen && !step3Resumen.classList.contains('hidden-section')) {
-                step3Resumen.classList.add('hidden-section');
-                const modalidad = document.getElementById('modalidadSelector')?.value;
-                if (modalidad === 'colegio') {
-                    document.getElementById('step-2-colegio')?.classList.remove('hidden-section');
-                } else {
-                    document.getElementById('step-2-academia')?.classList.remove('hidden-section');
-                }
-                if (navStep2) navStep2.classList.add('step2-active');
-                if (btnPaso2) btnPaso2.innerHTML = 'Continuar Proceso <i class="fa-solid fa-arrow-right-long"></i>';
-                document.getElementById('step-3-indicator')?.classList.remove('active');
-                document.getElementById('step-2-indicator')?.classList.add('active');
-            } else {
-                document.getElementById('step-2-colegio')?.classList.add('hidden-section');
-                document.getElementById('step-2-academia')?.classList.add('hidden-section');
-                if (navStep2) {
-                    navStep2.classList.remove('step2-active');
-                    navStep2.classList.add('hidden-section');
-                }
-                document.getElementById('welcome-card')?.classList.remove('hidden-section');
-                document.getElementById('step-2-indicator')?.classList.remove('active');
-                document.getElementById('step-1-indicator')?.classList.add('active');
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-        console.log('✅ Botón Regresar inicializado');
-    }
-}
-
-// ======================================================
-// EVENTOS GLOBALES
-// ======================================================
-document.addEventListener('change', async (e) => {
-    if (e.target.name === 'ciclo_op') {
-        await cargarCuotas(e.target.value);
-    }
-    
-    if (e.target.name === 'p' || e.target.name === 'p_col') {
-        actualizarTotalConDescuento();
-    }
-    
-    if (e.target.name === 'es_mayor') {
-        const seccionApoderadoAca = document.getElementById('seccion-apoderado-academia');
-        const seccionApoderadoCol = document.getElementById('seccion-apoderado-colegio');
-        const debeOcultar = e.target.value === 'si';
-        if (seccionApoderadoAca) seccionApoderadoAca.classList.toggle('hidden-section', debeOcultar);
-        if (seccionApoderadoCol) seccionApoderadoCol.classList.toggle('hidden-section', debeOcultar);
-    }
-});
-
-document.querySelectorAll('input[name*="dni"], input[name*="celular"]').forEach(input => {
-    input.addEventListener('input', function() {
-        this.value = this.value.replace(/[^0-9]/g, '');
+    // Copiar al portapapeles
+    document.addEventListener('click', async (e) => {
+        const btn = e.target.closest('[data-copiar]');
+        if (!btn) return;
+        const texto = $(btn.dataset.copiar)?.textContent.trim();
+        try {
+            await navigator.clipboard.writeText(texto);
+            const antes = btn.innerHTML;
+            btn.textContent = '¡Copiado!';
+            setTimeout(() => { btn.innerHTML = antes; }, 1500);
+        } catch { /* sin permiso de portapapeles */ }
     });
-});
 
-function validarChecksPaso3() {
-    const step3Resumen = document.getElementById('step-3-resumen');
-    if (step3Resumen && !step3Resumen.classList.contains('hidden-section')) {
-        const terminos = document.getElementById('check-terminos')?.checked;
-        const politicas = document.getElementById('check-politicas')?.checked;
-        const btnPaso2 = document.getElementById('btn-finalizar-matricula');
-        if (btnPaso2) {
-            btnPaso2.disabled = !(terminos && politicas);
-        }
-    }
-}
+    // Aviso al salir con datos sin enviar
+    window.addEventListener('beforeunload', (e) => {
+        if (pasoActual > 1 && pasoActual < 4) { e.preventDefault(); e.returnValue = ''; }
+    });
 
-document.getElementById('check-terminos')?.addEventListener('change', validarChecksPaso3);
-document.getElementById('check-politicas')?.addEventListener('change', validarChecksPaso3);
-
-// ======================================================
-// INICIAR SISTEMA
-// ======================================================
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM cargado, iniciando sistema...');
-    inicializarSistema();
-    inicializarBotonContinuar();
-    inicializarBotonPaso2();
-    inicializarBotonRegresar();
-    console.log('Sistema de matrícula listo');
-});
+    // ======================================================
+    // INICIO
+    // ======================================================
+    aplicarVerificado();
+    actualizarApoderado();
+    actualizarResumen();
+})();

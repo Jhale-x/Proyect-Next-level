@@ -1,417 +1,374 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matricula Formulario | Next Level</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{{ asset('css/web/matricula_formulario.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/web/web_principal.css') }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Formulario de matrícula | Next Level</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/web/matricula-base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/web/matricula_formulario.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/next-level-logo.png') }}">
 </head>
+@php
+    $pago = config('matricula.pago');
+    $soles = fn ($m) => $m !== null ? 'S/ ' . number_format($m, 2) : null;
+    // Si solo hay una opción, se deja seleccionada.
+    $unica = fn ($lista) => $lista->count() === 1 ? $lista->first()['id'] : null;
+    $hoy = now()->format('Y-m-d');
+@endphp
+<body class="mt-page mf-page">
 
-<body>
+    <header class="mf-top">
+        <div class="mt-container mf-top__inner">
+            <a href="{{ route('web.inicio') }}" class="mf-top__brand">
+                <img src="{{ asset('images/logo_letras.png') }}" alt="Next Level">
+            </a>
+            <nav class="mf-top__actions">
+                <a href="https://wa.me/{{ config('matricula.whatsapp') }}?text={{ rawurlencode('Hola Next Level, necesito ayuda con mi matrícula.') }}" target="_blank" rel="noopener" class="mf-top__link">
+                    <i class="fa-brands fa-whatsapp"></i> <span>{{ config('matricula.telefono') }}</span>
+                </a>
+                <a href="{{ route('matricula') }}" class="mf-top__link mf-top__link--muted"><i class="fa-solid fa-arrow-left"></i> <span>Salir</span></a>
+            </nav>
+        </div>
+    </header>
 
-    <main>
-        <section class="hero-banner">
-            <div class="banner-inner">
-                <div class="banner-title">
-                    <h1>MATRÍCULA <br> ONLINE</h1>
-                </div>
-                <div class="banner-contact">
-                    <a href="{{ route('web.inicio') }}" class="btn-banner">
-                        <span>INICIO</span>
-                    </a>
-                    <a href="https://wa.me/51923317625?text=Hola%20Next%20Level..." target="_blank" class="whatsapp-link-wrapper">
-                        <div class="whatsapp-badge">
-                            <i class="fa-brands fa-whatsapp"></i>
-                            <span>923 317 626</span>
-                        </div>
-                    </a>
+    <section class="mf-hero">
+        <div class="mt-container">
+            <div class="mf-hero__head">
+                <div>
+                    <h1>Matrícula online</h1>
+                    <p>Hola, <strong>{{ \Illuminate\Support\Str::title(mb_strtolower($datos['nombres'])) }}</strong> <span class="mf-verified"><i class="fa-solid fa-circle-check"></i> DNI {{ $datos['dni'] }} verificado</span></p>
                 </div>
             </div>
-        </section>
 
-        <section class="registration-container">
-            <header class="registration-header-inner"></header>
+            <ol class="mf-stepper" id="mfStepper">
+                <li class="is-active" data-step="1"><span>1</span><b>Programa</b></li>
+                <li data-step="2"><span>2</span><b>Datos</b></li>
+                <li data-step="3"><span>3</span><b>Confirmación</b></li>
+                <li data-step="4"><span>4</span><b>Pago</b></li>
+            </ol>
+        </div>
+    </section>
 
-            <nav class="steps-progress">
-                <div class="step-box active" id="step-1-indicator">
-                    <div class="step-number">1</div>
-                    <div class="step-info">
-                        <span class="step-label">Paso 1</span>
-                        <span class="step-name">BIENVENIDA</span>
+    <main class="mt-container mf-layout" id="mfLayout">
+        <form id="mfForm" class="mf-main" novalidate>
+
+            {{-- ==================== PASO 1: PROGRAMA ==================== --}}
+            <section class="mf-step" data-step="1">
+                <div class="mt-card">
+                    <h2 class="mf-title"><span>1</span> ¿Qué deseas matricular?</h2>
+
+                    <div class="mf-modalidades" role="radiogroup" aria-label="Modalidad">
+                        <label class="mf-modalidad">
+                            <input type="radio" name="modalidad" value="colegio">
+                            <span class="mf-modalidad__body">
+                                <i class="fa-solid fa-school"></i>
+                                <b>Colegio</b>
+                                <small>Primaria y Secundaria</small>
+                                @if($soles($desdeColegio))<em>Desde {{ $soles($desdeColegio) }}</em>@endif
+                            </span>
+                        </label>
+                        <label class="mf-modalidad">
+                            <input type="radio" name="modalidad" value="academia">
+                            <span class="mf-modalidad__body">
+                                <i class="fa-solid fa-building-columns"></i>
+                                <b>Academia</b>
+                                <small>Preparación universitaria</small>
+                                @if($soles($desdeAcademia))<em>Desde {{ $soles($desdeAcademia) }}</em>@endif
+                            </span>
+                        </label>
+                    </div>
+
+                    <div id="mfPrograma" hidden>
+                        <div class="mf-grid">
+                            <div class="mt-field">
+                                <label for="id_sede">Sede</label>
+                                <select id="id_sede" name="id_sede" required>
+                                    <option value="">Selecciona</option>
+                                    @foreach($sedes as $o)
+                                        <option value="{{ $o['id'] }}" @selected($unica($sedes) == $o['id'])>{{ $o['nombre'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mt-field">
+                                <label for="id_entorno">Entorno</label>
+                                <select id="id_entorno" name="id_entorno" required>
+                                    <option value="">Selecciona</option>
+                                    @foreach($entornos as $o)
+                                        <option value="{{ $o['id'] }}" @selected($unica($entornos) == $o['id'])>{{ $o['nombre'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            {{-- Academia --}}
+                            <div class="mt-field" data-solo="academia">
+                                <label for="id_universidad">Universidad a la que postulas</label>
+                                <select id="id_universidad" name="id_universidad">
+                                    <option value="">Selecciona</option>
+                                    @foreach($universidades as $o)
+                                        <option value="{{ $o['id'] }}">{{ $o['nombre'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mt-field" data-solo="academia">
+                                <label for="id_tipo_ciclo">Tipo de ciclo</label>
+                                <select id="id_tipo_ciclo" name="id_tipo_ciclo">
+                                    <option value="">Selecciona</option>
+                                    @foreach($tiposCiclo as $o)
+                                        <option value="{{ $o['id'] }}">{{ $o['nombre'] }}{{ $o['detalle'] ? " · {$o['detalle']}" : '' }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            {{-- Colegio --}}
+                            <div class="mt-field" data-solo="colegio">
+                                <label for="id_nivel">Nivel educativo</label>
+                                <select id="id_nivel" name="id_nivel">
+                                    <option value="">Selecciona</option>
+                                    @foreach($niveles as $o)
+                                        <option value="{{ $o['id'] }}">{{ $o['nombre'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mt-field" data-solo="colegio">
+                                <label for="grado">Grado</label>
+                                <select id="grado" name="grado" disabled>
+                                    <option value="">Primero elige el nivel</option>
+                                </select>
+                            </div>
+                            <div class="mt-field" data-solo="colegio">
+                                <label for="seccion">Sección</label>
+                                <select id="seccion" name="seccion">
+                                    <option value="">Selecciona</option>
+                                    @foreach($secciones as $o)
+                                        <option value="{{ $o['id'] }}">{{ $o['nombre'] }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mt-field">
+                                <label for="id_turno">Turno</label>
+                                <select id="id_turno" name="id_turno" required>
+                                    <option value="">Selecciona</option>
+                                    @foreach($turnos as $o)
+                                        <option value="{{ $o['id'] }}">{{ $o['nombre'] }}{{ $o['detalle'] ? " · {$o['detalle']}" : '' }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <h3 class="mf-subtitle">Ciclos disponibles</h3>
+                        <div class="mf-ciclos" id="mfCiclos" role="radiogroup" aria-label="Ciclo">
+                            <p class="mf-empty"><i class="fa-regular fa-calendar"></i> Completa las opciones de arriba para ver los ciclos y sus precios.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="step-divider"></div>
-                <div class="step-box" id="step-2-indicator">
-                    <div class="step-number">2</div>
-                    <div class="step-info">
-                        <span class="step-label">Paso 2</span>
-                        <span class="step-name">DATOS ALUMNO</span>
+
+                <div class="mf-actions">
+                    <span></span>
+                    <button type="button" class="mt-btn mt-btn--primary" data-ir="2">Continuar <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </section>
+
+            {{-- ==================== PASO 2: DATOS ==================== --}}
+            <section class="mf-step" data-step="2" hidden>
+                <div class="mt-card">
+                    <h2 class="mf-title"><span>2</span> Datos del estudiante</h2>
+
+                    <div class="mf-question" id="mfQuienVerifico">
+                        <p>El DNI verificado <b>{{ $datos['dni'] }}</b> ({{ \Illuminate\Support\Str::title(mb_strtolower($datos['nombre_completo'])) }}) pertenece al:</p>
+                        <div class="mf-pills">
+                            <label><input type="radio" name="verificado_es" value="estudiante" checked><span>Estudiante</span></label>
+                            <label><input type="radio" name="verificado_es" value="apoderado"><span>Apoderado</span></label>
+                        </div>
+                    </div>
+
+                    <div class="mf-grid">
+                        <div class="mt-field"><label for="alumno_nombres">Nombres</label><input type="text" id="alumno_nombres" name="alumno_nombres" required maxlength="100" autocomplete="given-name"></div>
+                        <div class="mt-field"><label for="alumno_ape_paterno">Apellido paterno</label><input type="text" id="alumno_ape_paterno" name="alumno_ape_paterno" required maxlength="100"></div>
+                        <div class="mt-field"><label for="alumno_ape_materno">Apellido materno</label><input type="text" id="alumno_ape_materno" name="alumno_ape_materno" required maxlength="100"></div>
+                        <div class="mt-field"><label for="alumno_dni">DNI</label><input type="text" id="alumno_dni" name="alumno_dni" required inputmode="numeric" maxlength="8" data-patron="dni"></div>
+                        <div class="mt-field"><label for="alumno_fecha_nac">Fecha de nacimiento</label><input type="date" id="alumno_fecha_nac" name="alumno_fecha_nac" required max="{{ $hoy }}" min="1940-01-01"></div>
+                        <div class="mt-field">
+                            <span class="mt-label">Género</span>
+                            <div class="mf-pills mf-pills--full">
+                                <label><input type="radio" name="alumno_genero" value="M" required><span>Masculino</span></label>
+                                <label><input type="radio" name="alumno_genero" value="F"><span>Femenino</span></label>
+                            </div>
+                        </div>
+                        <div class="mt-field"><label for="alumno_email">Correo electrónico</label><input type="email" id="alumno_email" name="alumno_email" required maxlength="100" autocomplete="email" placeholder="nombre@gmail.com"></div>
+                        <div class="mt-field">
+                            <label for="alumno_celular">Celular <span class="mt-optional" id="celularOpcional">(opcional)</span></label>
+                            <input type="tel" id="alumno_celular" name="alumno_celular" inputmode="numeric" maxlength="9" data-patron="celular" placeholder="9XXXXXXXX">
+                        </div>
+                    </div>
+                    <p class="mf-hint"><i class="fa-solid fa-envelope"></i> Al correo del estudiante enviaremos sus credenciales cuando se verifique el pago.</p>
+
+                    <div class="mf-question" id="mfMayorEdad" hidden>
+                        <p>¿El postulante es <b>mayor de edad</b> y se matricula sin apoderado?</p>
+                        <div class="mf-pills">
+                            <label><input type="radio" name="es_mayor" value="si"><span>Sí</span></label>
+                            <label><input type="radio" name="es_mayor" value="no" checked><span>No</span></label>
+                        </div>
                     </div>
                 </div>
-                <div class="step-divider"></div>
-                <div class="step-box" id="step-3-indicator">
-                    <div class="step-number">3</div>
-                    <div class="step-info">
-                        <span class="step-label">Paso 3</span>
-                        <span class="step-name">CONFIRMACIÓN</span>
+
+                <div class="mt-card" id="mfApoderado">
+                    <h2 class="mf-title"><span><i class="fa-solid fa-user-shield"></i></span> Datos del apoderado</h2>
+                    <div class="mf-grid">
+                        <div class="mt-field"><label for="apoderado_nombres">Nombres</label><input type="text" id="apoderado_nombres" name="apoderado_nombres" required maxlength="100"></div>
+                        <div class="mt-field"><label for="apoderado_ape_paterno">Apellido paterno</label><input type="text" id="apoderado_ape_paterno" name="apoderado_ape_paterno" required maxlength="100"></div>
+                        <div class="mt-field"><label for="apoderado_ape_materno">Apellido materno</label><input type="text" id="apoderado_ape_materno" name="apoderado_ape_materno" required maxlength="100"></div>
+                        <div class="mt-field"><label for="apoderado_dni">DNI</label><input type="text" id="apoderado_dni" name="apoderado_dni" required inputmode="numeric" maxlength="8" data-patron="dni"></div>
+                        <div class="mt-field"><label for="apoderado_fecha_nac">Fecha de nacimiento</label><input type="date" id="apoderado_fecha_nac" name="apoderado_fecha_nac" required max="{{ $hoy }}" min="1920-01-01"></div>
+                        <div class="mt-field"><label for="apoderado_celular">Celular</label><input type="tel" id="apoderado_celular" name="apoderado_celular" required inputmode="numeric" maxlength="9" data-patron="celular" placeholder="9XXXXXXXX"></div>
+                        <div class="mt-field mf-grid__full"><label for="apoderado_email">Correo electrónico</label><input type="email" id="apoderado_email" name="apoderado_email" required maxlength="100" placeholder="nombre@gmail.com"></div>
                     </div>
                 </div>
-                <div class="step-divider"></div>
-                <div class="step-box" id="step-4-indicator">
-                    <div class="step-number">4</div>
-                    <div class="step-info">
-                        <span class="step-label">Paso 4</span>
-                        <span class="step-name">FINALIZAR</span>
+
+                <div class="mf-actions">
+                    <button type="button" class="mt-btn mt-btn--ghost" data-ir="1"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
+                    <button type="button" class="mt-btn mt-btn--primary" data-ir="3">Revisar matrícula <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </section>
+
+            {{-- ==================== PASO 3: CONFIRMACIÓN ==================== --}}
+            <section class="mf-step" data-step="3" hidden>
+                <div class="mt-card">
+                    <h2 class="mf-title"><span>3</span> Revisa y confirma</h2>
+                    <div id="mfErrores" class="mt-alert mt-alert--error" role="alert" hidden></div>
+
+                    <div class="mf-review">
+                        <div class="mf-review__block">
+                            <h3><i class="fa-solid fa-graduation-cap"></i> Programa <button type="button" class="mf-edit" data-ir="1">Editar</button></h3>
+                            <dl id="revPrograma"></dl>
+                        </div>
+                        <div class="mf-review__block">
+                            <h3><i class="fa-solid fa-user"></i> Estudiante <button type="button" class="mf-edit" data-ir="2">Editar</button></h3>
+                            <dl id="revEstudiante"></dl>
+                        </div>
+                        <div class="mf-review__block" id="revApoderadoBlock">
+                            <h3><i class="fa-solid fa-user-shield"></i> Apoderado <button type="button" class="mf-edit" data-ir="2">Editar</button></h3>
+                            <dl id="revApoderado"></dl>
+                        </div>
+                    </div>
+
+                    <div class="mf-terms">
+                        <label class="mf-check"><input type="checkbox" id="terminos_aceptados"><span>He leído y acepto los <a href="#" onclick="return false;">Términos y Condiciones</a>.</span></label>
+                        <label class="mf-check"><input type="checkbox" id="politicas_aceptadas"><span>He leído y acepto la <a href="#" onclick="return false;">Política de Privacidad</a>.</span></label>
                     </div>
                 </div>
-            </nav>
 
-            <form id="enrollment-form" class="premium-form fade-in">
-                @csrf
-
-                <!-- PASO 1: SELECCIÓN DE MODALIDAD -->
-                <section class="premium-card" id="welcome-card">
-                    <div class="card-side-accent"></div>
-                    <div class="card-body-content">
-                        <h3 class="card-section-title">
-                            <span class="icon-circle"><i class="fa-solid fa-user-graduate"></i></span>
-                            SELECCIÓN DE MODALIDAD
-                        </h3>
-                        <div class="input-field-group">
-                            <div class="custom-select-wrapper">
-                                <select id="modalidadSelector" name="modalidad" required>
-                                    <option value="" disabled selected hidden>Selecciona una modalidad</option>
-                                    <option value="colegio">Colegio (Primaria / Secundaria)</option>
-                                    <option value="academia">Academia (Preparación Universitaria)</option>
-                                </select>
-                                <i class="fa-solid fa-chevron-down select-arrow"></i>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- SECCIÓN ACADEMIA -->
-                <section class="premium-card hidden-section" id="section-academia">
-                    <div class="card-side-accent"></div>
-                    <div class="card-body-content">
-                        <h3 class="card-section-title">
-                            <span class="icon-circle"><i class="fa-solid fa-building-columns"></i></span>
-                            ACADEMIA
-                        </h3>
-                        <div class="form-responsive-grid">
-                            <div class="input-field-group">
-                                <select name="aca_sede" id="sedeacademiaSelector" required>
-                                    <option value="" disabled selected hidden>Seleccionar Sede</option>
-                                </select>
-                            </div>
-                            <div class="input-field-group">
-                                <select name="aca_entorno" id="entornoacademiaSelector" required>
-                                    <option value="" disabled selected hidden>Seleccionar Entorno</option>
-                                </select>
-                            </div>
-                            <div class="input-field-group">
-                                <select name="universidad" id="universidadSelector" required>
-                                    <option value="" disabled selected hidden>Universidad Objetivo</option>
-                                </select>
-                            </div>
-                            <div class="input-field-group">
-                                <select id="tipoCicloSelector" name="tipo_ciclo" required>
-                                    <option value="" disabled selected hidden>Tipo de Ciclo</option>
-                                </select>
-                            </div>
-                            <div class="input-field-group">
-                                <select name="turno_academia" id="turnoAcademiaSelector" required>
-                                    <option value="" disabled selected hidden>Turno de Estudio</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div id="ciclos-container-academia" class="ciclos-wrapper hidden-section"></div>
-                        <div id="cronograma-container" class="hidden-section">
-                            <div class="cronograma-box fade-in">
-                                <div class="cronograma-header">CRONOGRAMA</div>
-                                <table class="cronograma-table">
-                                    <thead>
-                                        <tr><th>Cuota</th><th>Vencimiento</th><th>Importe</th><th>Descuento</th><th>Total</th></tr>
-                                    </thead>
-                                    <tbody id="cronograma-body"></tbody>
-                                    <tfoot>
-                                        <tr class="total-row-bold"><td colspan="4" class="text-right">Totales</td><td id="cronograma-total-general">0.00</td></tr>
-                                    </tfoot>
-                                </table>
-                                <div class="pago-opciones">
-                                    <label class="radio-pago"><input type="radio" name="p" value="c" checked> Quiero pagar en cuotas</label>
-                                    <label class="radio-pago"><input type="radio" name="p" value="co"> Quiero pagar al contado</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- SECCIÓN COLEGIO -->
-                <section class="premium-card hidden-section" id="section-colegio">
-                    <div class="card-side-accent"></div>
-                    <div class="card-body-content">
-                        <h3 class="card-section-title">
-                            <span class="icon-circle"><i class="fa-solid fa-school"></i></span>
-                            COLEGIO
-                        </h3>
-                        <div class="form-responsive-grid">
-                            <div class="input-field-group">
-                                <select name="col_sede" id="sedecolegioSelector" required>
-                                    <option value="" disabled selected hidden>Seleccionar Sede</option>
-                                </select>
-                            </div>
-                            <div class="input-field-group">
-                                <select name="col_entorno" id="entornocolegioSelector" required>
-                                    <option value="" disabled selected hidden>Seleccionar Entorno</option>
-                                </select>
-                            </div>
-                            <div class="input-field-group">
-                                <select name="nivel_escolar" id="nivel_escolar">
-                                    <option value="" disabled selected hidden>Nivel Educativo</option>
-                                    <option value="primaria">Primaria</option>
-                                    <option value="secundaria">Secundaria</option>
-                                </select>
-                            </div>
-                            <div class="input-field-group">
-                                <select name="grado_escolar" id="grado_escolar" disabled>
-                                    <option value="" disabled selected hidden>Grado Correspondiente</option>
-                                </select>
-                            </div>
-                            <div class="input-field-group">
-                                <select name="seccion_escolar" id="seccion_escolar" disabled>
-                                    <option value="" disabled selected hidden>Sección</option>
-                                </select>
-                            </div>
-                            <div class="input-field-group">
-                                <select name="turno_escolar" id="turno_escolar" disabled>
-                                    <option value="" disabled selected hidden>Turno de Estudio</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div id="ciclos-container-colegio" class="ciclos-wrapper hidden-section"></div>
-                        <div id="cronograma-container-colegio" class="hidden-section">
-                            <div class="cronograma-box fade-in">
-                                <div class="cronograma-header">CRONOGRAMA DE PAGOS ESCOLAR</div>
-                                <table class="cronograma-table">
-                                    <thead><tr><th>Cuota</th><th>Vencimiento</th><th>Importe</th><th>Descuento</th><th>Total</th></tr></thead>
-                                    <tbody id="cronograma-body-colegio"></tbody>
-                                    <tfoot><tr class="total-row-bold"><td colspan="4" class="text-right">Totales</td><td id="cronograma-total-general-colegio">0.00</td></tr></tfoot>
-                                </table>
-                                <div class="pago-opciones">
-                                    <label class="radio-pago"><input type="radio" name="p_col" value="c" checked> Quiero pagar en cuotas</label>
-                                    <label class="radio-pago"><input type="radio" name="p_col" value="co"> Quiero pagar al contado</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- PASO 2: DATOS COLEGIO -->
-                <section class="premium-card hidden-section" id="step-2-colegio">
-                    <div class="card-side-accent"></div>
-                    <div class="card-body-content">
-                        <h3 class="card-section-title"><span class="icon-circle"><i class="fa-solid fa-school"></i></span> DATOS DEL ESCOLAR</h3>
-                        <div class="form-responsive-grid">
-                            <input type="text" name="col_nombres" placeholder="Nombres" required>
-                            <input type="text" name="col_ape_paterno" placeholder="Apellido Paterno" required>
-                            <input type="text" name="col_ape_materno" placeholder="Apellido Materno" required>
-                            <input type="date" name="col_fecha_nac" max="2020-12-31" required>
-                            <input type="text" name="col_dni" placeholder="DNI" maxlength="8" inputmode="numeric" required>
-                            <select name="col_genero" required>
-                                <option value="" disabled selected hidden>Género</option>
-                                <option value="M">Masculino</option>
-                                <option value="F">Femenino</option>
-                            </select>
-                            <input type="email" name="col_email" placeholder="Correo Electrónico" required>
-                        </div>
-                        <hr class="separator-line">
-                        <h3 class="card-section-title"><span class="icon-circle"><i class="fa-solid fa-user-shield"></i></span> DATOS DEL APODERADO</h3>
-                        <div class="form-responsive-grid" id="seccion-apoderado-colegio">
-                            <input type="text" name="apo_nombres" placeholder="Nombres" required>
-                            <input type="text" name="apo_ape_paterno" placeholder="Apellido Paterno" required>
-                            <input type="text" name="apo_ape_materno" placeholder="Apellido Materno" required>
-                            <input type="date" name="apo_fecha_nac" max="2008-12-31" required>
-                            <input type="email" name="apo_email" placeholder="Correo Electrónico" required>
-                            <input type="tel" name="apo_celular" placeholder="Número de Celular" maxlength="9" required>
-                            <input type="text" name="apo_dni" placeholder="DNI" maxlength="8" inputmode="numeric" required>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- PASO 2: DATOS ACADEMIA -->
-                <section class="premium-card hidden-section" id="step-2-academia">
-                    <div class="card-side-accent"></div>
-                    <div class="card-body-content">
-                        <h3 class="card-section-title"><span class="icon-circle"><i class="fa-solid fa-user-graduate"></i></span> DATOS DEL POSTULANTE</h3>
-                        <div class="form-responsive-grid">
-                            <input type="text" name="aca_nombres" placeholder="Nombres" required>
-                            <input type="text" name="aca_ape_paterno" placeholder="Apellido Paterno" required>
-                            <input type="text" name="aca_ape_materno" placeholder="Apellido Materno" required>
-                            <input type="text" name="aca_dni" placeholder="DNI" maxlength="8" inputmode="numeric" required>
-                            <input type="email" name="aca_email" placeholder="Correo Electrónico" required>
-                            <select name="aca_genero" required>
-                                <option value="" disabled selected hidden>Género</option>
-                                <option value="M">Masculino</option>
-                                <option value="F">Femenino</option>
-                            </select>
-                            <input type="date" name="aca_fecha_nac" max="2020-12-31" required>
-                            <input type="tel" name="aca_celular" placeholder="Número de Celular" maxlength="9" required>
-                        </div>
-
-                        <div id="cont-mayor-edad" class="mayor-edad-container">
-                            <span class="switch-label">¿Soy mayor de edad (sin apoderado)?</span>
-                            <div class="switch-options">
-                                <label class="radio-option"><input type="radio" name="es_mayor" value="si"> Sí</label>
-                                <label class="radio-option"><input type="radio" name="es_mayor" value="no" checked> No</label>
-                            </div>
-                        </div>
-
-                        <div id="seccion-apoderado-academia">
-                            <hr class="separator-line">
-                            <h3 class="card-section-title"><span class="icon-circle"><i class="fa-solid fa-user-shield"></i></span> DATOS DEL APODERADO</h3>
-                            <div class="form-responsive-grid">
-                                <input type="text" name="aca_apo_nombres" placeholder="Nombres" required>
-                                <input type="text" name="aca_apo_ape_paterno" placeholder="Apellido Paterno" required>
-                                <input type="text" name="aca_apo_ape_materno" placeholder="Apellido Materno" required>
-                                <input type="date" name="aca_apo_fecha_nac" max="2008-12-31" required>
-                                <input type="email" name="aca_apo_email" placeholder="Correo Electrónico" required>
-                                <input type="tel" name="aca_apo_celular" placeholder="Número de Celular" maxlength="9" required>
-                                <input type="text" name="aca_apo_dni" placeholder="DNI" maxlength="8" inputmode="numeric" required>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- PASO 3: RESUMEN -->
-                <section class="premium-card hidden-section" id="step-3-resumen">
-                    <div class="card-side-accent"></div>
-                    <div class="card-body-content">
-                        <h3 class="card-section-title"><span class="icon-circle"><i class="fa-solid fa-file-invoice"></i></span> CONFIRMACIÓN DE DATOS REGISTRADOS</h3>
-                        <div class="resumen-premium-grid">
-                            <div class="resumen-card-mini">
-                                <header><i class="fa-solid fa-graduation-cap"></i> INFORMACIÓN ACADÉMICA</header>
-                                <div class="res-content">
-                                    <p><strong>Modalidad:</strong> <span id="res-modalidad">-</span></p>
-                                    <p><strong>Elección:</strong> <span id="res-eleccion">-</span></p>
-                                    <p><strong>Ciclo/Grado:</strong> <span id="res-ciclo">-</span></p>
-                                    <p><strong>Sede:</strong> <span id="res-sede">-</span></p>
-                                    <p><strong>Entorno:</strong> <span id="res-entorno">-</span></p>
-                                    <p><strong>Turno:</strong> <span id="res-turno">-</span></p>
-                                </div>
-                            </div>
-                            <div class="resumen-card-mini">
-                                <header><i class="fa-solid fa-user"></i> DATOS DEL ESTUDIANTE</header>
-                                <div class="res-content">
-                                    <p><strong>Nombres:</strong> <span id="res-alumno-full">-</span></p>
-                                    <p><strong>DNI:</strong> <span id="res-alumno-dni">-</span></p>
-                                    <p><strong>Correo:</strong> <span id="res-alumno-email">-</span></p>
-                                    <p><strong>Celular:</strong> <span id="res-alumno-celular">-</span></p>
-                                    <p><strong>Género/Nac:</strong> <span id="res-alumno-extra">-</span></p>
-                                </div>
-                            </div>
-                            <div class="resumen-card-mini" id="res-card-apoderado">
-                                <header><i class="fa-solid fa-user-shield"></i> DATOS DEL APODERADO</header>
-                                <div class="res-content">
-                                    <p><strong>Responsable:</strong> <span id="res-apo-nombre">-</span></p>
-                                    <p><strong>DNI:</strong> <span id="res-apo-dni">-</span></p>
-                                    <p><strong>Contacto:</strong> <span id="res-apo-cel">-</span></p>
-                                    <p><strong>Nac:</strong> <span id="res-apo-nac">-</span></p>
-                                </div>
-                            </div>
-                            <div class="resumen-card-mini highlight-card full-width-resumen">
-                                <header><i class="fa-solid fa-wallet"></i> RESUMEN DE INVERSIÓN</header>
-                                <div class="res-content">
-                                    <p><strong>Plan Elegido:</strong> <span id="res-pago-metodo">-</span></p>
-                                    <div class="cronograma-resumen-container">
-                                        <table class="resumen-tabla-mini">
-                                            <thead><tr><th>Cuota</th><th>Vencimiento</th><th>Descuento</th><th>Total</th></tr></thead>
-                                            <tbody id="res-cronograma-body-final"></tbody>
-                                        </table>
-                                    </div>
-                                    <p class="total-destacado"><strong>TOTAL FINAL :</strong> S/ <span id="res-pago-total">0.00</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="terms-container-v2">
-                            <label class="checkbox-premium"><input type="checkbox" id="check-terminos"><span class="check-text">He leído y acepto los <a href="#">Términos y Condiciones</a>.</span></label>
-                            <label class="checkbox-premium"><input type="checkbox" id="check-politicas"><span class="check-text">He leído y acepto la <a href="#">Política de Privacidad y Cookies</a>.</span></label>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- PASO 4: FINAL -->
-                <section class="premium-card hidden-section" id="step-4-final">
-                    <div class="card-side-accent success-accent"></div>
-                    <div class="card-body-content text-center">
-                        <div class="success-icon-wrapper"><i class="fa-solid fa-circle-check"></i></div>
-                        <h2 class="main-success-title">¡USTED SE HA MATRICULADO CORRECTAMENTE!</h2>
-                        <p class="success-subtitle">Su registro ha sido procesado con éxito. A continuación, los detalles de su matrícula:</p>
-                        <div class="resumen-final-mini">
-                            <div class="res-final-grid">
-                                <p><strong>Modalidad:</strong> <span id="final-modalidad">-</span></p>
-                                <p><strong>Elección:</strong> <span id="final-eleccion">-</span></p>
-                                <p><strong>Ciclo/Grado:</strong> <span id="final-ciclo">-</span></p>
-                                <p><strong>Sede:</strong> <span id="final-sede">-</span></p>
-                                <p><strong>Entorno:</strong> <span id="final-entorno">-</span></p>
-                                <p><strong>Turno:</strong> <span id="final-turno">-</span></p>
-                            </div>
-                        </div>
-                        <div class="codigo-matricula-container">
-                            <span class="codigo-label">CÓDIGO DE PAGO ÚNICO:</span>
-                            <div class="codigo-box">
-                                <span id="codigo-generado">GENERANDO...</span>
-                                <p class="codigo-hint">Use este código para realizar el pago en ventanilla o App.</p>
-                            </div>
-                        </div>
-                        <div class="separator-line"></div>
-                        <p class="bancos-instruccion">Puede realizar el pago de su matrícula a través de los canales autorizados de los siguientes bancos:</p>
-                        <div class="bancos-container">
-                            <a href="#" class="banco-item" title="Guía BBVA"><img src="{{ asset('images/BBVA-NEXTLEVEL.png') }}" alt="BBVA"></a>
-                            <a href="#" class="banco-item" title="Guía BCP"><img src="{{ asset('images/BCP-NEXTLEVEL.png') }}" alt="BCP"></a>
-                            <a href="#" class="banco-item" title="Guía YAPE"><img src="{{ asset('images/YAPE-NEXTLEVEL.png') }}" alt="YAPE"></a>
-                        </div>
-                        <div class="recuerda-box">
-                            <h4><i class="fa-solid fa-circle-exclamation"></i> ¡RECUERDA!</h4>
-                            <ul>
-                                <li>Debe realizar el pago de su matrícula dentro de las próximas 24 horas.</li>
-                                <li>De no realizar el pago, su código expirará y deberá registrarse nuevamente.</li>
-                                <li>Al finalizar el pago, le llegará un correo con la información detallada.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- BOTONES DE NAVEGACIÓN -->
-                <div class="form-footer-actions hidden-section" id="footer-actions">
-                    <button type="button" class="btn-premium-next" id="btn-next-step1">Continuar Proceso <i class="fa-solid fa-arrow-right-long"></i></button>
+                <div class="mf-actions">
+                    <button type="button" class="mt-btn mt-btn--ghost" data-ir="2"><i class="fa-solid fa-arrow-left"></i> Atrás</button>
+                    <button type="submit" class="mt-btn mt-btn--primary" id="mfConfirmar" disabled>Confirmar matrícula <i class="fa-solid fa-check"></i></button>
                 </div>
-                <div class="step2-navigation-actions hidden-section" id="nav-step-2">
-                    <button type="button" class="btn-premium-prev"><i class="fa-solid fa-arrow-left-long"></i> Regresar Proceso</button>
-                    <button type="button" class="btn-premium-next-step2" id="btn-finalizar-matricula">Continuar Proceso <i class="fa-solid fa-arrow-right-long"></i></button>
+            </section>
+
+            {{-- ==================== PASO 4: PAGO ==================== --}}
+            <section class="mf-step" data-step="4" hidden>
+                <div class="mt-card mf-success">
+                    <div class="mf-success__icon"><i class="fa-solid fa-check"></i></div>
+                    <h2 id="finTitulo">¡Matrícula registrada!</h2>
+                    <p class="mt-muted" id="finSubtitulo">Solo falta tu pago. Indica este código al pagar:</p>
+
+                    <div class="mf-code">
+                        <span id="finCodigo">NL-0000-000000</span>
+                        <button type="button" class="mt-copy" data-copiar="#finCodigo"><i class="fa-regular fa-copy"></i> Copiar</button>
+                    </div>
+
+                    <div class="mf-due">
+                        <div><small>Total a pagar</small><b>S/ <span id="finMonto">0.00</span></b></div>
+                        <div><small>Pagar antes del</small><b id="finExpira">-</b></div>
+                    </div>
                 </div>
-                <div id="step4-navigation-actions" class="step2-navigation-actions hidden-section">
-                    <a href="https://wa.me/51923317625" target="_blank" class="btn-premium-next-step2 btn-whatsapp-final"><i class="fa-brands fa-whatsapp"></i> ¡CONTÁCTANOS!</a>
-                    <a href="{{ route('web.inicio') }}" class="btn-premium-next-step2">IR A INICIO <i class="fa-solid fa-house"></i></a>
+
+                {{-- Pago en línea con Culqi: solo se muestra si está configurado (ver partials/culqi) --}}
+                <div class="mt-card mf-online" id="finOnline" hidden>
+                    <div class="mf-online__info">
+                        <h3><i class="fa-solid fa-bolt"></i> Paga en línea y recibe tus credenciales al instante</h3>
+                        <p class="mt-muted">Con tarjeta de crédito, débito o Yape. Pago seguro procesado por Culqi.</p>
+                        <p class="mf-online__prueba" id="finPrueba" hidden><i class="fa-solid fa-flask"></i> Modo de prueba: no se cobra dinero real.</p>
+                    </div>
+                    <button type="button" class="mt-btn mt-btn--primary" id="finPagar"><i class="fa-solid fa-lock"></i> Pagar S/ <span id="finPagarMonto">0.00</span></button>
+                    <p class="mf-online__msg" id="finPagoMsg" role="status" hidden></p>
                 </div>
-            </form>
-        </section>
+                <p class="mf-or" id="finOr" hidden><span>o paga por QR o transferencia y envíanos tu comprobante</span></p>
+
+                <div class="mf-paygrid" id="finManual">
+                    <div class="mt-card mf-pay-qr">
+                        <h3><i class="fa-solid fa-qrcode"></i> Paga con QR</h3>
+                        <p class="mt-muted">Yape, Plin, BBVA o cualquier billetera.</p>
+                        <img src="{{ asset($pago['qr']) }}" alt="QR de pago">
+                    </div>
+                    <div class="mt-card mf-pay-bank">
+                        <h3><i class="fa-solid fa-building-columns"></i> Transferencia {{ $pago['banco'] }}</h3>
+                        <dl>
+                            <div><dt>N° de cuenta</dt><dd><span id="payCuenta">{{ $pago['cuenta'] }}</span> <button type="button" class="mt-copy" data-copiar="#payCuenta">Copiar</button></dd></div>
+                            <div><dt>CCI</dt><dd><span id="payCci">{{ $pago['cci'] }}</span> <button type="button" class="mt-copy" data-copiar="#payCci">Copiar</button></dd></div>
+                            <div><dt>Titular</dt><dd>{{ $pago['titular'] }}</dd></div>
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="mt-card" id="finPasos">
+                    <h3 class="mf-subtitle mf-subtitle--flush">¿Qué sigue?</h3>
+                    <ol class="mf-timeline">
+                        <li><b>Realiza tu pago</b><span>Dentro de las próximas 24 horas, o tu código vencerá.</span></li>
+                        <li><b>Envíanos tu comprobante</b><span>Por WhatsApp, indicando tu código de matrícula.</span></li>
+                        <li><b>Recibe tus credenciales</b><span>Al verificar tu pago te llegará un correo a <strong id="finEmail">tu correo</strong> con tu usuario (<strong>DNI</strong>) y contraseña (<strong>fecha de nacimiento</strong>, ddmmaaaa).</span></li>
+                    </ol>
+                </div>
+
+                <div class="mf-actions">
+                    <a href="{{ route('web.inicio') }}" class="mt-btn mt-btn--ghost"><i class="fa-solid fa-house"></i> Ir al inicio</a>
+                    <a href="#" id="finWhatsapp" target="_blank" rel="noopener" class="mt-btn mt-btn--whatsapp"><i class="fa-brands fa-whatsapp"></i> Enviar comprobante</a>
+                </div>
+            </section>
+        </form>
+
+        {{-- ==================== RESUMEN LATERAL ==================== --}}
+        <aside class="mf-summary" id="mfSummary" aria-label="Resumen de tu matrícula">
+            <div class="mt-card">
+                <h2><i class="fa-solid fa-receipt"></i> Tu matrícula</h2>
+                <dl class="mf-summary__list">
+                    <div><dt>Modalidad</dt><dd id="sumModalidad">—</dd></div>
+                    <div><dt>Programa</dt><dd id="sumPrograma">—</dd></div>
+                    <div><dt>Ciclo</dt><dd id="sumCiclo">—</dd></div>
+                    <div><dt>Turno</dt><dd id="sumTurno">—</dd></div>
+                </dl>
+                <div class="mf-summary__money" id="sumDinero" hidden>
+                    <div><span>Matrícula</span><span id="sumImporte">S/ 0.00</span></div>
+                    <div class="mf-summary__discount"><span>Dscto. contado (5%)</span><span id="sumDescuento">− S/ 0.00</span></div>
+                    <div class="mf-summary__total"><span>Total</span><span id="sumTotal">S/ 0.00</span></div>
+                </div>
+                <p class="mf-summary__note"><i class="fa-solid fa-lock"></i> Pago único al contado. Tus datos están protegidos.</p>
+            </div>
+        </aside>
     </main>
 
-    <!-- TEMPLATES -->
-    <template id="template-fila-resumen"><tr><td class="res-col-cuota"></td><td class="res-col-vencimiento"></td><td class="res-col-descuento"></td><td class="res-col-total"></td></tr></template>
-    <template id="template-ciclo"><label class="ciclo-card"><input type="radio" name="ciclo_op" class="ciclo-radio"><div class="ciclo-text-box"><span class="nombre-ciclo"></span><span class="fechas-ciclo"></span></div></label></template>
-    <template id="template-fila-cronograma"><tr><td class="col-cuota"></td><td class="col-vencimiento"></td><td class="col-importe"></td><td class="col-descuento">0.00</td><td class="col-total"></td></tr></template>
+    <template id="tplCiclo">
+        <label class="mf-ciclo">
+            <input type="radio" name="id_ciclo">
+            <span class="mf-ciclo__body">
+                <span class="mf-ciclo__info"><b class="mf-ciclo__nombre"></b><small class="mf-ciclo__fechas"></small></span>
+                <span class="mf-ciclo__precio"><s class="mf-ciclo__antes"></s><b class="mf-ciclo__total"></b></span>
+            </span>
+        </label>
+    </template>
 
     <script>
-        window.CSRF_TOKEN = "{{ csrf_token() }}";
-        window.RUTA_GUARDAR_MATRICULA = "{{ route('matricula.guardar') }}";
+        window.MATRICULA = {
+            rutaGuardar: @json(route('matricula.guardar')),
+            verificado: @json($datos),
+            whatsapp: @json(config('matricula.whatsapp')),
+        };
     </script>
+    @include('partials.culqi')
     <script src="{{ asset('js/matricula_formulario.js') }}"></script>
 </body>
 </html>

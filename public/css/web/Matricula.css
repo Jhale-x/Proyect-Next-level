@@ -1,355 +1,271 @@
-.banner {
-    height: 600px;
-    background-image: url('../../images/imagen10.jpg');
-    background-size: cover;
-    background-position: center;
+/* ======================================================
+   MATRÍCULA — PORTADA (verificación de DNI)
+   Requiere matricula-base.css
+   ====================================================== */
+html { scroll-behavior: smooth; }
+.mt-page main { overflow-x: hidden; }
+
+/* ---------- Hero ---------- */
+.mt-hero {
     position: relative;
-    color: var(--blanco);
+    padding: 72px 0 88px;
+    color: #fff;
+    background:
+        linear-gradient(110deg, rgba(6, 26, 58, .96) 0%, rgba(11, 44, 92, .9) 55%, rgba(11, 44, 92, .7) 100%),
+        var(--mt-hero-img) center / cover no-repeat;
 }
-
-.banner-container {
-    max-width: 1200px;
-    height: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 1px 0;
-}
-
-.enrollment-card {
-    background: var(--blanco);
-    padding: 30px;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 340px;
-    text-align: center;
-}
-
-.form-group {
-    margin-bottom: 15px;
-    text-align: left;
-}
-
-.enrollment-form select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    color: var(--azul-oscuro) !important;
-    font-weight: 10;
-    background-color: var(--blanco);
-    padding-right: 40px !important;
-}
-
-.select-wrapper {
-    position: relative;
-    display: block;
-    width: 100%;
-}
-
-.custom-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #576574;
-    font-size: 0.9rem;
-    right: 20px;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.enrollment-form select option {
-    background-color: var(--blanco);
-    color: #576574;
-    font-weight: 600;
-}
-
-.enrollment-form select,
-.enrollment-form input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 5px;
-    border: 1px solid #576574;
-    background: var(--blanco);
-    color: #576574;
-    font-size: 12px;
-    transition: all 0.3s ease;
-    font-weight: 600;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 1000px var(--blanco) inset !important;
-    -webkit-text-fill-color: #576574 !important;
-}
-
-.enrollment-form input:focus,
-.enrollment-form select:focus {
-    border-color: #576574 !important;
-    outline: none;
-}
-
-.input-with-icon {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.input-with-icon i {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--rojo-principal);
-}
-
-.btn-verify {
-    width: 100%;
-    background: var(--rojo-principal);
-    color: var(--blanco);
-    border: none;
-    padding: 15px;
-    border-radius: 8px;
-    font-weight: bold;
-    font-size: 1.1rem;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.3s;
-}
-
-.btn-verify:hover {
-    background: var(--rojo-principal);
-}
-
-.hero-enrollment {
-    padding: 60px 20px;
-    background-color: var(--blanco);
-    display: flex;
-    justify-content: center;
-}
-
-.hero-container {
-    max-width: 1200px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 40px;
-}
-
-.hero-content {
-    flex: 1;
-    min-width: 300px;
-}
-
-.hero-title {
-    color: var(--azul-oscuro);
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 20px;
-}
-
-.hero-description, .hero-subtitle {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #576574;
-    margin-bottom: 15px;
-}
-
-.benefits-list {
-    list-style: none;
-    padding: 0;
-    margin: 25px 0;
-}
-
-.benefits-list li {
-    align-items: center;
-    color: #576574;
-    display: flex;
-    font-size: 17px;
-    font-weight: 600;
-    gap: 15px;
-    margin-bottom: 18px;
-}
-
-.benefits-list i {
-    color: var(--rojo-principal);
-    font-size: 20px;
-}
-
-.btn-enroll {
-    align-items: center;
-    background-color: var(--rojo-principal);
-    border-radius: 12px;
-    color: var(--blanco);
-    display: flex;
-    font-size: 17px;
-    font-weight: 700;
-    gap: 12px;
-    padding: 18px 59px;
-    text-decoration: none;
-    transition: 0.3s;
-    width: fit-content;
-}
-
-.btn-enroll:hover {
-    box-shadow: 0 10px 20px rgba(184, 92, 92, 0.3);
-    transform: translateY(-3px);
-}
-
-.hero-video {
-    flex: 1;
-    min-width: 300px;
-    margin-top: 12px;
-}
-
-.video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;
-    border-radius: 20px;
-}
-
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.help-container {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-}
-
-#helpIcon {
-    color: var(--rojo-principal);
-    cursor: help;
-    font-size: 1.1rem;
-    margin: 0;
-    right: 5px;
-}
-
-.help-tooltip {
-    display: none;
-    position: absolute;
-    bottom: 155%;
-    right: 0;
-    width: 150px;
-    background: var(--blanco);
-    color: var(--blanco);
-    padding: 1px;
-    border-radius: 10px;
-    z-index: 100;
-    text-align: center;
-    border: 1px solid var(--blanco);
-    pointer-events: none;
-}
-
-.enrollment-card h3 {
-    color: var(--azul-oscuro);
-    font-size: 1.6rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    line-height: 1.2;
-    margin-bottom: 25px;
-    text-align: center;
-    letter-spacing: 0.5px;
-}
-
-.help-tooltip img {
-    width: 100% !important;
-    height: auto !important;
-    border-radius: 5px;
-    margin-top: 8px;
-}
-
-.help-tooltip::after {
+.mt-hero::after {
     content: "";
     position: absolute;
-    top: 100%;
-    right: 5px;
-    border-width: 8px;
-    border-style: solid;
-    border-color: var(--blanco) transparent;
+    inset: auto 0 0 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--mt-red), #FF7A85);
 }
+.mt-hero__grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 56px;
+    align-items: center;
+}
+.mt-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255, 255, 255, .2);
+    font-size: .82rem;
+    font-weight: 700;
+}
+.mt-eyebrow i { color: #6EE7B7; }
+.mt-hero h1 {
+    margin: 20px 0 16px;
+    font-size: clamp(2rem, 4.4vw, 3.4rem);
+    line-height: 1.08;
+    font-weight: 800;
+    letter-spacing: -.02em;
+    color: #fff;
+}
+.mt-hero h1 span { color: #FF8A94; }
+.mt-hero__lead { font-size: 1.08rem; line-height: 1.65; color: rgba(255, 255, 255, .85); max-width: 540px; margin: 0; }
+.mt-hero__perks { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.mt-hero__perks li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .08);
+    font-size: .9rem;
+    font-weight: 600;
+}
+.mt-hero__perks i { color: #FF8A94; }
 
-.enrollment-form select:hover {
+/* ---------- Tarjeta de verificación ---------- */
+.mt-verify { color: var(--mt-text); padding: 32px; box-shadow: var(--mt-shadow-lg); border: 0; }
+.mt-verify h2 { margin: 0 0 4px; font-size: 1.5rem; font-weight: 800; color: var(--mt-ink); }
+.mt-verify > .mt-muted { margin: 0 0 20px; font-size: .92rem; }
+
+.mt-segmented {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    padding: 4px;
+    margin-bottom: 18px;
+    background: #F1F5F9;
+    border-radius: 12px;
+}
+.mt-segmented label { position: relative; cursor: pointer; }
+.mt-segmented input { position: absolute; opacity: 0; pointer-events: none; }
+.mt-segmented span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 40px;
+    border-radius: 9px;
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--mt-muted);
+    text-align: center;
+}
+.mt-segmented input:checked + span { background: #fff; color: var(--mt-navy); box-shadow: 0 1px 3px rgba(15, 23, 42, .12); }
+.mt-segmented .is-disabled { cursor: not-allowed; opacity: .6; }
+.mt-segmented small { font-size: .65rem; background: #E2E8F0; padding: 2px 6px; border-radius: 6px; }
+
+.mt-help {
+    border: 0;
+    background: none;
+    color: var(--mt-navy-700);
+    font: 600 .78rem var(--mt-font);
     cursor: pointer;
+    padding: 0;
 }
+.mt-help:hover { text-decoration: underline; }
 
-@media (max-width: 992px) {
+.mt-cv {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 6px 6px 16px;
+    border: 1.5px solid var(--mt-line);
+    border-radius: 12px;
+    background: #F8FAFC;
+}
+.mt-cv__dni { font: 700 1.05rem ui-monospace, 'SFMono-Regular', Menlo, monospace; letter-spacing: .14em; color: var(--mt-muted); flex: 1; }
+.mt-cv__dash { font-weight: 800; color: var(--mt-muted); }
+.mt-page .mt-cv input {
+    width: 56px;
+    min-height: 44px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--mt-red);
+    padding: 8px;
+}
+.mt-tooltip {
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #F8FAFC;
+    border: 1px dashed var(--mt-line);
+    font-size: .84rem;
+    line-height: 1.5;
+}
+.mt-tooltip img { display: block; width: 100%; max-width: 260px; margin: 0 auto 8px; border-radius: 8px; }
+.mt-tooltip p { margin: 0; }
 
-    .banner {
-        height: 350px;
-        background-image: url('../../images/imagen10.jpg');
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        flex-direction: column;
-    }
+.mt-divider { display: flex; align-items: center; gap: 12px; margin: 18px 0; color: var(--mt-muted); font-size: .8rem; font-weight: 600; }
+.mt-divider::before, .mt-divider::after { content: ""; flex: 1; height: 1px; background: var(--mt-line); }
 
+/* ---------- Secciones ---------- */
+.mt-section { padding: 88px 0; }
+.mt-section--tint { background: var(--mt-bg); }
+.mt-section__head { text-align: center; max-width: 640px; margin: 0 auto 44px; }
+.mt-section__head--left { text-align: left; margin: 0; }
+.mt-section__head h2 { margin: 0 0 10px; font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; color: var(--mt-ink); letter-spacing: -.01em; }
+.mt-section__head p { margin: 0; line-height: 1.6; }
 
-    .banner-container {
-        background-color: var(--blanco);
-        border-top-left-radius: 40px;
-        border-top-right-radius: 40px;
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        padding: 0 20px 50px 20px;
-        margin-top: 315px;
-    }
+/* Pasos */
+.mt-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: paso; }
+.mt-steps li {
+    position: relative;
+    padding: 28px 22px 24px;
+    border-radius: var(--mt-radius);
+    background: #fff;
+    border: 1px solid var(--mt-line);
+    transition: transform .2s, box-shadow .2s;
+}
+.mt-steps li:hover { transform: translateY(-4px); box-shadow: var(--mt-shadow); }
+.mt-steps__n {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #EEF2F7;
+    line-height: 1;
+}
+.mt-steps i {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--mt-red-50);
+    color: var(--mt-red);
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+}
+.mt-steps h3 { margin: 0 0 8px; font-size: 1.05rem; font-weight: 800; color: var(--mt-ink); }
+.mt-steps p { margin: 0; font-size: .92rem; line-height: 1.55; color: var(--mt-muted); }
 
-    .enrollment-card {
-        margin-top: 120px;
-        position: relative;
-        z-index: 10;
-        max-width: 360px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
+/* Programas */
+.mt-programs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 920px; margin: 0 auto; }
+.mt-program {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid var(--mt-line);
+    box-shadow: var(--mt-shadow);
+}
+.mt-program--featured { border: 2px solid var(--mt-red); }
+.mt-program .mt-badge { position: absolute; top: -12px; left: 32px; }
+.mt-program__icon {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    background: var(--mt-navy);
+    color: #fff;
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+}
+.mt-program h3 { margin: 0 0 8px; font-size: 1.4rem; font-weight: 800; color: var(--mt-ink); }
+.mt-program > p { margin: 0 0 16px; line-height: 1.6; color: var(--mt-muted); }
+.mt-program ul { list-style: none; padding: 0; margin: 0 0 20px; display: grid; gap: 8px; }
+.mt-program li { display: flex; gap: 10px; font-size: .94rem; font-weight: 600; }
+.mt-program li i { color: var(--mt-green); margin-top: 4px; }
+.mt-program__price { margin: auto 0 18px; padding-top: 16px; border-top: 1px dashed var(--mt-line); color: var(--mt-muted); }
+.mt-program__price strong { font-size: 1.5rem; color: var(--mt-navy); }
 
-    .hero-container {
-        flex-direction: column;
-        text-align: center;
-        margin-top: 350px;
-        gap: 30px;
-    }
+/* Pagos */
+.mt-pay { display: grid; grid-template-columns: .8fr 1.2fr; gap: 24px; max-width: 920px; margin: 0 auto; }
+.mt-pay h3 { display: flex; align-items: center; gap: 10px; margin: 0 0 6px; font-size: 1.1rem; font-weight: 800; color: var(--mt-ink); }
+.mt-pay h3 i { color: var(--mt-red); }
+.mt-pay__qr { text-align: center; }
+.mt-pay__qr h3 { justify-content: center; }
+.mt-pay__qr img { width: 100%; max-width: 220px; margin-top: 14px; border-radius: 12px; border: 1px solid var(--mt-line); }
+.mt-pay__bank dl { margin: 16px 0; display: grid; gap: 10px; }
+.mt-pay__bank dl div { display: flex; justify-content: space-between; gap: 12px; padding: 12px 14px; border-radius: 12px; background: var(--mt-bg); }
+.mt-pay__bank dt { font-size: .85rem; color: var(--mt-muted); font-weight: 600; }
+.mt-pay__bank dd { margin: 0; font-weight: 800; color: var(--mt-ink); text-align: right; font-variant-numeric: tabular-nums; }
 
-    .hero-content {
-        min-width: 100%;
-    }
+/* FAQ */
+.mt-faq-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: start; }
+.mt-video { margin-top: 24px; border-radius: var(--mt-radius); overflow: hidden; aspect-ratio: 16 / 9; box-shadow: var(--mt-shadow); background: #000; }
+.mt-video iframe { width: 100%; height: 100%; border: 0; display: block; }
+.mt-faq { display: grid; gap: 12px; }
+.mt-faq details { background: #fff; border: 1px solid var(--mt-line); border-radius: 14px; padding: 0 20px; }
+.mt-faq details[open] { box-shadow: var(--mt-shadow); }
+.mt-faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 0;
+    font-weight: 700;
+    color: var(--mt-ink);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+.mt-faq summary::-webkit-details-marker { display: none; }
+.mt-faq summary::after { content: "+"; font-size: 1.3rem; line-height: 1; color: var(--mt-red); }
+.mt-faq details[open] summary::after { content: "–"; }
+.mt-faq details p { margin: 0 0 18px; line-height: 1.65; color: var(--mt-muted); }
 
-    .hero-title {
-        font-size: 2rem;
-    }
-
-    .benefits-list {
-        display: inline-block;
-        text-align: left;
-    }
-
-    .btn-enroll {
-        margin: 0 auto;
-    }
-
-    .hero-video {
-        width: 100%;
-        min-width: 100%;
-    }
-
-    .video-wrapper {
-        max-width: 700px;
-        margin: 0 auto;
-    }
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+    .mt-hero__grid { grid-template-columns: 1fr; gap: 36px; }
+    .mt-hero__copy { text-align: center; }
+    .mt-hero__lead { margin: 0 auto; }
+    .mt-hero__perks { justify-content: center; }
+    .mt-verify { max-width: 520px; width: 100%; margin: 0 auto; }
+    .mt-steps { grid-template-columns: repeat(2, 1fr); }
+    .mt-faq-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 680px) {
+    .mt-container { padding: 0 16px; }
+    .mt-hero { padding: 40px 0 56px; }
+    .mt-hero__perks li { font-size: .82rem; }
+    .mt-verify { padding: 22px; }
+    .mt-section { padding: 60px 0; }
+    .mt-steps, .mt-programs, .mt-pay { grid-template-columns: 1fr; }
+    .mt-program { padding: 26px 22px; }
+    .mt-pay__bank dl div { flex-direction: column; gap: 2px; }
+    .mt-pay__bank dd { text-align: left; }
 }
