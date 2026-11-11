@@ -12,6 +12,11 @@ class Matricula extends Model
 
     public const ESTADOS = [self::ESTADO_PENDIENTE, self::ESTADO_PAGADA, self::ESTADO_CANCELADA];
 
+    // Resultado del pago en la pasarela (columna estado_pago)
+    public const PAGO_PENDIENTE = 'pendiente';
+    public const PAGO_PAGADO = 'pagado';
+    public const PAGO_FALLIDO = 'fallido';
+
     protected $table = 'matriculas';
     protected $primaryKey = 'id_matricula';
     public $timestamps = false; // La tabla usa fecha_registro, no created_at/updated_at
@@ -29,14 +34,23 @@ class Matricula extends Model
         'turno',
         'monto_total',
         'estado',
+        'estado_pago',
+        'monto_pagado',
+        'id_transaccion',
+        'ultimo_error_pago',
         'fecha_registro',
         'fecha_expiracion',
+        'fecha_pago',
+        'correo_enviado_at',
     ];
 
     protected $casts = [
         'fecha_registro' => 'datetime',
         'fecha_expiracion' => 'datetime',
+        'fecha_pago' => 'datetime',
+        'correo_enviado_at' => 'datetime',
         'monto_total' => 'decimal:2',
+        'monto_pagado' => 'decimal:2',
     ];
 
     public function alumno()
