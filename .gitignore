@@ -22,3 +22,7 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Documentos personales (informes FPE, tesis, diagramas) y respaldos
+/docs/
+*.bak
