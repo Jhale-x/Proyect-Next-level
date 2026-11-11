@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'role' => Role::class,
+            'panel.matricula' => \App\Http\Middleware\PanelMatricula::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

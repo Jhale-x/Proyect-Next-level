@@ -90,6 +90,11 @@
                     </div>
                 </div>
 
+                <a href="{{ route('admin.matriculas.index') }}" class="{{ request()->routeIs('admin.matriculas.*') ? 'active' : '' }}">
+                    <i class="bi bi-journal-check"></i>
+                    <span>Matrículas</span>
+                </a>
+
                 <a href="{{ route('admin.organizations') }}" class="{{ request()->routeIs('admin.organizations') ? 'active' : '' }}">
                     <i class="bi bi-diagram-3"></i>
                     <span>Organizaciones</span>

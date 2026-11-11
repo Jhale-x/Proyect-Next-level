@@ -28,17 +28,11 @@ return [
         'driver' => 'session',
         'provider' => 'alumnos',
     ],
+    // Panel de matrículas: cuentas propias, separadas de la intranet
+    'matricula' => [
+        'driver' => 'session',
+        'provider' => 'personal_matricula',
     ],
-
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
-        'alumnos' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Alumno::class,
-        ],
     ],
 
     /*
@@ -57,6 +51,11 @@ return [
         'alumnos' => [
             'driver' => 'eloquent',
             'model' => App\Models\Alumno::class,
+        ],
+
+        'personal_matricula' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\PersonalMatricula::class,
         ],
     ],
 
