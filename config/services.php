@@ -39,14 +39,29 @@ return [
         'token' => env('APIS_PERU_TOKEN'),
     ],
 
-    // Pasarela de pagos Culqi (https://docs.culqi.com). Con llaves pk_test_/sk_test_ funciona en modo de prueba.
-    'culqi' => [
-        'public_key' => env('CULQI_PUBLIC_KEY'),
-        'secret_key' => env('CULQI_SECRET_KEY'),
-        'url' => env('CULQI_API_URL', 'https://api.culqi.com/v2'),
-        // Autenticación básica del webhook (opcional; se configura igual en el panel de Culqi)
-        'webhook_usuario' => env('CULQI_WEBHOOK_USUARIO'),
-        'webhook_clave' => env('CULQI_WEBHOOK_CLAVE'),
+    // Pasarela de pagos Niubiz - Botón de Pago Web (https://desarrolladores.niubiz.com.pe)
+    'niubiz' => [
+        'entorno' => env('NIUBIZ_ENTORNO', 'sandbox'), // sandbox | produccion
+        'merchant_id' => env('NIUBIZ_MERCHANT_ID'),
+        'usuario' => env('NIUBIZ_USUARIO'),
+        'clave' => env('NIUBIZ_CLAVE'),
+        'urls' => [
+            'sandbox' => [
+                'api' => 'https://apisandbox.vnforappstest.com',
+                'js' => 'https://static-content-qas.vnforapps.com/env/sandbox/js/checkout.js',
+            ],
+            'produccion' => [
+                'api' => 'https://apiprod.vnforapps.com',
+                'js' => 'https://static-content.vnforapps.com/v2/js/checkout.js',
+            ],
+        ],
+        // Datos del comercio que Niubiz pide para antifraude y autorización
+        'comercio' => [
+            'ciudad' => env('NIUBIZ_CIUDAD', 'Lima'),
+            'departamento' => env('NIUBIZ_DEPARTAMENTO', 'LIM'),   // ISO 3166-2
+            'direccion' => env('NIUBIZ_DIRECCION', 'Lima'),
+            'codigo_postal' => env('NIUBIZ_CODIGO_POSTAL', '15001'),
+        ],
     ],
 
 ];

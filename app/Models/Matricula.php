@@ -37,6 +37,7 @@ class Matricula extends Model
         'estado_pago',
         'monto_pagado',
         'id_transaccion',
+        'numero_pedido',
         'ultimo_error_pago',
         'fecha_registro',
         'fecha_expiracion',
