@@ -35,4 +35,15 @@ return [
         ],
     ],
 
+    'apis_peru' => [
+        'token' => env('APIS_PERU_TOKEN'),
+    ],
+
+    // Pasarela de pagos Culqi (https://docs.culqi.com). Con llaves pk_test_/sk_test_ funciona en modo de prueba.
+    'culqi' => [
+        'public_key' => env('CULQI_PUBLIC_KEY'),
+        'secret_key' => env('CULQI_SECRET_KEY'),
+        'url' => env('CULQI_API_URL', 'https://api.culqi.com/v2'),
+    ],
+
 ];
