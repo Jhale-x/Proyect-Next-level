@@ -90,7 +90,9 @@
                         'Ciclo / Grado' => $matricula->ciclo_grado,
                         'Turno' => $matricula->turno,
                         'Inicio de clases' => $ciclo?->fecha_inicio?->format('d/m/Y'),
-                        'Monto pagado' => 'S/ ' . number_format($matricula->monto_total, 2),
+                        'Monto pagado' => 'S/ ' . number_format($matricula->monto_pagado ?? $matricula->monto_total, 2),
+                        'Fecha de pago' => $matricula->fecha_pago?->format('d/m/Y H:i'),
+                        'N° de operación' => $matricula->id_transaccion,
                     ] as $etiqueta => $valor)
                         @if($valor)
                         <tr>

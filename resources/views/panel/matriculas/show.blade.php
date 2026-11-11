@@ -109,6 +109,20 @@
                 @endif
                 <dt>Total</dt><dd class="pm-total">S/ {{ number_format($matricula->monto_total, 2) }}</dd>
                 <dt>Plazo de pago</dt><dd>{{ $matricula->fecha_expiracion?->format('d/m/Y H:i') ?? '—' }}</dd>
+                <dt>Estado del pago</dt>
+                <dd>
+                    <span class="pm-badge {{ ['pagado' => 'pm-badge-green', 'fallido' => 'pm-badge-red'][$matricula->estado_pago] ?? 'pm-badge-amber' }}">{{ ucfirst($matricula->estado_pago ?? 'pendiente') }}</span>
+                    @if($matricula->estado_pago === 'fallido' && $matricula->ultimo_error_pago)
+                        <small class="d-block pm-muted">Motivo: {{ $matricula->ultimo_error_pago }}</small>
+                    @endif
+                </dd>
+                @if($matricula->id_transaccion)
+                    <dt>N° de transacción</dt><dd><code>{{ $matricula->id_transaccion }}</code></dd>
+                @endif
+                @if($matricula->fecha_pago)
+                    <dt>Fecha de pago</dt><dd>{{ $matricula->fecha_pago->format('d/m/Y H:i') }}</dd>
+                @endif
+                <dt>Constancia</dt><dd>{{ $matricula->correo_enviado_at ? 'Enviada el ' . $matricula->correo_enviado_at->format('d/m/Y H:i') : 'No enviada' }}</dd>
             </dl>
 
             @forelse($matricula->pagos as $pago)

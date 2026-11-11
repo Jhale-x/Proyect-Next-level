@@ -100,7 +100,12 @@
                             <small class="d-block pm-muted">{{ $m->ciclo_grado }} · {{ $m->turno }}</small>
                         </td>
                         <td data-label="Monto">S/ {{ number_format($m->monto_total, 2) }}</td>
-                        <td data-label="Estado"><span class="pm-badge {{ $badges[$m->estado_visible] ?? 'pm-badge-gray' }}">{{ ucfirst($m->estado_visible) }}</span></td>
+                        <td data-label="Estado">
+                            <span class="pm-badge {{ $badges[$m->estado_visible] ?? 'pm-badge-gray' }}">{{ ucfirst($m->estado_visible) }}</span>
+                            @if($m->estado_pago === 'fallido')
+                                <span class="pm-badge pm-badge-red" title="{{ $m->ultimo_error_pago }}">Pago fallido</span>
+                            @endif
+                        </td>
                         <td class="text-end" data-label="">
                             <a href="{{ route('panel.show', $m->id_matricula) }}" class="pm-btn pm-btn-light pm-btn-sm"><i class="bi bi-eye"></i> Ver</a>
                             @if($m->estado === 'pendiente')
