@@ -65,6 +65,12 @@ Route::prefix('panel-matriculas')->name('panel.')->group(function () {
 });
 
 // ======================================================
+// WEBHOOKS DE PASARELAS DE PAGO (servidor a servidor, sin CSRF)
+// ======================================================
+Route::post('/webhooks/culqi', \App\Http\Controllers\WebhookCulqiController::class)
+    ->middleware('throttle:60,1')->name('webhooks.culqi');
+
+// ======================================================
 // 🆕 RUTAS DEL CHATBOT
 // ======================================================
 Route::prefix('chatbot')->group(function () {

@@ -390,27 +390,67 @@ class MatriculaService
      *
      * @return array{ya_pagada:bool, correo_enviado:bool}
      */
-    public function registrarPago(Matricula $matricula, ?string $comprobante = null, ?string $verificadoPor = null): array
-    {
-        if ($matricula->estado === Matricula::ESTADO_PAGADA) {
-            return ['ya_pagada' => true, 'correo_enviado' => false];
-        }
+    public function registrarPago(
+        Matricula $matricula,
+        ?string $comprobante = null,
+        ?string $verificadoPor = null,
+        ?string $idTransaccion = null,
+        ?float $montoPagado = null
+    ): array {
+        // La fila se bloquea: el cobro directo y el webhook pueden llegar a la vez,
+        // y solo uno debe registrar el pago.
+        $yaPagada = DB::transaction(function () use ($matricula, $comprobante, $verificadoPor, $idTransaccion, $montoPagado) {
+            $fila = Matricula::whereKey($matricula->id_matricula)->lockForUpdate()->first();
 
-        DB::transaction(function () use ($matricula, $comprobante, $verificadoPor) {
-            $matricula->update(['estado' => Matricula::ESTADO_PAGADA]);
+            if ($fila->estado === Matricula::ESTADO_PAGADA) {
+                return true;
+            }
+
+            $fila->update([
+                'estado' => Matricula::ESTADO_PAGADA,
+                'estado_pago' => Matricula::PAGO_PAGADO,
+                'monto_pagado' => $montoPagado ?? $fila->monto_total,
+                'id_transaccion' => $idTransaccion,
+                'fecha_pago' => now(),
+                'ultimo_error_pago' => null,
+            ]);
 
             Pago::create([
-                'id_matricula' => $matricula->id_matricula,
-                'id_cuota' => $matricula->ciclo ? ($this->calcularMonto($matricula->ciclo)['id_cuota'] ?? null) : null,
-                'monto' => $matricula->monto_total,
+                'id_matricula' => $fila->id_matricula,
+                'id_cuota' => $fila->ciclo ? ($this->calcularMonto($fila->ciclo)['id_cuota'] ?? null) : null,
+                'monto' => $montoPagado ?? $fila->monto_total,
                 'fecha_pago' => now()->toDateString(),
-                'comprobante' => $comprobante,
+                'comprobante' => $comprobante ?? $idTransaccion,
                 'estado' => 'confirmado',
                 'verificado_por' => $verificadoPor,
             ]);
+
+            return false;
         });
 
-        return ['ya_pagada' => false, 'correo_enviado' => $this->enviarBienvenida($matricula)];
+        $matricula->refresh();
+
+        // El correo se envía una sola vez; si antes falló, se reintenta.
+        if ($matricula->correo_enviado_at) {
+            return ['ya_pagada' => $yaPagada, 'correo_enviado' => false];
+        }
+
+        return ['ya_pagada' => $yaPagada, 'correo_enviado' => $this->enviarBienvenida($matricula)];
+    }
+
+    /**
+     * La pasarela rechazó el pago: queda como "fallido" para que el padre pueda
+     * intentarlo de nuevo (la matrícula sigue pendiente). Nunca pisa un pago aprobado.
+     */
+    public function registrarPagoFallido(Matricula $matricula, string $motivo): void
+    {
+        Matricula::whereKey($matricula->id_matricula)
+            ->where('estado', '!=', Matricula::ESTADO_PAGADA)
+            ->update([
+                'estado_pago' => Matricula::PAGO_FALLIDO,
+                'ultimo_error_pago' => mb_substr($motivo, 0, 255),
+            ]);
+        $matricula->refresh();
     }
 
     /**
@@ -466,6 +506,9 @@ class MatriculaService
                     $correo->cc($correoApoderado);
                 }
                 $correo->send(new BienvenidaAlumno($alumno, $matricula, $credenciales['password']));
+
+                // Marca de envío: evita mandar la constancia dos veces (webhook + cobro directo).
+                $matricula->update(['correo_enviado_at' => now()]);
             });
             return true;
         } catch (\Throwable $e) {

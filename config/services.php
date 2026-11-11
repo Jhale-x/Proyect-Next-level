@@ -44,6 +44,9 @@ return [
         'public_key' => env('CULQI_PUBLIC_KEY'),
         'secret_key' => env('CULQI_SECRET_KEY'),
         'url' => env('CULQI_API_URL', 'https://api.culqi.com/v2'),
+        // Autenticación básica del webhook (opcional; se configura igual en el panel de Culqi)
+        'webhook_usuario' => env('CULQI_WEBHOOK_USUARIO'),
+        'webhook_clave' => env('CULQI_WEBHOOK_CLAVE'),
     ],
 
 ];

@@ -16,6 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => Role::class,
             'panel.matricula' => \App\Http\Middleware\PanelMatricula::class,
         ]);
+
+        // Las pasarelas de pago llaman de servidor a servidor: no envían token CSRF.
+        $middleware->validateCsrfTokens(except: ['webhooks/*']);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
