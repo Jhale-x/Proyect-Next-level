@@ -287,11 +287,11 @@
                     </div>
                 </div>
 
-                {{-- Pago en línea con Culqi: solo se muestra si está configurado (ver partials/culqi) --}}
+                {{-- Pago en línea con Niubiz: solo se muestra si está configurado (ver partials/niubiz) --}}
                 <div class="mt-card mf-online" id="finOnline" hidden>
                     <div class="mf-online__info">
                         <h3><i class="fa-solid fa-bolt"></i> Paga en línea y recibe tus credenciales al instante</h3>
-                        <p class="mt-muted">Con tarjeta de crédito, débito o Yape. Pago seguro procesado por Culqi.</p>
+                        <p class="mt-muted">Con tarjeta de crédito, débito o Yape. Pago seguro procesado por Niubiz.</p>
                         <p class="mf-online__prueba" id="finPrueba" hidden><i class="fa-solid fa-flask"></i> Modo de prueba: no se cobra dinero real.</p>
                     </div>
                     <button type="button" class="mt-btn mt-btn--primary" id="finPagar"><i class="fa-solid fa-lock"></i> Pagar S/ <span id="finPagarMonto">0.00</span></button>
@@ -368,7 +368,7 @@
             whatsapp: @json(config('matricula.whatsapp')),
         };
     </script>
-    @include('partials.culqi')
+    @include('partials.niubiz')
     <script src="{{ asset('js/matricula_formulario.js') }}"></script>
 </body>
 </html>

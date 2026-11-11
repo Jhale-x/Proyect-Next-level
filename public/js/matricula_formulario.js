@@ -460,42 +460,26 @@
         prepararPagoEnLinea(r);
     }
 
-    // Pago en línea con Culqi (solo si está configurado: window.PagoCulqi)
+    // Pago en línea con Niubiz (solo si está configurado: window.PagoOnline).
+    // Al pagar, Niubiz envía el resultado al servidor y se muestra la página de resultado.
     function prepararPagoEnLinea(r) {
-        if (!window.PagoCulqi) return;
+        if (!window.PagoOnline) return;
         const btn = $('#finPagar');
         const msg = $('#finPagoMsg');
         $('#finOnline').hidden = false;
         $('#finOr').hidden = false;
-        $('#finPrueba').hidden = !window.PagoCulqi.modoPrueba;
+        $('#finPrueba').hidden = !window.PagoOnline.modoPrueba;
         $('#finPagarMonto').textContent = Number(r.monto_total).toFixed(2);
-
-        const avisar = (texto, error) => {
-            msg.textContent = texto;
-            msg.classList.toggle('is-error', !!error);
-            msg.hidden = false;
-        };
 
         btn.addEventListener('click', () => {
             msg.hidden = true;
-            window.PagoCulqi.pagar({
+            window.PagoOnline.pagar({
                 codigo: r.codigo,
-                monto: r.monto_total,
-                onExito: (res) => {
-                    $('#finTitulo').textContent = '¡Pago aprobado!';
-                    $('#finSubtitulo').textContent = 'Tu matrícula quedó confirmada. Este es tu código:';
-                    $('.mf-due').hidden = true;
-                    $('#finManual').hidden = true;
-                    $('#finOr').hidden = true;
-                    $('#finPasos').hidden = true;
-                    $('#finWhatsapp').hidden = true;
-                    btn.hidden = true;
-                    $('#finOnline h3').innerHTML = '<i class="fa-solid fa-circle-check"></i> Bienvenido(a) a Next Level';
-                    $('#finOnline .mf-online__info p').textContent = 'Tu usuario es tu DNI y tu contraseña es tu fecha de nacimiento (ddmmaaaa).';
-                    $('#finPrueba').hidden = true;
-                    avisar(res.mensaje, false);
+                onError: (texto) => {
+                    msg.textContent = texto;
+                    msg.classList.add('is-error');
+                    msg.hidden = false;
                 },
-                onError: (texto) => avisar(texto, true),
             });
         });
     }

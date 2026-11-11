@@ -221,26 +221,20 @@
 
         card.append(code, fila('Total a pagar', `S/ ${t.monto}`), fila('Pagar antes del', t.expira));
 
-        // Pago en línea con Culqi (solo si está configurado)
-        if (window.PagoCulqi) {
+        // Pago en línea con Niubiz (solo si está configurado)
+        if (window.PagoOnline) {
             const pagar = document.createElement('button');
             pagar.type = 'button';
             pagar.className = 'cb-pay__online';
             pagar.innerHTML = '<i class="fa-solid fa-lock"></i> Pagar ahora con tarjeta o Yape';
             const nota = document.createElement('p');
             nota.className = 'cb-pay__nota';
-            nota.textContent = window.PagoCulqi.modoPrueba
+            nota.textContent = window.PagoOnline.modoPrueba
                 ? 'Modo de prueba: no se cobra dinero real.'
-                : 'Recibes tus credenciales al instante.';
+                : 'Recibes tu constancia y credenciales al instante.';
             pagar.addEventListener('click', () => {
-                window.PagoCulqi.pagar({
+                window.PagoOnline.pagar({
                     codigo: t.codigo,
-                    monto: t.monto,
-                    onExito: (r) => {
-                        pagar.remove();
-                        nota.remove();
-                        agregarMensaje('bot', `🎉 ${r.mensaje}\n\n• Usuario: tu **DNI**\n• Contraseña: tu **fecha de nacimiento** (ddmmaaaa)`);
-                    },
                     onError: (texto) => agregarMensaje('bot', `⚠️ ${texto}`, true),
                 });
             });

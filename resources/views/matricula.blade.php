@@ -285,7 +285,7 @@
     <script src="{{ asset('js/marquee_principal.js') }}"></script>
     <script src="{{ asset('js/nav-scroll.js') }}"></script>
     <script src="{{ asset('js/menu-mobile.js') }}"></script>
-    @include('partials.culqi')
+    @include('partials.niubiz')
     <script src="{{ asset('js/chatbot.js') }}"></script>
     <script>
     document.addEventListener('DOMContentLoaded', () => {

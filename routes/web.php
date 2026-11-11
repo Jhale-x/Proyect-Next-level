@@ -26,8 +26,12 @@ Route::prefix('matricula')->group(function () {
     Route::post('/validar', [MatriculaController::class, 'store'])->name('matricula.validar');
     Route::get('/formulario', [MatriculaController::class, 'mostrarFormulario'])->name('matricula.formulario');
     Route::post('/guardar', [MatriculaController::class, 'procesarMatricula'])->name('matricula.guardar');
-    Route::post('/pago/{codigo}/culqi', [\App\Http\Controllers\PagoCulqiController::class, 'pagar'])
-        ->middleware('throttle:10,1')->name('matricula.pago.culqi');
+    // Pago en línea con Niubiz
+    Route::controller(\App\Http\Controllers\PagoNiubizController::class)->prefix('/pago/{codigo}/niubiz')->group(function () {
+        Route::post('/sesion', 'sesion')->middleware('throttle:10,1')->name('matricula.pago.niubiz.sesion');
+        Route::post('/respuesta', 'respuesta')->middleware('throttle:20,1')->name('matricula.pago.niubiz.respuesta');
+        Route::get('/resultado', 'resultado')->name('matricula.pago.niubiz.resultado');
+    });
 });
 
 // ======================================================
@@ -63,12 +67,6 @@ Route::prefix('panel-matriculas')->name('panel.')->group(function () {
         Route::delete('/cuotas/{id}', 'eliminarCuota')->whereNumber('id')->name('cuotas.destroy');
     });
 });
-
-// ======================================================
-// WEBHOOKS DE PASARELAS DE PAGO (servidor a servidor, sin CSRF)
-// ======================================================
-Route::post('/webhooks/culqi', \App\Http\Controllers\WebhookCulqiController::class)
-    ->middleware('throttle:60,1')->name('webhooks.culqi');
 
 // ======================================================
 // 🆕 RUTAS DEL CHATBOT

@@ -17,8 +17,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'panel.matricula' => \App\Http\Middleware\PanelMatricula::class,
         ]);
 
-        // Las pasarelas de pago llaman de servidor a servidor: no envían token CSRF.
-        $middleware->validateCsrfTokens(except: ['webhooks/*']);
+        // El formulario de Niubiz hace POST a la URL de respuesta desde su propio dominio:
+        // no puede enviar nuestro token CSRF. La seguridad está en la autorización con Niubiz.
+        $middleware->validateCsrfTokens(except: ['matricula/pago/*/niubiz/respuesta']);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
