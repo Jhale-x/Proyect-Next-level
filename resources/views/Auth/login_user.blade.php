@@ -66,8 +66,8 @@
 
                 <footer class="legal-footer">
                     <div class="footer-links">
-                        <a href="#">Términos y condiciones</a> <span>/</span>
-                        <a href="#">Política de privacidad</a>
+                        <a href="{{ route('legal.terminos') }}" target="_blank" rel="noopener">Términos y condiciones</a> <span>/</span>
+                        <a href="{{ route('legal.privacidad') }}" target="_blank" rel="noopener">Política de privacidad</a>
                     </div>
                     <p class="copyright">© 2026 Next Level. Todos los derechos reservados.</p>
                 </footer>
@@ -130,8 +130,8 @@
 
                 <footer class="legal-footer">
                     <div class="footer-links">
-                        <a href="#">Términos y condiciones</a> <span>/</span>
-                        <a href="#">Política de privacidad</a>
+                        <a href="{{ route('legal.terminos') }}" target="_blank" rel="noopener">Términos y condiciones</a> <span>/</span>
+                        <a href="{{ route('legal.privacidad') }}" target="_blank" rel="noopener">Política de privacidad</a>
                     </div>
                     <p class="copyright">© 2026 Next Level. Todos los derechos reservados.</p>
                 </footer>
@@ -194,8 +194,8 @@
 
                 <footer class="legal-footer">
                     <div class="footer-links">
-                        <a href="#">Términos y condiciones</a> <span>/</span>
-                        <a href="#">Política de privacidad</a>
+                        <a href="{{ route('legal.terminos') }}" target="_blank" rel="noopener">Términos y condiciones</a> <span>/</span>
+                        <a href="{{ route('legal.privacidad') }}" target="_blank" rel="noopener">Política de privacidad</a>
                     </div>
                     <p class="copyright">© 2026 Next Level. Todos los derechos reservados.</p>
                 </footer>

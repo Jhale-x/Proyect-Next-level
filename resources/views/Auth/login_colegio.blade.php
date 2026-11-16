@@ -61,11 +61,11 @@
                 <div class="mt-6 flex flex-col items-center">
                     <div
                         class="text-slate-400 text-[11px] font-bold uppercase tracking-widest flex items-center gap-3 whitespace-nowrap footer-links">
-                        <a href="#"
+                        <a href="{{ route('legal.terminos') }}" target="_blank" rel="noopener"
                             class="hover:text-custom-blue underline decoration-1 underline-offset-4 transition-colors">Términos
                             y condiciones</a>
                         <span class="text-slate-300">/</span>
-                        <a href="#"
+                        <a href="{{ route('legal.privacidad') }}" target="_blank" rel="noopener"
                             class="hover:text-custom-blue underline decoration-1 underline-offset-4 transition-colors">Política
                             de protección de datos personales</a>
                     </div>
@@ -171,10 +171,10 @@
                 <div class="mt-6 flex flex-col items-center">
                     <div
                         class="text-slate-400 text-[11px] font-bold uppercase tracking-widest flex items-center gap-3 footer-links">
-                        <a href="#" class="hover:text-custom-blue underline transition-colors">Términos y
+                        <a href="{{ route('legal.terminos') }}" target="_blank" rel="noopener" class="hover:text-custom-blue underline transition-colors">Términos y
                             condiciones</a>
                         <span class="text-slate-300">/</span>
-                        <a href="#" class="hover:text-custom-blue underline transition-colors">Política de
+                        <a href="{{ route('legal.privacidad') }}" target="_blank" rel="noopener" class="hover:text-custom-blue underline transition-colors">Política de
                             protección de datos personales</a>
                     </div>
                     <p class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.2em] mt-4"> © 2026 Next Level.

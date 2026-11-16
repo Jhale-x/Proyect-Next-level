@@ -258,8 +258,8 @@
                     </div>
 
                     <div class="mf-terms">
-                        <label class="mf-check"><input type="checkbox" id="terminos_aceptados"><span>He leído y acepto los <a href="#" onclick="return false;">Términos y Condiciones</a>.</span></label>
-                        <label class="mf-check"><input type="checkbox" id="politicas_aceptadas"><span>He leído y acepto la <a href="#" onclick="return false;">Política de Privacidad</a>.</span></label>
+                        <label class="mf-check"><input type="checkbox" id="terminos_aceptados"><span>He leído y acepto los <a href="{{ route('legal.terminos') }}" target="_blank" rel="noopener">Términos y Condiciones</a>.</span></label>
+                        <label class="mf-check"><input type="checkbox" id="politicas_aceptadas"><span>He leído y acepto la <a href="{{ route('legal.privacidad') }}" target="_blank" rel="noopener">Política de Privacidad</a>.</span></label>
                     </div>
                 </div>
 

@@ -17,6 +17,10 @@ Route::get('/inicio', [Web_Principal::class, 'index'])->name('web.inicio');
 // Página de accesos (reemplaza al portal de la intranet, que está desactivada)
 Route::view('/intranet', 'accesos')->name('portal');
 
+// Documentos legales (enlazados desde la matrícula y los logins)
+Route::view('/terminos-y-condiciones', 'legal.terminos')->name('legal.terminos');
+Route::view('/politica-de-privacidad', 'legal.privacidad')->name('legal.privacidad');
+
 // ======================================================
 // RUTAS DE MATRÍCULA
 // ======================================================

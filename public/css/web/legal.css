@@ -1,0 +1,43 @@
+/* Páginas legales (términos y privacidad). Usa las variables --mt-* de matricula-base.css y la cabecera de accesos.css */
+.lg-main { padding-top: 40px; padding-bottom: 56px; max-width: 860px; }
+
+.lg-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.lg-tabs a {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--mt-line);
+    background: var(--mt-white);
+    color: var(--mt-ink);
+    font-weight: 600;
+    font-size: .9rem;
+    text-decoration: none;
+}
+.lg-tabs a:hover { border-color: var(--mt-navy); }
+.lg-tabs a.is-active { background: var(--mt-navy-900); border-color: var(--mt-navy-900); color: var(--mt-white); }
+
+.lg-doc {
+    padding: 36px;
+    background: var(--mt-white);
+    border: 1px solid var(--mt-line);
+    border-radius: var(--mt-radius);
+    box-shadow: var(--mt-shadow);
+    line-height: 1.7;
+    color: var(--mt-ink);
+}
+.lg-doc h1 { margin: 0 0 4px; font-size: 1.9rem; font-weight: 800; }
+.lg-fecha { margin: 0 0 24px; font-size: .9rem; }
+.lg-doc h2 { margin: 28px 0 8px; font-size: 1.15rem; font-weight: 800; color: var(--mt-navy); }
+.lg-doc p { margin: 0 0 10px; }
+.lg-doc ul { margin: 0 0 10px; padding-left: 22px; }
+.lg-doc li { margin-bottom: 4px; }
+.lg-doc a { color: var(--mt-red); }
+
+.lg-contacto { margin-top: 32px; padding-top: 8px; border-top: 1px solid var(--mt-line); }
+.lg-contacto ul { list-style: none; padding-left: 0; }
+.lg-contacto i { width: 20px; color: var(--mt-red); }
+
+@media (max-width: 760px) {
+    .lg-main { padding-top: 24px; }
+    .lg-doc { padding: 22px 18px; }
+    .lg-doc h1 { font-size: 1.5rem; }
+}
